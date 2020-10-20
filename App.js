@@ -9,6 +9,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import Screens from './navigation/Screens';
 import { Images, articles, nowTheme } from './constants';
 
+import ApiKeys from './Controladores/ApiKeys';
+import firebase from 'firebase';
+
 // cache app images
 const assetImages = [
   Images.Onboarding,
@@ -42,6 +45,13 @@ export default class App extends React.Component {
     isLoadingComplete: false,
     fontLoaded: false
   };
+
+  constructor(props){
+    super(props);
+    if(!firebase.apps.length){
+      firebase.initializeApp(ApiKeys.FirebaseConfig);
+    }
+  }
 
   // async componentDidMount() {
   //   Font.loadAsync({

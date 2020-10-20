@@ -24,6 +24,7 @@
     "expo": "^37.0.0",
     "expo-asset": "~8.1.5",
     "expo-font": "~8.1.0",
+    "firebase": "^7.24.0",
     "galio-framework": "^0.6.3",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
@@ -31,9 +32,9 @@
     "react-native-gesture-handler": "~1.6.0",
     "react-native-modal-dropdown": "^0.7.0",
     "react-native-reanimated": "~1.7.0",
-    "react-native-svg": "11.0.1",
     "react-native-safe-area-context": "0.7.3",
-    "react-native-screens": "~2.2.0"
+    "react-native-screens": "~2.2.0",
+    "react-native-svg": "11.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
