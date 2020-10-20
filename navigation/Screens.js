@@ -6,6 +6,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // screens
 import Home from '../screens/Home';
+import DetallesReceta from '../screens/DetallesReceta';
 import Pro from '../screens/Pro';
 import Profile from '../screens/Profile';
 import Register from '../screens/Register';
@@ -109,6 +110,47 @@ function ProfileStack(props) {
   );
 }
 
+function DetallesRecetaStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="DetallesReceta" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="DetallesReceta"
+        component={DetallesReceta}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title="Detalles de la Receta"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function HomeStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
@@ -119,8 +161,8 @@ function HomeStack(props) {
           header: ({ navigation, scene }) => (
             <Header
               title="Home"
-              search
-              options
+              //search
+              //options
               navigation={navigation}
               scene={scene}
             />
@@ -185,6 +227,7 @@ function AppStack(props) {
       <Drawer.Screen name="Articles" component={ArticlesStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={AccountStack} />
+      <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
     </Drawer.Navigator>
   );
 }

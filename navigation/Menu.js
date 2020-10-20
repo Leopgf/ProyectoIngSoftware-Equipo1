@@ -27,16 +27,13 @@ function CustomDrawerContent({
   const insets = useSafeArea();
   const screens = [
     "Home",
-    "Components",
-    "Articles",
-    "Profile",
-    "Account",
+   // "Components",
+   // "Articles",
+   // "Profile",
+   // "Account",
   ];
   return (
-    <Block
-      style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
+    <Block style={styles.container} forceInset={{ top: "always", horizontal: "never" }} >
       <Block style={styles.header}>
         <Image style={styles.logo} source={Images.Logo} />
         <Block right style={styles.headerIcon}>
@@ -48,6 +45,8 @@ function CustomDrawerContent({
           />
         </Block>
       </Block>
+
+
       <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           {screens.map((item, index) => {
@@ -60,22 +59,23 @@ function CustomDrawerContent({
               />
             );
           })}
-          <Block flex style={{ marginTop: 24, marginVertical: 8, paddingHorizontal: 8 }}>
+   <Block flex style={{ marginTop: 24, marginVertical: 8, paddingHorizontal: 8 }}>
           <Block
             style={{ borderColor: 'white', width: '93%', borderWidth: StyleSheet.hairlineWidth, marginHorizontal: 10}}
           />
-          <Text
+           {/*<Text
             color={nowTheme.COLORS.WHITE}
             style={{ marginTop: 30, marginLeft: 20, marginBottom: 10, fontFamily: 'montserrat-regular', fontWeight: '300', fontSize: 12}}
           >
             DOCUMENTATION
-          </Text>
+          </Text> */}
         </Block>
-        <DrawerCustomItem title="GETTING STARTED" navigation={navigation}/>
-        <DrawerCustomItem title="LOGOUT" navigation={navigation}/>
+
+        {/* <DrawerCustomItem title="GETTING STARTED" navigation={navigation}/>
+        <DrawerCustomItem title="LOGOUT" navigation={navigation}/> */}
         </ScrollView>
       </Block>
-    </Block>
+        </Block> 
   );
 }
 

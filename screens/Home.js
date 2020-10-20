@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Dimensions, ScrollView } from "react-native";
 import { Block, theme, Text } from "galio-framework";
-
 import { Card, Button } from "../components";
 import articles from "../constants/articles";
 const { width } = Dimensions.get("screen");
@@ -14,16 +13,13 @@ class Home extends React.Component {
         contentContainerStyle={styles.articles}
       >
         <Block flex>
-        <Card item={articles[0]} horizontal />
           <Block flex row>
             <Card
               item={articles[1]}
               style={{ marginRight: theme.SIZES.BASE }}
             />
             <Card item={articles[2]} />
-          </Block>
-          <Card item={articles[3]} horizontal />
-          <Card item={articles[4]} full />
+          </Block>  
         </Block>
       </ScrollView>
     );
