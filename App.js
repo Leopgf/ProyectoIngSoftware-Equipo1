@@ -6,8 +6,8 @@ import { Asset } from 'expo-asset';
 import { Block, GalioProvider } from 'galio-framework';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Screens from './navigation/Screens';
-import { Images, articles, nowTheme } from './constants';
+import Screens from './Vista/navigation/Screens';
+import { Images, articles, nowTheme } from './Vista/constants';
 
 import ApiKeys from './Controladores/ApiKeys';
 import firebase from 'firebase';
@@ -86,8 +86,8 @@ export default class App extends React.Component {
 
   _loadResourcesAsync = async () => {
     await Font.loadAsync({
-      'montserrat-regular': require('./assets/font/Montserrat-Regular.ttf'),
-      'montserrat-bold': require('./assets/font/Montserrat-Bold.ttf')
+      'montserrat-regular': require('./Vista/assets/font/Montserrat-Regular.ttf'),
+      'montserrat-bold': require('./Vista/assets/font/Montserrat-Bold.ttf')
     });
 
     this.setState({ fontLoaded: true });
