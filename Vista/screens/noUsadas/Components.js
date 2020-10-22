@@ -1,3 +1,5 @@
+// NO SE ESTÁ USANDO
+
 import React from 'react';
 import {
   ScrollView,
@@ -9,16 +11,16 @@ import {
   ImageBackground
 } from 'react-native';
 
-import Articles from '../screens/Articles';
+import Articles from './Articles';
 // Galio components
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
 // Now UI themed components
-import { Images, nowTheme, articles, tabs } from '../constants';
-import { Button, Select, Icon, Input, Header, Switch } from '../components';
+import { Images, nowTheme, articles, tabs } from '../../constants';
+import { Button, Select, Icon, Input, Header, Switch } from '../../components';
 
-import Img from '../components/Img';
-import { Card } from '../components';
+import Img from '../../components/Img';
+import { Card } from '../../components';
 
 
 const { width } = Dimensions.get('screen');

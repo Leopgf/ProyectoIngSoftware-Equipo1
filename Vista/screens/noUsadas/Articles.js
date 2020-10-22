@@ -1,10 +1,12 @@
+// NO SE ESTÁ USANDO
+
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 //galio
 import { Block, Text, theme } from 'galio-framework';
 
-import { articles, nowTheme } from '../constants/';
-import { Card } from '../components/';
+import { articles, nowTheme } from '../../constants';
+import { Card } from '../../components';
 
 class Articles extends React.Component {
   renderCards = () => {

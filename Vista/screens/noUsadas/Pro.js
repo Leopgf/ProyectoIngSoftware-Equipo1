@@ -1,3 +1,6 @@
+// NO SE ESTÁ USANDO 
+
+
 import React from "react";
 import {
   ImageBackground,
@@ -10,8 +13,8 @@ import { Block, Button, Text, theme } from "galio-framework";
 
 const { height, width } = Dimensions.get("screen");
 
-import nowTheme from "../constants/Theme";
-import Images from "../constants/Images";
+import nowTheme from "../../constants/Theme";
+import Images from "../../constants/Images";
 
 class Pro extends React.Component {
   render() {

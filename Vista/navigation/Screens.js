@@ -1,19 +1,16 @@
 import React from 'react';
-import { Block } from "galio-framework";
 import { Easing, Animated, Dimensions } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // screens
 import Home from '../screens/Home';
 import DetallesReceta from '../screens/DetallesReceta';
-import Pro from '../screens/Pro';
-import Profile from '../screens/Profile';
-import Register from '../screens/Register';
-import Components from '../screens/Components';
-import Articles from '../screens/Articles';
+import Pro from '../screens/noUsadas/Pro';
+import Profile from '../screens/noUsadas/Profile';
+import Register from '../screens/noUsadas/Register';
+import Components from '../screens/noUsadas/Components';
+import Articles from '../screens/noUsadas/Articles';
 import Onboarding from '../screens/Onboarding';
-import SettingsScreen from '../screens/Settings';
 // drawer
 import CustomDrawerContent from "./Menu";
 // header for screens
@@ -36,6 +33,91 @@ function ComponentsStack(props) {
   );
 }
 
+// Renderizados que estamos usando
+function HomeStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Home"
+              //search
+              //options
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" }
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function DetallesRecetaStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="DetallesReceta" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="DetallesReceta"
+        component={DetallesReceta}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title="Detalles de la Receta"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+
+
+// Renderizados que no estamos usando
 function ArticlesStack(props) {
   return (
     <Stack.Navigator initialRouteName="Articles" mode="card" headerMode="screen">
@@ -110,87 +192,9 @@ function ProfileStack(props) {
   );
 }
 
-function DetallesRecetaStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="DetallesReceta" mode="card" headerMode="screen">
-      <Stack.Screen
-        name="DetallesReceta"
-        component={DetallesReceta}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              transparent
-              white
-              title="Detalles de la Receta"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          cardStyle: { backgroundColor: "#FFFFFF" },
-          headerTransparent: true
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
-function HomeStack(props) {
-  return (
-    <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title="Home"
-              //search
-              //options
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          cardStyle: { backgroundColor: "#FFFFFF" }
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
+// Renderizado de la app
 function AppStack(props) {
   return (
     <Drawer.Navigator

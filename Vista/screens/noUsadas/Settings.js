@@ -1,3 +1,5 @@
+// NO SE ESTA USANDO
+
 import React from "react";
 import {
   StyleSheet,
@@ -6,9 +8,9 @@ import {
   ScrollView
 } from "react-native";
 import { Block, Text, theme, Icon } from "galio-framework";
-import { Switch } from "../components";
+import { Switch } from "../../components";
 
-import nowTheme from "../constants/Theme";
+import nowTheme from "../../constants/Theme";
 
 export default class Settings extends React.Component {
   state = {};

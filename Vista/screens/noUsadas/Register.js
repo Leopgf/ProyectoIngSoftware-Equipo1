@@ -1,3 +1,5 @@
+// NO SE ESTÁ USANDO
+
 import React from 'react';
 import {
   StyleSheet,
@@ -9,8 +11,8 @@ import {
 } from 'react-native';
 import { Block, Checkbox, Text, Button as GaButton, theme } from 'galio-framework';
 
-import { Button, Icon, Input } from '../components';
-import { Images, nowTheme } from '../constants';
+import { Button, Icon, Input } from '../../components';
+import { Images, nowTheme } from '../../constants';
 
 const { width, height } = Dimensions.get('screen');
 

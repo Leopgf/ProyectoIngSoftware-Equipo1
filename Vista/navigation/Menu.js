@@ -2,19 +2,11 @@ import React from "react";
 import {
   ScrollView,
   StyleSheet,
-  Dimensions,
   Image,
-  TouchableOpacity,
-  Linking
 } from "react-native";
-import { Block, Text, theme } from "galio-framework";
-import { useSafeArea } from "react-native-safe-area-context";
+import { Block, theme } from "galio-framework";
 import Images from "../constants/Images";
 import { DrawerItem as DrawerCustomItem, Icon } from "../components";
-
-import nowTheme from "../constants/Theme";
-
-const { width } = Dimensions.get("screen");
 
 function CustomDrawerContent({
   drawerPosition,
@@ -24,14 +16,13 @@ function CustomDrawerContent({
   state,
   ...rest
 }) {
-  const insets = useSafeArea();
+
+  // AQUÍ AGREGAMOS LAS NUEVAS OPCIONES DEL MENÚ
   const screens = [
     "Home",
-   // "Components",
-   // "Articles",
-   // "Profile",
-   // "Account",
   ];
+
+
   return (
     <Block style={styles.container} forceInset={{ top: "always", horizontal: "never" }} >
       <Block style={styles.header}>
@@ -59,20 +50,6 @@ function CustomDrawerContent({
               />
             );
           })}
-   <Block flex style={{ marginTop: 24, marginVertical: 8, paddingHorizontal: 8 }}>
-          <Block
-            style={{ borderColor: 'white', width: '93%', borderWidth: StyleSheet.hairlineWidth, marginHorizontal: 10}}
-          />
-           {/*<Text
-            color={nowTheme.COLORS.WHITE}
-            style={{ marginTop: 30, marginLeft: 20, marginBottom: 10, fontFamily: 'montserrat-regular', fontWeight: '300', fontSize: 12}}
-          >
-            DOCUMENTATION
-          </Text> */}
-        </Block>
-
-        {/* <DrawerCustomItem title="GETTING STARTED" navigation={navigation}/>
-        <DrawerCustomItem title="LOGOUT" navigation={navigation}/> */}
         </ScrollView>
       </Block>
         </Block> 
@@ -86,7 +63,7 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
-    paddingTop: theme.SIZES.BASE * 3,
+    paddingTop: theme.SIZES.BASE * 2,
     justifyContent: "center"
   },
   headerIcon: {
