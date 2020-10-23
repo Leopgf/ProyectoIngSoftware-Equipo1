@@ -6,6 +6,7 @@ import { Block, Text, theme } from 'galio-framework';
 
 import { nowTheme } from '../constants';
 
+
 class Card extends React.Component {
   render() {
     const {
@@ -33,7 +34,7 @@ class Card extends React.Component {
       <Block row={horizontal} card flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta')}>
           <Block flex style={imgContainer}>
-            <Image resizeMode="cover" source={item.image} style={imageStyles} />
+            <Image resizeMode="cover" source= {item.imagen && {uri: item.imagen}} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta')}>
@@ -42,10 +43,10 @@ class Card extends React.Component {
               <Text
                 style={{ fontFamily: 'montserrat-regular' }}
                 size={14}
-                style={titleStyles}
+                style={styles.cardTitle}
                 color={nowTheme.COLORS.SECONDARY}
               >
-                {item.title}
+                {item.nombre}
               </Text>
               {item.subtitle ? (
                 <Block flex center>
@@ -60,14 +61,14 @@ class Card extends React.Component {
               ) : (
                   <Block />
                 )}
-              {item.description ? (
+              {item.descripcion ? (
                 <Block flex center>
                   <Text
                     style={{ fontFamily: 'montserrat-regular', textAlign: 'center', padding: 15 }}
                     size={14}
                     color={"#9A9A9A"}
                   >
-                    {item.description}
+                    {item.descripcion}
                   </Text>
                 </Block>
               ) : (
@@ -127,13 +128,14 @@ const styles = StyleSheet.create({
   cardTitle: {
     paddingHorizontal: 9,
     paddingTop: 7,
-    paddingBottom: 15
+    paddingBottom: 2,
+    fontSize: 24
   },
   cardDescription: {
-    padding: theme.SIZES.BASE / 2
+    // padding: theme.SIZES.BASE / 2
   },
   imageContainer: {
-    borderRadius: 3,
+    borderRadius: 4,
     elevation: 1,
     overflow: 'hidden'
   },
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
     // borderRadius: 3,
   },
   horizontalImage: {
-    height: 122,
+    height: 200,
     width: 'auto'
   },
   horizontalStyles: {
