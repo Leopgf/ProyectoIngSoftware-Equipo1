@@ -46,8 +46,8 @@ class DetallesReceta extends React.Component {
       <Block
         style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}
       >
-        <Block flex={0.2} />
-        <Block flex={0.5}>
+        <Block flex={0.15} />
+        <Block flex={0.48}>
           <ImageBackground
             source={this.state.detalles.imagen && { uri: this.state.detalles.imagen }}
             style={styles.profileContainer}
