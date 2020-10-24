@@ -6,7 +6,7 @@ import { withNavigation } from '@react-navigation/compat';
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
-import { getDetallesReceta } from '../../Controladores/RecetaControler'
+import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { block } from 'react-native-reanimated';
 import Receta from '../../Modelos/Receta';
 
@@ -14,134 +14,171 @@ const { width, height } = Dimensions.get('screen');
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
-class DetallesReceta extends React.Component{
-
+class DetallesReceta extends React.Component {
   state = {
-    detalles: Receta,
+    detalles: {
+      categorias: [],
+      pasos: [],
+      ingredientes: [],
+    },
     id: this.props.route.params.recetaID,
-  }
+  };
 
-  onDetallesRecetas = (detalles)=>{
-    this.setState(prevState =>({
-      detalles: detalles
+  onDetallesRecetas = async (detalles) => {
+    await this.setState((prevState) => ({
+      detalles: detalles,
     }));
-    console.log(this.state);
-  }
+    getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, this.state.detalles.categorias[0]);
+  };
+
+  onCategoriaRecetas = async (detalles) => {
+    await this.setState((prevState) => ({
+      detalles: detalles,
+    }));
+  };
 
   componentDidMount() {
     getDetallesReceta(this.onDetallesRecetas, this.state.id);
   }
 
-renderDetallesReceta = () => {
-  return (
-    <Block style={{
-      flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    }} >
-      <Block flex={0.6} >
-        <ImageBackground
-          source= {this.state.detalles.imagen && {uri: this.state.detalles.imagen}}
-          style={styles.profileContainer}
-          imageStyle={styles.profileBackground}
-        >
-          <Block flex style={styles.profileCard}>
-            <Block style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 20 }}>
-                <Block style={{ top: height * 0.3 }}>
+  renderDetallesReceta = () => {
+    return (
+      <Block
+        style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}
+      >
+        <Block flex={0.2} />
+        <Block flex={0.5}>
+          <ImageBackground
+            source={this.state.detalles.imagen && { uri: this.state.detalles.imagen }}
+            style={styles.profileContainer}
+            imageStyle={styles.profileBackground}
+          >
+            <Block flex style={styles.profileCard}>
+              <Block
+                style={{position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 2 }}
+              >
+                <Block style={{ top: height * 0.33, backgroundColor : "rgba(0,0,0,0.5)"}}>
+
+                  <Block middle>
+
                     {/* TITULO RECETA */}
-                      
-                        <Block middle >
-                        <Text style={{ fontFamily: 'montserrat-bold',textAlign: "center", marginBottom: theme.SIZES.BASE / 2, fontWeight: '500',fontSize: 24 }}color='#ffffff'>
-                            {this.state.detalles.nombre}
-                        </Text>
-                        </Block>
+                    <Text style={styles.title} color="#ffffff">
+                      {this.state.detalles.nombre}
+                    </Text>
+
+                    {/* FECHA DE PUBLICACIÓN RECETA */}
+                    <Text size={16} style={styles.date}>
+                      Publicada el {this.state.detalles.fecha}
+                    </Text>
+
+                  </Block>
                 </Block>
+              </Block>
+
+              <Block middle row style={{ position: 'absolute', width: width, top: height * 0.6 - 22, zIndex: 99 }}></Block>
             </Block>
+          </ImageBackground>
+        </Block>
+        <Block />
 
+        <Block flex={0.9} style={{ padding: theme.SIZES.BASE, marginTop: 90 }}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Block flex style={{ marginTop: 20 }}>
 
-            <Block middle row style={{ position: 'absolute', width: width, top: height * 0.6 - 22, zIndex: 99 }}>
-            </Block>
+              <Block middle>
 
-            </Block>
-        </ImageBackground>
-
-      </Block>
-      <Block />
-
-      <Block flex={1.2} style={{ padding: theme.SIZES.BASE, marginTop: 90}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <Block flex style={{ marginTop: 20 }}>
-          
-                {/* TEXTO DE RECETA, INGREDIENTES */}
-            <Block middle>
-
-                <Text style={{ color: '#2c2c2c', fontWeight: 'bold',fontSize: 19,fontFamily: 'montserrat-bold',marginTop: 15,marginBottom: 30,zIndex: 2}}>
-                    INGREDIENTES
-                </Text>
-                
-                {/* {
-                  this.state.detalles.ingredientes.map((ingrediente, index) => (
-                <Text size={16} muted style={{textAlign: 'center',fontFamily: 'montserrat-regular',zIndex: 2,lineHeight: 25,color: '#9A9A9A',paddingHorizontal: 15}}>
-                {ingrediente.ingrediente && item.missions[0].name}
+                {/* CATEGORIAS DE LA RECETA */}
+                <Text style={styles.subtitle}>
+                  Categoría: {this.state.detalles.categorias[0]}
                 </Text>
 
-                  ))
-                } */}
 
-                <Text style={{color: '#2c2c2c',fontWeight: 'bold',fontSize: 19,fontFamily: 'montserrat-bold',marginTop: 15,marginBottom: 30,zIndex: 2}}>
-                    PREPA
+                {/* PORCIONES DE LA RECETA */}
+                <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
+                <Text style={styles.subtitle}>
+                  RECETA PARA: {this.state.detalles.porcionDefecto} {this.state.detalles.unidadPorcion}
                 </Text>
 
-                <Text size={16} muted style={{textAlign: 'center',fontFamily: 'montserrat-regular',zIndex: 2,lineHeight: 25,color: '#9A9A9A',paddingHorizontal: 15}}>
-                    PREPA 2
+                {/* BOTONES PARA CAMBIAR LAS PORCIONES DE LA RECETA */}
+                <Button small primary>+</Button>
+                <Button small primary>-</Button>
+                </Block>
+
+                <Text style={styles.subtitle}>
+                  DESCRIPCIÓN
                 </Text>
 
-            </Block>
-
-
-             {/* ALBUM RECETA */}
-            <Block row style={{ paddingVertical: 14, paddingHorizontal: 15 }} space="between">
-              <Text bold size={16} color="#2c2c2c" style={{ marginTop: 3 }}>
-                Album de la Receta
+                <Text
+                  size={16}
+                  muted
+                  style={styles.text}
+                >
+                  {this.state.detalles.descripcion}
                 </Text>
-            </Block>
 
-            <Block style={{ paddingBottom: -HeaderHeight * 2, paddingHorizontal: 15}}>
-              <Block row space="between" style={{ flexWrap: 'wrap' }}>
-                {Images.Viewed.map((img, imgIndex) => (
-                  <Image source={img} key={`viewed-${img}`} resizeMode="cover" style={styles.thumb}/>
+                <Text
+                  style={styles.subtitle}
+                >
+                  INGREDIENTES
+                </Text>
+
+                {this.state.detalles.ingredientes.map((ingrediente, index) => {
+                  if (ingrediente.alGusto) {
+                    return (
+                      <Text
+                        size={16}
+                        muted
+                        style={styles.text}
+                      >
+                        {ingrediente.ingrediente} al gusto.
+                      </Text>
+                    );
+                  } else {
+                    return (
+                      <Text
+                        size={16}
+                        muted
+                        style={styles.text}
+                      >
+                        {ingrediente.cantidad} {ingrediente.ingrediente}.
+                      </Text>
+                    );
+                  }
+                })}
+
+                <Text
+                  style={styles.subtitle}
+                >
+                  PREPARACIÓN
+                </Text>
+
+                {this.state.detalles.pasos.map((paso, index) => (
+                  <Text
+                    size={16}
+                    muted
+                    style={styles.text}
+                  >
+                    {index + 1} - {paso}
+                  </Text>
                 ))}
               </Block>
             </Block>
-
-
-          </Block>
-        </ScrollView>
+          </ScrollView>
+        </Block>
       </Block>
-   
+    );
+  };
 
-      
+  render() {
+    return (
+      <Block flex center style={styles.home}>
+        {this.renderDetallesReceta()}
       </Block>
-
-    
-
-  )
-};
-
-render() {
-  return (
-    <Block flex center style={styles.home}>
-      {this.renderDetallesReceta()}
-    </Block>
-  );
+    );
+  }
 }
-}
-
-
-
 
 const styles = StyleSheet.create({
-
   profileContainer: {
     width,
     height,
@@ -156,27 +193,27 @@ const styles = StyleSheet.create({
   info: {
     marginTop: 30,
     paddingHorizontal: 10,
-    height: height * 0.8
+    height: height * 0.8,
   },
   avatarContainer: {
     position: 'relative',
-    marginTop: -80
+    marginTop: -80,
   },
   avatar: {
     width: thumbMeasure,
     height: thumbMeasure,
     borderRadius: 50,
-    borderWidth: 0
+    borderWidth: 0,
   },
   nameInfo: {
-    marginTop: 35
+    marginTop: 35,
   },
   thumb: {
     borderRadius: 4,
     marginVertical: 4,
     alignSelf: 'center',
     width: thumbMeasure,
-    height: thumbMeasure
+    height: thumbMeasure,
   },
   social: {
     width: nowTheme.SIZES.BASE * 3,
@@ -184,7 +221,37 @@ const styles = StyleSheet.create({
     borderRadius: nowTheme.SIZES.BASE * 1.5,
     justifyContent: 'center',
     zIndex: 99,
-    marginHorizontal: 5
+    marginHorizontal: 5,
+  },
+  title: {
+    fontFamily: 'montserrat-bold', 
+    textAlign: 'center', 
+    marginBottom: theme.SIZES.BASE / 2, 
+    fontWeight: '500', 
+    fontSize: 24
+  },
+  date: {
+    fontFamily: 'montserrat-regular', 
+    zIndex: 2, 
+    lineHeight: 25, 
+    color: '#FFFFFF', 
+    paddingHorizontal: 15
+  },
+  subtitle: {
+    color: '#2c2c2c', 
+    fontWeight: 'bold',
+    fontSize: 19,
+    fontFamily: 'montserrat-bold',
+    marginTop: 15,
+    marginBottom: 30,
+    zIndex: 2,
+  },
+  text: {
+    fontFamily: 'montserrat-regular',
+    zIndex: 2,
+    lineHeight: 25,
+    color: '#9A9A9A',
+    paddingHorizontal: 15,
   }
 });
 

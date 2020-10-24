@@ -13,6 +13,7 @@ export async function getRecetas(recetasRecibidas: Function) {
     const id = doc.id;
     const { nombre, imagen, fecha } = doc.data();
     let receta = { recetaID: id, ...(doc.data() as Receta) };
+    receta.fecha = new Date(doc.data().fecha);
     recetas.push(receta);
   });
 
@@ -29,5 +30,17 @@ export async function getDetallesReceta(detallesRecetas: Function, id: string) {
         recetaID: snapshot.id
     }
 
+    detalle.fecha = snapshot.data().fecha.toDate().toString();
+
   detallesRecetas(detalle);
+}
+
+// FUNCION PARA RECUPERAR UNA CATEGORIA
+export async function getCategoriaReceta(categoriaRecetas: Function, detallesRecetas: Receta, id: string) {
+
+  let snapshot = await firebase.firestore().collection('Categoria').doc(id).get();
+
+    detallesRecetas.categorias[0] = snapshot.data().nombre;
+
+  categoriaRecetas(detallesRecetas);
 }

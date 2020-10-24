@@ -83,31 +83,13 @@ function DetallesRecetaStack(props) {
         options={{
           header: ({ navigation, scene }) => (
             <Header
-              transparent
-              white
+              back
               title="Detalles de la Receta"
               navigation={navigation}
               scene={scene}
             />
           ),
           cardStyle: { backgroundColor: "#FFFFFF" },
-          headerTransparent: true
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
           headerTransparent: true
         }}
       />
