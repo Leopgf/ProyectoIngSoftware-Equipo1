@@ -79,7 +79,7 @@ function DetallesRecetaStack(props) {
     <Stack.Navigator initialRouteName="DetallesReceta" mode="card" headerMode="screen">
       <Stack.Screen
         name="DetallesReceta"
-        component={DetallesReceta}
+        component={() => <DetallesReceta {...props} />}
         options={{
           header: ({ navigation, scene }) => (
             <Header

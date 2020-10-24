@@ -10,7 +10,9 @@ export async function getRecetas(recetasRecibidas: Function) {
   let snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
 
   snapshot.forEach((doc) => {
-    let receta = new Receta(doc.id, doc.data().nombre, doc.data().imagen, doc.data().fecha);
+    const id = doc.id;
+    const { nombre, imagen, fecha } = doc.data();
+    let receta = { recetaID: id, ...(doc.data() as Receta) };
     recetas.push(receta);
   });
 
@@ -19,13 +21,17 @@ export async function getRecetas(recetasRecibidas: Function) {
 
 // FUNCION PARA RECUPERAR LOS DETALLES DE LAS RECETAS
 export async function getDetallesReceta(detallesRecetas: Function, id: string) {
-  let detalles: Receta[] = [];
+//   let detalles: Receta[] = [];
   let snapshot = await firebase.firestore().collection('Recetas').doc(id).get();
+//   const docId = snapshot.id;
 
-  snapshot((campo) =>{
-    let detalle = new Receta(campo.id, campo.data().nombre, campo.data().descripcion, campo.data().porcionDefecto, campo.data().unidadProcion, campo.data().pasos, campo.data().imagen, campo.data().ingredientes);
-     detalles.push(detalle);
-  });
+//   snapshot((campo) =>{
+    let detalle: Receta = {
+        ...snapshot.data() as Receta,
+        recetaID: snapshot.id
+    }
+    //  detalles.push(detalle);
+//   });
 
-  detallesRecetas(detalles);
+  detallesRecetas(detalle);
 }

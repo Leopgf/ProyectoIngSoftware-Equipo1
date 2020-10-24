@@ -33,11 +33,10 @@ class Home extends React.Component {
         <Block flex>
 
           {this.state.recetas.map((receta, index) => (
-          <Block flex row>
+          <Block flex row  key = {index}>
             <Card
               item={receta}
-              key = {index}
-              //id = {receta.recetaID}
+              params={{ recetaID: receta.recetaID }}
             />
           </Block>  
           ))}

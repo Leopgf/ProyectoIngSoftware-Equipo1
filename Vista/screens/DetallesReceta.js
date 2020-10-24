@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
+import { withNavigation } from '@react-navigation/compat';
 
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
@@ -22,14 +23,14 @@ class DetallesReceta extends React.Component{
 
   onDetallesRecetas = (detalles)=>{
     this.setState(prevState =>({
-      detalles: prevState.detalles = detalles
+      detalles: detalles
     }));
   }
 
   componentDidMount() {
-    //this.setState({id: this.props.navigation.state.params.id});
+    this.setState({id: this.props.route.params.recetaID});
     getDetallesReceta(this.onDetallesRecetas, '270xdyUWpkdWUgZKqgJP');
-    //console.log(this.props.navigation.state.params);
+    console.log(this.props.route);
     }
 
 renderDetallesReceta = () => {
@@ -186,4 +187,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DetallesReceta;
+export default withNavigation(DetallesReceta);
