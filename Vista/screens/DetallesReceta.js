@@ -18,20 +18,19 @@ class DetallesReceta extends React.Component{
 
   state = {
     detalles: Receta,
-    id: '',
+    id: this.props.route.params.recetaID,
   }
 
   onDetallesRecetas = (detalles)=>{
     this.setState(prevState =>({
       detalles: detalles
     }));
+    console.log(this.state);
   }
 
   componentDidMount() {
-    this.setState({id: this.props.route.params.recetaID});
-    getDetallesReceta(this.onDetallesRecetas, '270xdyUWpkdWUgZKqgJP');
-    console.log(this.props.route);
-    }
+    getDetallesReceta(this.onDetallesRecetas, this.state.id);
+  }
 
 renderDetallesReceta = () => {
   return (
@@ -42,7 +41,7 @@ renderDetallesReceta = () => {
     }} >
       <Block flex={0.6} >
         <ImageBackground
-          source={Images.ProfileBackground}
+          source= {this.state.detalles.imagen && {uri: this.state.detalles.imagen}}
           style={styles.profileContainer}
           imageStyle={styles.profileBackground}
         >
@@ -52,7 +51,7 @@ renderDetallesReceta = () => {
                     {/* TITULO RECETA */}
                       
                         <Block middle >
-                        <Text style={{ fontFamily: 'montserrat-bold',marginBottom: theme.SIZES.BASE / 2,fontWeight: '900',fontSize: 36 }}color='#ffffff'>
+                        <Text style={{ fontFamily: 'montserrat-bold',textAlign: "center", marginBottom: theme.SIZES.BASE / 2, fontWeight: '500',fontSize: 24 }}color='#ffffff'>
                             {this.state.detalles.nombre}
                         </Text>
                         </Block>
@@ -80,12 +79,14 @@ renderDetallesReceta = () => {
                     INGREDIENTES
                 </Text>
                 
+                {/* {
+                  this.state.detalles.ingredientes.map((ingrediente, index) => (
                 <Text size={16} muted style={{textAlign: 'center',fontFamily: 'montserrat-regular',zIndex: 2,lineHeight: 25,color: '#9A9A9A',paddingHorizontal: 15}}>
-                    DBVILAH.ICNAJEBÑILWKVERRTV
-                    VRTW
-                    VBRTW
-                    BERBDDDD DDD D D D D D D D D D D D D D  D D D D D D D D D  D D D D D D D D D D D D D D D D D D D D D D D D
+                {ingrediente.ingrediente && item.missions[0].name}
                 </Text>
+
+                  ))
+                } */}
 
                 <Text style={{color: '#2c2c2c',fontWeight: 'bold',fontSize: 19,fontFamily: 'montserrat-bold',marginTop: 15,marginBottom: 30,zIndex: 2}}>
                     PREPA
@@ -145,11 +146,11 @@ const styles = StyleSheet.create({
     width,
     height,
     padding: 0,
-    zIndex: 1
+    zIndex: 1,
   },
   profileBackground: {
     width,
-    height: height * 0.4
+    height: height * 0.4,
   },
 
   info: {

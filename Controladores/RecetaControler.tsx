@@ -21,17 +21,13 @@ export async function getRecetas(recetasRecibidas: Function) {
 
 // FUNCION PARA RECUPERAR LOS DETALLES DE LAS RECETAS
 export async function getDetallesReceta(detallesRecetas: Function, id: string) {
-//   let detalles: Receta[] = [];
-  let snapshot = await firebase.firestore().collection('Recetas').doc(id).get();
-//   const docId = snapshot.id;
 
-//   snapshot((campo) =>{
+  let snapshot = await firebase.firestore().collection('Recetas').doc(id).get();
+
     let detalle: Receta = {
         ...snapshot.data() as Receta,
         recetaID: snapshot.id
     }
-    //  detalles.push(detalle);
-//   });
 
   detallesRecetas(detalle);
 }

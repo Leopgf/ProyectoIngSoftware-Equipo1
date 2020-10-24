@@ -19,7 +19,7 @@ class Card extends React.Component {
       imageStyle,
       ctaRight,
       titleStyle,
-       params
+      params
     } = this.props;
 
     const imageStyles = [full ? styles.fullImage : styles.horizontalImage, imageStyle];
@@ -30,7 +30,6 @@ class Card extends React.Component {
       horizontal ? styles.horizontalStyles : styles.verticalStyles,
       styles.shadow
     ];
-    console.log(params)
     return (
       <Block row={horizontal} card flex style={cardContainer}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>

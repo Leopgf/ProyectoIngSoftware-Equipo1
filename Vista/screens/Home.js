@@ -14,7 +14,6 @@ class Home extends React.Component {
   }
 
   onRecetasRecibidas = (recetas) => {
-    console.log(recetas);
     this.setState(prevState => ({
       recetas: prevState.recetas = recetas
     }));
