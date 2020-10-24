@@ -1,12 +1,13 @@
+//IMPORT
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
-
 import { nowTheme } from '../constants';
+import { color } from 'react-native-reanimated';
 
-
+//CLASE DE CARD 
 class Card extends React.Component {
   render() {
     const {
@@ -30,42 +31,39 @@ class Card extends React.Component {
       horizontal ? styles.horizontalStyles : styles.verticalStyles,
       styles.shadow
     ];
+
     return (
+
       <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
-          <Block flex style={imgContainer}>
-            <Image resizeMode="cover" source= {item.imagen && {uri: item.imagen}} style={imageStyles} />
-          </Block>
-        </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
+            <Block flex style={imgContainer}>
+              <Image resizeMode="cover" source= {item.imagen && {uri: item.imagen}} style={imageStyles} />
+            </Block>
+          </TouchableWithoutFeedback>
+
         <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
           <Block flex space="between" style={styles.cardDescription}>
             <Block flex>
-              <Text
-                size={14}
-                style={styles.cardTitle}
-                color={nowTheme.COLORS.SECONDARY}
-              >
+              <Text size={24}style={styles.cardTitle} color={nowTheme.COLORS.PRIMARY} >
+              {/*TITULO DE LA RECETA*/}
                 {item.nombre}
               </Text>
               {item.subtitle ? (
                 <Block flex center>
-                  <Text
-                    style={{ fontFamily: 'montserrat-regular' }}
-                    size={32}
-                    color={nowTheme.COLORS.BLACK}
-                  >
+                  <Text style={{ fontFamily: 'montserrat-regular'}} size={32} color={nowTheme.COLORS.BLACK}>
                     {item.subtitle}
                   </Text>
                 </Block>
               ) : (
                   <Block />
                 )}
+                {/*DESCRIPCION RECETA*/}
               {item.descripcion ? (
                 <Block flex center>
                   <Text
-                    style={{ fontFamily: 'montserrat-regular', textAlign: 'left', padding: 15 }}
+                    style={{ fontFamily: 'montserrat-regular', textAlign: 'left', padding: 15  }}
                     size={14}
-                    color={"#9A9A9A"}
+                    color={"#0f1e2e"}
                   >
                     {item.descripcion}
                   </Text>
@@ -118,7 +116,7 @@ Card.propTypes = {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.COLORS.WHITE,
+    backgroundColor: '#e7d3af',
     marginVertical: theme.SIZES.BASE,
     borderWidth: 0,
     minHeight: 114,
@@ -129,7 +127,8 @@ const styles = StyleSheet.create({
     paddingTop: 7,
     paddingBottom: 2,
     fontSize: 24,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
   cardDescription: {
     // padding: theme.SIZES.BASE / 2

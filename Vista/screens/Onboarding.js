@@ -1,12 +1,15 @@
+//IMPORT
 import React from 'react';
 import { ImageBackground, Image, StyleSheet, StatusBar, Dimensions, Platform } from 'react-native';
 import { Block, Button, Text, theme } from 'galio-framework';
-
-const { height, width } = Dimensions.get('screen');
 import { Images, nowTheme } from '../constants/';
 import { HeaderHeight } from '../constants/utils';
+//CONST
+const { height, width } = Dimensions.get('screen');
 
+//CLASE Onboarding INICIO APP
 export default class Onboarding extends React.Component {
+
   render() {
     const { navigation } = this.props;
 
@@ -14,64 +17,26 @@ export default class Onboarding extends React.Component {
       <Block flex style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Block flex>
-          <ImageBackground
-            source={Images.Onboarding}
-            style={{ flex: 1, height: height, width, zIndex: 1 }}
-          />
-          <Block space="between" style={styles.padded}>
-            <Block>
-              <Block middle>
-                <Image source={Images.NowLogo} style={{ width: 115, height: 124, bottom: 200, position: 'absolute' }} />
-              </Block>
-              <Block>
+             {/* IMAGEN DE FONDO*/}
+            <ImageBackground source={Images.Onboarding} style={{ flex: 1, height: height, width, zIndex: 1 ,  background: 'white' }}/>
+
+            <Block space="between" style={styles.padded}>
+                <Block>
+                  <Block middle>
+                    {/* IMAGEN DEL LOGO GRANDE*/}
+                    <Image source={Images.NowLogo} style={{ width: 300, height: 300, bottom: 200, position: 'absolute', marginBottom: 100}} />
+                  </Block>
+                <Block>
+
                 <Block middle>
-                  <Text
-                    style={{
-                      fontFamily: 'montserrat-regular', bottom: 50, position: 'absolute', letterSpacing: 2, paddingHorizontal: 20, textAlign: 'center'
-                    }}
-                    color="white"
-                    size={44}
-                  >
-                    Now UI
-                    React Native
+                   {/* TEXTO DE BIENVENIDA*/}
+                  <Text style={{marginBottom: 220, fontFamily: 'montserrat-regular', bottom: 50, position: 'absolute', letterSpacing: 2, paddingHorizontal: 10, textAlign: 'center'}}
+                    color="#0F1E2E" size={44}>
+                      ¡BIENVENIDO!
                   </Text>
                 </Block>
               </Block>
-              <Block middle row>
-                <Text
-                  color="white"
-                  size={16}
-                  style={{ fontFamily: 'montserrat-regular' }}
-                >
-                  Designed by
-                </Text>
-                <Image
-                  source={Images.InvisionLogo}
-                  style={{
-                    height: 28,
-                    width: 91,
-                    marginLeft: theme.SIZES.BASE
-                  }}
-                />
-              </Block>
-              <Block middle row style={{ marginTop: 15, marginBottom: 30}}>
-                <Text
-                  color="white"
-                  size={16}
-                  style={{ fontFamily: 'montserrat-regular' }}
-                >
-                  Coded by
-                </Text>
-                <Image
-                  source={Images.CreativeTimLogo}
-                  style={{
-                    height: 29,
-                    width: 129,
-                    marginLeft: theme.SIZES.BASE
-                  }}
-                />
-              </Block>
-
+          
               <Block
                 row
                 style={{
@@ -79,17 +44,18 @@ export default class Onboarding extends React.Component {
                   marginBottom: theme.SIZES.BASE * 2
                 }}
               >
+              {/* BTN DE EMPEZAR*/}
                 <Button
                   shadowless
                   style={styles.button}
-                  color={nowTheme.COLORS.PRIMARY}
+                  color={'#0F1E2E'}
                   onPress={() => navigation.navigate('App')}
                 >
                   <Text
                     style={{ fontFamily: 'montserrat-bold', fontSize: 14 }}
-                    color={theme.COLORS.WHITE}
+                    color={'#E7ECEF'}
                   >
-                    GET STARTED
+                    EMPEZAR
                   </Text>
                 </Button>
               </Block>
@@ -101,6 +67,7 @@ export default class Onboarding extends React.Component {
   }
 }
 
+//ESTILOS DEL INICIO APP
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.COLORS.BLACK,

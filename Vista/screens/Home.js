@@ -1,28 +1,32 @@
+//IMPORT
 import React from "react";
 import { StyleSheet, Dimensions, ScrollView } from "react-native";
 import { Block, theme, Text } from "galio-framework";
 import { Card, Button } from "../components";
-
 import { getRecetas } from "../../Controladores/RecetaControler";
 
+//CONST
 const { width } = Dimensions.get("screen");
 
+//CLASE HOME
 class Home extends React.Component {
 
-  state = {
-    recetas: [],
-  }
+    //PARA TRAER LAS RECETAS
+      state = {
+        recetas: [],
+      }
 
-  onRecetasRecibidas = (recetas) => {
-    this.setState(prevState => ({
-      recetas: prevState.recetas = recetas
-    }));
-  }
+      onRecetasRecibidas = (recetas) => {
+        this.setState(prevState => ({
+          recetas: prevState.recetas = recetas
+        }));
+      }
 
-  componentDidMount() {
-      getRecetas(this.onRecetasRecibidas);
-  }
+      componentDidMount() {
+          getRecetas(this.onRecetasRecibidas);
+      }
 
+      //RECETAS QUE SE VEN EN EL HOME
   renderArticles = () => {
     return (
       <ScrollView
@@ -55,6 +59,7 @@ class Home extends React.Component {
   }
 }
 
+//ESTILOS 
 const styles = StyleSheet.create({
   home: {
     width: width
