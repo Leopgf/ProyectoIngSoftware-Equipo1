@@ -18,7 +18,8 @@ class Card extends React.Component {
       ctaColor,
       imageStyle,
       ctaRight,
-      titleStyle
+      titleStyle,
+      id
     } = this.props;
 
     const imageStyles = [full ? styles.fullImage : styles.horizontalImage, imageStyle];

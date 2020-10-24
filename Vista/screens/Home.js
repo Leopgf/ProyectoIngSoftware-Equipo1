@@ -37,6 +37,7 @@ class Home extends React.Component {
             <Card
               item={receta}
               key = {index}
+              //id = {receta.recetaID}
             />
           </Block>  
           ))}

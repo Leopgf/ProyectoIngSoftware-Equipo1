@@ -5,12 +5,34 @@ import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
+import { getDetallesReceta } from '../../Controladores/RecetaControler'
+import { block } from 'react-native-reanimated';
+import Receta from '../../Modelos/Receta';
 
 const { width, height } = Dimensions.get('screen');
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
-const DetallesReceta = () => {
+class DetallesReceta extends React.Component{
+
+  state = {
+    detalles: Receta,
+    id: '',
+  }
+
+  onDetallesRecetas = (detalles)=>{
+    this.setState(prevState =>({
+      detalles: prevState.detalles = detalles
+    }));
+  }
+
+  componentDidMount() {
+    //this.setState({id: this.props.navigation.state.params.id});
+    getDetallesReceta(this.onDetallesRecetas, '270xdyUWpkdWUgZKqgJP');
+    //console.log(this.props.navigation.state.params);
+    }
+
+renderDetallesReceta = () => {
   return (
     <Block style={{
       flex: 1,
@@ -27,12 +49,12 @@ const DetallesReceta = () => {
             <Block style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 20 }}>
                 <Block style={{ top: height * 0.3 }}>
                     {/* TITULO RECETA */}
+                      
                         <Block middle >
                         <Text style={{ fontFamily: 'montserrat-bold',marginBottom: theme.SIZES.BASE / 2,fontWeight: '900',fontSize: 36 }}color='#ffffff'>
-                            NOMBRE RECETA
+                            {this.state.detalles.nombre}
                         </Text>
                         </Block>
-                    
                 </Block>
             </Block>
 
@@ -102,8 +124,16 @@ const DetallesReceta = () => {
     
 
   )
-}
+};
 
+render() {
+  return (
+    <Block flex center style={styles.home}>
+      {this.renderDetallesReceta()}
+    </Block>
+  );
+}
+}
 
 
 
