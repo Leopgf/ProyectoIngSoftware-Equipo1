@@ -44,3 +44,25 @@ export async function getCategoriaReceta(categoriaRecetas: Function, detallesRec
 
   categoriaRecetas(detallesRecetas);
 }
+
+// FUNCION AUMENTAR LA PORCION DE LA RECETA  
+export function aumentarPorcion(unidadPorcion: number, ingredientes:[]){
+  
+  ingredientes.forEach(ingrediente => {
+    if(ingrediente.alGusto == false){
+      ingrediente.cantidad = ((unidadPorcion+1)*ingrediente.cantidad)/unidadPorcion;
+    }
+  });
+  
+}
+
+// FUNCION DISMINUIR LA PORCION DE LA RECETA  
+export function disminuirPorcion(unidadPorcion: number, ingredientes:[]){
+  
+  ingredientes.forEach(ingrediente => {
+    if(ingrediente.alGusto == false){
+      ingrediente.cantidad = ((unidadPorcion-1)*ingrediente.cantidad)/unidadPorcion;
+    }
+  });
+  
+}

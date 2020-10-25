@@ -6,7 +6,7 @@ import { withNavigation } from '@react-navigation/compat';
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
-import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
+import { getDetallesReceta, getCategoriaReceta, aumentarPorcion, disminuirPorcion } from '../../Controladores/RecetaControler';
 import { block } from 'react-native-reanimated';
 import Receta from '../../Modelos/Receta';
 import { Input, Icon} from "../components";
@@ -106,8 +106,8 @@ class DetallesReceta extends React.Component {
 
                 {/* BOTONES PARA CAMBIAR LAS PORCIONES DE LA RECETA  */}
                 
-                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}}>+</Button>
-                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginRight: 10}}>-</Button>
+                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}} onPress={aumentarPorcion({this.state.detalles.unidadPorcion}, {this.state.detalles.ingredientes})}>+</Button>
+                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginRight: 10}} onPress={disminuirPorcion({this.state.detalles.unidadPorcion}, {this.state.detalles.ingredientes})}>-</Button>
               
              
                 <Text style={{color: '#2c2c2c',fontSize: 19,marginTop: 15,marginBottom: 15,zIndex: 2,}}>
