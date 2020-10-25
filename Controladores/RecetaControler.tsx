@@ -34,6 +34,23 @@ export async function getDetallesReceta(detallesRecetas: Function, id: string) {
   detallesRecetas(detalle);
 }
 
+// FUNCION PARA RECUPERAR LAS CATEGORIAS PARA EL FILTRO
+export async function getCategoriasHome(categoriasRecibidas: Function) {
+  let categorias: Object[] = [];
+  let snapshot = await firebase.firestore().collection('Categoria').get();
+
+  snapshot.forEach((doc) => {
+    const id = doc.id;
+    let categoria = { 
+      id: doc.id,
+      title: doc.data().nombre
+     };
+    categorias.push(categoria);
+  });
+
+  categoriasRecibidas(categorias);
+}
+
 // FUNCION PARA RECUPERAR UNA CATEGORIA
 export async function getCategoriaReceta(categoriaRecetas: Function, detallesRecetas: Receta, id: string) {
 

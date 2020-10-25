@@ -1,31 +1,48 @@
 import Receta from '../Modelos/Receta';
 
-// FUNCION AUMENTAR LA PORCION DE LA RECETA  
-export function aumentarPorcion(porcionDefecto: number, porciones: number, ingredientes: Object[], porcionCambiada: Function){
-    console.log(ingredientes);
+import * as firebase from 'firebase';
 
-    if(porciones < 20){
-        ingredientes.forEach(ingrediente => {
-          if(ingrediente.alGusto == false){
-            ingrediente.cantidad = Math.round((((porciones+1)*ingrediente.cantidad)/porcionDefecto)*10)/10;
-          }
-        });
-        porcionCambiada(ingredientes, porciones + 1);
+// FUNCION AUMENTAR LA PORCION DE LA RECETA
+export function aumentarPorcion(id: string, porciones: number, porcionCambiada: Function) {
+
+  firebase.firestore().collection('Recetas').doc(id).get().then(receta => {
+    
+    let detalle: Receta = {
+      ...(receta.data() as Receta),
+    };
+
+    if (porciones < 20) {
+      detalle.ingredientes.forEach((ingrediente) => {
+        if (ingrediente.alGusto == false) {
+          ingrediente.cantidad =
+            Math.round((((porciones + 1) * ingrediente.cantidad) / detalle.porcionDefecto) * 10) / 10;
+        }
+      });
+      porcionCambiada(detalle.ingredientes, porciones + 1);
     }
 
-  }
-  
-  // FUNCION DISMINUIR LA PORCION DE LA RECETA  
-  export function disminuirPorcion(porcionDefecto: number, porciones: number, ingredientes: Object[], porcionCambiada: Function){
+  }).catch(error => console.log(error));
+
+
+}
+
+// FUNCION DISMINUIR LA PORCION DE LA RECETA
+export function disminuirPorcion(id: string, porciones: number, porcionCambiada: Function) {
+  firebase.firestore().collection('Recetas').doc(id).get().then(receta => {
     
-    if (porciones > 1){
-        ingredientes.forEach(ingrediente => {
-          if(ingrediente.alGusto == false){
-            ingrediente.cantidad = Math.round((((porciones-1)*ingrediente.cantidad)/porcionDefecto)*10)/10;
-          }
-        });
-        porcionCambiada(ingredientes, porciones - 1);
+    let detalle: Receta = {
+      ...(receta.data() as Receta),
+    };
+
+    if (porciones < 100) {
+      detalle.ingredientes.forEach((ingrediente) => {
+        if (ingrediente.alGusto == false) {
+          ingrediente.cantidad =
+            Math.round((((porciones - 1) * ingrediente.cantidad) / detalle.porcionDefecto) * 10) / 10;
+        }
+      });
+      porcionCambiada(detalle.ingredientes, porciones - 1);
     }
-  
-    
-  }
+
+  }).catch(error => console.log(error));
+}

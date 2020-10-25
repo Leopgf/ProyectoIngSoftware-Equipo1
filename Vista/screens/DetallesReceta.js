@@ -53,21 +53,22 @@ class DetallesReceta extends React.Component {
     });
   }
   
-  //FUNCIONES PARA CONVERTIR LAS PORCIONES
-  botonAumentar = () => {
-    aumentarPorcion(this.state.detalles.porcionDefecto, this.state.porcion, this.state.detalles.ingredientes, this.onPorcionCambiada);
-  }
+    //FUNCIONES PARA CONVERTIR LAS PORCIONES
+    botonAumentar = () => {
+      aumentarPorcion(this.state.id, this.state.porcion, this.onPorcionCambiada);
+    }
+    
+    botonDisminuir = () => {
+      disminuirPorcion(this.state.id, this.state.porcion, this.onPorcionCambiada)  
+    }
   
-  botonDisminuir = () => {
-    disminuirPorcion(this.state.detalles.porcionDefecto, this.state.porcion, this.state.detalles.ingredientes, this.onPorcionCambiada)  
-  }
-
-  onPorcionCambiada = (ingredientes, porciones) => {
-    this.setState({
-      ingredientesCambiados: ingredientes,
-      porcion: porciones
-    });
-  }
+    onPorcionCambiada = (ingredientes, porciones) => {
+      this.setState({
+        ingredientesCambiados: ingredientes,
+        porcion: porciones
+      });
+    }
+  
 
 
   renderDetallesReceta = () => {

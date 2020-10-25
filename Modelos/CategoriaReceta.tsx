@@ -1,4 +1,4 @@
 export default interface CategoriaReceta {
-    categoriaID: number;
+    categoriaID?: string;
     nombre: string;
 }
