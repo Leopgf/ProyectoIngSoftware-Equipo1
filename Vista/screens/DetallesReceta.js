@@ -6,7 +6,8 @@ import { withNavigation } from '@react-navigation/compat';
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
-import { getDetallesReceta, getCategoriaReceta, aumentarPorcion, disminuirPorcion } from '../../Controladores/RecetaControler';
+import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
+import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
 import { block } from 'react-native-reanimated';
 import Receta from '../../Modelos/Receta';
 import { Input, Icon} from "../components";
@@ -25,13 +26,15 @@ class DetallesReceta extends React.Component {
       pasos: [],
       ingredientes: [],
     },
+    porcion: 0,
+    ingredientesCambiados: [],
     id: this.props.route.params.recetaID,
   };
 
   onDetallesRecetas = async (detalles) => {
-    await this.setState((prevState) => ({
+    await this.setState({
       detalles: detalles,
-    }));
+    });
     getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, this.state.detalles.categorias[0]);
   };
 
@@ -41,8 +44,29 @@ class DetallesReceta extends React.Component {
     }));
   };
 
-  componentDidMount() {
-    getDetallesReceta(this.onDetallesRecetas, this.state.id);
+  
+  async componentDidMount() {
+    await getDetallesReceta(this.onDetallesRecetas, this.state.id);
+    this.setState({
+      porcion: this.state.detalles.porcionDefecto,
+      ingredientesCambiados: this.state.detalles.ingredientes,
+    });
+  }
+  
+  //FUNCIONES PARA CONVERTIR LAS PORCIONES
+  botonAumentar = () => {
+    aumentarPorcion(this.state.detalles.porcionDefecto, this.state.porcion, this.state.detalles.ingredientes, this.onPorcionCambiada);
+  }
+  
+  botonDisminuir = () => {
+    disminuirPorcion(this.state.detalles.porcionDefecto, this.state.porcion, this.state.detalles.ingredientes, this.onPorcionCambiada)  
+  }
+
+  onPorcionCambiada = (ingredientes, porciones) => {
+    this.setState({
+      ingredientesCambiados: ingredientes,
+      porcion: porciones
+    });
   }
 
 
@@ -106,12 +130,17 @@ class DetallesReceta extends React.Component {
 
                 {/* BOTONES PARA CAMBIAR LAS PORCIONES DE LA RECETA  */}
                 
-                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}} onPress={aumentarPorcion({this.state.detalles.unidadPorcion}, {this.state.detalles.ingredientes})}>+</Button>
-                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginRight: 10}} onPress={disminuirPorcion({this.state.detalles.unidadPorcion}, {this.state.detalles.ingredientes})}>-</Button>
+                {/*Aqui pasaste unidadPorcion y era porcionDefecto, porque unidad porcion no existe jajaja*/}
+                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}} 
+                onPress={() => this.botonDisminuir()}
+                >-</Button>
+                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginRight: 10}} 
+                onPress={() => this.botonAumentar()}
+                >+</Button>
               
              
                 <Text style={{color: '#2c2c2c',fontSize: 19,marginTop: 15,marginBottom: 15,zIndex: 2,}}>
-                   {this.state.detalles.porcionDefecto} {this.state.detalles.unidadPorcion}
+                   {this.state.porcion} {this.state.detalles.unidadPorcion}
                 </Text>
                 
                 </Block>
@@ -134,10 +163,11 @@ class DetallesReceta extends React.Component {
                   INGREDIENTES
                 </Text>
 
-                {this.state.detalles.ingredientes.map((ingrediente, index) => {
+                {this.state.ingredientesCambiados.map((ingrediente, index) => {
                   if (ingrediente.alGusto) {
                     return (
                       <Text
+                        key={index}
                         size={16}
                         muted
                         style={styles.text}
@@ -148,6 +178,7 @@ class DetallesReceta extends React.Component {
                   } else {
                     return (
                       <Text
+                        key={index}
                         size={16}
                         muted
                         style={styles.text}
@@ -166,6 +197,7 @@ class DetallesReceta extends React.Component {
 
                 {this.state.detalles.pasos.map((paso, index) => (
                   <Text
+                    key={index}
                     size={16}
                     muted
                     style={styles.text}
