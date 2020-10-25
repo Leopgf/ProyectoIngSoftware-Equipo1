@@ -11,7 +11,7 @@ export function aumentarPorcion(id: string, porciones: number, porcionCambiada: 
       ...(receta.data() as Receta),
     };
 
-    if (porciones < 20) {
+    if (porciones < 100) {
       detalle.ingredientes.forEach((ingrediente) => {
         if (ingrediente.alGusto == false) {
           ingrediente.cantidad =
@@ -34,7 +34,7 @@ export function disminuirPorcion(id: string, porciones: number, porcionCambiada:
       ...(receta.data() as Receta),
     };
 
-    if (porciones < 100) {
+    if (porciones > 1) {
       detalle.ingredientes.forEach((ingrediente) => {
         if (ingrediente.alGusto == false) {
           ingrediente.cantidad =
