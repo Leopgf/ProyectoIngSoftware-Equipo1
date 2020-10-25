@@ -32,7 +32,7 @@ function CustomDrawerContent({
             name="align-left-22x"
             family="NowExtra"
             size={15}
-            color={"white"}
+            color={'#0f1e2e'}
           />
         </Block>
       </Block>

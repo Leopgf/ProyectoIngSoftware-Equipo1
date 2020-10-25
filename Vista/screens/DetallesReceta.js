@@ -1,20 +1,24 @@
+//IMPORT
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { withNavigation } from '@react-navigation/compat';
-
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
 import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { block } from 'react-native-reanimated';
 import Receta from '../../Modelos/Receta';
+import { Input, Icon} from "../components";
 
+//CONST
 const { width, height } = Dimensions.get('screen');
-
 const thumbMeasure = (width - 48 - 32) / 3;
 
+//CLASE DETALLES DE LA RECETA
 class DetallesReceta extends React.Component {
+
+  //TRAER DETALLES
   state = {
     detalles: {
       categorias: [],
@@ -40,6 +44,7 @@ class DetallesReceta extends React.Component {
   componentDidMount() {
     getDetallesReceta(this.onDetallesRecetas, this.state.id);
   }
+
 
   renderDetallesReceta = () => {
     return (
@@ -67,7 +72,7 @@ class DetallesReceta extends React.Component {
                     </Text>
 
                     {/* FECHA DE PUBLICACIÓN RECETA */}
-                    <Text size={16} style={styles.date}>
+                    <Text size={12} style={styles.date}>
                       Publicada el {this.state.detalles.fecha}
                     </Text>
 
@@ -85,10 +90,10 @@ class DetallesReceta extends React.Component {
           <ScrollView showsVerticalScrollIndicator={false}>
             <Block flex style={{ marginTop: 20 }}>
 
-              <Block middle>
+              <Block>
 
                 {/* CATEGORIAS DE LA RECETA */}
-                <Text style={styles.subtitle}>
+                <Text style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
                   Categoría: {this.state.detalles.categorias[0]}
                 </Text>
 
@@ -96,12 +101,19 @@ class DetallesReceta extends React.Component {
                 {/* PORCIONES DE LA RECETA */}
                 <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
                 <Text style={styles.subtitle}>
-                  RECETA PARA: {this.state.detalles.porcionDefecto} {this.state.detalles.unidadPorcion}
+                  Receta para:      
                 </Text>
 
-                {/* BOTONES PARA CAMBIAR LAS PORCIONES DE LA RECETA */}
-                <Button small primary>+</Button>
-                <Button small primary>-</Button>
+                {/* BOTONES PARA CAMBIAR LAS PORCIONES DE LA RECETA  */}
+                
+                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}}>+</Button>
+                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginRight: 10}}>-</Button>
+              
+             
+                <Text style={{color: '#2c2c2c',fontSize: 19,marginTop: 15,marginBottom: 15,zIndex: 2,}}>
+                   {this.state.detalles.porcionDefecto} {this.state.detalles.unidadPorcion}
+                </Text>
+                
                 </Block>
 
                 <Text style={styles.subtitle}>
@@ -243,7 +255,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontFamily: 'montserrat-bold',
     marginTop: 15,
-    marginBottom: 30,
+    marginBottom: 15,
     zIndex: 2,
   },
   text: {
@@ -252,6 +264,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     color: '#9A9A9A',
     paddingHorizontal: 15,
+    marginTop:3,
   }
 });
 
