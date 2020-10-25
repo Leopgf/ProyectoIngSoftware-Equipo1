@@ -164,14 +164,14 @@ class Header extends React.Component {
   };
 
   renderTabs = () => {
-    const { tabs, tabIndex, navigation } = this.props;
+    const { tabs, tabIndex, navigation, data } = this.props;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
 
     if (!tabs) return null;
 
     return (
       <Tabs
-        data={tabs || []}
+        data={data}
         initialIndex={tabIndex || defaultTab}
         onChange={id => navigation.setParams({ tabId: id })}
       />

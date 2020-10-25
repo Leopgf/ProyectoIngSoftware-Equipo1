@@ -46,6 +46,7 @@ function HomeStack(props) {
               title="Home"
               //search
               // options
+              tabs
               navigation={navigation}
               scene={scene}
             />
