@@ -178,13 +178,13 @@ class DetallesReceta extends React.Component {
                     );
                   } else {
                     return (
-                      <Text
-                        key={index}
-                        size={16}
-                        muted
-                        style={styles.text}
-                      >
-                        {ingrediente.cantidad} {ingrediente.ingrediente}.
+                      <Text>
+                          <Text key={index} size={16} muted style={styles.textNegrita}>
+                            {ingrediente.cantidad + ' '}   
+                          </Text>
+                          <Text key={index} size={16} muted style={styles.text} >
+                            {ingrediente.ingrediente}.
+                          </Text>
                       </Text>
                     );
                   }
@@ -197,14 +197,15 @@ class DetallesReceta extends React.Component {
                 </Text>
 
                 {this.state.detalles.pasos.map((paso, index) => (
-                  <Text
-                    key={index}
-                    size={16}
-                    muted
-                    style={styles.text}
-                  >
-                    {index + 1} - {paso}
+                  <Text>
+                      <Text key={index} size={16} muted style={styles.textNegrita}>
+                        {index + 1} -   
+                      </Text>
+                      <Text key={index} size={16} muted style={styles.text}>
+                         {' '+paso}
+                      </Text>
                   </Text>
+
                 ))}
               </Block>
             </Block>
@@ -298,6 +299,18 @@ const styles = StyleSheet.create({
     color: '#9A9A9A',
     paddingHorizontal: 15,
     marginTop:3,
+    fontWeight: 'bold',
+
+  },
+  textNegrita: {
+    fontFamily: 'montserrat-bold',
+    zIndex: 2,
+    lineHeight: 25,
+    color: '#9A9A9A',
+    paddingHorizontal: 15,
+    marginTop:3,
+    fontWeight: 'bold',
+
   }
 });
 

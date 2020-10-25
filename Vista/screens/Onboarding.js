@@ -24,14 +24,14 @@ export default class Onboarding extends React.Component {
                 <Block>
                   <Block middle>
                     {/* IMAGEN DEL LOGO GRANDE*/}
-                    <Image source={Images.NowLogo} style={{ width: 300, height: 300, bottom: 200, position: 'absolute', marginBottom: 100}} />
+                    <Image source={Images.NowLogo} style={{ width: 300, height: 300, bottom: 200, position: 'absolute', marginBottom: 50}} />
                   </Block>
                 <Block>
 
                 <Block middle>
                    {/* TEXTO DE BIENVENIDA*/}
-                  <Text style={{marginBottom: 220, fontFamily: 'montserrat-regular', bottom: 50, position: 'absolute', letterSpacing: 2, paddingHorizontal: 10, textAlign: 'center'}}
-                    color="#0F1E2E" size={44}>
+                  <Text style={{marginBottom: 180, fontFamily: 'montserrat-regular', bottom: 50, position: 'absolute', letterSpacing: 2, paddingHorizontal: 10, textAlign: 'center'}}
+                    color="#0F1E2E" size={35}>
                       ¡BIENVENIDO!
                   </Text>
                 </Block>
