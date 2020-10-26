@@ -38,7 +38,7 @@ function CustomDrawerContent({
       </Block>
 
 
-      <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
+      <Block flex style={{ paddingLeft: 8, paddingRight: 14}}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           {screens.map((item, index) => {
             return (
