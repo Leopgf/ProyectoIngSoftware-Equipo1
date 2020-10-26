@@ -7,6 +7,7 @@ import Icon from './Icon';
 import Input from './Input';
 import Tabs from './Tabs';
 import nowTheme from '../constants/Theme';
+import { getCategoriasHome } from '../../Controladores/RecetaControler';
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () =>
@@ -41,6 +42,22 @@ const BasketButton = ({ isWhite, style, navigation }) => (
 
 
 class Header extends React.Component {
+
+    state = {
+        categories: []
+    }
+
+    componentDidMount() {
+        getCategoriasHome(this.onCategoriesFetch)
+    }
+
+    onCategoriesFetch = (categories) => {
+        console.log(categories)
+        this.setState({
+            categories
+        })
+    }
+    
   handleLeftPress = () => {
     const { back, navigation } = this.props;
     return back ? navigation.goBack() : navigation.openDrawer();
@@ -164,14 +181,15 @@ class Header extends React.Component {
   };
 
   renderTabs = () => {
-    const { tabs, tabIndex, navigation, data } = this.props;
+    const { tabs, tabIndex, navigation } = this.props;
+    const { categories } = this.state;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
 
     if (!tabs) return null;
 
     return (
       <Tabs
-        data={data}
+        data={categories}
         initialIndex={tabIndex || defaultTab}
         onChange={id => navigation.setParams({ tabId: id })}
       />

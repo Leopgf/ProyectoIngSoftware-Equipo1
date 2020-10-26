@@ -35,14 +35,14 @@ class Home extends React.Component {
       >
         <Block flex>
 
-          {this.state.recetas.map((receta, index) => (
-          <Block flex row  key = {index}>
-            <Card
-              item={receta}
-              params={{ recetaID: receta.recetaID }}
-            />
-          </Block>  
-          ))}
+            {this.state.recetas.map((receta, index) => (
+            <Block flex row  key = {index}>
+                <Card
+                item={receta}
+                params={{ recetaID: receta.recetaID }}
+                />
+            </Block>
+            ))}
 
         </Block>
       </ScrollView>

@@ -43,7 +43,8 @@ const COLORS = {
   GITHUB: '#333333',
   BEHANCE: '#1769ff',
   REDDIT: '#ff4500',
-  GOOGLE: '#dd4b39'
+  GOOGLE: '#dd4b39',
+  PURE_WHITE: '#f5f5f5'
 };
 
 const SIZES = {

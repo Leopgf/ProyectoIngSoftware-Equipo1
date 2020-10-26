@@ -65,7 +65,7 @@ export default class Tabs extends React.Component {
 
     const textColor = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [nowTheme.COLORS.TEXT, isActive ? nowTheme.COLORS.WHITE : nowTheme.COLORS.SECONDARY],
+      outputRange: [nowTheme.COLORS.TEXT, isActive ? nowTheme.COLORS.PURE_WHITE : nowTheme.COLORS.SECONDARY],
       extrapolate: 'clamp',
     });
 
