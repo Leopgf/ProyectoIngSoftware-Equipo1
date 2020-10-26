@@ -35,13 +35,16 @@ class DetallesReceta extends React.Component {
     await this.setState({
       detalles: detalles,
     });
-    getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, this.state.detalles.categorias[0]);
+
+    this.state.detalles.categorias.forEach((categoria, index) => {
+      getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, categoria, index);
+    });
   };
 
   onCategoriaRecetas = async (detalles) => {
-    await this.setState((prevState) => ({
+    await this.setState({
       detalles: detalles,
-    }));
+    });
   };
 
   
@@ -117,10 +120,29 @@ class DetallesReceta extends React.Component {
 
               <Block>
 
-                {/* CATEGORIAS DE LA RECETA */}
-                <Text style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
-                  Categoría: {this.state.detalles.categorias[0]}
-                </Text>
+                <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
+                  {/* CATEGORIAS DE LA RECETA */}
+                  <Text style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                    {'Categorías: '}
+                  </Text>
+                  {
+                    this.state.detalles.categorias.map((categoria, index) => {
+                      if(index === (this.state.detalles.categorias.length - 1)){
+                        return (
+                          <Text key={categoria} style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                          {categoria + '.'}
+                          </Text>
+                        )
+                      }else{
+                        return (
+                          <Text key={categoria} style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                          {categoria + ', '}
+                          </Text>
+                        )
+                      }
+                    })
+                  }
+                </Block>
 
 
                 {/* PORCIONES DE LA RECETA */}
@@ -168,7 +190,7 @@ class DetallesReceta extends React.Component {
                   if (ingrediente.alGusto) {
                     return (
                       <Text
-                        key={index}
+                        key={ingrediente}
                         size={16}
                         muted
                         style={styles.text}
@@ -179,7 +201,7 @@ class DetallesReceta extends React.Component {
                   } else {
                     return (
                       <Text>
-                          <Text key={index} size={16} muted style={styles.textNegrita}>
+                          <Text key={ingrediente} size={16} muted style={styles.textNegrita}>
                             {ingrediente.cantidad + ' '}   
                           </Text>
                           <Text key={index} size={16} muted style={styles.text} >
@@ -198,10 +220,10 @@ class DetallesReceta extends React.Component {
 
                 {this.state.detalles.pasos.map((paso, index) => (
                   <Text>
-                      <Text key={index} size={16} muted style={styles.textNegrita}>
+                      <Text key={paso} size={16} muted style={styles.textNegrita}>
                         {index + 1} -   
                       </Text>
-                      <Text key={index} size={16} muted style={styles.text}>
+                      <Text key={index * 100} size={16} muted style={styles.text}>
                          {' '+paso}
                       </Text>
                   </Text>

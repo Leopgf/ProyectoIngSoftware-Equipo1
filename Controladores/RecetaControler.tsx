@@ -55,11 +55,11 @@ export async function getCategoriasHome(categoriasRecibidas: Function) {
 }
 
 // FUNCION PARA RECUPERAR UNA CATEGORIA
-export async function getCategoriaReceta(categoriaRecetas: Function, detallesRecetas: Receta, id: string) {
+export async function getCategoriaReceta(categoriaRecetas: Function, detallesRecetas: Receta, id: string, index: number) {
 
   let snapshot = await firebase.firestore().collection('Categoria').doc(id).get();
 
-    detallesRecetas.categorias[0] = snapshot.data().nombre;
+    detallesRecetas.categorias[index] = snapshot.data().nombre;
 
   categoriaRecetas(detallesRecetas);
 }
