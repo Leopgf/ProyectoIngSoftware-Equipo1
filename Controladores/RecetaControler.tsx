@@ -36,7 +36,10 @@ export async function getDetallesReceta(detallesRecetas: Function, id: string) {
 
 // FUNCION PARA RECUPERAR LAS CATEGORIAS PARA EL FILTRO
 export async function getCategoriasHome(categoriasRecibidas: Function) {
-  let categorias: Object[] = [];
+  let categorias: Object[] = [{ 
+    id: '0',
+    title: 'Todas'
+   }];
   let snapshot = await firebase.firestore().collection('Categoria').get();
 
   snapshot.forEach((doc) => {
@@ -64,17 +67,18 @@ export async function getCategoriaReceta(categoriaRecetas: Function, detallesRec
 // FUNCION PARA RECUPERAR LAS RECETAS DE UNA CATEGORIAS
 export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCategoria: string) {
   let recetas: Object[] = [];
-  let snapshot = await firebase.firestore().collection('Recetas').where('categorias', 'array-contains', idCategoria).get();
+  let snapshot= {};
+  if(idCategoria !== '0'){
+     snapshot = await firebase.firestore().collection('Recetas').where('categorias', 'array-contains', idCategoria).get();
+  } else{
+     snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
+  }
 
   snapshot.forEach((doc) => {
-    
     const id = doc.id;
     let receta = { recetaID: id, ...(doc.data() as Receta) };
     recetas.push(receta);
   });
 
-  console.log(recetas);
-  
-  
   recetasRecibidas(recetas);
 }

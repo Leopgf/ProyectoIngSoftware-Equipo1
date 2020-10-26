@@ -28,8 +28,10 @@ class Home extends React.Component {
         }
       }
       
-      componentWillReceiveProps(nextProps) {
+      componentDidUpdate(nextProps) {
+        if(this.props.route.params?.tabId){
           getRecetasFiltroCategoria(this.onRecetasRecibidas, this.props.route.params.tabId);
+        }
       }
 
       //RECETAS QUE SE VEN EN EL HOME

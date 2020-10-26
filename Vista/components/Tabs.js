@@ -12,7 +12,7 @@ export default class Tabs extends React.Component {
   }
 
   state = {
-    active: null,
+    active: '0',
   }
 
   componentDidMount() {
