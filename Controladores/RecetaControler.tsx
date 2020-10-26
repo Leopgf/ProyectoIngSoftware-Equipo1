@@ -73,7 +73,7 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
     recetas.push(receta);
   });
 
-  console.log(recetas);
+//   console.log(recetas);
   
   
   recetasRecibidas(recetas);

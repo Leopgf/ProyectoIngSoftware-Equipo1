@@ -192,7 +192,6 @@ class Header extends React.Component {
         initialIndex={tabIndex || defaultTab}
         onChange={id => {
           navigation.setParams({ tabId: id });
-          navigation.navigate('Home', id)
         }}
       />
     );
