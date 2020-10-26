@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Dimensions, ScrollView } from "react-native";
 import { Block, theme, Text } from "galio-framework";
 import { Card, Button } from "../components";
-import { getRecetas } from "../../Controladores/RecetaControler";
+import { getRecetas, getRecetasFiltroCategoria } from "../../Controladores/RecetaControler";
 
 //CONST
 const { width } = Dimensions.get("screen");
@@ -18,12 +18,18 @@ class Home extends React.Component {
 
       onRecetasRecibidas = (recetas) => {
         this.setState(prevState => ({
-          recetas: prevState.recetas = recetas
+          recetas: recetas
         }));
       }
 
       componentDidMount() {
+        if(!this.props.route.params){
           getRecetas(this.onRecetasRecibidas);
+        }
+      }
+      
+      componentWillReceiveProps(nextProps) {
+          getRecetasFiltroCategoria(this.onRecetasRecibidas, this.props.route.params.tabId);
       }
 
       //RECETAS QUE SE VEN EN EL HOME
