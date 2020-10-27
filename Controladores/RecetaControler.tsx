@@ -13,6 +13,7 @@ export async function getRecetas(recetasRecibidas: Function) {
     const { nombre, imagen, fecha } = doc.data();
     let receta = { recetaID: id, ...(doc.data() as Receta) };
     receta.fecha = new Date(doc.data().fecha);
+    
     recetas.push(receta);
   });
 

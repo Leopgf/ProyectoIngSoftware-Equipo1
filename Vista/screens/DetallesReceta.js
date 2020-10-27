@@ -12,6 +12,8 @@ import { block } from 'react-native-reanimated';
 import Receta from '../../Modelos/Receta';
 import { Input, Icon} from "../components";
 
+import Moment from 'moment'; 
+
 //CONST
 const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
@@ -39,6 +41,8 @@ class DetallesReceta extends React.Component {
     this.state.detalles.categorias.forEach((categoria, index) => {
       getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, categoria, index);
     });
+
+    
   };
 
   onCategoriaRecetas = async (detalles) => {
@@ -101,7 +105,7 @@ class DetallesReceta extends React.Component {
 
                     {/* FECHA DE PUBLICACIÓN RECETA */}
                     <Text size={12} style={styles.date}>
-                      Publicada el {this.state.detalles.fecha}
+                      Publicada el {Moment(this.state.detalles.fecha).format("DD/MM/YYYY")}
                     </Text>
 
                   </Block>
