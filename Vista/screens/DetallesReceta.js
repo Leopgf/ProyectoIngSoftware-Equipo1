@@ -90,7 +90,7 @@ class DetallesReceta extends React.Component {
               <Block
                 style={{position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 2 }}
               >
-                <Block style={{ top: height * 0.2, backgroundColor : "rgba(0,0,0,0.5)"}}>
+                <Block style={{ top: height * 0.2, backgroundColor : "rgba(0,0,0,0.5)", marginTop:100}}>
 
                   <Block middle>
 
