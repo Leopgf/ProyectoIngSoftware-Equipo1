@@ -1,16 +1,13 @@
 //IMPORT
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { withNavigation } from '@react-navigation/compat';
 import { Button } from '../components';
-import { Images, nowTheme } from '../constants';
-import { HeaderHeight } from '../constants/utils';
+import { nowTheme } from '../constants';
 import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
-import { block } from 'react-native-reanimated';
-import Receta from '../../Modelos/Receta';
-import { Input, Icon} from "../components";
+
 
 import Moment from 'moment'; 
 
