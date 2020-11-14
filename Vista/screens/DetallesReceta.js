@@ -7,8 +7,7 @@ import { Button } from '../components';
 import { nowTheme } from '../constants';
 import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
-
-
+import LoadingView from 'react-native-loading-view'
 import Moment from 'moment'; 
 
 //CONST
@@ -24,6 +23,7 @@ class DetallesReceta extends React.Component {
       categorias: [],
       pasos: [],
       ingredientes: [],
+      loading: true,
     },
     porcion: 0,
     ingredientesCambiados: [],
@@ -50,11 +50,18 @@ class DetallesReceta extends React.Component {
 
   
   async componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        loading: false
+        
+      })
+    }, 2000);
     await getDetallesReceta(this.onDetallesRecetas, this.state.id);
     this.setState({
       porcion: this.state.detalles.porcionDefecto,
       ingredientesCambiados: this.state.detalles.ingredientes,
     });
+   
   }
   
     //FUNCIONES PARA CONVERTIR LAS PORCIONES
@@ -77,6 +84,7 @@ class DetallesReceta extends React.Component {
 
   renderDetallesReceta = () => {
     return (
+      <LoadingView loading={this.state.loading} size="large" style={styles.cargar} text="Cargando detalles de la receta...">
       <Block
         style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}
       >
@@ -235,14 +243,19 @@ class DetallesReceta extends React.Component {
           </ScrollView>
         </Block>
       </Block>
+      </LoadingView>
+      
     );
   };
 
   render() {
+    
     return (
+     
       <Block flex center style={styles.home}>
         {this.renderDetallesReceta()}
       </Block>
+     
     );
   }
 }
@@ -334,7 +347,19 @@ const styles = StyleSheet.create({
     marginTop:3,
     fontWeight: 'bold',
 
-  }
+  },
+
+  cargar: {
+    backgroundColor: '#c5e7e8',
+     flex: 1,
+     position: 'absolute',
+     top: 0,
+     bottom: 0,
+     left: 0,
+     right: 0,
+     alignItems: 'center',
+     justifyContent: 'center',
+   }
 });
 
 export default withNavigation(DetallesReceta);
