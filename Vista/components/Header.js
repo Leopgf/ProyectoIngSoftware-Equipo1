@@ -39,12 +39,11 @@ const BasketButton = ({ isWhite, style, navigation }) => (
   </TouchableOpacity>
 );
 
-
-
 class Header extends React.Component {
 
     state = {
-        categories: []
+        categories: [],
+        textSearcher: '',
     }
 
     componentDidMount() {
@@ -61,6 +60,7 @@ class Header extends React.Component {
     const { back, navigation } = this.props;
     return back ? navigation.goBack() : navigation.openDrawer();
   };
+
   renderRight = () => {
     const { white, title, navigation } = this.props;
     
@@ -131,9 +131,20 @@ class Header extends React.Component {
         style={styles.search}
         placeholder="What are you looking for?"
         placeholderTextColor={'#8898AA'}
-        onFocus={() => navigation.navigate('Pro')}
+        name='textSearcher'
+        value = {this.state.textSearcher}
+        onChangeText={(textSearcher) => this.setState({textSearcher})}
+        onSubmitEditing={() => {
+          navigation.setParams({ textSearcher: this.state.textSearcher });
+          navigation.navigate('Inicio', this.state.textSearcher);
+        }}
         iconContent={
-          <Icon size={16} color={theme.COLORS.MUTED} name="zoom-bold2x" family="NowExtra" />
+          <Icon size={16} color={theme.COLORS.MUTED} name="zoom-bold2x" family="NowExtra" 
+          onPress={() => {
+            navigation.setParams({ textSearcher: this.state.textSearcher });
+            navigation.navigate('Inicio', this.state.textSearcher);
+          }}
+          />
         }
       />
     );
@@ -192,7 +203,7 @@ class Header extends React.Component {
         initialIndex={tabIndex || defaultTab}
         onChange={id => {
           navigation.setParams({ tabId: id });
-          navigation.navigate('Home', id)
+          navigation.navigate('Inicio', id);
         }}
       />
     );

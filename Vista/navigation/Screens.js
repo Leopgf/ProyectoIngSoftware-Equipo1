@@ -44,7 +44,7 @@ function HomeStack(props) {
           header: ({ navigation, scene }) => (
             <Header
               title="Inicio"
-              // search
+              search
               // options
               tabs
               navigation={navigation}

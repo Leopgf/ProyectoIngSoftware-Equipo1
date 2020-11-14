@@ -91,18 +91,26 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
 
     if(textoReceta !== null || textoReceta !== ''){
       
-      snapshot = await firebase.firestore().collection('Recetas').where('nombre', 'array-contains',textoReceta).get();
+      snapshot = await firebase.firestore().collection('Recetas').get();
+
+      snapshot.forEach((doc) => {
+        const id = doc.id;
+        let receta = { recetaID: id, ...(doc.data() as Receta) };
+        recetas.push(receta);
+      });
+
+      recetas = recetas.filter((receta) => receta.nombre.includes(textoReceta.toUpperCase()));
       
     } else{
 
       snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
+
+      snapshot.forEach((doc) => {
+        const id = doc.id;
+        let receta = { recetaID: id, ...(doc.data() as Receta) };
+        recetas.push(receta);
+      });
     }
-    
-    snapshot.forEach((doc) => {
-      const id = doc.id;
-      let receta = { recetaID: id, ...(doc.data() as Receta) };
-      recetas.push(receta);
-    });
 
     recetaBuscada(recetas);
  }

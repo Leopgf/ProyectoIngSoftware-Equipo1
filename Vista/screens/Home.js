@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Dimensions, ScrollView } from "react-native";
 import { Block, theme, Text } from "galio-framework";
 import { Card, Button } from "../components";
-import { getRecetas, getRecetasFiltroCategoria } from "../../Controladores/RecetaControler";
+import { getRecetas, getRecetasFiltroCategoria, getRecetasTexto } from "../../Controladores/RecetaControler";
 
 //CONST
 const { width } = Dimensions.get("screen");
