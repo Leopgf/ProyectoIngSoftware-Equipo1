@@ -83,3 +83,26 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
 
   recetasRecibidas(recetas);
 }
+
+// FUNCION PARA RECUPERAS RECETAS DEL BUSCADOR DE TEXTO
+ export async function getRecetasTexto(recetaBuscada: Function, textoReceta: string){
+    let recetas : Object [] = [];
+    let snapshot = {};
+
+    if(textoReceta !== null || textoReceta !== ''){
+      
+      snapshot = await firebase.firestore().collection('Recetas').where('nombre', 'array-contains',textoReceta).get();
+      
+    } else{
+
+      snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
+    }
+    
+    snapshot.forEach((doc) => {
+      const id = doc.id;
+      let receta = { recetaID: id, ...(doc.data() as Receta) };
+      recetas.push(receta);
+    });
+
+    recetaBuscada(recetas);
+ }

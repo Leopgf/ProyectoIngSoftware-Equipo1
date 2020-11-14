@@ -31,7 +31,10 @@ class Home extends React.Component {
       componentDidUpdate(nextProps) {
         if(this.props.route.params?.tabId){
           getRecetasFiltroCategoria(this.onRecetasRecibidas, this.props.route.params.tabId);
+        }else if(this.props.route.params?.textSearcher){
+          getRecetasTexto(this.onRecetasRecibidas, this.props.route.params.textSearcher);
         }
+
       }
 
       //RECETAS QUE SE VEN EN EL HOME
