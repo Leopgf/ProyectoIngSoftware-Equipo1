@@ -15,7 +15,7 @@ import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 import { Button, Icon, Input } from '../components';
 import { Images, nowTheme } from '../constants';
 
-import { registerUsuario, loginUsuario } from '../../Controladores/UsuarioControler';
+import { registerUsuario, loginUsuario, recuperarContrasena } from '../../Controladores/UsuarioControler';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -83,6 +83,18 @@ class Register extends React.Component {
   async login() {
     // Login del usuario
     await loginUsuario(this.state.email, this.state.pass)
+      .then((resolve) => {
+        Alert.alert(resolve);
+        this.props.navigation.navigate('Inicio');
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
+  }
+
+  async recuperarContrasena() {
+    // Login del usuario
+    await recuperarContrasena(this.state.email)
       .then((resolve) => {
         Alert.alert(resolve);
         this.props.navigation.navigate('Inicio');
@@ -168,7 +180,26 @@ class Register extends React.Component {
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
                               >
-                                ACCEDER
+                                Acceder
+                              </Text>
+                            </Button>
+                            <Button
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 200,
+                                marginBottom: 30,
+                              }}
+                              color="primary"
+                              round
+                              onPress={() => this.recuperarContrasena()}
+                            >
+                              <Text
+                                style={{ fontFamily: 'montserrat-bold' }}
+                                size={14}
+                                color={nowTheme.COLORS.WHITE}
+                              >
+                                He olvidado mi contraseña
                               </Text>
                             </Button>
                             <Button

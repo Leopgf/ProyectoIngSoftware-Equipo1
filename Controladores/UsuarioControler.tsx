@@ -48,20 +48,22 @@ export function registerUsuario(usuario: Usuario, password: string, password2: s
                         });
                     })
                     .catch((error) => {
-                      reject('Error, compruebe su conexión a internet e intente nuevamente.');
+                      reject('Error, compruebe los datos ingresados e intente nuevamente.');
                     });
                 })
                 .catch((error) => {
-                  reject('Error, compruebe su conexión a internet e intente nuevamente.');
+                  reject('Error, compruebe los datos ingresados e intente nuevamente.');
                 });
             } catch (error) {
-              reject('Error, compruebe su conexión a internet e intente nuevamente.');
+              reject('Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.');
             }
           } else {
             reject('Error, ya hay alguien con ese nombre de usuario.');
           }
         })
-        .catch();
+        .catch(() => {
+          reject('Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.')
+        });
 
       // MENSAJES DE ERROR
     } else {
@@ -124,4 +126,21 @@ export function validarEmail(email: string) {
   } else {
     return false;
   }
+}
+
+export function recuperarContrasena(email: string) {
+  return new Promise(function(resolve, reject) {
+  
+  let isEmail = validarEmail(email);
+
+  if(isEmail){
+    firebase.auth().sendPasswordResetEmail(email).then(() => {
+      resolve('Estimado usuario, se le ha enviado un email para proceder con el cambio de clave.')
+    }).catch(() => {
+      reject('Error, ese email no tiene ningún usuario registrado.');
+    });
+  }else {
+    reject('Por favor instroduzca un email válido.');
+  }
+});
 }
