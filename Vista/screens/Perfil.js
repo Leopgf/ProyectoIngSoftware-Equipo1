@@ -7,31 +7,40 @@ import { Card} from "../components";
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
-import LoadingView from 'react-native-loading-view'
+import LoadingView from 'react-native-loading-view';
+import { getPerfil } from '../../Controladores/UsuarioControler';
 
 const { width, height } = Dimensions.get('screen');
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
-
 class Perfil extends React.Component {
 
   state = {
+    usuario: {},
     loading: true,
   }
 
-  componentDidMount() {
+  onPerfilRecibido = (usuario) => {
+    this.setState(prevState => ({
+      usuario: usuario
+    }));
+  }
+
+  async componentDidMount() {
     //TEMPORIZADOR DE CARGAR
-   setTimeout(() => {
-     this.setState({
-       loading: false
-       
-     })
-   }, 2000)
+    try {
+      await getPerfil(this.onPerfilRecibido);
+  } catch (error) {
+      console.error(error)
+  }
+   this.setState({
+      loading: false
+  })
   
  }
 
-  renderArticles = () => {
+  renderPerfil = () => {
 
   return (
     <LoadingView loading={this.state.loading} size="large" style={styles.cargar} text="Cargando perfil...">
@@ -55,11 +64,11 @@ class Perfil extends React.Component {
                     {/*nombre usuario*/}
                   <Text style={{ fontFamily: 'montserrat-bold', marginBottom: theme.SIZES.BASE / 2, fontWeight: '900',fontSize: 30}}
                   color='#e63746'>
-                    Ryan Scheinder
+                    {this.state.usuario.nombre + ' ' + this.state.usuario.apellido}
                   </Text>
                   {/*texto usuario de Mixo´s*/}
                   <Text size={16} color="#0f1e2e" style={{ marginTop: 5,  lineHeight: 20, fontSize: 18,opacity: .8}}>
-                    Usuario de Mixo´s
+                    @{this.state.usuario.usuario}
                   </Text>
                 </Block>
               </Block>
@@ -104,7 +113,7 @@ render() {
     
   return (
     <Block flex center>
-      {this.renderArticles()}
+      {this.renderPerfil()}
     </Block>
   );
 }

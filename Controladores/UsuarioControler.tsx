@@ -144,3 +144,16 @@ export function recuperarContrasena(email: string) {
   }
 });
 }
+
+export async function getPerfil(pasarPerfil: Function) {
+  let snapshot = await firebase.firestore().collection('Usuarios').where('usuarioID', '==', firebase.auth().currentUser?.uid).get();
+  let usuario = {};
+
+  snapshot.forEach((doc) => {
+    usuario = {
+      ...doc.data() as Usuario
+  };
+  });
+    
+  pasarPerfil(usuario);
+}

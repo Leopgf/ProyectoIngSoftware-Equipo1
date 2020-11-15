@@ -10,9 +10,9 @@ export async function getRecetas(recetasRecibidas: Function) {
 
   snapshot.forEach((doc) => {
     const id = doc.id;
-    const { nombre, imagen, fecha } = doc.data();
     let receta = { recetaID: id, ...(doc.data() as Receta) };
     receta.fecha = new Date(doc.data().fecha);
+    receta.descripcion = doc.data().descripcion.substring(0,200)+'. . .';
     
     recetas.push(receta);
   });

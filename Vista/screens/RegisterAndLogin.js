@@ -59,6 +59,7 @@ class Register extends React.Component {
       apellido: this.state.apellido,
       usuario: this.state.usuario,
       email: this.state.email,
+      biblioteca: [],
     };
 
     // Registro al usuario
