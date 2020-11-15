@@ -31,7 +31,6 @@ class Home extends React.PureComponent {
         } catch (error) {
             console.error(error)
         }
-        console.log('ji')
          this.setState({
             loading: false
         })
@@ -84,16 +83,6 @@ class Home extends React.PureComponent {
                   loading: false
               })
           }
-        // if(this.props.route.params?.textSearcher){ 
-        //   getRecetasTexto(this.onRecetasRecibidas, this.props.route.params.textSearcher);
-        // }
-        // if(this.props.route.params?.tabId){
-        //   getRecetasFiltroCategoria(this.onRecetasRecibidas, this.props.route.params.tabId);
-        // }
-
-        // if(this.props.route.params?.textSearcher){ 
-        //   getRecetasTexto(this.onRecetasRecibidas, this.props.route.params.textSearcher);
-        // }
 
       }
 
