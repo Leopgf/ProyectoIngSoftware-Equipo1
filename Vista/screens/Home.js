@@ -5,6 +5,8 @@ import { Block, theme, Text } from "galio-framework";
 import { Card, Button } from "../components";
 import { getRecetas, getRecetasFiltroCategoria, getRecetasTexto } from "../../Controladores/RecetaControler";
 import LoadingView from 'react-native-loading-view'
+import { RefreshControl } from 'react-native';
+
 
 //CONST
 const { width } = Dimensions.get("screen");
@@ -16,6 +18,14 @@ class Home extends React.PureComponent {
       state = {
         recetas: [],
         loading: true,
+        refreshing: false,
+      }
+
+      _onRefresh = () => {
+        this.setState({refreshing: true});
+        getRecetas(this.onRecetasRecibidas).then(() => {
+          this.setState({refreshing: false});
+        });
       }
 
       onRecetasRecibidas = (recetas) => {
@@ -93,6 +103,15 @@ class Home extends React.PureComponent {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+
+
+
       >
         <Block flex>
 
