@@ -8,7 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "lint": "eslint *.js **/*.js"
+    "lint": "eslint *.js **/*.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,12 @@
     "expo-font": "~8.1.0",
     "firebase": "^7.24.0",
     "galio-framework": "^0.6.3",
+    "moment": "^2.29.1",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
     "react-native-gesture-handler": "~1.6.0",
+    "react-native-loading-view": "^1.0.1",
     "react-native-modal-dropdown": "^0.7.0",
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "0.7.3",
@@ -38,7 +41,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "babel-preset-expo": "^8.2.1"
+    "babel-preset-expo": "^8.2.1",
+    "jest-expo": "^37.0.0",
+    "react-test-renderer": "^17.0.1"
   },
   "keywords": [
     "now react native",

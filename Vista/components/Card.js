@@ -44,7 +44,7 @@ class Card extends React.Component {
         <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
           <Block flex space="between" style={styles.cardDescription}>
             <Block flex>
-              <Text size={24}style={styles.cardTitle} color={nowTheme.COLORS.PRIMARY} >
+              <Text size={24}style={styles.cardTitle} color={'#7faac7'} >
               {/*TITULO DE LA RECETA*/}
                 {item.nombre}
               </Text>

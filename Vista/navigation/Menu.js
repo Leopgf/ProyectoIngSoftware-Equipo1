@@ -7,6 +7,27 @@ import {
 import { Block, theme } from "galio-framework";
 import Images from "../constants/Images";
 import { DrawerItem as DrawerCustomItem, Icon } from "../components";
+import * as firebase from 'firebase';
+
+ // AQUÍ AGREGAMOS LAS NUEVAS OPCIONES DEL MENÚ
+let screens = [];
+
+function getInitialNav(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if(user){
+      screens = [
+        "Inicio",
+        "Perfil",
+        "Cerrar Sesión"
+      ];
+    }else {
+      screens = [
+        "Inicio",
+        "Iniciar Sesión"
+      ];
+    }
+  })
+}
 
 function CustomDrawerContent({
   drawerPosition,
@@ -16,13 +37,7 @@ function CustomDrawerContent({
   state,
   ...rest
 }) {
-
-  // AQUÍ AGREGAMOS LAS NUEVAS OPCIONES DEL MENÚ
-  const screens = [
-    "Home",
-  ];
-
-
+  getInitialNav();
   return (
     <Block style={styles.container} forceInset={{ top: "always", horizontal: "never" }} >
       <Block style={styles.header}>
@@ -38,7 +53,7 @@ function CustomDrawerContent({
       </Block>
 
 
-      <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
+      <Block flex style={{ paddingLeft: 8, paddingRight: 14}}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           {screens.map((item, index) => {
             return (

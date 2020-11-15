@@ -12,7 +12,7 @@ export default class Tabs extends React.Component {
   }
 
   state = {
-    active: null,
+    active: '0',
   }
 
   componentDidMount() {
@@ -65,7 +65,7 @@ export default class Tabs extends React.Component {
 
     const containerStyles = [
       styles.titleContainer,
-      !isActive && { backgroundColor: nowTheme.COLORS.TABS },
+      !isActive && { backgroundColor: '#C5C9C9'},
       isActive && styles.containerShadow
     ];
 
@@ -115,11 +115,11 @@ export default class Tabs extends React.Component {
 const styles = StyleSheet.create({
   container: {
     width: width,
-    backgroundColor: theme.COLORS.WHITE,
+    backgroundColor: '#F2F2F3',
     zIndex: 2,
   },
   shadow: {
-    shadowColor: theme.COLORS.BLACK,
+    shadowColor: '#8b8c89',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
     shadowOpacity: 0.2,
@@ -132,14 +132,14 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center',
-    backgroundColor: nowTheme.COLORS.ACTIVE,
+    backgroundColor: '#7faac7',
     borderRadius: 21,
     marginRight: 9,
     paddingHorizontal: 10,
     paddingVertical: 3,
   },
   containerShadow: {
-    shadowColor: 'black',
+    shadowColor: '#8b8c89',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
     shadowOpacity: 0.1,

@@ -7,7 +7,7 @@ import Home from '../screens/Home';
 import DetallesReceta from '../screens/DetallesReceta';
 import Pro from '../screens/noUsadas/Pro';
 import Profile from '../screens/noUsadas/Profile';
-import Register from '../screens/noUsadas/Register';
+import Register from '../screens/Register';
 import Components from '../screens/noUsadas/Components';
 import Articles from '../screens/noUsadas/Articles';
 import Onboarding from '../screens/Onboarding';
@@ -38,13 +38,13 @@ function HomeStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name="Home"
+        name="Inicio"
         component={Home}
         options={{
           header: ({ navigation, scene }) => (
             <Header
-              title="Home"
-              //search
+              title="Inicio"
+              search
               // options
               tabs
               navigation={navigation}
@@ -81,7 +81,27 @@ function DetallesRecetaStack(props) {
   );
 }
 
-
+function AccountStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Iniciar Sesión" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Iniciar Sesión"
+        component={Register}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header 
+              transparent
+              title="Accede a tu cuenta Mixo's"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 // Renderizados que no estamos usando
 function ArticlesStack(props) {
@@ -91,28 +111,6 @@ function ArticlesStack(props) {
         header: ({ navigation, scene }) => (<Header title="Articles" navigation={navigation} scene={scene} />),
         backgroundColor: '#FFFFFF'
       }} />
-    </Stack.Navigator>
-  );
-}
-
-function AccountStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="Account" mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Account"
-        component={Register}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header 
-              transparent
-              title="Create Account"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true
-        }}
-      />
     </Stack.Navigator>
   );
 }
@@ -192,11 +190,11 @@ function AppStack(props) {
       }}
       initialRouteName="Home"
     >
-      <Drawer.Screen name="Home" component={HomeStack} />
+      <Drawer.Screen name="Inicio" component={HomeStack} />
       <Drawer.Screen name="Components" component={ComponentsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
-      <Drawer.Screen name="Account" component={AccountStack} />
+      <Drawer.Screen name="Iniciar Sesión" component={AccountStack} />
       <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
     </Drawer.Navigator>
   );

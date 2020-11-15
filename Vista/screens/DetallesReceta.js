@@ -1,16 +1,14 @@
 //IMPORT
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { withNavigation } from '@react-navigation/compat';
 import { Button } from '../components';
-import { Images, nowTheme } from '../constants';
-import { HeaderHeight } from '../constants/utils';
+import { nowTheme } from '../constants';
 import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
-import { block } from 'react-native-reanimated';
-import Receta from '../../Modelos/Receta';
-import { Input, Icon} from "../components";
+import LoadingView from 'react-native-loading-view'
+import Moment from 'moment'; 
 
 //CONST
 const { width, height } = Dimensions.get('screen');
@@ -25,6 +23,7 @@ class DetallesReceta extends React.Component {
       categorias: [],
       pasos: [],
       ingredientes: [],
+      loading: true,
     },
     porcion: 0,
     ingredientesCambiados: [],
@@ -35,22 +34,34 @@ class DetallesReceta extends React.Component {
     await this.setState({
       detalles: detalles,
     });
-    getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, this.state.detalles.categorias[0]);
+
+    this.state.detalles.categorias.forEach((categoria, index) => {
+      getCategoriaReceta(this.onCategoriaRecetas, this.state.detalles, categoria, index);
+    });
+
+    
   };
 
   onCategoriaRecetas = async (detalles) => {
-    await this.setState((prevState) => ({
+    await this.setState({
       detalles: detalles,
-    }));
+    });
   };
 
   
   async componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        loading: false
+        
+      })
+    }, 2000);
     await getDetallesReceta(this.onDetallesRecetas, this.state.id);
     this.setState({
       porcion: this.state.detalles.porcionDefecto,
       ingredientesCambiados: this.state.detalles.ingredientes,
     });
+   
   }
   
     //FUNCIONES PARA CONVERTIR LAS PORCIONES
@@ -73,6 +84,7 @@ class DetallesReceta extends React.Component {
 
   renderDetallesReceta = () => {
     return (
+      <LoadingView loading={this.state.loading} size="large" style={styles.cargar} text="Cargando detalles de la receta...">
       <Block
         style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}
       >
@@ -87,7 +99,7 @@ class DetallesReceta extends React.Component {
               <Block
                 style={{position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 2 }}
               >
-                <Block style={{ top: height * 0.2, backgroundColor : "rgba(0,0,0,0.5)"}}>
+                <Block style={{ top: height * 0.2, backgroundColor : "rgba(0,0,0,0.5)", marginTop:100}}>
 
                   <Block middle>
 
@@ -98,7 +110,7 @@ class DetallesReceta extends React.Component {
 
                     {/* FECHA DE PUBLICACIÓN RECETA */}
                     <Text size={12} style={styles.date}>
-                      Publicada el {this.state.detalles.fecha}
+                      Publicada el {Moment(this.state.detalles.fecha).format("DD/MM/YYYY")}
                     </Text>
 
                   </Block>
@@ -117,10 +129,29 @@ class DetallesReceta extends React.Component {
 
               <Block>
 
-                {/* CATEGORIAS DE LA RECETA */}
-                <Text style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
-                  Categoría: {this.state.detalles.categorias[0]}
-                </Text>
+                <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
+                  {/* CATEGORIAS DE LA RECETA */}
+                  <Text style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                    {'Categorías: '}
+                  </Text>
+                  {
+                    this.state.detalles.categorias.map((categoria, index) => {
+                      if(index === (this.state.detalles.categorias.length - 1)){
+                        return (
+                          <Text key={categoria} style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                          {categoria + '.'}
+                          </Text>
+                        )
+                      }else{
+                        return (
+                          <Text key={categoria} style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                          {categoria + ', '}
+                          </Text>
+                        )
+                      }
+                    })
+                  }
+                </Block>
 
 
                 {/* PORCIONES DE LA RECETA */}
@@ -168,7 +199,7 @@ class DetallesReceta extends React.Component {
                   if (ingrediente.alGusto) {
                     return (
                       <Text
-                        key={index}
+                        key={ingrediente}
                         size={16}
                         muted
                         style={styles.text}
@@ -179,7 +210,7 @@ class DetallesReceta extends React.Component {
                   } else {
                     return (
                       <Text>
-                          <Text key={index} size={16} muted style={styles.textNegrita}>
+                          <Text key={ingrediente} size={16} muted style={styles.textNegrita}>
                             {ingrediente.cantidad + ' '}   
                           </Text>
                           <Text key={index} size={16} muted style={styles.text} >
@@ -198,10 +229,10 @@ class DetallesReceta extends React.Component {
 
                 {this.state.detalles.pasos.map((paso, index) => (
                   <Text>
-                      <Text key={index} size={16} muted style={styles.textNegrita}>
+                      <Text key={paso} size={16} muted style={styles.textNegrita}>
                         {index + 1} -   
                       </Text>
-                      <Text key={index} size={16} muted style={styles.text}>
+                      <Text key={index * 100} size={16} muted style={styles.text}>
                          {' '+paso}
                       </Text>
                   </Text>
@@ -212,14 +243,19 @@ class DetallesReceta extends React.Component {
           </ScrollView>
         </Block>
       </Block>
+      </LoadingView>
+      
     );
   };
 
   render() {
+    
     return (
+     
       <Block flex center style={styles.home}>
         {this.renderDetallesReceta()}
       </Block>
+     
     );
   }
 }
@@ -311,7 +347,19 @@ const styles = StyleSheet.create({
     marginTop:3,
     fontWeight: 'bold',
 
-  }
+  },
+
+  cargar: {
+    backgroundColor: '#c5e7e8',
+     flex: 1,
+     position: 'absolute',
+     top: 0,
+     bottom: 0,
+     left: 0,
+     right: 0,
+     alignItems: 'center',
+     justifyContent: 'center',
+   }
 });
 
 export default withNavigation(DetallesReceta);
