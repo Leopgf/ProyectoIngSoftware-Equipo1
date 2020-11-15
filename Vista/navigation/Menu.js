@@ -18,16 +18,12 @@ function getInitialNav(){
       screens = [
         "Inicio",
         "Perfil",
-        "Cerrar Sesión",
-        'Iniciar Sesión'
-
+        "Cerrar Sesión"
       ];
     }else {
       screens = [
         "Inicio",
         "Iniciar Sesión",
-        "Perfil"
-    
       ];
     }
   })

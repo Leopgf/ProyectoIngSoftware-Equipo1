@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
 import { Button, Icon, Input } from '../components';
@@ -38,6 +39,7 @@ class Register extends React.Component {
     };
   }
 
+
   verRegistro = () => {
     this.setState({
       login: 0,
@@ -63,20 +65,16 @@ class Register extends React.Component {
 
     // Registro al usuario
     await registerUsuario(usuario, this.state.pass, this.state.pass2).then(() => {
-      this.setState({
-        login: 1,
-        email: '',
-        pass: '',
-        pass2: '',
-        nombre: '',
-        apellido: '',
-        usuario: '',
-      });
-      this.render();
+        // navigation.navigate('Iniciar Sesión');
     });
   }
 
-  async login() {}
+  async login() {
+    // Login del usuario
+    await loginUsuario(this.state.email, this.state.pass).then(() => {
+        // navigation.navigate('Inicio');
+    });
+  }
 
   render() {
     //PANTALLA DE LOGIN
