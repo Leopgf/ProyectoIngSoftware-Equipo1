@@ -6,7 +6,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from '../screens/Home';
 import DetallesReceta from '../screens/DetallesReceta';
 import Pro from '../screens/noUsadas/Pro';
-import Profile from '../screens/noUsadas/Profile';
+import Perfil from '../screens/Perfil';
 import Register from '../screens/Register';
 import Components from '../screens/noUsadas/Components';
 import Articles from '../screens/noUsadas/Articles';
@@ -81,6 +81,7 @@ function DetallesRecetaStack(props) {
   );
 }
 
+
 function AccountStack(props) {
   return (
     <Stack.Navigator initialRouteName="Iniciar Sesión" mode="card" headerMode="screen">
@@ -103,30 +104,18 @@ function AccountStack(props) {
   );
 }
 
-// Renderizados que no estamos usando
-function ArticlesStack(props) {
+function PerfilStack(props) {
   return (
-    <Stack.Navigator initialRouteName="Articles" mode="card" headerMode="screen">
-      <Stack.Screen name="Articles" component={Articles} options={{
-        header: ({ navigation, scene }) => (<Header title="Articles" navigation={navigation} scene={scene} />),
-        backgroundColor: '#FFFFFF'
-      }} />
-    </Stack.Navigator>
-  );
-}
-
-function ProfileStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="Profile" mode="card" headerMode="screen">
+    <Stack.Navigator initialRouteName="Perfil" mode="card" headerMode="screen">
       <Stack.Screen
-        name="Profile"
-        component={Profile}
+        name="Perfil"
+        component={Perfil}
         options={{
           header: ({ navigation, scene }) => (
             <Header
               transparent
               white
-              title="Profile"
+              title="Perfil"
               navigation={navigation}
               scene={scene}
             />
@@ -156,6 +145,19 @@ function ProfileStack(props) {
   );
 }
 
+
+
+// Renderizados que no estamos usando
+function ArticlesStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Articles" mode="card" headerMode="screen">
+      <Stack.Screen name="Articles" component={Articles} options={{
+        header: ({ navigation, scene }) => (<Header title="Articles" navigation={navigation} scene={scene} />),
+        backgroundColor: '#FFFFFF'
+      }} />
+    </Stack.Navigator>
+  );
+}
 
 
 // Renderizado de la app
@@ -193,7 +195,7 @@ function AppStack(props) {
       <Drawer.Screen name="Inicio" component={HomeStack} />
       <Drawer.Screen name="Components" component={ComponentsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
-      <Drawer.Screen name="Profile" component={ProfileStack} />
+      <Drawer.Screen name="Perfil" component={PerfilStack} />
       <Drawer.Screen name="Iniciar Sesión" component={AccountStack} />
       <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
     </Drawer.Navigator>

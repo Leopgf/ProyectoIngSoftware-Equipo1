@@ -23,7 +23,9 @@ function getInitialNav(){
     }else {
       screens = [
         "Inicio",
-        "Iniciar Sesión"
+        "Iniciar Sesión",
+        "Perfil"
+    
       ];
     }
   })

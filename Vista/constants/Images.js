@@ -1,7 +1,7 @@
 // local imgs
 const Onboarding = require('../assets/imgs/FFondo.jpg');
 const Logo = require('../assets/imgs/logop.png');
-const ProfileBackground = require('../assets/imgs/bg5.png');
+const ProfileBackground = require('../assets/imgs/basePerfil.jpg');
 const RegisterBackground = require('../assets/imgs/register-bg.png');
 const Pro = require('../assets/imgs/bg.png');
 const NowLogo = require('../assets/imgs/logo.png');
