@@ -271,8 +271,40 @@ class DetallesReceta extends React.Component {
                 ))}
               </Block>
             </Block>
+
+
+
+            <Block row style={{ paddingVertical: 14, paddingHorizontal: 15 }} space="between">
+              <Text bold size={16} color="#0f1e2e" style={{ marginTop: 3 }}>
+                Album
+              </Text>
+              <Button small color="transparent" >
+                View all
+              </Button>
+            </Block>
+    
+    
+          <Block>
+            <Block row space="between" style={{ flexWrap: 'wrap' }}>
+              
+            
+             
+            </Block>
+          </Block>
+    
+
+
+
+
+
+
+
+
+
+
           </ScrollView>
         </Block>
+
       </Block>
       </LoadingView>
       
