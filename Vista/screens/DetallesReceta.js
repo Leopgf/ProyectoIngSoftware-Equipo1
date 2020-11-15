@@ -130,7 +130,7 @@ class DetallesReceta extends React.Component {
                 <Block>
                   {/* OJOOOOO BOTONES PARA CAMBIAR FAV o NO FAV TIENE QUE BUSCAR SUSTITUIR EN LUGAR DEL PRIMERO EL SEGUNDO OJOOO  */}
                   <Block
-                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 170 }}
+                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 250 }}
                   >
                     <Text
                       style={{
@@ -142,7 +142,7 @@ class DetallesReceta extends React.Component {
                         marginTop: 18,
                       }}
                     >
-                      Agregar a Favoritos la receta
+                      Agregar a Favoritos
                     </Text>
                     <GaButton
                       round
@@ -169,7 +169,7 @@ class DetallesReceta extends React.Component {
                     />
                   </Block>
 
-                  <Block style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: 30 }}>
+                  <Block style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -37 }}>
                     {/* CATEGORIAS DE LA RECETA */}
                     <Text
                       style={{ textAlign: 'left', fontSize: 15, marginTop: 5, marginBottom: 30 }}
@@ -255,8 +255,24 @@ class DetallesReceta extends React.Component {
                     >
                       {this.state.porcion} {this.state.detalles.unidadPorcion}
                     </Text>
-                  </Block>
+                    
 
+                  </Block>
+                  <Block style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -20 }}>
+                  <Text
+                      style={{
+                        color: '#2c2c2c',
+                        fontSize: 11,
+                        marginTop: 15,
+                        marginBottom: 15,
+                        zIndex: 2,
+                        marginTop: 18,
+                      }}
+                    >
+                      Pulsa los botones + / - para ajustar la receta dependiendo de la cantidad de porciones que desee.
+                    </Text>
+                  </Block>
+                
                   <Text style={styles.subtitle}>DESCRIPCIÓN</Text>
 
                   <Text size={16} muted style={styles.text}>
