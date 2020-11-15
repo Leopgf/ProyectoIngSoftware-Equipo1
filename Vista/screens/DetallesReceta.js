@@ -130,7 +130,7 @@ class DetallesReceta extends React.Component {
                 <Block>
                   {/* OJOOOOO BOTONES PARA CAMBIAR FAV o NO FAV TIENE QUE BUSCAR SUSTITUIR EN LUGAR DEL PRIMERO EL SEGUNDO OJOOO  */}
                   <Block
-                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 250 }}
+                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 225 }}
                   >
                     <Text
                       style={{
@@ -258,18 +258,21 @@ class DetallesReceta extends React.Component {
                     
 
                   </Block>
-                  <Block style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -20 }}>
+                  <Block style={{ marginTop: -10,backgroundColor : "#e3e4e5" }}>
                   <Text
                       style={{
-                        color: '#2c2c2c',
-                        fontSize: 11,
-                        marginTop: 15,
+                        textAlign: 'center',
+                        with:400,
+                        height:10,
+                        color: '#0f1e2e',
+                        fontSize: 10,
+                        marginTop: 1,
                         marginBottom: 15,
                         zIndex: 2,
                         marginTop: 18,
                       }}
                     >
-                      Pulsa los botones + / - para ajustar la receta dependiendo de la cantidad de porciones que desee.
+                      Pulsa los botones + / - para ajustar la receta dependiendo de la cantidad de porciones.
                     </Text>
                   </Block>
                 
