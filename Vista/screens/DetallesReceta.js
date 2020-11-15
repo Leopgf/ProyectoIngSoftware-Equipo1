@@ -11,6 +11,8 @@ import LoadingView from 'react-native-loading-view'
 import Moment from 'moment'; 
 import { HeaderHeight } from '../constants/utils';
 
+
+
 //CONST
 const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
@@ -288,7 +290,7 @@ class DetallesReceta extends React.Component {
             <Block style={{ paddingBottom: -HeaderHeight * 2, paddingHorizontal: 15}}>
                 <Block row space="between" style={{ flexWrap: 'wrap' }}>
                     
-                  <Image resizeMode="cover" style={styles.thumb}/>
+                 {/*IMAGENES AQUI */}
                   
                 </Block>
             </Block>

@@ -83,7 +83,7 @@ class Perfil extends React.Component {
         </Block>
          
 
-        {/* COLOCAR AQUI ITEM PARA TRAER RECETAS 
+        {/* COLOCAR AQUI ITEM PARA TRAER RECETAS DE MI LIBRERIA
           
           <Block flex>
           <Block flex row >
