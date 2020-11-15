@@ -127,10 +127,10 @@ class Header extends React.Component {
     return (
       <Input
         right
-        color="#ffffff"
+        color="#e63746"
         style={styles.search}
-        placeholder="What are you looking for?"
-        placeholderTextColor={'#0f1e2e'}
+        placeholder="¿Qué receta buscas?"
+        placeholderTextColor={'#8b8c89'}
         name='textSearcher'
         value = {this.state.textSearcher}
         onChangeText={(textSearcher) => this.setState({textSearcher})}

@@ -100,7 +100,7 @@ class DetallesReceta extends React.Component {
               <Block
                 style={{position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 2 }}
               >
-                <Block style={{ top: height * 0.2, backgroundColor : "rgba(0,0,0,0.5)", marginTop:100}}>
+                <Block style={{ top: height * 0.2, backgroundColor : "rgba(0,0,0,0.5)", marginTop:80}}>
 
                   <Block middle>
 
@@ -130,22 +130,52 @@ class DetallesReceta extends React.Component {
 
               <Block>
 
-                <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
+               {/* OJOOOOO BOTONES PARA CAMBIAR FAV o NO FAV TIENE QUE BUSCAR SUSTITUIR EN LUGAR DEL PRIMERO EL SEGUNDO OJOOO  */}
+              <Block style={{flexDirection: 'row', alignSelf: 'flex-between',marginLeft:170}}>
+              <Text style={{color: '#2c2c2c',fontSize: 11,marginTop: 15,marginBottom: 15,zIndex: 2,marginTop: 18}}>
+              Agregar a Favoritos la receta 
+            </Text>
+                      <GaButton
+                      round
+                      onlyIcon
+                      shadowless
+                      icon="star"
+                      iconFamily="Font-Awesome"
+                      iconColor={'#E63746'}
+                      iconSize={nowTheme.SIZES.BASE * 1.4}
+                      color={'#FFFFFF'}
+                      style={[styles.social, styles.shadow]}
+                    />
+
+                    <GaButton
+                    round
+                    onlyIcon
+                    shadowless
+                    icon="star"
+                    iconFamily="Font-Awesome"
+                    iconColor={'#c2c2c1'}
+                    iconSize={nowTheme.SIZES.BASE * 1.4}
+                    color={'#ffffff'}
+                    style={[styles.social, styles.shadow]}
+                  />
+              </Block>
+            
+                <Block style={{flexDirection: 'row', alignSelf: 'flex-between', marginTop: 30}}>
                   {/* CATEGORIAS DE LA RECETA */}
-                  <Text style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                  <Text style={{textAlign:'left',fontSize: 15,marginTop: 5,marginBottom: 30}}> 
                     {'Categorías: '}
                   </Text>
                   {
                     this.state.detalles.categorias.map((categoria, index) => {
                       if(index === (this.state.detalles.categorias.length - 1)){
                         return (
-                          <Text key={categoria} style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                          <Text key={categoria} style={{textAlign:'left',fontSize: 15,marginTop: 5,marginBottom: 30}}> 
                           {categoria + '.'}
                           </Text>
                         )
                       }else{
                         return (
-                          <Text key={categoria} style={{textAlign:'left',fontSize: 13,marginTop: 5,marginBottom: 30}}> 
+                          <Text key={categoria} style={{textAlign:'left',fontSize: 15,marginTop: 5,marginBottom: 30}}> 
                           {categoria + ', '}
                           </Text>
                         )
