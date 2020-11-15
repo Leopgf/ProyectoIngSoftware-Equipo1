@@ -120,16 +120,14 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block flex={0.4} middle style={styles.socialConnect}>
+                    <Block flex={0.4} middle >
                       <Block flex={0.5} middle>
                         <Text
                           style={{
                             fontFamily: 'montserrat-bold',
                             textAlign: 'center',
-                            marginBottom: theme.SIZES.BASE / 2,
                             fontWeight: '500',
                             fontSize: 24,
-                            marginTop: 50,
                           }}
                           color="#0f1e2e"
                           size={24}
@@ -147,7 +145,7 @@ class Register extends React.Component {
                       <Block center flex={0.9}>
                         <Block flex space="between">
                           <Block>
-                            <Block width={width * 0.8}>
+                            <Block center width={width * 0.8}>
                               <Input
                                 placeholder="Email"
                                 style={styles.inputs}
@@ -155,7 +153,7 @@ class Register extends React.Component {
                                 iconContent={<Icon size={18} name="email" family="ArgonExtra" />}
                               />
                             </Block>
-                            <Block width={width * 0.8}>
+                            <Block center width={width * 0.8}>
                               <Input
                                 placeholder="Contraseña"
                                 style={styles.inputs}
@@ -249,13 +247,13 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block flex={0.05} middle style={styles.socialConnect}>
+                    <Block >
                       <Text
                         style={{
                           fontFamily: 'montserrat-bold',
                           textAlign: 'center',
-                          fontSize: 21,
-                          marginTop: 5,
+                          fontSize: 24,
+                          marginTop: 25,
                         }}
                         color="#0f1e2e"
                         size={24}
@@ -263,7 +261,7 @@ class Register extends React.Component {
                         Registro
                       </Text>
                     </Block>
-                    <Block flex={0.05} middle>
+                    <Block flex={0.1} middle>
                       <Text
                         color="#0f1e2e"
                         size={16}
@@ -336,7 +334,7 @@ class Register extends React.Component {
                                 fontFamily: 'montserrat-bold',
                                 borderRadius: nowTheme.SIZES.BASE * 1.5,
                                 width: 250,
-                                marginTop: 50,
+                                marginTop: 10,
                               }}
                               color="primary"
                               round
@@ -355,8 +353,7 @@ class Register extends React.Component {
                                 fontFamily: 'montserrat-bold',
                                 borderRadius: nowTheme.SIZES.BASE * 1.5,
                                 width: 250,
-                                marginTop: 50,
-                                marginBottom: 100,
+                                marginTop: 10,
                               }}
                               color="primary"
                               round
@@ -444,6 +441,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E3E3E3',
     borderRadius: 21.5,
+    alignSelf: 'center'
   },
   passwordCheck: {
     paddingLeft: 2,

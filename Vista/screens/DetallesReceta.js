@@ -95,10 +95,10 @@ class DetallesReceta extends React.Component {
             >
               <Block flex style={styles.profileCard}>
                 <Block
-                  style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 2 }}
+                  style={{ position: 'absolute', width: width, zIndex: 5 }}
                 >
                   <Block
-                    style={{ top: height * 0.2, backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 65 }}
+                    style={{ top: height * 0.2, backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 93.5 }}
                   >
                     <Block middle>
                       {/* TITULO RECETA */}
@@ -258,7 +258,7 @@ class DetallesReceta extends React.Component {
                     
 
                   </Block>
-                  <Block style={{ marginTop: -10,backgroundColor : "#e3e4e5" }}>
+                  <Block style={{ marginTop: -5,backgroundColor : "#e3e4e5", borderRadius: 50 }}>
                   <Text
                       style={{
                         textAlign: 'center',
@@ -320,7 +320,7 @@ class DetallesReceta extends React.Component {
                 </Block>
               </Block>
 
-              <Block row style={{ paddingVertical: 14, paddingHorizontal: 15 }} space="between">
+              {/* <Block row style={{ paddingVertical: 14, paddingHorizontal: 15 }} space="between">
                 <Text bold size={16} color="#0f1e2e" style={{ marginTop: 3 }}>
                   Album
                 </Text>
@@ -331,9 +331,11 @@ class DetallesReceta extends React.Component {
 
               <Block style={{ paddingBottom: -HeaderHeight * 2, paddingHorizontal: 15 }}>
                 <Block row space="between" style={{ flexWrap: 'wrap' }}>
-                  {/*IMAGENES AQUI */}
+                  IMAGENES AQUI 
                 </Block>
               </Block>
+               */}
+               
             </ScrollView>
           </Block>
         </Block>
