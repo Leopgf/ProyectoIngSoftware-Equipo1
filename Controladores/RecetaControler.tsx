@@ -16,7 +16,7 @@ export async function getRecetas(recetasRecibidas: Function) {
     
     recetas.push(receta);
   });
-
+  
   recetasRecibidas(recetas);
 }
 
@@ -29,7 +29,7 @@ export async function getDetallesReceta(detallesRecetas: Function, id: string) {
         ...snapshot.data() as Receta,
         recetaID: snapshot.id
     }
-
+    //@ts-ignore
     detalle.fecha = snapshot.data().fecha.toDate().toString();
 
   detallesRecetas(detalle);
@@ -59,7 +59,7 @@ export async function getCategoriasHome(categoriasRecibidas: Function) {
 export async function getCategoriaReceta(categoriaRecetas: Function, detallesRecetas: Receta, id: string, index: number) {
 
   let snapshot = await firebase.firestore().collection('Categoria').doc(id).get();
-
+//@ts-ignore
     detallesRecetas.categorias[index] = snapshot.data().nombre;
 
   categoriaRecetas(detallesRecetas);
@@ -74,7 +74,7 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
   } else{
      snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
   }
-
+//@ts-ignore
   snapshot.forEach((doc) => {
     const id = doc.id;
     let receta = { recetaID: id, ...(doc.data() as Receta) };
@@ -92,19 +92,19 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
     if(textoReceta !== null || textoReceta !== ''){
       
       snapshot = await firebase.firestore().collection('Recetas').get();
-
+//@ts-ignore
       snapshot.forEach((doc) => {
         const id = doc.id;
         let receta = { recetaID: id, ...(doc.data() as Receta) };
         recetas.push(receta);
       });
-
+//@ts-ignore
       recetas = recetas.filter((receta) => receta.nombre.includes(textoReceta.toUpperCase()));
       
     } else{
 
       snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
-
+//@ts-ignore
       snapshot.forEach((doc) => {
         const id = doc.id;
         let receta = { recetaID: id, ...(doc.data() as Receta) };

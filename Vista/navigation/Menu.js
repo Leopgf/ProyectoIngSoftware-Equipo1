@@ -61,7 +61,7 @@ function CustomDrawerContent({
                 title={item}
                 key={index}
                 navigation={navigation}
-                focused={state.index === index ? true : false}
+                // focused={state.index === index ? true : false}
               />
             );
           })}
