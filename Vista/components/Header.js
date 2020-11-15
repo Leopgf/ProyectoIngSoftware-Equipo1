@@ -22,9 +22,9 @@ const BellButton = ({ isWhite, style, navigation }) => (
       family="NowExtra"
       size={16}
       name="bulb"
-      color={nowTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={'#e63746'}
     />
-    <Block middle style={[styles.notify, { backgroundColor: nowTheme.COLORS[isWhite ? 'WHITE' : 'PRIMARY'] }]} />
+    <Block middle style={[styles.notify, { backgroundColor: '#e63746'}]} />
   </TouchableOpacity>
 );
 
@@ -34,7 +34,7 @@ const BasketButton = ({ isWhite, style, navigation }) => (
       family="NowExtra"
       size={16}
       name="basket2x"
-      color={nowTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={'#e63746'}
     />
   </TouchableOpacity>
 );
@@ -127,10 +127,10 @@ class Header extends React.Component {
     return (
       <Input
         right
-        color="black"
+        color="#ffffff"
         style={styles.search}
         placeholder="What are you looking for?"
-        placeholderTextColor={'#8898AA'}
+        placeholderTextColor={'#0f1e2e'}
         name='textSearcher'
         value = {this.state.textSearcher}
         onChangeText={(textSearcher) => this.setState({textSearcher})}
@@ -139,7 +139,7 @@ class Header extends React.Component {
           navigation.navigate('Inicio', this.state.textSearcher);
         }}
         iconContent={
-          <Icon size={16} color={theme.COLORS.MUTED} name="zoom-bold2x" family="NowExtra" 
+          <Icon size={16} color={'#e63746'} name="zoom-bold2x" family="NowExtra" 
           onPress={() => {
             navigation.setParams({ textSearcher: this.state.textSearcher });
             navigation.navigate('Inicio', this.state.textSearcher);
@@ -236,7 +236,7 @@ class Header extends React.Component {
     const noShadow = ['Search', 'Categories', 'Deals', 'Pro', 'Profile'].includes(title);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
-      transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null
+      transparent ? { backgroundColor: '#ffffff' } : null
     ];
 
     const navbarStyles = [styles.navbar, bgColor && { backgroundColor: bgColor }];
@@ -256,7 +256,7 @@ class Header extends React.Component {
               family="NowExtra"
               size={16}
               onPress={this.handleLeftPress}
-              color={iconColor || (white ? nowTheme.COLORS.WHITE : nowTheme.COLORS.ICON)}
+              color={'#e63746'}
             />
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderWidth: 1,
     borderRadius: 30,
-    borderColor: nowTheme.COLORS.BORDER
+    borderColor: '#e63746'
   },
   options: {
     marginBottom: 24,

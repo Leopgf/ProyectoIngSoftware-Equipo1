@@ -163,9 +163,9 @@ class DetallesReceta extends React.Component {
 
                 {/* BOTONES PARA CAMBIAR LAS PORCIONES DE LA RECETA  */}
                 
-                {/*Aqui pasaste unidadPorcion y era porcionDefecto, porque unidad porcion no existe jajaja*/}
-                <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}} 
-                onPress={() => this.botonDisminuir()}
+ 
+                <Button small primary color='#E63746' style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginLeft: 10, marginRight: 5}} 
+                onPress={() => this.botonDisminuir()} 
                 >-</Button>
                 <Button small primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:35, marginTop:10, marginRight: 10}} 
                 onPress={() => this.botonAumentar()}
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   subtitle: {
-    color: '#2c2c2c', 
+    color: '#e63746', 
     fontWeight: 'bold',
     fontSize: 19,
     fontFamily: 'montserrat-bold',
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-regular',
     zIndex: 2,
     lineHeight: 25,
-    color: '#9A9A9A',
+    color: '#0f1e2e',
     paddingHorizontal: 15,
     marginTop:3,
     fontWeight: 'bold',
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-bold',
     zIndex: 2,
     lineHeight: 25,
-    color: '#9A9A9A',
+    color: '#0f1e2e',
     paddingHorizontal: 15,
     marginTop:3,
     fontWeight: 'bold',

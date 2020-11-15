@@ -51,7 +51,7 @@ function CustomDrawerContent({
             name="align-left-22x"
             family="NowExtra"
             size={15}
-            color={'#0f1e2e'}
+            color={'#e63746'}
           />
         </Block>
       </Block>
@@ -77,7 +77,8 @@ function CustomDrawerContent({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor:'#a4a4a2'
   },
   header: {
     paddingHorizontal: 28,

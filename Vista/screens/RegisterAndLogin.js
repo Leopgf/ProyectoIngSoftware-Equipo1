@@ -95,11 +95,14 @@ class Register extends React.Component {
                     <Block flex={0.4} middle style={styles.socialConnect}>
                       <Block flex={0.5} middle>
                         <Text
-                          style={{
-                            fontFamily: 'montserrat-regular',
-                            textAlign: 'center',
+                          style={{fontFamily: 'montserrat-bold', 
+                          textAlign: 'center', 
+                          marginBottom: theme.SIZES.BASE / 2, 
+                          fontWeight: '500', 
+                          fontSize: 24,
+                          marginTop:50
                           }}
-                          color="#333"
+                          color="#0f1e2e"
                           size={24}
                         >
                           Iniciar Sesión
@@ -107,13 +110,8 @@ class Register extends React.Component {
                       </Block>
                     </Block>
                     <Block flex={0.1} middle>
-                      <Text
-                        style={{
-                          fontFamily: 'montserrat-regular',
-                          textAlign: 'center',
-                        }}
-                        muted
-                        size={16}
+                      <Text color="#0f1e2e"
+                      size={16}
                       >
                         Inicia con tu email
                       </Text>
@@ -141,24 +139,24 @@ class Register extends React.Component {
                             </Block>
                           </Block>
                           <Block center>
-                            <Button
+                            <Button  style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:200,marginBottom:30 }}
                               color="primary"
                               round
-                              style={styles.createButton}
                               onPress={() => this.login()}
                             >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
+                                
                               >
                                 ACCEDER
                               </Text>
                             </Button>
                             <Button
-                              color="primary"
-                              round
-                              style={styles.createButton}
+                            style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:200, marginBottom:100 }}
+                            color="primary"
+                            round
                               onPress={() => this.verRegistro()}
                             >
                               <Text
@@ -196,24 +194,23 @@ class Register extends React.Component {
                   <Block flex space="evenly">
                     <Block flex={0.05} middle style={styles.socialConnect}>
                       <Text
-                        style={{
-                          fontFamily: 'montserrat-regular',
-                          textAlign: 'center',
-                        }}
-                        color="#333"
-                        size={24}
+                      style={{fontFamily: 'montserrat-bold', 
+                      textAlign: 'center', 
+                      fontSize: 21,
+                      marginTop:5
+                      }}
+                      color="#0f1e2e"
+                      size={24}
                       >
                         Registro
                       </Text>
                     </Block>
                     <Block flex={0.05} middle>
-                      <Text
-                        style={{
-                          fontFamily: 'montserrat-regular',
-                          textAlign: 'center',
-                        }}
-                        muted
-                        size={16}
+                      <Text color="#0f1e2e"
+                      size={16}
+                      style={{
+                      marginTop:10
+                      }}
                       >
                         Regístrate con tu email
                       </Text>
@@ -266,7 +263,7 @@ class Register extends React.Component {
                             </Block>
                             <Block width={width * 0.8}>
                               <Input
-                                placeholder="Repetir contraseña"
+                                placeholder="Confirmar contraseña"
                                 style={styles.inputs}
                                 password={true}
                                 onChangeText={(pass2) => this.setState({ pass2 })}
@@ -275,11 +272,9 @@ class Register extends React.Component {
                             </Block>
                           </Block>
                           <Block center>
-                            <Button
-                              flex={0.1}
-                              color="primary"
-                              round
-                              style={styles.createButton}
+                            <Button style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:250, marginTop:50}}
+                            color="primary"
+                            round
                               onPress={() => this.register()}
                             >
                               <Text
@@ -290,12 +285,11 @@ class Register extends React.Component {
                                 CREAR CUENTA
                               </Text>
                             </Button>
-                            <Button
-                              flex={0.1}
+                            <Button style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:250, marginTop:50,marginBottom:100 }}
+                            color="primary"
+                            round
                               onPress={() => this.verLogin()}
-                              color="primary"
-                              round
-                              style={styles.createButton}
+                            
                             >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
@@ -371,10 +365,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   inputIcons: {
+    
     marginRight: 12,
     color: nowTheme.COLORS.ICON_INPUT,
   },
   inputs: {
+     width: width * 0.65,
     borderWidth: 1,
     borderColor: '#E3E3E3',
     borderRadius: 21.5,

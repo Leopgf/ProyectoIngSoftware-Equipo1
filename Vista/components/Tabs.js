@@ -115,7 +115,7 @@ export default class Tabs extends React.Component {
 const styles = StyleSheet.create({
   container: {
     width: width,
-    backgroundColor: '#F2F2F3',
+    backgroundColor: '#ffffff',
     zIndex: 2,
   },
   shadow: {
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center',
-    backgroundColor: '#7faac7',
+    backgroundColor: '#e63746',
     borderRadius: 21,
     marginRight: 9,
     paddingHorizontal: 10,
