@@ -18,7 +18,9 @@ function getInitialNav(){
       screens = [
         "Inicio",
         "Perfil",
-        "Cerrar Sesión"
+        "Cerrar Sesión",
+        'Iniciar Sesión'
+
       ];
     }else {
       screens = [

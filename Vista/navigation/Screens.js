@@ -7,7 +7,7 @@ import Home from '../screens/Home';
 import DetallesReceta from '../screens/DetallesReceta';
 import Pro from '../screens/noUsadas/Pro';
 import Perfil from '../screens/Perfil';
-import Register from '../screens/Register';
+import Register from '../screens/RegisterAndLogin';
 import Components from '../screens/noUsadas/Components';
 import Articles from '../screens/noUsadas/Articles';
 import Onboarding from '../screens/Onboarding';

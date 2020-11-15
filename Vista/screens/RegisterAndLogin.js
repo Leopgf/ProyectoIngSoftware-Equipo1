@@ -7,12 +7,16 @@ import {
   Dimensions,
   StatusBar,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
 import { Button, Icon, Input } from '../components';
 import { Images, nowTheme } from '../constants';
+
+import * as firebase from 'firebase';
+import { registerUsuario, loginUsuario } from '../../Controladores/UsuarioControler';
+import { log } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -21,27 +25,62 @@ const DismissKeyboard = ({ children }) => (
 );
 
 class Register extends React.Component {
-
-  state = {
-    login: 1
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      login: 1,
+      email: '',
+      pass: '',
+      pass2: '',
+      nombre: '',
+      apellido: '',
+      usuario: '',
+    };
+  }
 
   verRegistro = () => {
     this.setState({
-      login: 0
+      login: 0,
     });
     this.render();
-  }
+  };
 
   verLogin = () => {
     this.setState({
-      login: 0
+      login: 1,
     });
     this.render();
+  };
+
+  async register() {
+    // Creo el objeto de tipo usuario
+    let usuario = {
+      nombre: this.state.nombre,
+      apellido: this.state.apellido,
+      usuario: this.state.usuario,
+      email: this.state.email,
+    };
+
+    // Registro al usuario
+    await registerUsuario(usuario, this.state.pass, this.state.pass2).then(() => {
+      this.setState({
+        login: 1,
+        email: '',
+        pass: '',
+        pass2: '',
+        nombre: '',
+        apellido: '',
+        usuario: '',
+      });
+      this.render();
+    });
   }
 
+  async login() {}
+
   render() {
-    if(this.state.login){
+    //PANTALLA DE LOGIN
+    if (this.state.login) {
       return (
         <DismissKeyboard>
           <Block flex middle>
@@ -58,7 +97,7 @@ class Register extends React.Component {
                         <Text
                           style={{
                             fontFamily: 'montserrat-regular',
-                            textAlign: 'center'
+                            textAlign: 'center',
                           }}
                           color="#333"
                           size={24}
@@ -66,13 +105,12 @@ class Register extends React.Component {
                           Iniciar Sesión
                         </Text>
                       </Block>
-  
                     </Block>
                     <Block flex={0.1} middle>
                       <Text
                         style={{
                           fontFamily: 'montserrat-regular',
-                          textAlign: 'center'
+                          textAlign: 'center',
                         }}
                         muted
                         size={16}
@@ -88,38 +126,27 @@ class Register extends React.Component {
                               <Input
                                 placeholder="Email"
                                 style={styles.inputs}
-                                iconContent={
-                                  <Icon
-                                    size={16}
-                                    color="#ADB5BD"
-                                    //AQUI SE CAMBIA EL ICONO IDK DONDE TA
-                                    name="email-852x"
-                                    family="NowExtra"
-                                    style={styles.inputIcons}
-                                  />
-                                }
+                                onChangeText={(email) => this.setState({ email })}
+                                iconContent={<Icon size={18} name="email" family="ArgonExtra" />}
                               />
                             </Block>
                             <Block width={width * 0.8}>
                               <Input
                                 placeholder="Contraseña"
                                 style={styles.inputs}
-                                iconContent={
-                                  <Icon
-                                    size={16}
-                                    color="#ADB5BD"
-                                    //AQUI SE CAMBIA EL ICONO IDK DONDE TA
-                                    name="email-852x"
-                                    family="NowExtra"
-                                    style={styles.inputIcons}
-                                  />
-                                }
+                                password={true}
+                                onChangeText={(pass) => this.setState({ pass })}
+                                iconContent={<Icon size={18} name="lock" family="ArgonExtra" />}
                               />
                             </Block>
-  
                           </Block>
                           <Block center>
-                            <Button color="primary" round style={styles.createButton}>
+                            <Button
+                              color="primary"
+                              round
+                              style={styles.createButton}
+                              onPress={() => this.login()}
+                            >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
@@ -128,7 +155,12 @@ class Register extends React.Component {
                                 ACCEDER
                               </Text>
                             </Button>
-                            <Button color="primary" round style={styles.createButton} onPress={() => this.verRegistro()}>
+                            <Button
+                              color="primary"
+                              round
+                              style={styles.createButton}
+                              onPress={() => this.verRegistro()}
+                            >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
@@ -148,7 +180,9 @@ class Register extends React.Component {
           </Block>
         </DismissKeyboard>
       );
-    }else {
+
+      //PANTALLA DE REGISTRO
+    } else {
       return (
         <DismissKeyboard>
           <Block flex middle>
@@ -160,26 +194,23 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block flex={0.4} middle style={styles.socialConnect}>
-                      <Block flex={0.5} middle>
-                        <Text
-                          style={{
-                            fontFamily: 'montserrat-regular',
-                            textAlign: 'center'
-                          }}
-                          color="#333"
-                          size={24}
-                        >
-                          Regístrate
-                        </Text>
-                      </Block>
-  
-                    </Block>
-                    <Block flex={0.1} middle>
+                    <Block flex={0.05} middle style={styles.socialConnect}>
                       <Text
                         style={{
                           fontFamily: 'montserrat-regular',
-                          textAlign: 'center'
+                          textAlign: 'center',
+                        }}
+                        color="#333"
+                        size={24}
+                      >
+                        Registro
+                      </Text>
+                    </Block>
+                    <Block flex={0.05} middle>
+                      <Text
+                        style={{
+                          fontFamily: 'montserrat-regular',
+                          textAlign: 'center',
                         }}
                         muted
                         size={16}
@@ -187,61 +218,91 @@ class Register extends React.Component {
                         Regístrate con tu email
                       </Text>
                     </Block>
-                    <Block flex={1} middle space="between">
-                      <Block center flex={0.9}>
+                    <Block flex={1.2} middle space="between">
+                      <Block center flex={0.5}>
                         <Block flex space="between">
                           <Block>
                             <Block width={width * 0.8}>
                               <Input
+                                placeholder="Nombre"
+                                style={styles.inputs}
+                                onChangeText={(nombre) => this.setState({ nombre })}
+                                iconContent={<Icon size={18} name="person" family="ArgonExtra" />}
+                              />
+                            </Block>
+                            {/* NO SE POR QUE ESTE INPUT CUANDO ESCRIBO SALE CON ASTERISCOS */}
+                            <Block width={width * 0.8}>
+                              <Input
+                                placeholder="Apellido"
+                                style={styles.inputs}
+                                onChangeText={(apellido) => this.setState({ apellido })}
+                                iconContent={<Icon size={18} name="person" family="ArgonExtra" />}
+                              />
+                            </Block>
+                            <Block width={width * 0.8}>
+                              <Input
+                                placeholder="Usuario"
+                                style={styles.inputs}
+                                onChangeText={(usuario) => this.setState({ usuario })}
+                                iconContent={<Icon size={18} name="person" family="ArgonExtra" />}
+                              />
+                            </Block>
+                            <Block width={width * 0.8}>
+                              <Input
                                 placeholder="Email"
                                 style={styles.inputs}
-                                iconContent={
-                                  <Icon
-                                    size={16}
-                                    color="#ADB5BD"
-                                    //AQUI SE CAMBIA EL ICONO IDK DONDE TA
-                                    name="email-852x"
-                                    family="NowExtra"
-                                    style={styles.inputIcons}
-                                  />
-                                }
+                                onChangeText={(email) => this.setState({ email })}
+                                iconContent={<Icon size={18} name="email" family="ArgonExtra" />}
                               />
                             </Block>
                             <Block width={width * 0.8}>
                               <Input
                                 placeholder="Contraseña"
                                 style={styles.inputs}
-                                iconContent={
-                                  <Icon
-                                    size={16}
-                                    color="#ADB5BD"
-                                    //AQUI SE CAMBIA EL ICONO IDK DONDE TA
-                                    name="email-852x"
-                                    family="NowExtra"
-                                    style={styles.inputIcons}
-                                  />
-                                }
+                                password={true}
+                                onChangeText={(pass) => this.setState({ pass })}
+                                iconContent={<Icon size={18} name="lock" family="ArgonExtra" />}
                               />
                             </Block>
-  
+                            <Block width={width * 0.8}>
+                              <Input
+                                placeholder="Repetir contraseña"
+                                style={styles.inputs}
+                                password={true}
+                                onChangeText={(pass2) => this.setState({ pass2 })}
+                                iconContent={<Icon size={18} name="lock" family="ArgonExtra" />}
+                              />
+                            </Block>
                           </Block>
                           <Block center>
-                            <Button color="primary" round style={styles.createButton}>
+                            <Button
+                              flex={0.1}
+                              color="primary"
+                              round
+                              style={styles.createButton}
+                              onPress={() => this.register()}
+                            >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
                               >
-                                ACCEDER
+                                CREAR CUENTA
                               </Text>
                             </Button>
-                            <Button color="primary" round style={styles.createButton}>
+                            <Button
+                              flex={0.1}
+                              onPress={() => this.verLogin()}
+                              color="primary"
+                              round
+                              style={styles.createButton}
+                            >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
                               >
-                                ¿No tienes una cuenta? Regístrate
+                                ¿Ya tienes una cuenta? Inicia sesión
                               </Text>
                             </Button>
                           </Block>
@@ -264,11 +325,11 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     padding: 0,
-    zIndex: 1
+    zIndex: 1,
   },
   imageBackground: {
     width: width,
-    height: height
+    height: height,
   },
   registerContainer: {
     marginTop: 55,
@@ -279,15 +340,15 @@ const styles = StyleSheet.create({
     shadowColor: nowTheme.COLORS.BLACK,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 4,
     },
     shadowRadius: 8,
     shadowOpacity: 0.1,
     elevation: 1,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   socialConnect: {
-    backgroundColor: nowTheme.COLORS.WHITE
+    backgroundColor: nowTheme.COLORS.WHITE,
     // borderBottomWidth: StyleSheet.hairlineWidth,
     // borderColor: "rgba(136, 152, 170, 0.3)"
   },
@@ -298,43 +359,43 @@ const styles = StyleSheet.create({
     shadowColor: nowTheme.COLORS.BLACK,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 4,
     },
     shadowRadius: 8,
     shadowOpacity: 0.1,
-    elevation: 1
+    elevation: 1,
   },
   socialTextButtons: {
     color: nowTheme.COLORS.PRIMARY,
     fontWeight: '800',
-    fontSize: 14
+    fontSize: 14,
   },
   inputIcons: {
     marginRight: 12,
-    color: nowTheme.COLORS.ICON_INPUT
+    color: nowTheme.COLORS.ICON_INPUT,
   },
   inputs: {
     borderWidth: 1,
     borderColor: '#E3E3E3',
-    borderRadius: 21.5
+    borderRadius: 21.5,
   },
   passwordCheck: {
     paddingLeft: 2,
     paddingTop: 6,
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   createButton: {
     width: width * 0.5,
     marginTop: 25,
-    marginBottom: 40
+    marginBottom: 40,
   },
   social: {
     width: theme.SIZES.BASE * 3.5,
     height: theme.SIZES.BASE * 3.5,
     borderRadius: theme.SIZES.BASE * 1.75,
     justifyContent: 'center',
-    marginHorizontal: 10
-  }
+    marginHorizontal: 10,
+  },
 });
 
 export default Register;
