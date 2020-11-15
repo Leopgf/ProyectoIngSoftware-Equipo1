@@ -239,12 +239,10 @@ function AppStack(props) {
       }}
       initialRouteName="Home"
     >
-      <Drawer.Screen name="Inicio" component={HomeStack} />
-      <Drawer.Screen name="Components" component={ComponentsStack} />
-      <Drawer.Screen name="Articles" component={ArticlesStack} />
-      <Drawer.Screen name="Perfil" component={PerfilStack} />
-      <Drawer.Screen name="Iniciar Sesión" component={AccountStack} />
-      <Drawer.Screen name="Cerrar Sesión" component={LogoutStack} />
+      <Drawer.Screen name="Inicio" component={HomeStack}/>
+      <Drawer.Screen name="Iniciar Sesión" component={AccountStack}/>
+      <Drawer.Screen name="Perfil" component={PerfilStack}/>
+      <Drawer.Screen name="Cerrar Sesión" component={LogoutStack}/>
       <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
     </Drawer.Navigator>
   );
