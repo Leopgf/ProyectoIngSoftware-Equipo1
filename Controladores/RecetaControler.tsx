@@ -16,7 +16,7 @@ export async function getRecetas(recetasRecibidas: Function) {
     
     recetas.push(receta);
   });
-
+  
   recetasRecibidas(recetas);
 }
 

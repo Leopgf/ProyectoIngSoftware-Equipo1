@@ -123,7 +123,7 @@ class Header extends React.Component {
     }
   };
   renderSearch = () => {
-    const { navigation } = this.props;
+    const { navigation, setSearchText } = this.props;
     return (
       <Input
         right
@@ -134,16 +134,10 @@ class Header extends React.Component {
         name='textSearcher'
         value = {this.state.textSearcher}
         onChangeText={(textSearcher) => this.setState({textSearcher})}
-        onSubmitEditing={() => {
-          navigation.setParams({ textSearcher: this.state.textSearcher });
-          navigation.navigate('Inicio', this.state.textSearcher);
-        }}
+        onSubmitEditing={() => setSearchText(this.state.textSearcher)} // Aca actualizamos la variable que tambien esta en el compoente Home, asi le indicamos que debe de buscar por dicho texto
         iconContent={
           <Icon size={16} color={theme.COLORS.MUTED} name="zoom-bold2x" family="NowExtra" 
-          onPress={() => {
-            navigation.setParams({ textSearcher: this.state.textSearcher });
-            navigation.navigate('Inicio', this.state.textSearcher);
-          }}
+          onPress={() => setSearchText(this.state.textSearcher)}// Aca actualizamos la variable que tambien esta en el compoente Home, asi le indicamos que debe de buscar por dicho texto
           />
         }
       />
@@ -191,7 +185,7 @@ class Header extends React.Component {
   };
 
   renderTabs = () => {
-    const { tabs, tabIndex, navigation } = this.props;
+    const { tabs, tabIndex, navigation, setCurrentTab } = this.props;
     const { categories } = this.state;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
 
@@ -202,8 +196,9 @@ class Header extends React.Component {
         data={categories}
         initialIndex={tabIndex || defaultTab}
         onChange={id => {
-          navigation.setParams({ tabId: id });
-          navigation.navigate('Inicio', id);
+        //   navigation.setParams({ tabId: id });
+        //   navigation.navigate('Inicio', id);
+            setCurrentTab(id);
         }}
       />
     );
