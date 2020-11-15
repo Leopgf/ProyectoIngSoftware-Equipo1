@@ -1,6 +1,7 @@
 // NO SE ESTÁ USANDO
 
 import React from 'react';
+
 import {
   StyleSheet,
   ImageBackground,
@@ -12,7 +13,7 @@ import {
 } from 'react-native';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
-import { Button, Icon, Input } from '../components';
+import { Button, Icon, Input} from '../components';
 import { Images, nowTheme } from '../constants';
 
 import { registerUsuario, loginUsuario, recuperarContrasena } from '../../Controladores/UsuarioControler';
@@ -170,6 +171,7 @@ class Register extends React.Component {
                                 borderRadius: nowTheme.SIZES.BASE * 1.5,
                                 width: 200,
                                 marginBottom: 30,
+                                marginTop: 30
                               }}
                               color="primary"
                               round

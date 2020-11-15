@@ -3,17 +3,38 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
-
+import { Card} from "../components";
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
+import LoadingView from 'react-native-loading-view'
 
 const { width, height } = Dimensions.get('screen');
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
-const Perfil = () => {
+
+class Perfil extends React.Component {
+
+  state = {
+    loading: true,
+  }
+
+  componentDidMount() {
+    //TEMPORIZADOR DE CARGAR
+   setTimeout(() => {
+     this.setState({
+       loading: false
+       
+     })
+   }, 2000)
+  
+ }
+
+  renderArticles = () => {
+
   return (
+    <LoadingView loading={this.state.loading} size="large" style={styles.cargar} text="Cargando perfil...">
     <Block style={{
       flex: 1,
       flexDirection: 'column',
@@ -61,15 +82,34 @@ const Perfil = () => {
                 >Mis Publicaciones</Button>
         </Block>
          
+
+        {/* COLOCAR AQUI ITEM PARA TRAER RECETAS 
+          
+          <Block flex>
+          <Block flex row >
+              <Card horizontal/>
+          </Block>
+        </Block>
+      
+      */}
+
+
         </ScrollView>
       </Block>
     </Block>
-
+    </LoadingView>
   )
+};
+render() {
+    
+  return (
+    <Block flex center>
+      {this.renderArticles()}
+    </Block>
+  );
 }
 
-
-
+}
 
 
 const styles = StyleSheet.create({
