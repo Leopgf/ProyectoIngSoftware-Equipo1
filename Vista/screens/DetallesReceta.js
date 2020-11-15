@@ -98,7 +98,7 @@ class DetallesReceta extends React.Component {
                   style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 2 }}
                 >
                   <Block
-                    style={{ top: height * 0.2, backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 80 }}
+                    style={{ top: height * 0.2, backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 65 }}
                   >
                     <Block middle>
                       {/* TITULO RECETA */}
