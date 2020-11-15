@@ -19,11 +19,12 @@ class DetallesReceta extends React.Component {
 
   //TRAER DETALLES
   state = {
+    loading: true,
     detalles: {
       categorias: [],
       pasos: [],
       ingredientes: [],
-      loading: true,
+      
     },
     porcion: 0,
     ingredientesCambiados: [],
@@ -261,6 +262,12 @@ class DetallesReceta extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  cargar: {
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+   }, 
   profileContainer: {
     width,
     height,
@@ -348,18 +355,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
   },
-
-  cargar: {
-    backgroundColor: '#c5e7e8',
-     flex: 1,
-     position: 'absolute',
-     top: 0,
-     bottom: 0,
-     left: 0,
-     right: 0,
-     alignItems: 'center',
-     justifyContent: 'center',
-   }
+  
 });
 
 export default withNavigation(DetallesReceta);

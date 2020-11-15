@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 
   }, 
   cargar: {
-   backgroundColor: '#c5e7e8',
+   backgroundColor: '#ffffff',
     flex: 1,
     position: 'absolute',
     top: 0,
