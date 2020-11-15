@@ -1,7 +1,7 @@
-import React from 'react';
-import { Easing, Animated, Dimensions, Alert } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { useState } from 'react';
+import { Easing, Animated, Dimensions, Alert } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 // screens
 import Home from '../screens/Home';
 import DetallesReceta from '../screens/DetallesReceta';
@@ -43,11 +43,15 @@ function ComponentsStack(props) {
 
 // Renderizados que estamos usando
 function HomeStack(props) {
+    // Hooks que nos ayudara a mantener la comunicacion entre el Header y el Home
+    const [searchText, setSearchText] = useState(''); // Este nos va a ayudar a manejar la busqueda por texto
+    const [currentTab, setCurrentTab] = useState(''); // Este el tab actual
+
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name="Inicio"
-        component={Home}
+        name="Inicio" // Comente la linea de abajo porque sino el componente se iba a renderizar a acada rato
+        // component={() => <Home searchText={searchText} />} // El componente Home lo pase a PureComponente tambien. See: https://stackoverflow.com/questions/47027401/pass-props-stacknavigator
         options={{
           header: ({ navigation, scene }) => (
             <Header
@@ -57,11 +61,17 @@ function HomeStack(props) {
               tabs
               navigation={navigation}
               scene={scene}
+              setSearchText={setSearchText}
+              setCurrentTab={setCurrentTab}
+
             />
           ),
           cardStyle: { backgroundColor: '#FFFFFF' },
         }}
-      />
+      > 
+            {/** Ahora el componete es Pure Component para evitar renders innecesarios. https://stackoverflow.com/questions/47027401/pass-props-stacknavigator */}
+          {() => <Home searchText={searchText} currentTab={currentTab}/>}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }
