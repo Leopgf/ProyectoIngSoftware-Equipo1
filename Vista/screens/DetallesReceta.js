@@ -9,6 +9,7 @@ import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/Recet
 import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
 import LoadingView from 'react-native-loading-view'
 import Moment from 'moment'; 
+import { HeaderHeight } from '../constants/utils';
 
 //CONST
 const { width, height } = Dimensions.get('screen');
@@ -284,13 +285,13 @@ class DetallesReceta extends React.Component {
             </Block>
     
     
-          <Block>
-            <Block row space="between" style={{ flexWrap: 'wrap' }}>
-              
-            
-             
+            <Block style={{ paddingBottom: -HeaderHeight * 2, paddingHorizontal: 15}}>
+                <Block row space="between" style={{ flexWrap: 'wrap' }}>
+                    
+                  <Image resizeMode="cover" style={styles.thumb}/>
+                  
+                </Block>
             </Block>
-          </Block>
     
 
 
