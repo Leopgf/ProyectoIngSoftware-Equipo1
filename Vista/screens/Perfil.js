@@ -84,10 +84,10 @@ class Perfil extends React.Component {
         <ScrollView showsVerticalScrollIndicator={false}>
 
 
-        <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
+        <Block middle style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
                 <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginRight: 10, marginLeft: 30}} 
                 >Mi Biblioteca</Button>
-                <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginRight: 10, marginLeft: 5}} 
+                <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginLeft: 5}} 
                 >Mis Publicaciones</Button>
         </Block>
          
