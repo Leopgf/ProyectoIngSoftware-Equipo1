@@ -34,7 +34,6 @@ class Perfil extends React.Component {
     this.setState({
       recetas: recetas,
     });
-    console.log(this.state.recetas);
   };
 
   onBibliotecaRecibida = (biblioteca) => {
@@ -118,10 +117,17 @@ class Perfil extends React.Component {
           </Block>
           <Block />
           <Block flex={1}>
-            <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-            //REFRESH ARRIBA
-            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} text="Actualizando biblioteca..."/>
-          }>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              refreshControl={
+                //REFRESH ARRIBA
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this._onRefresh}
+                  text="Actualizando biblioteca..."
+                />
+              }
+            >
               <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 {/* <Button
                   primary
@@ -133,19 +139,28 @@ class Perfil extends React.Component {
                 {/* <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginLeft: 5}} 
                 >Mis Publicaciones</Button> */}
 
-                <Text>Mi Biblioteca</Text>
+                <Text
+                  style={{
+                    fontFamily: 'montserrat-bold',
+                    marginBottom: theme.SIZES.BASE / 2,
+                    fontWeight: '900',
+                    fontSize: 25,
+                  }}
+                  color="#e63746"
+                >
+                  Mi Biblioteca
+                </Text>
               </Block>
               {/* COLOCAR AQUI ITEM PARA TRAER RECETAS DE MI LIBRERIA */}
 
               <Block flex>
                 {this.state.recetas.map((receta, index) => (
                   <Block flex row key={index}>
-                    <Card item={receta} params={{ recetaID: receta.recetaID }} />
+                    <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
                   </Block>
                 ))}
               </Block>
             </ScrollView>
-           
           </Block>
         </Block>
       </LoadingView>
