@@ -1,5 +1,6 @@
 import Usuario from '../Modelos/Usuario';
 import { Alert } from 'react-native';
+import { getRecetasBiblioteca } from '/RecetasControler';
 
 import * as firebase from 'firebase';
 
@@ -134,3 +135,28 @@ export function validarEmail(email: string) {
     return false;
   }
 }
+
+//FUNCION PARA RECUPERAR LA BIBLIOTECA DEL USUARIO 
+export async function getBiblioteca(recetasGuardadas: Function){
+let id = firebase.auth().currentUser?.uid;
+let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
+let biblioteca = snapshot.data().biblioteca;
+let recetas = getRecetasBiblioteca(biblioteca);
+recetasGuardadas(recetas);
+}
+
+// FUNCION PARA COMPARAR SI UNA RECETA ESTA GUARDADA EN LA BIBLIOTECA O NO 
+// NO ES COMPLETA!!!!!!!!!!!!!!!!!!!!!!!!!!!
+export async function getIdBiblioteca(idRecetasGuardadas: Function, ){
+  let biblioteca: string[] = [];
+  let id = firebase.auth().currentUser?.uid;
+  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
+  
+  snapshot.forEach(recetaId => {
+  
+  });
+  
+  idRecetasGuardadas(biblioteca);
+}
+
+// FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
