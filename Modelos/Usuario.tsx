@@ -4,4 +4,5 @@ export default interface Receta {
     apellido: string;
     usuario: string;
     email: string;
+    biblioteca: string[];
 }

@@ -3,17 +3,47 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
-
+import { Card} from "../components";
 import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
+import LoadingView from 'react-native-loading-view';
+import { getPerfil } from '../../Controladores/UsuarioControler';
 
 const { width, height } = Dimensions.get('screen');
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
-const Perfil = () => {
+class Perfil extends React.Component {
+
+  state = {
+    usuario: {},
+    loading: true,
+  }
+
+  onPerfilRecibido = (usuario) => {
+    this.setState(prevState => ({
+      usuario: usuario
+    }));
+  }
+
+  async componentDidMount() {
+    //TEMPORIZADOR DE CARGAR
+    try {
+      await getPerfil(this.onPerfilRecibido);
+  } catch (error) {
+      console.error(error)
+  }
+   this.setState({
+      loading: false
+  })
+  
+ }
+
+  renderPerfil = () => {
+
   return (
+    <LoadingView loading={this.state.loading} size="large" style={styles.cargar} text="Cargando perfil...">
     <Block style={{
       flex: 1,
       flexDirection: 'column',
@@ -34,11 +64,11 @@ const Perfil = () => {
                     {/*nombre usuario*/}
                   <Text style={{ fontFamily: 'montserrat-bold', marginBottom: theme.SIZES.BASE / 2, fontWeight: '900',fontSize: 30}}
                   color='#e63746'>
-                    Ryan Scheinder
+                    {this.state.usuario.nombre + ' ' + this.state.usuario.apellido}
                   </Text>
                   {/*texto usuario de Mixo´s*/}
                   <Text size={16} color="#0f1e2e" style={{ marginTop: 5,  lineHeight: 20, fontSize: 18,opacity: .8}}>
-                    Usuario de Mixo´s
+                    @{this.state.usuario.usuario}
                   </Text>
                 </Block>
               </Block>
@@ -54,22 +84,41 @@ const Perfil = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
 
 
-        <Block style={{flexDirection: 'row', alignSelf: 'flex-between'}}>
-                <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginRight: 10, marginLeft: 30}} 
+        <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginRight: 10}} 
                 >Mi Biblioteca</Button>
-                <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginRight: 10, marginLeft: 5}} 
+                <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginLeft: 5}} 
                 >Mis Publicaciones</Button>
         </Block>
          
+
+        {/* COLOCAR AQUI ITEM PARA TRAER RECETAS DE MI LIBRERIA
+          
+          <Block flex>
+          <Block flex row >
+              <Card horizontal/>
+          </Block>
+        </Block>
+      
+      */}
+
+
         </ScrollView>
       </Block>
     </Block>
-
+    </LoadingView>
   )
+};
+render() {
+    
+  return (
+    <Block flex center>
+      {this.renderPerfil()}
+    </Block>
+  );
 }
 
-
-
+}
 
 
 const styles = StyleSheet.create({

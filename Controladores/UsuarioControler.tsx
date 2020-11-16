@@ -4,9 +4,10 @@ import { getRecetasBiblioteca } from '/RecetasControler';
 
 import * as firebase from 'firebase';
 
-// FUNCION AUMENTAR LA PORCION DE LA RECETA
-export async function registerUsuario(usuario: Usuario, password: string, password2: string) {
 
+// FUNCION AUMENTAR LA PORCION DE LA RECETA
+export function registerUsuario(usuario: Usuario, password: string, password2: string) {
+  return new Promise(function(resolve, reject) {
   // VALIDAR FORMULARIO
   if (
     usuario.nombre !== '' &&
@@ -21,7 +22,8 @@ export async function registerUsuario(usuario: Usuario, password: string, passwo
 
     // SI PASA VALIDACION REGISTRA AL USUARIO
     if (isEmail && isPass) {
-      await firebase
+      // REVISAR QUE NO HAYA OTRO USUARIO CON EL MISMO USERNAME
+      firebase
         .firestore()
         .collection('Usuarios')
         .where('usuario', '==', usuario.usuario)
@@ -39,57 +41,51 @@ export async function registerUsuario(usuario: Usuario, password: string, passwo
                     .collection('Usuarios')
                     .add(usuario)
                     .then(() => {
-                      Alert.alert('Su usuario ha sido creado con éxito. Proceda a iniciar sesión.');
                       firebase
                         .auth()
                         .signOut()
                         .then(() => {
-                          return true;
+                          resolve('Su usuario ha sido creado con éxito. Proceda a iniciar sesión.');
                         });
                     })
                     .catch((error) => {
-                      Alert.alert(error.message);
-                      return false;
+                      reject('Error, compruebe los datos ingresados e intente nuevamente.');
                     });
                 })
                 .catch((error) => {
-                  Alert.alert(error.message);
-                  return false;
+                  reject('Error, compruebe los datos ingresados e intente nuevamente.');
                 });
             } catch (error) {
-              Alert.alert(error.toString());
-              return false;
+              reject('Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.');
             }
           } else {
-            Alert.alert('Error, ya hay alguien con ese nombre de usuario.');
-            return false;
+            reject('Error, ya hay alguien con ese nombre de usuario.');
           }
         })
-        .catch();
+        .catch(() => {
+          reject('Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.')
+        });
 
       // MENSAJES DE ERROR
     } else {
       if (!isEmail) {
-        Alert.alert('Error, email inválido.');
-        return false;
+        reject('Error, email inválido.');
       } else {
         if (password.length < 8) {
-          Alert.alert('Error, la contraseña debe tener al menos 8 caracteres.');
-          return false;
+          reject('Error, la contraseña debe tener al menos 8 caracteres.');
         } else {
-          Alert.alert('Error, las contraseñas no coinciden.');
-          return false;
+          reject('Error, las contraseñas no coinciden.');
         }
       }
     }
   } else {
-    Alert.alert('Por favor rellene todos los campos.');
-    return false;
+    reject('Por favor rellene todos los campos.');
   }
+  });
 }
 
 export function loginUsuario(email: string, password: string) {
-
+  return new Promise(function(resolve, reject) {
   if (email !== '' && password !== '') {
     let isEmail = validarEmail(email);
 
@@ -98,21 +94,18 @@ export function loginUsuario(email: string, password: string) {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          Alert.alert("Bienvenido a Mixo's");
-          return Promise.resolve(true);
+          resolve("Bienvenido a Mixo's");
         })
         .catch(() => {
-          Alert.alert('Error, usuario y clave incorrectos.');
-          return Promise.reject();
+          reject('Error, usuario y clave incorrectos.');
         });
     } else {
       Alert.alert('Error, email inválido.');
-      return Promise.reject();
     }
   } else {
-    Alert.alert('Por favor rellene todos los campos.');
-    return Promise.reject();
+    reject('Por favor rellene todos los campos.');
   }
+});
 }
 
 export function validarClave(clave: string, clave2: string) {
@@ -160,3 +153,32 @@ export async function getIdBiblioteca(idRecetasGuardadas: Function, ){
 }
 
 // FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
+export function recuperarContrasena(email: string) {
+  return new Promise(function(resolve, reject) {
+  
+  let isEmail = validarEmail(email);
+
+  if(isEmail){
+    firebase.auth().sendPasswordResetEmail(email).then(() => {
+      resolve('Estimado usuario, se le ha enviado un email para proceder con el cambio de clave.')
+    }).catch(() => {
+      reject('Error, ese email no tiene ningún usuario registrado.');
+    });
+  }else {
+    reject('Por favor instroduzca un email válido.');
+  }
+});
+}
+
+export async function getPerfil(pasarPerfil: Function) {
+  let snapshot = await firebase.firestore().collection('Usuarios').where('usuarioID', '==', firebase.auth().currentUser?.uid).get();
+  let usuario = {};
+
+  snapshot.forEach((doc) => {
+    usuario = {
+      ...doc.data() as Usuario
+  };
+  });
+    
+  pasarPerfil(usuario);
+}

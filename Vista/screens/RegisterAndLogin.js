@@ -1,6 +1,7 @@
 // NO SE ESTÁ USANDO
 
 import React from 'react';
+
 import {
   StyleSheet,
   ImageBackground,
@@ -8,16 +9,14 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
-import { Button, Icon, Input } from '../components';
+import { Button, Icon, Input} from '../components';
 import { Images, nowTheme } from '../constants';
 
-import * as firebase from 'firebase';
-import { registerUsuario, loginUsuario } from '../../Controladores/UsuarioControler';
-import { log } from 'react-native-reanimated';
+import { registerUsuario, loginUsuario, recuperarContrasena } from '../../Controladores/UsuarioControler';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -38,7 +37,6 @@ class Register extends React.Component {
       usuario: '',
     };
   }
-
 
   verRegistro = () => {
     this.setState({
@@ -61,19 +59,51 @@ class Register extends React.Component {
       apellido: this.state.apellido,
       usuario: this.state.usuario,
       email: this.state.email,
+      biblioteca: [],
     };
 
     // Registro al usuario
-    await registerUsuario(usuario, this.state.pass, this.state.pass2).then(() => {
-        // navigation.navigate('Iniciar Sesión');
-    });
+    await registerUsuario(usuario, this.state.pass, this.state.pass2)
+      .then((resolve) => {
+        Alert.alert(resolve);
+        this.setState({
+          login: 1,
+          email: '',
+          pass: '',
+          pass2: '',
+          nombre: '',
+          apellido: '',
+          usuario: '',
+        });
+        this.render();
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
   }
 
   async login() {
     // Login del usuario
-    await loginUsuario(this.state.email, this.state.pass).then(() => {
-        // navigation.navigate('Inicio');
-    });
+    await loginUsuario(this.state.email, this.state.pass)
+      .then((resolve) => {
+        Alert.alert(resolve);
+        this.props.navigation.navigate('Inicio');
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
+  }
+
+  async recuperarContrasena() {
+    // Login del usuario
+    await recuperarContrasena(this.state.email)
+      .then((resolve) => {
+        Alert.alert(resolve);
+        this.props.navigation.navigate('Inicio');
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
   }
 
   render() {
@@ -90,15 +120,14 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block flex={0.4} middle style={styles.socialConnect}>
+                    <Block flex={0.4} middle >
                       <Block flex={0.5} middle>
                         <Text
-                          style={{fontFamily: 'montserrat-bold', 
-                          textAlign: 'center', 
-                          marginBottom: theme.SIZES.BASE / 2, 
-                          fontWeight: '500', 
-                          fontSize: 24,
-                          marginTop:50
+                          style={{
+                            fontFamily: 'montserrat-bold',
+                            textAlign: 'center',
+                            fontWeight: '500',
+                            fontSize: 24,
                           }}
                           color="#0f1e2e"
                           size={24}
@@ -108,9 +137,7 @@ class Register extends React.Component {
                       </Block>
                     </Block>
                     <Block flex={0.1} middle>
-                      <Text color="#0f1e2e"
-                      size={16}
-                      >
+                      <Text color="#0f1e2e" size={16}>
                         Inicia con tu email
                       </Text>
                     </Block>
@@ -118,7 +145,7 @@ class Register extends React.Component {
                       <Block center flex={0.9}>
                         <Block flex space="between">
                           <Block>
-                            <Block width={width * 0.8}>
+                            <Block center width={width * 0.8}>
                               <Input
                                 placeholder="Email"
                                 style={styles.inputs}
@@ -126,7 +153,7 @@ class Register extends React.Component {
                                 iconContent={<Icon size={18} name="email" family="ArgonExtra" />}
                               />
                             </Block>
-                            <Block width={width * 0.8}>
+                            <Block center width={width * 0.8}>
                               <Input
                                 placeholder="Contraseña"
                                 style={styles.inputs}
@@ -137,7 +164,14 @@ class Register extends React.Component {
                             </Block>
                           </Block>
                           <Block center>
-                            <Button  style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:200,marginBottom:30 }}
+                            <Button
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 200,
+                                marginBottom: 30,
+                                marginTop: 30
+                              }}
                               color="primary"
                               round
                               onPress={() => this.login()}
@@ -146,15 +180,38 @@ class Register extends React.Component {
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
-                                
                               >
-                                ACCEDER
+                                Acceder
                               </Text>
                             </Button>
                             <Button
-                            style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:200, marginBottom:100 }}
-                            color="primary"
-                            round
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 200,
+                                marginBottom: 30,
+                              }}
+                              color="primary"
+                              round
+                              onPress={() => this.recuperarContrasena()}
+                            >
+                              <Text
+                                style={{ fontFamily: 'montserrat-bold' }}
+                                size={14}
+                                color={nowTheme.COLORS.WHITE}
+                              >
+                                He olvidado mi contraseña
+                              </Text>
+                            </Button>
+                            <Button
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 200,
+                                marginBottom: 100,
+                              }}
+                              color="primary"
+                              round
                               onPress={() => this.verRegistro()}
                             >
                               <Text
@@ -190,25 +247,27 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block flex={0.05} middle style={styles.socialConnect}>
+                    <Block >
                       <Text
-                      style={{fontFamily: 'montserrat-bold', 
-                      textAlign: 'center', 
-                      fontSize: 21,
-                      marginTop:5
-                      }}
-                      color="#0f1e2e"
-                      size={24}
+                        style={{
+                          fontFamily: 'montserrat-bold',
+                          textAlign: 'center',
+                          fontSize: 24,
+                          marginTop: 25,
+                        }}
+                        color="#0f1e2e"
+                        size={24}
                       >
                         Registro
                       </Text>
                     </Block>
-                    <Block flex={0.05} middle>
-                      <Text color="#0f1e2e"
-                      size={16}
-                      style={{
-                      marginTop:10
-                      }}
+                    <Block flex={0.1} middle>
+                      <Text
+                        color="#0f1e2e"
+                        size={16}
+                        style={{
+                          marginTop: 10,
+                        }}
                       >
                         Regístrate con tu email
                       </Text>
@@ -270,10 +329,16 @@ class Register extends React.Component {
                             </Block>
                           </Block>
                           <Block center>
-                            <Button style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:250, marginTop:50}}
-                            color="primary"
-                            round
-                              onPress={() => this.register()}
+                            <Button
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 250,
+                                marginTop: 10,
+                              }}
+                              color="primary"
+                              round
+                              onPress={() => this.register(this.state.navigation)}
                             >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
@@ -283,11 +348,16 @@ class Register extends React.Component {
                                 CREAR CUENTA
                               </Text>
                             </Button>
-                            <Button style={{ fontFamily: 'montserrat-bold', borderRadius: nowTheme.SIZES.BASE * 1.5, width:250, marginTop:50,marginBottom:100 }}
-                            color="primary"
-                            round
+                            <Button
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 250,
+                                marginTop: 10,
+                              }}
+                              color="primary"
+                              round
                               onPress={() => this.verLogin()}
-                            
                             >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
@@ -363,15 +433,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   inputIcons: {
-    
     marginRight: 12,
     color: nowTheme.COLORS.ICON_INPUT,
   },
   inputs: {
-     width: width * 0.65,
+    width: width * 0.65,
     borderWidth: 1,
     borderColor: '#E3E3E3',
     borderRadius: 21.5,
+    alignSelf: 'center'
   },
   passwordCheck: {
     paddingLeft: 2,

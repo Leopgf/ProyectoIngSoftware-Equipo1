@@ -5,17 +5,27 @@ import { Block, theme, Text } from "galio-framework";
 import { Card, Button } from "../components";
 import { getRecetas, getRecetasFiltroCategoria, getRecetasTexto } from "../../Controladores/RecetaControler";
 import LoadingView from 'react-native-loading-view'
+import { RefreshControl } from 'react-native';
+
 
 //CONST
 const { width } = Dimensions.get("screen");
 
 //CLASE HOME
-class Home extends React.Component {
+class Home extends React.PureComponent {
 
     //PARA TRAER LAS RECETAS Y CARGAR EN TRUE
       state = {
         recetas: [],
         loading: true,
+        refreshing: false,
+      }
+
+      _onRefresh = () => {
+        this.setState({refreshing: true});
+        getRecetas(this.onRecetasRecibidas).then(() => {
+          this.setState({refreshing: false});
+        });
       }
 
       onRecetasRecibidas = (recetas) => {
@@ -24,27 +34,65 @@ class Home extends React.Component {
         }));
       }
 
-      componentDidMount() {
+      async componentDidMount() {
          //TEMPORIZADOR DE CARGAR
-        setTimeout(() => {
-          this.setState({
-            loading: false
-            
-          })
-        }, 2000)
-        
-        if(!this.props.route.params){
-          getRecetas(this.onRecetasRecibidas);
+         try {
+            await getRecetas(this.onRecetasRecibidas);
+        } catch (error) {
+            console.error(error)
         }
+         this.setState({
+            loading: false
+        })
       }
       
-      componentDidUpdate(nextProps) {
-    
-        if(this.props.route.params?.tabId){
-          getRecetasFiltroCategoria(this.onRecetasRecibidas, this.props.route.params.tabId);
-        }else if(this.props.route.params?.textSearcher){ 
-          getRecetasTexto(this.onRecetasRecibidas, this.props.route.params.textSearcher);
-        }
+
+      /**
+       * Cada vez que los props se acutalicen (las variables de la busqueda de texto y tab actual)
+       * Se va a ejecutar esta funcion
+       *
+       * @param {*} prevProps
+       * @memberof Home
+       */
+      async componentDidUpdate(prevProps) {
+           // Verificamos que el texto no sea el mismo para que no haya un bucle infinito
+          if (this.props.searchText !== prevProps.searchText) {
+              this.setState({ // Pantalla de carga
+                  loading: true
+              })
+              try {
+                  if(this.props.searchText.length > 0){ // Buscamos la recta por texto
+                      await getRecetasTexto(this.onRecetasRecibidas, this.props.searchText);
+                    } else {
+                        await getRecetas(this.onRecetasRecibidas, this.props.searchText);
+                    }
+                  } catch (error) {
+                      console.error(error)
+                  }
+              this.setState({ // quitamos la pantalla de carga
+                  loading: false
+              })
+          }
+
+          // Verificamos que el tab sea otro para evitar bucles
+          if (this.props.currentTab !== prevProps.currentTab) {
+              this.setState({
+                  loading: true
+              })
+                try {
+                  if(this.props.currentTab.length > 0){ // Filtramos por categoria
+                      await getRecetasFiltroCategoria(this.onRecetasRecibidas, this.props.currentTab);
+                    } else {
+                        await getRecetas(this.onRecetasRecibidas, this.props.searchText);
+                    }
+                  } catch (error) {
+                      console.error(error)
+                  }
+
+              this.setState({
+                  loading: false
+              })
+          }
 
       }
 
@@ -55,6 +103,15 @@ class Home extends React.Component {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+
+
+
       >
         <Block flex>
 
