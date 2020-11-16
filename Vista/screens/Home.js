@@ -131,7 +131,7 @@ class Home extends React.PureComponent {
               this.handleLoadMore();
             }
           }}
-          scrollEventThrottle={400}
+          scrollEventThrottle={0}
         >
           <Block flex>
             {this.state.recetas.map((receta, index) => (
@@ -151,7 +151,7 @@ class Home extends React.PureComponent {
   };
 
   handleLoadMore = () => {
-    this.setState({ limite: this.state.limite + 5 });
+    this.setState({ limite: this.state.limite + 2 });
     getRecetas(this.onRecetasRecibidas, this.state.limite);
   };
 
