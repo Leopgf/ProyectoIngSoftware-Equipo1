@@ -7,6 +7,7 @@ import { Button } from '../components';
 import { nowTheme } from '../constants';
 import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
+import { esFavorito, agregarEnBiblioteca, eliminarEnBiblioteca } from '../../Controladores/UsuarioControler';
 import LoadingView from 'react-native-loading-view';
 import Moment from 'moment';
 import { HeaderHeight } from '../constants/utils';
@@ -28,6 +29,7 @@ class DetallesReceta extends React.Component {
     porcion: 0,
     ingredientesCambiados: [],
     id: this.props.route.params.recetaID,
+    isFavorito: false,
   };
 
   onDetallesRecetas = async (detalles) => {
@@ -40,15 +42,23 @@ class DetallesReceta extends React.Component {
     });
   };
 
+  
   onCategoriaRecetas = async (detalles) => {
     await this.setState({
       detalles: detalles,
+    });
+  };
+  
+  onFavoritoRecibido = async (favorito) => {
+    await this.setState({
+      isFavorito: favorito,
     });
   };
 
   async componentDidMount() {
     try {
       await getDetallesReceta(this.onDetallesRecetas, this.state.id);
+      await esFavorito(this.state.id, this.onFavoritoRecibido);
     } catch (error) {
       console.error(error);
     }
@@ -77,6 +87,14 @@ class DetallesReceta extends React.Component {
     });
   };
 
+  agregarFavorito = () => {
+    agregarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
+  }
+
+  eliminarFavorito = () => {
+    eliminarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
+  }
+
   renderDetallesReceta = () => {
     return (
       <LoadingView
@@ -94,11 +112,13 @@ class DetallesReceta extends React.Component {
               imageStyle={styles.profileBackground}
             >
               <Block flex style={styles.profileCard}>
-                <Block
-                  style={{ position: 'absolute', width: width, zIndex: 5 }}
-                >
+                <Block style={{ position: 'absolute', width: width, zIndex: 5 }}>
                   <Block
-                    style={{ top: height * 0.2, backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 93.5 }}
+                    style={{
+                      top: height * 0.2,
+                      backgroundColor: 'rgba(0,0,0,0.5)',
+                      marginTop: 93.5,
+                    }}
                   >
                     <Block middle>
                       {/* TITULO RECETA */}
@@ -144,32 +164,38 @@ class DetallesReceta extends React.Component {
                     >
                       Agregar a Favoritos
                     </Text>
-                    <GaButton
-                      round
-                      onlyIcon
-                      shadowless
-                      icon="star"
-                      iconFamily="Font-Awesome"
-                      iconColor={'#E63746'}
-                      iconSize={nowTheme.SIZES.BASE * 1.4}
-                      color={'#FFFFFF'}
-                      style={[styles.social, styles.shadow]}
-                    />
-
-                    <GaButton
-                      round
-                      onlyIcon
-                      shadowless
-                      icon="star"
-                      iconFamily="Font-Awesome"
-                      iconColor={'#c2c2c1'}
-                      iconSize={nowTheme.SIZES.BASE * 1.4}
-                      color={'#ffffff'}
-                      style={[styles.social, styles.shadow]}
-                    />
+                    {this.state.isFavorito ? (
+                      <GaButton
+                        round
+                        onlyIcon
+                        shadowless
+                        icon="star"
+                        iconFamily="Font-Awesome"
+                        iconColor={'#E63746'}
+                        iconSize={nowTheme.SIZES.BASE * 1.4}
+                        color={'#FFFFFF'}
+                        style={[styles.social, styles.shadow]}
+                        onPress = {() => {this.eliminarFavorito()}}
+                      />
+                    ) : (
+                      <GaButton
+                        round
+                        onlyIcon
+                        shadowless
+                        icon="star"
+                        iconFamily="Font-Awesome"
+                        iconColor={'#c2c2c1'}
+                        iconSize={nowTheme.SIZES.BASE * 1.4}
+                        color={'#ffffff'}
+                        style={[styles.social, styles.shadow]}
+                        onPress = {() => {this.agregarFavorito()}}
+                      />
+                    )}
                   </Block>
 
-                  <Block style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -37 }}>
+                  <Block
+                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -37 }}
+                  >
                     {/* CATEGORIAS DE LA RECETA */}
                     <Text
                       style={{ textAlign: 'left', fontSize: 15, marginTop: 5, marginBottom: 30 }}
@@ -255,15 +281,13 @@ class DetallesReceta extends React.Component {
                     >
                       {this.state.porcion} {this.state.detalles.unidadPorcion}
                     </Text>
-                    
-
                   </Block>
-                  <Block style={{ marginTop: -5,backgroundColor : "#e3e4e5", borderRadius: 50 }}>
-                  <Text
+                  <Block style={{ marginTop: -5, backgroundColor: '#e3e4e5', borderRadius: 50 }}>
+                    <Text
                       style={{
                         textAlign: 'center',
-                        with:400,
-                        height:10,
+                        with: 400,
+                        height: 10,
                         color: '#0f1e2e',
                         fontSize: 10,
                         marginTop: 1,
@@ -272,10 +296,11 @@ class DetallesReceta extends React.Component {
                         marginTop: 18,
                       }}
                     >
-                      Pulsa los botones + / - para ajustar la receta dependiendo de la cantidad de porciones.
+                      Pulsa los botones + / - para ajustar la receta dependiendo de la cantidad de
+                      porciones.
                     </Text>
                   </Block>
-                
+
                   <Text style={styles.subtitle}>DESCRIPCIÓN</Text>
 
                   <Text size={16} muted style={styles.text}>
@@ -335,7 +360,6 @@ class DetallesReceta extends React.Component {
                 </Block>
               </Block>
                */}
-               
             </ScrollView>
           </Block>
         </Block>

@@ -39,6 +39,12 @@ class Home extends React.PureComponent {
     }));
   };
 
+  isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    const paddingToBottom = 20;
+    return layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom;
+  };
+
   async componentDidMount() {
     //TEMPORIZADOR DE CARGAR
     try {
@@ -120,6 +126,12 @@ class Home extends React.PureComponent {
             //REFRESH ARRIBA
             <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
           }
+          onScroll={({nativeEvent}) => {
+            if (this.isCloseToBottom(nativeEvent)) {
+              this.handleLoadMore();
+            }
+          }}
+          scrollEventThrottle={400}
         >
           <Block flex>
             {this.state.recetas.map((receta, index) => (
@@ -128,9 +140,9 @@ class Home extends React.PureComponent {
               </Block>
             ))}
 
-            <Block flex row >
+            {/* <Block flex row >
               <Button onPress={() => this.handleLoadMore()}> CARGAR MÁS</Button>
-            </Block>
+            </Block> */}
 
           </Block>
         </ScrollView>
