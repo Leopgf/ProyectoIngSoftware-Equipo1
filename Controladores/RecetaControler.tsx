@@ -117,27 +117,22 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
  }
 
  // FUNCION PARA RECUPERAR LAS RECETAS DE LA BIBLIOTECA DE UN USUARIO 
- export async function getRecetasBiblioteca(biblioteca : string[] ){
-  let recetas: Receta[] = [];
-  
+ export async function getRecetasBiblioteca(biblioteca : string[], onRecetaRecibidas: Function){
 
-  if(biblioteca.length === 0){
-    return [];
-    
-  }else {
-    biblioteca.forEach(async recetaId => {
-      await firebase.firestore().collection('Recetas').doc(recetaId).get().then((doc) => {
+  if(biblioteca.length !== 0){
+    await biblioteca.forEach( recetaId => {
+      firebase.firestore().collection('Recetas').doc(recetaId).get().then((doc) => {
         
         const id = doc.id;
         let receta = { recetaID: id, ...(doc.data() as Receta) };
         
       //@ts-ignore
         receta.fecha = new Date(doc.data().fecha);
-        recetas.push(receta);
+        onRecetaRecibidas(receta);
+        
       });
     })
-  
-    return recetas;
+
   }
 }  
  

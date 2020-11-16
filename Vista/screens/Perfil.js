@@ -6,7 +6,8 @@ import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
 import LoadingView from 'react-native-loading-view';
-import { getPerfil, getBiblioteca, esFavorito } from '../../Controladores/UsuarioControler';
+import { getPerfil, getBiblioteca } from '../../Controladores/UsuarioControler';
+import { getRecetasBiblioteca } from '../../Controladores/RecetaControler';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -25,23 +26,25 @@ class Perfil extends React.Component {
     }));
   };
 
-  onRecetasRecibidas = (recetas) => {
-    console.log('Esto es el front!!!!!!!!!');
-    console.log(recetas);
+  onRecetaRecibidas = (receta) => {
+    let recetas = this.state.recetas;
+    recetas.push(receta);
     this.setState({
       recetas: recetas,
     });
+    console.log(this.state.recetas);
   };
 
-  async cargarBiblioteca() {
-    await getBiblioteca(this.onRecetasRecibidas);
-  }
+  onBibliotecaRecibida = (biblioteca) => {
+    getRecetasBiblioteca(biblioteca, this.onRecetaRecibidas);
+  };
+
 
   async componentDidMount() {
     //TEMPORIZADOR DE CARGAR
     try {
       await getPerfil(this.onPerfilRecibido);
-      await this.cargarBiblioteca(this.onRecetasRecibidas);
+      await getBiblioteca(this.onBibliotecaRecibida);
     } catch (error) {
       console.error(error);
     }
@@ -117,6 +120,7 @@ class Perfil extends React.Component {
                 </Button> */}
                 {/* <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginLeft: 5}} 
                 >Mis Publicaciones</Button> */}
+
                 <Text>Mi Biblioteca</Text>
               </Block>
 
@@ -125,7 +129,7 @@ class Perfil extends React.Component {
               <Block flex>
                 {this.state.recetas.map((receta, index) => (
                   <Block flex row key={index}>
-                    <Card item={receta} params={{ recetaID: receta.recetaID }} />
+                    <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
                   </Block>
                 ))}
               </Block>

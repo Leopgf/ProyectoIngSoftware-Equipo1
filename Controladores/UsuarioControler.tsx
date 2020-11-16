@@ -161,7 +161,7 @@ export async function getPerfil(pasarPerfil: Function) {
 }
 
 //FUNCION PARA RECUPERAR LA BIBLIOTECA DEL USUARIO 
-export async function getBiblioteca(recetasGuardadas: Function){
+export async function getBiblioteca(bibliotecaRecibida: Function){
 let id = firebase.auth().currentUser?.uid;
 let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
 let biblioteca: string[] = [];
@@ -170,11 +170,7 @@ snapshot.forEach((doc) => {
   biblioteca = doc.data().biblioteca;
 });
 
-let recetas = await getRecetasBiblioteca(biblioteca);
-console.log('ESTO ES EL BACK!!!!');
-        console.log(recetas);
-
-recetasGuardadas(recetas);
+bibliotecaRecibida(biblioteca);
 }
 
 // FUNCION PARA COMPARAR SI UNA RECETA ESTA GUARDADA EN LA BIBLIOTECA O NO 
