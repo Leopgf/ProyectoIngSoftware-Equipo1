@@ -129,6 +129,7 @@ export function validarEmail(email: string) {
   }
 }
 
+// FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
 export function recuperarContrasena(email: string) {
   return new Promise(function(resolve, reject) {
   

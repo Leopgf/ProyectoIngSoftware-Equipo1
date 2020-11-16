@@ -4,11 +4,12 @@ import CategoriaReceta from '../Modelos/CategoriaReceta';
 import * as firebase from 'firebase';
 
 // FUNCION PARA RECUPERAR LAS RECETAS PARA LA FEED
-export async function getRecetas(recetasRecibidas: Function) {
+export async function getRecetas(recetasRecibidas: Function, limit: number) {
   let recetas: Receta[] = [];
-  let snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").get();
+  let snapshot = await firebase.firestore().collection('Recetas').orderBy("fecha", "desc").limit(limit).get();  
 
   snapshot.forEach((doc) => {
+    
     const id = doc.id;
     let receta = { recetaID: id, ...(doc.data() as Receta) };
     receta.fecha = new Date(doc.data().fecha);
