@@ -170,6 +170,8 @@ snapshot.forEach((doc) => {
   biblioteca = doc.data().biblioteca;
 });
 
+biblioteca = biblioteca.reverse();
+
 bibliotecaRecibida(biblioteca);
 }
 

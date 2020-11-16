@@ -8,6 +8,7 @@ import { HeaderHeight } from '../constants/utils';
 import LoadingView from 'react-native-loading-view';
 import { getPerfil, getBiblioteca } from '../../Controladores/UsuarioControler';
 import { getRecetasBiblioteca } from '../../Controladores/RecetaControler';
+import { RefreshControl } from 'react-native';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -18,6 +19,7 @@ class Perfil extends React.Component {
     recetas: [],
     usuario: {},
     loading: true,
+    refreshing: false, //Refresh
   };
 
   onPerfilRecibido = (usuario) => {
@@ -39,6 +41,13 @@ class Perfil extends React.Component {
     getRecetasBiblioteca(biblioteca, this.onRecetaRecibidas);
   };
 
+  //Refresh arriba
+  _onRefresh = () => {
+    this.setState({ refreshing: true, recetas: [] });
+    getBiblioteca(this.onBibliotecaRecibida).then(() => {
+      this.setState({ refreshing: false });
+    });
+  };
 
   async componentDidMount() {
     //TEMPORIZADOR DE CARGAR
@@ -109,7 +118,10 @@ class Perfil extends React.Component {
           </Block>
           <Block />
           <Block flex={1}>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} refreshControl={
+            //REFRESH ARRIBA
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} text="Actualizando biblioteca..."/>
+          }>
               <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 {/* <Button
                   primary
@@ -123,17 +135,17 @@ class Perfil extends React.Component {
 
                 <Text>Mi Biblioteca</Text>
               </Block>
-
               {/* COLOCAR AQUI ITEM PARA TRAER RECETAS DE MI LIBRERIA */}
 
               <Block flex>
                 {this.state.recetas.map((receta, index) => (
                   <Block flex row key={index}>
-                    <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
+                    <Card item={receta} params={{ recetaID: receta.recetaID }} />
                   </Block>
                 ))}
               </Block>
             </ScrollView>
+           
           </Block>
         </Block>
       </LoadingView>
