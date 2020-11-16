@@ -6,7 +6,7 @@ import { Card, Button } from "../components";
 import { getRecetas, getRecetasFiltroCategoria, getRecetasTexto } from "../../Controladores/RecetaControler";
 import LoadingView from 'react-native-loading-view'
 import { RefreshControl } from 'react-native';
-
+import {FlatList, ActivityIndicator,View} from 'react-native';
 
 //CONST
 const { width } = Dimensions.get("screen");
@@ -19,6 +19,8 @@ class Home extends React.PureComponent {
         recetas: [],
         loading: true,
         refreshing: false,
+        page:1,
+        isLoading:false,
       }
 
       _onRefresh = () => {
@@ -35,6 +37,7 @@ class Home extends React.PureComponent {
       }
 
       async componentDidMount() {
+        this.setState({isLoading:true},this.getRecetas)
          //TEMPORIZADOR DE CARGAR
          try {
             await getRecetas(this.onRecetasRecibidas);
@@ -99,6 +102,7 @@ class Home extends React.PureComponent {
   renderArticles = () => {
     return (
       //CARGAR
+      
       <LoadingView loading={this.state.loading} size="large" style={styles.cargar} text="Cargando las maravillosas recetas...">
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -109,11 +113,9 @@ class Home extends React.PureComponent {
             onRefresh={this._onRefresh}
           />
         }
-
-
-
       >
-        <Block flex>
+      
+        <Block flex >
 
             {this.state.recetas.map((receta, index) => (
             <Block flex row  key = {index}>
@@ -125,17 +127,42 @@ class Home extends React.PureComponent {
             ))}
 
         </Block>
+     
       </ScrollView>
+   
       </LoadingView>
+      
+      
     );
   };
+
+  renderFooter = () =>{
+    return (
+      this.state.isLoading ?
+      <View>
+        <ActivityIndicator size="large"/>
+      </View>:null
+    )
+  }
+
+  handleLoadMore = () =>{
+    this.setState({page: this.state.page+1,isLoading:true},this.getRecetas)
+  }
+
 
   render() {
     
     return (
-      <Block flex center style={styles.home}>
-        {this.renderArticles()}
-      </Block>
+      <FlatList 
+        style={styles.container}
+        data={this.state.recetas}
+        renderItem={this.renderArticles}
+        keyExtractor={(item,index)=> index.toString()}
+        onEndReached={this.handleLoadMore}
+        onEndReachedThreshold={0}
+        ListFooterComponent={this.renderFooter}
+      />
+
     );
   }
 }
@@ -162,6 +189,10 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  container:{
+    marginTop: 20,
+
   },
 
 
