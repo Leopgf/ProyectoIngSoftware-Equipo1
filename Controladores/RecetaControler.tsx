@@ -117,17 +117,17 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
 
  // FUNCION PARA RECUPERAR LAS RECETAS DE LA BIBLIOTECA DE UN USUARIO 
  export async function getRecetasBiblioteca(biblioteca : string[] ){
-  let recetas: Receta[] = [];
-  biblioteca.forEach(recetaId => {
-    const snapshot = await firebase.firestore().collection('Recetas').doc(recetaId).get();
-    const id = doc.id;
-    const { nombre, imagen, fecha } = doc.data();
-    let receta = { recetaID: id, ...(doc.data() as Receta) };
-    receta.fecha = new Date(doc.data().fecha);
+  // let recetas: Receta[] = [];
+  // biblioteca.forEach(recetaId => {
+  //   const snapshot = await firebase.firestore().collection('Recetas').doc(recetaId).get();
+  //   const id = doc.id;
+  //   const { nombre, imagen, fecha } = doc.data();
+  //   let receta = { recetaID: id, ...(doc.data() as Receta) };
+  //   receta.fecha = new Date(doc.data().fecha);
     
-    recetas.push(receta);
+  //   recetas.push(receta);
   
-  })
-  return recetas;
+  // })
+  // return recetas;
 }  
  
