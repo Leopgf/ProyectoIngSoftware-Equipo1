@@ -129,30 +129,6 @@ export function validarEmail(email: string) {
   }
 }
 
-//FUNCION PARA RECUPERAR LA BIBLIOTECA DEL USUARIO 
-export async function getBiblioteca(recetasGuardadas: Function){
-let id = firebase.auth().currentUser?.uid;
-let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
-let biblioteca = snapshot.data().biblioteca;
-let recetas = getRecetasBiblioteca(biblioteca);
-recetasGuardadas(recetas);
-}
-
-// FUNCION PARA COMPARAR SI UNA RECETA ESTA GUARDADA EN LA BIBLIOTECA O NO 
-// NO ES COMPLETA!!!!!!!!!!!!!!!!!!!!!!!!!!!
-export async function getIdBiblioteca(idRecetasGuardadas: Function, ){
-  let biblioteca: string[] = [];
-  let id = firebase.auth().currentUser?.uid;
-  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
-  
-  snapshot.forEach(recetaId => {
-  
-  });
-  
-  idRecetasGuardadas(biblioteca);
-}
-
-// FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
 export function recuperarContrasena(email: string) {
   return new Promise(function(resolve, reject) {
   
@@ -177,8 +153,51 @@ export async function getPerfil(pasarPerfil: Function) {
   snapshot.forEach((doc) => {
     usuario = {
       ...doc.data() as Usuario
-  };
+    };
   });
-    
+  
   pasarPerfil(usuario);
+}
+
+//FUNCION PARA RECUPERAR LA BIBLIOTECA DEL USUARIO 
+export async function getBiblioteca(recetasGuardadas: Function){
+let id = firebase.auth().currentUser?.uid;
+let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
+let biblioteca = snapshot.data().biblioteca;
+let recetas = getRecetasBiblioteca(biblioteca);
+recetasGuardadas(recetas);
+}
+
+// FUNCION PARA COMPARAR SI UNA RECETA ESTA GUARDADA EN LA BIBLIOTECA O NO 
+export async function esFavorito(idRecibido : string){
+  let userId = firebase.auth().currentUser?.uid;
+  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', userId).get();
+  let biblioteca = snapshot.data().biblioteca;
+  biblioteca.forEach(idReceta => {
+    if(idReceta == idRecibido){
+      return true
+    }else{
+
+    }
+  });
+  return false
+ 
+}
+
+// FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
+export async function agregarEnBiblioteca(recetaId : string){
+  let userId = firebase.auth().currentUser?.uid;
+  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', userId).get();
+  let biblioteca = snapshot.data().biblioteca;
+  biblioteca.push(recetaId);
+  esFavorito(recetaId);
+}
+
+// FUNCION PARA ELIMINAR UNA RECETA DE LA BIBLIOTECA
+export async function eliminarEnBiblioteca(recetaId : string){
+  let userId = firebase.auth().currentUser?.uid;
+  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', userId).get();
+  let biblioteca = snapshot.data().biblioteca;
+  biblioteca.delete(recetaId);
+  esFavorito(recetaId);
 }

@@ -1,5 +1,3 @@
-// NO SE ESTÁ USANDO
-
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
@@ -8,7 +6,7 @@ import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
 import LoadingView from 'react-native-loading-view';
-import { getPerfil } from '../../Controladores/UsuarioControler';
+import { getPerfil, getBiblioteca, esFavorito } from '../../Controladores/UsuarioControler';
 
 const { width, height } = Dimensions.get('screen');
 
