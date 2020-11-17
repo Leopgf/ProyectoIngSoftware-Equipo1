@@ -1,0 +1,4218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RegisterAndLogin /> renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": 1334,
+      "padding": 0,
+      "width": 750,
+      "zIndex": 1,
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "column",
+        },
+        false,
+        Object {
+          "flex": 1,
+        },
+        false,
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        },
+        false,
+        false,
+        false,
+        false,
+        null,
+        false,
+        false,
+        false,
+        null,
+        null,
+        null,
+        undefined,
+      ]
+    }
+    theme={
+      Object {
+        "COLORS": Object {
+          "BLACK": "#000000",
+          "BLOCK": "#808080",
+          "DRIBBBLE": "#EA4C89",
+          "ERROR": "#FE2472",
+          "FACEBOOK": "#3B5998",
+          "GREY": "#898989",
+          "ICON": "#000000",
+          "INFO": "#1232FF",
+          "INPUT": "#808080",
+          "MUTED": "#9FA5AA",
+          "NAVBAR": "#F9F9F9",
+          "NEUTRAL": "rgba(255,255,255, 0.65)",
+          "PLACEHOLDER": "#9FA5AA",
+          "PRIMARY": "#B23AFC",
+          "SUCCESS": "#45DF31",
+          "THEME": "#B23AFC",
+          "TRANSPARENT": "transparent",
+          "TWITTER": "#5BC0DE",
+          "WARNING": "#FF9C09",
+          "WHITE": "#FFFFFF",
+        },
+        "SIZES": Object {
+          "ANDROID_ELEVATION": 1,
+          "BASE": 16,
+          "BLOCK_SHADOW_OPACITY": 0.15,
+          "BLOCK_SHADOW_RADIUS": 8,
+          "BORDER_RADIUS": 6,
+          "BORDER_WIDTH": 0.8,
+          "BUTTON_HEIGHT": 44,
+          "BUTTON_SHADOW_RADIUS": 10,
+          "BUTTON_WIDTH": 144,
+          "CARD_AVATAR_HEIGHT": 40,
+          "CARD_AVATAR_RADIUS": 20,
+          "CARD_AVATAR_WIDTH": 40,
+          "CARD_BORDER_RADIUS": 6.4,
+          "CARD_BORDER_WIDTH": 0.8,
+          "CARD_FOOTER_HORIZONTAL": 12,
+          "CARD_FOOTER_VERTICAL": 12,
+          "CARD_IMAGE_HEIGHT": 200,
+          "CARD_MARGIN_VERTICAL": 14,
+          "CARD_ROUND": 3,
+          "CARD_ROUNDED": 8,
+          "CARD_WIDTH": 718,
+          "CHECKBOX_HEIGHT": 20,
+          "CHECKBOX_WIDTH": 20,
+          "FONT": 16,
+          "ICON": 16,
+          "INPUT_BORDER_RADIUS": 8,
+          "INPUT_BORDER_WIDTH": 0.8,
+          "INPUT_HEIGHT": 44,
+          "INPUT_HELP_TEXT": 12.8,
+          "INPUT_HORIZONTAL": 16,
+          "INPUT_LABEL_BOTTOM": 4,
+          "INPUT_LABEL_TEXT": 14.4,
+          "INPUT_ROUNDED": 27.2,
+          "INPUT_TEXT": 14,
+          "NAVBAR_HEIGHT": 66,
+          "NAVBAR_LEFT_FLEX": 0.5,
+          "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+          "NAVBAR_LEFT_MARGIN": 16,
+          "NAVBAR_RIGHT_FLEX": 0.5,
+          "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+          "NAVBAR_RIGHT_MARGIN": 16,
+          "NAVBAR_TITLE_FLEX": 2,
+          "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+          "NAVBAR_TITLE_TEXT": 14,
+          "NAVBAR_VERTICAL": 16,
+          "OPACITY": 0.8,
+          "RADIO_HEIGHT": 24,
+          "RADIO_THICKNESS": 2,
+          "RADIO_WIDTH": 24,
+          "THUMB_SIZE": 25,
+          "TRACK_SIZE": 4,
+        },
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "column",
+          },
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          null,
+          false,
+          false,
+          false,
+          null,
+          null,
+          null,
+          Object {
+            "backgroundColor": "#c1c1c2",
+            "borderRadius": 4,
+            "elevation": 1,
+            "height": 1067.2,
+            "marginTop": 55,
+            "overflow": "hidden",
+            "shadowColor": "#0f1e2e",
+            "shadowOffset": Object {
+              "height": 4,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1,
+            "shadowRadius": 8,
+            "width": 675,
+          },
+        ]
+      }
+      theme={
+        Object {
+          "COLORS": Object {
+            "BLACK": "#000000",
+            "BLOCK": "#808080",
+            "DRIBBBLE": "#EA4C89",
+            "ERROR": "#FE2472",
+            "FACEBOOK": "#3B5998",
+            "GREY": "#898989",
+            "ICON": "#000000",
+            "INFO": "#1232FF",
+            "INPUT": "#808080",
+            "MUTED": "#9FA5AA",
+            "NAVBAR": "#F9F9F9",
+            "NEUTRAL": "rgba(255,255,255, 0.65)",
+            "PLACEHOLDER": "#9FA5AA",
+            "PRIMARY": "#B23AFC",
+            "SUCCESS": "#45DF31",
+            "THEME": "#B23AFC",
+            "TRANSPARENT": "transparent",
+            "TWITTER": "#5BC0DE",
+            "WARNING": "#FF9C09",
+            "WHITE": "#FFFFFF",
+          },
+          "SIZES": Object {
+            "ANDROID_ELEVATION": 1,
+            "BASE": 16,
+            "BLOCK_SHADOW_OPACITY": 0.15,
+            "BLOCK_SHADOW_RADIUS": 8,
+            "BORDER_RADIUS": 6,
+            "BORDER_WIDTH": 0.8,
+            "BUTTON_HEIGHT": 44,
+            "BUTTON_SHADOW_RADIUS": 10,
+            "BUTTON_WIDTH": 144,
+            "CARD_AVATAR_HEIGHT": 40,
+            "CARD_AVATAR_RADIUS": 20,
+            "CARD_AVATAR_WIDTH": 40,
+            "CARD_BORDER_RADIUS": 6.4,
+            "CARD_BORDER_WIDTH": 0.8,
+            "CARD_FOOTER_HORIZONTAL": 12,
+            "CARD_FOOTER_VERTICAL": 12,
+            "CARD_IMAGE_HEIGHT": 200,
+            "CARD_MARGIN_VERTICAL": 14,
+            "CARD_ROUND": 3,
+            "CARD_ROUNDED": 8,
+            "CARD_WIDTH": 718,
+            "CHECKBOX_HEIGHT": 20,
+            "CHECKBOX_WIDTH": 20,
+            "FONT": 16,
+            "ICON": 16,
+            "INPUT_BORDER_RADIUS": 8,
+            "INPUT_BORDER_WIDTH": 0.8,
+            "INPUT_HEIGHT": 44,
+            "INPUT_HELP_TEXT": 12.8,
+            "INPUT_HORIZONTAL": 16,
+            "INPUT_LABEL_BOTTOM": 4,
+            "INPUT_LABEL_TEXT": 14.4,
+            "INPUT_ROUNDED": 27.2,
+            "INPUT_TEXT": 14,
+            "NAVBAR_HEIGHT": 66,
+            "NAVBAR_LEFT_FLEX": 0.5,
+            "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+            "NAVBAR_LEFT_MARGIN": 16,
+            "NAVBAR_RIGHT_FLEX": 0.5,
+            "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+            "NAVBAR_RIGHT_MARGIN": 16,
+            "NAVBAR_TITLE_FLEX": 2,
+            "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+            "NAVBAR_TITLE_TEXT": 14,
+            "NAVBAR_VERTICAL": 16,
+            "OPACITY": 0.8,
+            "RADIO_HEIGHT": 24,
+            "RADIO_THICKNESS": 2,
+            "RADIO_WIDTH": 24,
+            "THUMB_SIZE": 25,
+            "TRACK_SIZE": 4,
+          },
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "column",
+            },
+            false,
+            Object {
+              "flex": 1,
+            },
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            Object {
+              "justifyContent": "space-evenly",
+            },
+            false,
+            false,
+            false,
+            null,
+            null,
+            null,
+            undefined,
+          ]
+        }
+        theme={
+          Object {
+            "COLORS": Object {
+              "BLACK": "#000000",
+              "BLOCK": "#808080",
+              "DRIBBBLE": "#EA4C89",
+              "ERROR": "#FE2472",
+              "FACEBOOK": "#3B5998",
+              "GREY": "#898989",
+              "ICON": "#000000",
+              "INFO": "#1232FF",
+              "INPUT": "#808080",
+              "MUTED": "#9FA5AA",
+              "NAVBAR": "#F9F9F9",
+              "NEUTRAL": "rgba(255,255,255, 0.65)",
+              "PLACEHOLDER": "#9FA5AA",
+              "PRIMARY": "#B23AFC",
+              "SUCCESS": "#45DF31",
+              "THEME": "#B23AFC",
+              "TRANSPARENT": "transparent",
+              "TWITTER": "#5BC0DE",
+              "WARNING": "#FF9C09",
+              "WHITE": "#FFFFFF",
+            },
+            "SIZES": Object {
+              "ANDROID_ELEVATION": 1,
+              "BASE": 16,
+              "BLOCK_SHADOW_OPACITY": 0.15,
+              "BLOCK_SHADOW_RADIUS": 8,
+              "BORDER_RADIUS": 6,
+              "BORDER_WIDTH": 0.8,
+              "BUTTON_HEIGHT": 44,
+              "BUTTON_SHADOW_RADIUS": 10,
+              "BUTTON_WIDTH": 144,
+              "CARD_AVATAR_HEIGHT": 40,
+              "CARD_AVATAR_RADIUS": 20,
+              "CARD_AVATAR_WIDTH": 40,
+              "CARD_BORDER_RADIUS": 6.4,
+              "CARD_BORDER_WIDTH": 0.8,
+              "CARD_FOOTER_HORIZONTAL": 12,
+              "CARD_FOOTER_VERTICAL": 12,
+              "CARD_IMAGE_HEIGHT": 200,
+              "CARD_MARGIN_VERTICAL": 14,
+              "CARD_ROUND": 3,
+              "CARD_ROUNDED": 8,
+              "CARD_WIDTH": 718,
+              "CHECKBOX_HEIGHT": 20,
+              "CHECKBOX_WIDTH": 20,
+              "FONT": 16,
+              "ICON": 16,
+              "INPUT_BORDER_RADIUS": 8,
+              "INPUT_BORDER_WIDTH": 0.8,
+              "INPUT_HEIGHT": 44,
+              "INPUT_HELP_TEXT": 12.8,
+              "INPUT_HORIZONTAL": 16,
+              "INPUT_LABEL_BOTTOM": 4,
+              "INPUT_LABEL_TEXT": 14.4,
+              "INPUT_ROUNDED": 27.2,
+              "INPUT_TEXT": 14,
+              "NAVBAR_HEIGHT": 66,
+              "NAVBAR_LEFT_FLEX": 0.5,
+              "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+              "NAVBAR_LEFT_MARGIN": 16,
+              "NAVBAR_RIGHT_FLEX": 0.5,
+              "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+              "NAVBAR_RIGHT_MARGIN": 16,
+              "NAVBAR_TITLE_FLEX": 2,
+              "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+              "NAVBAR_TITLE_TEXT": 14,
+              "NAVBAR_VERTICAL": 16,
+              "OPACITY": 0.8,
+              "RADIO_HEIGHT": 24,
+              "RADIO_THICKNESS": 2,
+              "RADIO_WIDTH": 24,
+              "THUMB_SIZE": 25,
+              "TRACK_SIZE": 4,
+            },
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "column",
+              },
+              false,
+              Object {
+                "flex": 0.4,
+              },
+              false,
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              false,
+              false,
+              false,
+              false,
+              null,
+              false,
+              false,
+              false,
+              null,
+              null,
+              null,
+              undefined,
+            ]
+          }
+          theme={
+            Object {
+              "COLORS": Object {
+                "BLACK": "#000000",
+                "BLOCK": "#808080",
+                "DRIBBBLE": "#EA4C89",
+                "ERROR": "#FE2472",
+                "FACEBOOK": "#3B5998",
+                "GREY": "#898989",
+                "ICON": "#000000",
+                "INFO": "#1232FF",
+                "INPUT": "#808080",
+                "MUTED": "#9FA5AA",
+                "NAVBAR": "#F9F9F9",
+                "NEUTRAL": "rgba(255,255,255, 0.65)",
+                "PLACEHOLDER": "#9FA5AA",
+                "PRIMARY": "#B23AFC",
+                "SUCCESS": "#45DF31",
+                "THEME": "#B23AFC",
+                "TRANSPARENT": "transparent",
+                "TWITTER": "#5BC0DE",
+                "WARNING": "#FF9C09",
+                "WHITE": "#FFFFFF",
+              },
+              "SIZES": Object {
+                "ANDROID_ELEVATION": 1,
+                "BASE": 16,
+                "BLOCK_SHADOW_OPACITY": 0.15,
+                "BLOCK_SHADOW_RADIUS": 8,
+                "BORDER_RADIUS": 6,
+                "BORDER_WIDTH": 0.8,
+                "BUTTON_HEIGHT": 44,
+                "BUTTON_SHADOW_RADIUS": 10,
+                "BUTTON_WIDTH": 144,
+                "CARD_AVATAR_HEIGHT": 40,
+                "CARD_AVATAR_RADIUS": 20,
+                "CARD_AVATAR_WIDTH": 40,
+                "CARD_BORDER_RADIUS": 6.4,
+                "CARD_BORDER_WIDTH": 0.8,
+                "CARD_FOOTER_HORIZONTAL": 12,
+                "CARD_FOOTER_VERTICAL": 12,
+                "CARD_IMAGE_HEIGHT": 200,
+                "CARD_MARGIN_VERTICAL": 14,
+                "CARD_ROUND": 3,
+                "CARD_ROUNDED": 8,
+                "CARD_WIDTH": 718,
+                "CHECKBOX_HEIGHT": 20,
+                "CHECKBOX_WIDTH": 20,
+                "FONT": 16,
+                "ICON": 16,
+                "INPUT_BORDER_RADIUS": 8,
+                "INPUT_BORDER_WIDTH": 0.8,
+                "INPUT_HEIGHT": 44,
+                "INPUT_HELP_TEXT": 12.8,
+                "INPUT_HORIZONTAL": 16,
+                "INPUT_LABEL_BOTTOM": 4,
+                "INPUT_LABEL_TEXT": 14.4,
+                "INPUT_ROUNDED": 27.2,
+                "INPUT_TEXT": 14,
+                "NAVBAR_HEIGHT": 66,
+                "NAVBAR_LEFT_FLEX": 0.5,
+                "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                "NAVBAR_LEFT_MARGIN": 16,
+                "NAVBAR_RIGHT_FLEX": 0.5,
+                "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                "NAVBAR_RIGHT_MARGIN": 16,
+                "NAVBAR_TITLE_FLEX": 2,
+                "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                "NAVBAR_TITLE_TEXT": 14,
+                "NAVBAR_VERTICAL": 16,
+                "OPACITY": 0.8,
+                "RADIO_HEIGHT": 24,
+                "RADIO_THICKNESS": 2,
+                "RADIO_WIDTH": 24,
+                "THUMB_SIZE": 25,
+                "TRACK_SIZE": 4,
+              },
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "column",
+                },
+                false,
+                Object {
+                  "flex": 0.5,
+                },
+                false,
+                Object {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                },
+                false,
+                false,
+                false,
+                false,
+                null,
+                false,
+                false,
+                false,
+                null,
+                null,
+                null,
+                undefined,
+              ]
+            }
+            theme={
+              Object {
+                "COLORS": Object {
+                  "BLACK": "#000000",
+                  "BLOCK": "#808080",
+                  "DRIBBBLE": "#EA4C89",
+                  "ERROR": "#FE2472",
+                  "FACEBOOK": "#3B5998",
+                  "GREY": "#898989",
+                  "ICON": "#000000",
+                  "INFO": "#1232FF",
+                  "INPUT": "#808080",
+                  "MUTED": "#9FA5AA",
+                  "NAVBAR": "#F9F9F9",
+                  "NEUTRAL": "rgba(255,255,255, 0.65)",
+                  "PLACEHOLDER": "#9FA5AA",
+                  "PRIMARY": "#B23AFC",
+                  "SUCCESS": "#45DF31",
+                  "THEME": "#B23AFC",
+                  "TRANSPARENT": "transparent",
+                  "TWITTER": "#5BC0DE",
+                  "WARNING": "#FF9C09",
+                  "WHITE": "#FFFFFF",
+                },
+                "SIZES": Object {
+                  "ANDROID_ELEVATION": 1,
+                  "BASE": 16,
+                  "BLOCK_SHADOW_OPACITY": 0.15,
+                  "BLOCK_SHADOW_RADIUS": 8,
+                  "BORDER_RADIUS": 6,
+                  "BORDER_WIDTH": 0.8,
+                  "BUTTON_HEIGHT": 44,
+                  "BUTTON_SHADOW_RADIUS": 10,
+                  "BUTTON_WIDTH": 144,
+                  "CARD_AVATAR_HEIGHT": 40,
+                  "CARD_AVATAR_RADIUS": 20,
+                  "CARD_AVATAR_WIDTH": 40,
+                  "CARD_BORDER_RADIUS": 6.4,
+                  "CARD_BORDER_WIDTH": 0.8,
+                  "CARD_FOOTER_HORIZONTAL": 12,
+                  "CARD_FOOTER_VERTICAL": 12,
+                  "CARD_IMAGE_HEIGHT": 200,
+                  "CARD_MARGIN_VERTICAL": 14,
+                  "CARD_ROUND": 3,
+                  "CARD_ROUNDED": 8,
+                  "CARD_WIDTH": 718,
+                  "CHECKBOX_HEIGHT": 20,
+                  "CHECKBOX_WIDTH": 20,
+                  "FONT": 16,
+                  "ICON": 16,
+                  "INPUT_BORDER_RADIUS": 8,
+                  "INPUT_BORDER_WIDTH": 0.8,
+                  "INPUT_HEIGHT": 44,
+                  "INPUT_HELP_TEXT": 12.8,
+                  "INPUT_HORIZONTAL": 16,
+                  "INPUT_LABEL_BOTTOM": 4,
+                  "INPUT_LABEL_TEXT": 14.4,
+                  "INPUT_ROUNDED": 27.2,
+                  "INPUT_TEXT": 14,
+                  "NAVBAR_HEIGHT": 66,
+                  "NAVBAR_LEFT_FLEX": 0.5,
+                  "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                  "NAVBAR_LEFT_MARGIN": 16,
+                  "NAVBAR_RIGHT_FLEX": 0.5,
+                  "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                  "NAVBAR_RIGHT_MARGIN": 16,
+                  "NAVBAR_TITLE_FLEX": 2,
+                  "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                  "NAVBAR_TITLE_TEXT": 14,
+                  "NAVBAR_VERTICAL": 16,
+                  "OPACITY": 0.8,
+                  "RADIO_HEIGHT": 24,
+                  "RADIO_THICKNESS": 2,
+                  "RADIO_WIDTH": 24,
+                  "THUMB_SIZE": 25,
+                  "TRACK_SIZE": 4,
+                },
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  undefined,
+                  Object {
+                    "fontSize": 24,
+                  },
+                  Object {
+                    "color": "#0f1e2e",
+                  },
+                  false,
+                  false,
+                  undefined,
+                  Object {
+                    "fontFamily": "montserrat-bold",
+                    "fontSize": 24,
+                    "fontWeight": "500",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Iniciar Sesión
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "column",
+              },
+              false,
+              Object {
+                "flex": 0.1,
+              },
+              false,
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              false,
+              false,
+              false,
+              false,
+              null,
+              false,
+              false,
+              false,
+              null,
+              null,
+              null,
+              undefined,
+            ]
+          }
+          theme={
+            Object {
+              "COLORS": Object {
+                "BLACK": "#000000",
+                "BLOCK": "#808080",
+                "DRIBBBLE": "#EA4C89",
+                "ERROR": "#FE2472",
+                "FACEBOOK": "#3B5998",
+                "GREY": "#898989",
+                "ICON": "#000000",
+                "INFO": "#1232FF",
+                "INPUT": "#808080",
+                "MUTED": "#9FA5AA",
+                "NAVBAR": "#F9F9F9",
+                "NEUTRAL": "rgba(255,255,255, 0.65)",
+                "PLACEHOLDER": "#9FA5AA",
+                "PRIMARY": "#B23AFC",
+                "SUCCESS": "#45DF31",
+                "THEME": "#B23AFC",
+                "TRANSPARENT": "transparent",
+                "TWITTER": "#5BC0DE",
+                "WARNING": "#FF9C09",
+                "WHITE": "#FFFFFF",
+              },
+              "SIZES": Object {
+                "ANDROID_ELEVATION": 1,
+                "BASE": 16,
+                "BLOCK_SHADOW_OPACITY": 0.15,
+                "BLOCK_SHADOW_RADIUS": 8,
+                "BORDER_RADIUS": 6,
+                "BORDER_WIDTH": 0.8,
+                "BUTTON_HEIGHT": 44,
+                "BUTTON_SHADOW_RADIUS": 10,
+                "BUTTON_WIDTH": 144,
+                "CARD_AVATAR_HEIGHT": 40,
+                "CARD_AVATAR_RADIUS": 20,
+                "CARD_AVATAR_WIDTH": 40,
+                "CARD_BORDER_RADIUS": 6.4,
+                "CARD_BORDER_WIDTH": 0.8,
+                "CARD_FOOTER_HORIZONTAL": 12,
+                "CARD_FOOTER_VERTICAL": 12,
+                "CARD_IMAGE_HEIGHT": 200,
+                "CARD_MARGIN_VERTICAL": 14,
+                "CARD_ROUND": 3,
+                "CARD_ROUNDED": 8,
+                "CARD_WIDTH": 718,
+                "CHECKBOX_HEIGHT": 20,
+                "CHECKBOX_WIDTH": 20,
+                "FONT": 16,
+                "ICON": 16,
+                "INPUT_BORDER_RADIUS": 8,
+                "INPUT_BORDER_WIDTH": 0.8,
+                "INPUT_HEIGHT": 44,
+                "INPUT_HELP_TEXT": 12.8,
+                "INPUT_HORIZONTAL": 16,
+                "INPUT_LABEL_BOTTOM": 4,
+                "INPUT_LABEL_TEXT": 14.4,
+                "INPUT_ROUNDED": 27.2,
+                "INPUT_TEXT": 14,
+                "NAVBAR_HEIGHT": 66,
+                "NAVBAR_LEFT_FLEX": 0.5,
+                "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                "NAVBAR_LEFT_MARGIN": 16,
+                "NAVBAR_RIGHT_FLEX": 0.5,
+                "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                "NAVBAR_RIGHT_MARGIN": 16,
+                "NAVBAR_TITLE_FLEX": 2,
+                "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                "NAVBAR_TITLE_TEXT": 14,
+                "NAVBAR_VERTICAL": 16,
+                "OPACITY": 0.8,
+                "RADIO_HEIGHT": 24,
+                "RADIO_THICKNESS": 2,
+                "RADIO_WIDTH": 24,
+                "THUMB_SIZE": 25,
+                "TRACK_SIZE": 4,
+              },
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                undefined,
+                Object {
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#0f1e2e",
+                },
+                false,
+                false,
+                undefined,
+                null,
+              ]
+            }
+          >
+            Inicia con tu email
+          </Text>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "column",
+              },
+              false,
+              Object {
+                "flex": 1,
+              },
+              false,
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              false,
+              false,
+              false,
+              false,
+              Object {
+                "justifyContent": "space-between",
+              },
+              false,
+              false,
+              false,
+              null,
+              null,
+              null,
+              undefined,
+            ]
+          }
+          theme={
+            Object {
+              "COLORS": Object {
+                "BLACK": "#000000",
+                "BLOCK": "#808080",
+                "DRIBBBLE": "#EA4C89",
+                "ERROR": "#FE2472",
+                "FACEBOOK": "#3B5998",
+                "GREY": "#898989",
+                "ICON": "#000000",
+                "INFO": "#1232FF",
+                "INPUT": "#808080",
+                "MUTED": "#9FA5AA",
+                "NAVBAR": "#F9F9F9",
+                "NEUTRAL": "rgba(255,255,255, 0.65)",
+                "PLACEHOLDER": "#9FA5AA",
+                "PRIMARY": "#B23AFC",
+                "SUCCESS": "#45DF31",
+                "THEME": "#B23AFC",
+                "TRANSPARENT": "transparent",
+                "TWITTER": "#5BC0DE",
+                "WARNING": "#FF9C09",
+                "WHITE": "#FFFFFF",
+              },
+              "SIZES": Object {
+                "ANDROID_ELEVATION": 1,
+                "BASE": 16,
+                "BLOCK_SHADOW_OPACITY": 0.15,
+                "BLOCK_SHADOW_RADIUS": 8,
+                "BORDER_RADIUS": 6,
+                "BORDER_WIDTH": 0.8,
+                "BUTTON_HEIGHT": 44,
+                "BUTTON_SHADOW_RADIUS": 10,
+                "BUTTON_WIDTH": 144,
+                "CARD_AVATAR_HEIGHT": 40,
+                "CARD_AVATAR_RADIUS": 20,
+                "CARD_AVATAR_WIDTH": 40,
+                "CARD_BORDER_RADIUS": 6.4,
+                "CARD_BORDER_WIDTH": 0.8,
+                "CARD_FOOTER_HORIZONTAL": 12,
+                "CARD_FOOTER_VERTICAL": 12,
+                "CARD_IMAGE_HEIGHT": 200,
+                "CARD_MARGIN_VERTICAL": 14,
+                "CARD_ROUND": 3,
+                "CARD_ROUNDED": 8,
+                "CARD_WIDTH": 718,
+                "CHECKBOX_HEIGHT": 20,
+                "CHECKBOX_WIDTH": 20,
+                "FONT": 16,
+                "ICON": 16,
+                "INPUT_BORDER_RADIUS": 8,
+                "INPUT_BORDER_WIDTH": 0.8,
+                "INPUT_HEIGHT": 44,
+                "INPUT_HELP_TEXT": 12.8,
+                "INPUT_HORIZONTAL": 16,
+                "INPUT_LABEL_BOTTOM": 4,
+                "INPUT_LABEL_TEXT": 14.4,
+                "INPUT_ROUNDED": 27.2,
+                "INPUT_TEXT": 14,
+                "NAVBAR_HEIGHT": 66,
+                "NAVBAR_LEFT_FLEX": 0.5,
+                "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                "NAVBAR_LEFT_MARGIN": 16,
+                "NAVBAR_RIGHT_FLEX": 0.5,
+                "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                "NAVBAR_RIGHT_MARGIN": 16,
+                "NAVBAR_TITLE_FLEX": 2,
+                "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                "NAVBAR_TITLE_TEXT": 14,
+                "NAVBAR_VERTICAL": 16,
+                "OPACITY": 0.8,
+                "RADIO_HEIGHT": 24,
+                "RADIO_THICKNESS": 2,
+                "RADIO_WIDTH": 24,
+                "THUMB_SIZE": 25,
+                "TRACK_SIZE": 4,
+              },
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "column",
+                },
+                false,
+                Object {
+                  "flex": 0.9,
+                },
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                },
+                false,
+                false,
+                false,
+                false,
+                false,
+                null,
+                false,
+                false,
+                false,
+                null,
+                null,
+                null,
+                undefined,
+              ]
+            }
+            theme={
+              Object {
+                "COLORS": Object {
+                  "BLACK": "#000000",
+                  "BLOCK": "#808080",
+                  "DRIBBBLE": "#EA4C89",
+                  "ERROR": "#FE2472",
+                  "FACEBOOK": "#3B5998",
+                  "GREY": "#898989",
+                  "ICON": "#000000",
+                  "INFO": "#1232FF",
+                  "INPUT": "#808080",
+                  "MUTED": "#9FA5AA",
+                  "NAVBAR": "#F9F9F9",
+                  "NEUTRAL": "rgba(255,255,255, 0.65)",
+                  "PLACEHOLDER": "#9FA5AA",
+                  "PRIMARY": "#B23AFC",
+                  "SUCCESS": "#45DF31",
+                  "THEME": "#B23AFC",
+                  "TRANSPARENT": "transparent",
+                  "TWITTER": "#5BC0DE",
+                  "WARNING": "#FF9C09",
+                  "WHITE": "#FFFFFF",
+                },
+                "SIZES": Object {
+                  "ANDROID_ELEVATION": 1,
+                  "BASE": 16,
+                  "BLOCK_SHADOW_OPACITY": 0.15,
+                  "BLOCK_SHADOW_RADIUS": 8,
+                  "BORDER_RADIUS": 6,
+                  "BORDER_WIDTH": 0.8,
+                  "BUTTON_HEIGHT": 44,
+                  "BUTTON_SHADOW_RADIUS": 10,
+                  "BUTTON_WIDTH": 144,
+                  "CARD_AVATAR_HEIGHT": 40,
+                  "CARD_AVATAR_RADIUS": 20,
+                  "CARD_AVATAR_WIDTH": 40,
+                  "CARD_BORDER_RADIUS": 6.4,
+                  "CARD_BORDER_WIDTH": 0.8,
+                  "CARD_FOOTER_HORIZONTAL": 12,
+                  "CARD_FOOTER_VERTICAL": 12,
+                  "CARD_IMAGE_HEIGHT": 200,
+                  "CARD_MARGIN_VERTICAL": 14,
+                  "CARD_ROUND": 3,
+                  "CARD_ROUNDED": 8,
+                  "CARD_WIDTH": 718,
+                  "CHECKBOX_HEIGHT": 20,
+                  "CHECKBOX_WIDTH": 20,
+                  "FONT": 16,
+                  "ICON": 16,
+                  "INPUT_BORDER_RADIUS": 8,
+                  "INPUT_BORDER_WIDTH": 0.8,
+                  "INPUT_HEIGHT": 44,
+                  "INPUT_HELP_TEXT": 12.8,
+                  "INPUT_HORIZONTAL": 16,
+                  "INPUT_LABEL_BOTTOM": 4,
+                  "INPUT_LABEL_TEXT": 14.4,
+                  "INPUT_ROUNDED": 27.2,
+                  "INPUT_TEXT": 14,
+                  "NAVBAR_HEIGHT": 66,
+                  "NAVBAR_LEFT_FLEX": 0.5,
+                  "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                  "NAVBAR_LEFT_MARGIN": 16,
+                  "NAVBAR_RIGHT_FLEX": 0.5,
+                  "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                  "NAVBAR_RIGHT_MARGIN": 16,
+                  "NAVBAR_TITLE_FLEX": 2,
+                  "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                  "NAVBAR_TITLE_TEXT": 14,
+                  "NAVBAR_VERTICAL": 16,
+                  "OPACITY": 0.8,
+                  "RADIO_HEIGHT": 24,
+                  "RADIO_THICKNESS": 2,
+                  "RADIO_WIDTH": 24,
+                  "THUMB_SIZE": 25,
+                  "TRACK_SIZE": 4,
+                },
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "column",
+                  },
+                  false,
+                  Object {
+                    "flex": 1,
+                  },
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  Object {
+                    "justifyContent": "space-between",
+                  },
+                  false,
+                  false,
+                  false,
+                  null,
+                  null,
+                  null,
+                  undefined,
+                ]
+              }
+              theme={
+                Object {
+                  "COLORS": Object {
+                    "BLACK": "#000000",
+                    "BLOCK": "#808080",
+                    "DRIBBBLE": "#EA4C89",
+                    "ERROR": "#FE2472",
+                    "FACEBOOK": "#3B5998",
+                    "GREY": "#898989",
+                    "ICON": "#000000",
+                    "INFO": "#1232FF",
+                    "INPUT": "#808080",
+                    "MUTED": "#9FA5AA",
+                    "NAVBAR": "#F9F9F9",
+                    "NEUTRAL": "rgba(255,255,255, 0.65)",
+                    "PLACEHOLDER": "#9FA5AA",
+                    "PRIMARY": "#B23AFC",
+                    "SUCCESS": "#45DF31",
+                    "THEME": "#B23AFC",
+                    "TRANSPARENT": "transparent",
+                    "TWITTER": "#5BC0DE",
+                    "WARNING": "#FF9C09",
+                    "WHITE": "#FFFFFF",
+                  },
+                  "SIZES": Object {
+                    "ANDROID_ELEVATION": 1,
+                    "BASE": 16,
+                    "BLOCK_SHADOW_OPACITY": 0.15,
+                    "BLOCK_SHADOW_RADIUS": 8,
+                    "BORDER_RADIUS": 6,
+                    "BORDER_WIDTH": 0.8,
+                    "BUTTON_HEIGHT": 44,
+                    "BUTTON_SHADOW_RADIUS": 10,
+                    "BUTTON_WIDTH": 144,
+                    "CARD_AVATAR_HEIGHT": 40,
+                    "CARD_AVATAR_RADIUS": 20,
+                    "CARD_AVATAR_WIDTH": 40,
+                    "CARD_BORDER_RADIUS": 6.4,
+                    "CARD_BORDER_WIDTH": 0.8,
+                    "CARD_FOOTER_HORIZONTAL": 12,
+                    "CARD_FOOTER_VERTICAL": 12,
+                    "CARD_IMAGE_HEIGHT": 200,
+                    "CARD_MARGIN_VERTICAL": 14,
+                    "CARD_ROUND": 3,
+                    "CARD_ROUNDED": 8,
+                    "CARD_WIDTH": 718,
+                    "CHECKBOX_HEIGHT": 20,
+                    "CHECKBOX_WIDTH": 20,
+                    "FONT": 16,
+                    "ICON": 16,
+                    "INPUT_BORDER_RADIUS": 8,
+                    "INPUT_BORDER_WIDTH": 0.8,
+                    "INPUT_HEIGHT": 44,
+                    "INPUT_HELP_TEXT": 12.8,
+                    "INPUT_HORIZONTAL": 16,
+                    "INPUT_LABEL_BOTTOM": 4,
+                    "INPUT_LABEL_TEXT": 14.4,
+                    "INPUT_ROUNDED": 27.2,
+                    "INPUT_TEXT": 14,
+                    "NAVBAR_HEIGHT": 66,
+                    "NAVBAR_LEFT_FLEX": 0.5,
+                    "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                    "NAVBAR_LEFT_MARGIN": 16,
+                    "NAVBAR_RIGHT_FLEX": 0.5,
+                    "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                    "NAVBAR_RIGHT_MARGIN": 16,
+                    "NAVBAR_TITLE_FLEX": 2,
+                    "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                    "NAVBAR_TITLE_TEXT": 14,
+                    "NAVBAR_VERTICAL": 16,
+                    "OPACITY": 0.8,
+                    "RADIO_HEIGHT": 24,
+                    "RADIO_THICKNESS": 2,
+                    "RADIO_WIDTH": 24,
+                    "THUMB_SIZE": 25,
+                    "TRACK_SIZE": 4,
+                  },
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "column",
+                    },
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    null,
+                    false,
+                    false,
+                    false,
+                    null,
+                    null,
+                    null,
+                    undefined,
+                  ]
+                }
+                theme={
+                  Object {
+                    "COLORS": Object {
+                      "BLACK": "#000000",
+                      "BLOCK": "#808080",
+                      "DRIBBBLE": "#EA4C89",
+                      "ERROR": "#FE2472",
+                      "FACEBOOK": "#3B5998",
+                      "GREY": "#898989",
+                      "ICON": "#000000",
+                      "INFO": "#1232FF",
+                      "INPUT": "#808080",
+                      "MUTED": "#9FA5AA",
+                      "NAVBAR": "#F9F9F9",
+                      "NEUTRAL": "rgba(255,255,255, 0.65)",
+                      "PLACEHOLDER": "#9FA5AA",
+                      "PRIMARY": "#B23AFC",
+                      "SUCCESS": "#45DF31",
+                      "THEME": "#B23AFC",
+                      "TRANSPARENT": "transparent",
+                      "TWITTER": "#5BC0DE",
+                      "WARNING": "#FF9C09",
+                      "WHITE": "#FFFFFF",
+                    },
+                    "SIZES": Object {
+                      "ANDROID_ELEVATION": 1,
+                      "BASE": 16,
+                      "BLOCK_SHADOW_OPACITY": 0.15,
+                      "BLOCK_SHADOW_RADIUS": 8,
+                      "BORDER_RADIUS": 6,
+                      "BORDER_WIDTH": 0.8,
+                      "BUTTON_HEIGHT": 44,
+                      "BUTTON_SHADOW_RADIUS": 10,
+                      "BUTTON_WIDTH": 144,
+                      "CARD_AVATAR_HEIGHT": 40,
+                      "CARD_AVATAR_RADIUS": 20,
+                      "CARD_AVATAR_WIDTH": 40,
+                      "CARD_BORDER_RADIUS": 6.4,
+                      "CARD_BORDER_WIDTH": 0.8,
+                      "CARD_FOOTER_HORIZONTAL": 12,
+                      "CARD_FOOTER_VERTICAL": 12,
+                      "CARD_IMAGE_HEIGHT": 200,
+                      "CARD_MARGIN_VERTICAL": 14,
+                      "CARD_ROUND": 3,
+                      "CARD_ROUNDED": 8,
+                      "CARD_WIDTH": 718,
+                      "CHECKBOX_HEIGHT": 20,
+                      "CHECKBOX_WIDTH": 20,
+                      "FONT": 16,
+                      "ICON": 16,
+                      "INPUT_BORDER_RADIUS": 8,
+                      "INPUT_BORDER_WIDTH": 0.8,
+                      "INPUT_HEIGHT": 44,
+                      "INPUT_HELP_TEXT": 12.8,
+                      "INPUT_HORIZONTAL": 16,
+                      "INPUT_LABEL_BOTTOM": 4,
+                      "INPUT_LABEL_TEXT": 14.4,
+                      "INPUT_ROUNDED": 27.2,
+                      "INPUT_TEXT": 14,
+                      "NAVBAR_HEIGHT": 66,
+                      "NAVBAR_LEFT_FLEX": 0.5,
+                      "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_LEFT_MARGIN": 16,
+                      "NAVBAR_RIGHT_FLEX": 0.5,
+                      "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_RIGHT_MARGIN": 16,
+                      "NAVBAR_TITLE_FLEX": 2,
+                      "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                      "NAVBAR_TITLE_TEXT": 14,
+                      "NAVBAR_VERTICAL": 16,
+                      "OPACITY": 0.8,
+                      "RADIO_HEIGHT": 24,
+                      "RADIO_THICKNESS": 2,
+                      "RADIO_WIDTH": 24,
+                      "THUMB_SIZE": 25,
+                      "TRACK_SIZE": 4,
+                    },
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "center",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Email"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={false}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "center",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Contraseña"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={false}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "column",
+                    },
+                    false,
+                    false,
+                    Object {
+                      "alignItems": "center",
+                      "alignSelf": "center",
+                    },
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    null,
+                    false,
+                    false,
+                    false,
+                    null,
+                    null,
+                    null,
+                    undefined,
+                  ]
+                }
+                theme={
+                  Object {
+                    "COLORS": Object {
+                      "BLACK": "#000000",
+                      "BLOCK": "#808080",
+                      "DRIBBBLE": "#EA4C89",
+                      "ERROR": "#FE2472",
+                      "FACEBOOK": "#3B5998",
+                      "GREY": "#898989",
+                      "ICON": "#000000",
+                      "INFO": "#1232FF",
+                      "INPUT": "#808080",
+                      "MUTED": "#9FA5AA",
+                      "NAVBAR": "#F9F9F9",
+                      "NEUTRAL": "rgba(255,255,255, 0.65)",
+                      "PLACEHOLDER": "#9FA5AA",
+                      "PRIMARY": "#B23AFC",
+                      "SUCCESS": "#45DF31",
+                      "THEME": "#B23AFC",
+                      "TRANSPARENT": "transparent",
+                      "TWITTER": "#5BC0DE",
+                      "WARNING": "#FF9C09",
+                      "WHITE": "#FFFFFF",
+                    },
+                    "SIZES": Object {
+                      "ANDROID_ELEVATION": 1,
+                      "BASE": 16,
+                      "BLOCK_SHADOW_OPACITY": 0.15,
+                      "BLOCK_SHADOW_RADIUS": 8,
+                      "BORDER_RADIUS": 6,
+                      "BORDER_WIDTH": 0.8,
+                      "BUTTON_HEIGHT": 44,
+                      "BUTTON_SHADOW_RADIUS": 10,
+                      "BUTTON_WIDTH": 144,
+                      "CARD_AVATAR_HEIGHT": 40,
+                      "CARD_AVATAR_RADIUS": 20,
+                      "CARD_AVATAR_WIDTH": 40,
+                      "CARD_BORDER_RADIUS": 6.4,
+                      "CARD_BORDER_WIDTH": 0.8,
+                      "CARD_FOOTER_HORIZONTAL": 12,
+                      "CARD_FOOTER_VERTICAL": 12,
+                      "CARD_IMAGE_HEIGHT": 200,
+                      "CARD_MARGIN_VERTICAL": 14,
+                      "CARD_ROUND": 3,
+                      "CARD_ROUNDED": 8,
+                      "CARD_WIDTH": 718,
+                      "CHECKBOX_HEIGHT": 20,
+                      "CHECKBOX_WIDTH": 20,
+                      "FONT": 16,
+                      "ICON": 16,
+                      "INPUT_BORDER_RADIUS": 8,
+                      "INPUT_BORDER_WIDTH": 0.8,
+                      "INPUT_HEIGHT": 44,
+                      "INPUT_HELP_TEXT": 12.8,
+                      "INPUT_HORIZONTAL": 16,
+                      "INPUT_LABEL_BOTTOM": 4,
+                      "INPUT_LABEL_TEXT": 14.4,
+                      "INPUT_ROUNDED": 27.2,
+                      "INPUT_TEXT": 14,
+                      "NAVBAR_HEIGHT": 66,
+                      "NAVBAR_LEFT_FLEX": 0.5,
+                      "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_LEFT_MARGIN": 16,
+                      "NAVBAR_RIGHT_FLEX": 0.5,
+                      "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_RIGHT_MARGIN": 16,
+                      "NAVBAR_TITLE_FLEX": 2,
+                      "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                      "NAVBAR_TITLE_TEXT": 14,
+                      "NAVBAR_VERTICAL": 16,
+                      "OPACITY": 0.8,
+                      "RADIO_HEIGHT": 24,
+                      "RADIO_THICKNESS": 2,
+                      "RADIO_WIDTH": 24,
+                      "THUMB_SIZE": 25,
+                      "TRACK_SIZE": 4,
+                    },
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={false}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#B23AFC",
+                      "borderRadius": 24,
+                      "elevation": 1,
+                      "fontFamily": "montserrat-bold",
+                      "height": 44,
+                      "justifyContent": "center",
+                      "marginBottom": 30,
+                      "marginTop": 30,
+                      "opacity": 1,
+                      "shadowColor": "#B23AFC",
+                      "width": 200,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "color": "#c1c1c2",
+                        },
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontFamily": "montserrat-bold",
+                        },
+                      ]
+                    }
+                  >
+                    Acceder
+                  </Text>
+                </View>
+                <View
+                  accessible={true}
+                  focusable={false}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#B23AFC",
+                      "borderRadius": 24,
+                      "elevation": 1,
+                      "fontFamily": "montserrat-bold",
+                      "height": 44,
+                      "justifyContent": "center",
+                      "marginBottom": 30,
+                      "opacity": 1,
+                      "shadowColor": "#B23AFC",
+                      "width": 200,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "color": "#c1c1c2",
+                        },
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontFamily": "montserrat-bold",
+                        },
+                      ]
+                    }
+                  >
+                    He olvidado mi contraseña
+                  </Text>
+                </View>
+                <View
+                  accessible={true}
+                  focusable={false}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#B23AFC",
+                      "borderRadius": 24,
+                      "elevation": 1,
+                      "fontFamily": "montserrat-bold",
+                      "height": 44,
+                      "justifyContent": "center",
+                      "marginBottom": 100,
+                      "opacity": 1,
+                      "shadowColor": "#B23AFC",
+                      "width": 200,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "color": "#c1c1c2",
+                        },
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontFamily": "montserrat-bold",
+                        },
+                      ]
+                    }
+                  >
+                    ¿No tienes una cuenta? Regístrate
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<RegisterAndLogin /> renders correctly 2`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": 1334,
+      "padding": 0,
+      "width": 750,
+      "zIndex": 1,
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+        Object {
+          "height": 1334,
+          "width": 750,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "column",
+        },
+        false,
+        Object {
+          "flex": 1,
+        },
+        false,
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        },
+        false,
+        false,
+        false,
+        false,
+        null,
+        false,
+        false,
+        false,
+        null,
+        null,
+        null,
+        undefined,
+      ]
+    }
+    theme={
+      Object {
+        "COLORS": Object {
+          "BLACK": "#000000",
+          "BLOCK": "#808080",
+          "DRIBBBLE": "#EA4C89",
+          "ERROR": "#FE2472",
+          "FACEBOOK": "#3B5998",
+          "GREY": "#898989",
+          "ICON": "#000000",
+          "INFO": "#1232FF",
+          "INPUT": "#808080",
+          "MUTED": "#9FA5AA",
+          "NAVBAR": "#F9F9F9",
+          "NEUTRAL": "rgba(255,255,255, 0.65)",
+          "PLACEHOLDER": "#9FA5AA",
+          "PRIMARY": "#B23AFC",
+          "SUCCESS": "#45DF31",
+          "THEME": "#B23AFC",
+          "TRANSPARENT": "transparent",
+          "TWITTER": "#5BC0DE",
+          "WARNING": "#FF9C09",
+          "WHITE": "#FFFFFF",
+        },
+        "SIZES": Object {
+          "ANDROID_ELEVATION": 1,
+          "BASE": 16,
+          "BLOCK_SHADOW_OPACITY": 0.15,
+          "BLOCK_SHADOW_RADIUS": 8,
+          "BORDER_RADIUS": 6,
+          "BORDER_WIDTH": 0.8,
+          "BUTTON_HEIGHT": 44,
+          "BUTTON_SHADOW_RADIUS": 10,
+          "BUTTON_WIDTH": 144,
+          "CARD_AVATAR_HEIGHT": 40,
+          "CARD_AVATAR_RADIUS": 20,
+          "CARD_AVATAR_WIDTH": 40,
+          "CARD_BORDER_RADIUS": 6.4,
+          "CARD_BORDER_WIDTH": 0.8,
+          "CARD_FOOTER_HORIZONTAL": 12,
+          "CARD_FOOTER_VERTICAL": 12,
+          "CARD_IMAGE_HEIGHT": 200,
+          "CARD_MARGIN_VERTICAL": 14,
+          "CARD_ROUND": 3,
+          "CARD_ROUNDED": 8,
+          "CARD_WIDTH": 718,
+          "CHECKBOX_HEIGHT": 20,
+          "CHECKBOX_WIDTH": 20,
+          "FONT": 16,
+          "ICON": 16,
+          "INPUT_BORDER_RADIUS": 8,
+          "INPUT_BORDER_WIDTH": 0.8,
+          "INPUT_HEIGHT": 44,
+          "INPUT_HELP_TEXT": 12.8,
+          "INPUT_HORIZONTAL": 16,
+          "INPUT_LABEL_BOTTOM": 4,
+          "INPUT_LABEL_TEXT": 14.4,
+          "INPUT_ROUNDED": 27.2,
+          "INPUT_TEXT": 14,
+          "NAVBAR_HEIGHT": 66,
+          "NAVBAR_LEFT_FLEX": 0.5,
+          "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+          "NAVBAR_LEFT_MARGIN": 16,
+          "NAVBAR_RIGHT_FLEX": 0.5,
+          "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+          "NAVBAR_RIGHT_MARGIN": 16,
+          "NAVBAR_TITLE_FLEX": 2,
+          "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+          "NAVBAR_TITLE_TEXT": 14,
+          "NAVBAR_VERTICAL": 16,
+          "OPACITY": 0.8,
+          "RADIO_HEIGHT": 24,
+          "RADIO_THICKNESS": 2,
+          "RADIO_WIDTH": 24,
+          "THUMB_SIZE": 25,
+          "TRACK_SIZE": 4,
+        },
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "column",
+          },
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          null,
+          false,
+          false,
+          false,
+          null,
+          null,
+          null,
+          Object {
+            "backgroundColor": "#c1c1c2",
+            "borderRadius": 4,
+            "elevation": 1,
+            "height": 1067.2,
+            "marginTop": 55,
+            "overflow": "hidden",
+            "shadowColor": "#0f1e2e",
+            "shadowOffset": Object {
+              "height": 4,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1,
+            "shadowRadius": 8,
+            "width": 675,
+          },
+        ]
+      }
+      theme={
+        Object {
+          "COLORS": Object {
+            "BLACK": "#000000",
+            "BLOCK": "#808080",
+            "DRIBBBLE": "#EA4C89",
+            "ERROR": "#FE2472",
+            "FACEBOOK": "#3B5998",
+            "GREY": "#898989",
+            "ICON": "#000000",
+            "INFO": "#1232FF",
+            "INPUT": "#808080",
+            "MUTED": "#9FA5AA",
+            "NAVBAR": "#F9F9F9",
+            "NEUTRAL": "rgba(255,255,255, 0.65)",
+            "PLACEHOLDER": "#9FA5AA",
+            "PRIMARY": "#B23AFC",
+            "SUCCESS": "#45DF31",
+            "THEME": "#B23AFC",
+            "TRANSPARENT": "transparent",
+            "TWITTER": "#5BC0DE",
+            "WARNING": "#FF9C09",
+            "WHITE": "#FFFFFF",
+          },
+          "SIZES": Object {
+            "ANDROID_ELEVATION": 1,
+            "BASE": 16,
+            "BLOCK_SHADOW_OPACITY": 0.15,
+            "BLOCK_SHADOW_RADIUS": 8,
+            "BORDER_RADIUS": 6,
+            "BORDER_WIDTH": 0.8,
+            "BUTTON_HEIGHT": 44,
+            "BUTTON_SHADOW_RADIUS": 10,
+            "BUTTON_WIDTH": 144,
+            "CARD_AVATAR_HEIGHT": 40,
+            "CARD_AVATAR_RADIUS": 20,
+            "CARD_AVATAR_WIDTH": 40,
+            "CARD_BORDER_RADIUS": 6.4,
+            "CARD_BORDER_WIDTH": 0.8,
+            "CARD_FOOTER_HORIZONTAL": 12,
+            "CARD_FOOTER_VERTICAL": 12,
+            "CARD_IMAGE_HEIGHT": 200,
+            "CARD_MARGIN_VERTICAL": 14,
+            "CARD_ROUND": 3,
+            "CARD_ROUNDED": 8,
+            "CARD_WIDTH": 718,
+            "CHECKBOX_HEIGHT": 20,
+            "CHECKBOX_WIDTH": 20,
+            "FONT": 16,
+            "ICON": 16,
+            "INPUT_BORDER_RADIUS": 8,
+            "INPUT_BORDER_WIDTH": 0.8,
+            "INPUT_HEIGHT": 44,
+            "INPUT_HELP_TEXT": 12.8,
+            "INPUT_HORIZONTAL": 16,
+            "INPUT_LABEL_BOTTOM": 4,
+            "INPUT_LABEL_TEXT": 14.4,
+            "INPUT_ROUNDED": 27.2,
+            "INPUT_TEXT": 14,
+            "NAVBAR_HEIGHT": 66,
+            "NAVBAR_LEFT_FLEX": 0.5,
+            "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+            "NAVBAR_LEFT_MARGIN": 16,
+            "NAVBAR_RIGHT_FLEX": 0.5,
+            "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+            "NAVBAR_RIGHT_MARGIN": 16,
+            "NAVBAR_TITLE_FLEX": 2,
+            "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+            "NAVBAR_TITLE_TEXT": 14,
+            "NAVBAR_VERTICAL": 16,
+            "OPACITY": 0.8,
+            "RADIO_HEIGHT": 24,
+            "RADIO_THICKNESS": 2,
+            "RADIO_WIDTH": 24,
+            "THUMB_SIZE": 25,
+            "TRACK_SIZE": 4,
+          },
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "column",
+            },
+            false,
+            Object {
+              "flex": 1,
+            },
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            Object {
+              "justifyContent": "space-evenly",
+            },
+            false,
+            false,
+            false,
+            null,
+            null,
+            null,
+            undefined,
+          ]
+        }
+        theme={
+          Object {
+            "COLORS": Object {
+              "BLACK": "#000000",
+              "BLOCK": "#808080",
+              "DRIBBBLE": "#EA4C89",
+              "ERROR": "#FE2472",
+              "FACEBOOK": "#3B5998",
+              "GREY": "#898989",
+              "ICON": "#000000",
+              "INFO": "#1232FF",
+              "INPUT": "#808080",
+              "MUTED": "#9FA5AA",
+              "NAVBAR": "#F9F9F9",
+              "NEUTRAL": "rgba(255,255,255, 0.65)",
+              "PLACEHOLDER": "#9FA5AA",
+              "PRIMARY": "#B23AFC",
+              "SUCCESS": "#45DF31",
+              "THEME": "#B23AFC",
+              "TRANSPARENT": "transparent",
+              "TWITTER": "#5BC0DE",
+              "WARNING": "#FF9C09",
+              "WHITE": "#FFFFFF",
+            },
+            "SIZES": Object {
+              "ANDROID_ELEVATION": 1,
+              "BASE": 16,
+              "BLOCK_SHADOW_OPACITY": 0.15,
+              "BLOCK_SHADOW_RADIUS": 8,
+              "BORDER_RADIUS": 6,
+              "BORDER_WIDTH": 0.8,
+              "BUTTON_HEIGHT": 44,
+              "BUTTON_SHADOW_RADIUS": 10,
+              "BUTTON_WIDTH": 144,
+              "CARD_AVATAR_HEIGHT": 40,
+              "CARD_AVATAR_RADIUS": 20,
+              "CARD_AVATAR_WIDTH": 40,
+              "CARD_BORDER_RADIUS": 6.4,
+              "CARD_BORDER_WIDTH": 0.8,
+              "CARD_FOOTER_HORIZONTAL": 12,
+              "CARD_FOOTER_VERTICAL": 12,
+              "CARD_IMAGE_HEIGHT": 200,
+              "CARD_MARGIN_VERTICAL": 14,
+              "CARD_ROUND": 3,
+              "CARD_ROUNDED": 8,
+              "CARD_WIDTH": 718,
+              "CHECKBOX_HEIGHT": 20,
+              "CHECKBOX_WIDTH": 20,
+              "FONT": 16,
+              "ICON": 16,
+              "INPUT_BORDER_RADIUS": 8,
+              "INPUT_BORDER_WIDTH": 0.8,
+              "INPUT_HEIGHT": 44,
+              "INPUT_HELP_TEXT": 12.8,
+              "INPUT_HORIZONTAL": 16,
+              "INPUT_LABEL_BOTTOM": 4,
+              "INPUT_LABEL_TEXT": 14.4,
+              "INPUT_ROUNDED": 27.2,
+              "INPUT_TEXT": 14,
+              "NAVBAR_HEIGHT": 66,
+              "NAVBAR_LEFT_FLEX": 0.5,
+              "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+              "NAVBAR_LEFT_MARGIN": 16,
+              "NAVBAR_RIGHT_FLEX": 0.5,
+              "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+              "NAVBAR_RIGHT_MARGIN": 16,
+              "NAVBAR_TITLE_FLEX": 2,
+              "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+              "NAVBAR_TITLE_TEXT": 14,
+              "NAVBAR_VERTICAL": 16,
+              "OPACITY": 0.8,
+              "RADIO_HEIGHT": 24,
+              "RADIO_THICKNESS": 2,
+              "RADIO_WIDTH": 24,
+              "THUMB_SIZE": 25,
+              "TRACK_SIZE": 4,
+            },
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "column",
+              },
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              null,
+              false,
+              false,
+              false,
+              null,
+              null,
+              null,
+              undefined,
+            ]
+          }
+          theme={
+            Object {
+              "COLORS": Object {
+                "BLACK": "#000000",
+                "BLOCK": "#808080",
+                "DRIBBBLE": "#EA4C89",
+                "ERROR": "#FE2472",
+                "FACEBOOK": "#3B5998",
+                "GREY": "#898989",
+                "ICON": "#000000",
+                "INFO": "#1232FF",
+                "INPUT": "#808080",
+                "MUTED": "#9FA5AA",
+                "NAVBAR": "#F9F9F9",
+                "NEUTRAL": "rgba(255,255,255, 0.65)",
+                "PLACEHOLDER": "#9FA5AA",
+                "PRIMARY": "#B23AFC",
+                "SUCCESS": "#45DF31",
+                "THEME": "#B23AFC",
+                "TRANSPARENT": "transparent",
+                "TWITTER": "#5BC0DE",
+                "WARNING": "#FF9C09",
+                "WHITE": "#FFFFFF",
+              },
+              "SIZES": Object {
+                "ANDROID_ELEVATION": 1,
+                "BASE": 16,
+                "BLOCK_SHADOW_OPACITY": 0.15,
+                "BLOCK_SHADOW_RADIUS": 8,
+                "BORDER_RADIUS": 6,
+                "BORDER_WIDTH": 0.8,
+                "BUTTON_HEIGHT": 44,
+                "BUTTON_SHADOW_RADIUS": 10,
+                "BUTTON_WIDTH": 144,
+                "CARD_AVATAR_HEIGHT": 40,
+                "CARD_AVATAR_RADIUS": 20,
+                "CARD_AVATAR_WIDTH": 40,
+                "CARD_BORDER_RADIUS": 6.4,
+                "CARD_BORDER_WIDTH": 0.8,
+                "CARD_FOOTER_HORIZONTAL": 12,
+                "CARD_FOOTER_VERTICAL": 12,
+                "CARD_IMAGE_HEIGHT": 200,
+                "CARD_MARGIN_VERTICAL": 14,
+                "CARD_ROUND": 3,
+                "CARD_ROUNDED": 8,
+                "CARD_WIDTH": 718,
+                "CHECKBOX_HEIGHT": 20,
+                "CHECKBOX_WIDTH": 20,
+                "FONT": 16,
+                "ICON": 16,
+                "INPUT_BORDER_RADIUS": 8,
+                "INPUT_BORDER_WIDTH": 0.8,
+                "INPUT_HEIGHT": 44,
+                "INPUT_HELP_TEXT": 12.8,
+                "INPUT_HORIZONTAL": 16,
+                "INPUT_LABEL_BOTTOM": 4,
+                "INPUT_LABEL_TEXT": 14.4,
+                "INPUT_ROUNDED": 27.2,
+                "INPUT_TEXT": 14,
+                "NAVBAR_HEIGHT": 66,
+                "NAVBAR_LEFT_FLEX": 0.5,
+                "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                "NAVBAR_LEFT_MARGIN": 16,
+                "NAVBAR_RIGHT_FLEX": 0.5,
+                "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                "NAVBAR_RIGHT_MARGIN": 16,
+                "NAVBAR_TITLE_FLEX": 2,
+                "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                "NAVBAR_TITLE_TEXT": 14,
+                "NAVBAR_VERTICAL": 16,
+                "OPACITY": 0.8,
+                "RADIO_HEIGHT": 24,
+                "RADIO_THICKNESS": 2,
+                "RADIO_WIDTH": 24,
+                "THUMB_SIZE": 25,
+                "TRACK_SIZE": 4,
+              },
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                undefined,
+                Object {
+                  "fontSize": 24,
+                },
+                Object {
+                  "color": "#0f1e2e",
+                },
+                false,
+                false,
+                undefined,
+                Object {
+                  "fontFamily": "montserrat-bold",
+                  "fontSize": 24,
+                  "marginTop": 25,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            Registro
+          </Text>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "column",
+              },
+              false,
+              Object {
+                "flex": 0.1,
+              },
+              false,
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              false,
+              false,
+              false,
+              false,
+              null,
+              false,
+              false,
+              false,
+              null,
+              null,
+              null,
+              undefined,
+            ]
+          }
+          theme={
+            Object {
+              "COLORS": Object {
+                "BLACK": "#000000",
+                "BLOCK": "#808080",
+                "DRIBBBLE": "#EA4C89",
+                "ERROR": "#FE2472",
+                "FACEBOOK": "#3B5998",
+                "GREY": "#898989",
+                "ICON": "#000000",
+                "INFO": "#1232FF",
+                "INPUT": "#808080",
+                "MUTED": "#9FA5AA",
+                "NAVBAR": "#F9F9F9",
+                "NEUTRAL": "rgba(255,255,255, 0.65)",
+                "PLACEHOLDER": "#9FA5AA",
+                "PRIMARY": "#B23AFC",
+                "SUCCESS": "#45DF31",
+                "THEME": "#B23AFC",
+                "TRANSPARENT": "transparent",
+                "TWITTER": "#5BC0DE",
+                "WARNING": "#FF9C09",
+                "WHITE": "#FFFFFF",
+              },
+              "SIZES": Object {
+                "ANDROID_ELEVATION": 1,
+                "BASE": 16,
+                "BLOCK_SHADOW_OPACITY": 0.15,
+                "BLOCK_SHADOW_RADIUS": 8,
+                "BORDER_RADIUS": 6,
+                "BORDER_WIDTH": 0.8,
+                "BUTTON_HEIGHT": 44,
+                "BUTTON_SHADOW_RADIUS": 10,
+                "BUTTON_WIDTH": 144,
+                "CARD_AVATAR_HEIGHT": 40,
+                "CARD_AVATAR_RADIUS": 20,
+                "CARD_AVATAR_WIDTH": 40,
+                "CARD_BORDER_RADIUS": 6.4,
+                "CARD_BORDER_WIDTH": 0.8,
+                "CARD_FOOTER_HORIZONTAL": 12,
+                "CARD_FOOTER_VERTICAL": 12,
+                "CARD_IMAGE_HEIGHT": 200,
+                "CARD_MARGIN_VERTICAL": 14,
+                "CARD_ROUND": 3,
+                "CARD_ROUNDED": 8,
+                "CARD_WIDTH": 718,
+                "CHECKBOX_HEIGHT": 20,
+                "CHECKBOX_WIDTH": 20,
+                "FONT": 16,
+                "ICON": 16,
+                "INPUT_BORDER_RADIUS": 8,
+                "INPUT_BORDER_WIDTH": 0.8,
+                "INPUT_HEIGHT": 44,
+                "INPUT_HELP_TEXT": 12.8,
+                "INPUT_HORIZONTAL": 16,
+                "INPUT_LABEL_BOTTOM": 4,
+                "INPUT_LABEL_TEXT": 14.4,
+                "INPUT_ROUNDED": 27.2,
+                "INPUT_TEXT": 14,
+                "NAVBAR_HEIGHT": 66,
+                "NAVBAR_LEFT_FLEX": 0.5,
+                "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                "NAVBAR_LEFT_MARGIN": 16,
+                "NAVBAR_RIGHT_FLEX": 0.5,
+                "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                "NAVBAR_RIGHT_MARGIN": 16,
+                "NAVBAR_TITLE_FLEX": 2,
+                "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                "NAVBAR_TITLE_TEXT": 14,
+                "NAVBAR_VERTICAL": 16,
+                "OPACITY": 0.8,
+                "RADIO_HEIGHT": 24,
+                "RADIO_THICKNESS": 2,
+                "RADIO_WIDTH": 24,
+                "THUMB_SIZE": 25,
+                "TRACK_SIZE": 4,
+              },
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                undefined,
+                Object {
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#0f1e2e",
+                },
+                false,
+                false,
+                undefined,
+                Object {
+                  "marginTop": 10,
+                },
+              ]
+            }
+          >
+            Regístrate con tu email
+          </Text>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "column",
+              },
+              false,
+              Object {
+                "flex": 1.2,
+              },
+              false,
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              false,
+              false,
+              false,
+              false,
+              Object {
+                "justifyContent": "space-between",
+              },
+              false,
+              false,
+              false,
+              null,
+              null,
+              null,
+              undefined,
+            ]
+          }
+          theme={
+            Object {
+              "COLORS": Object {
+                "BLACK": "#000000",
+                "BLOCK": "#808080",
+                "DRIBBBLE": "#EA4C89",
+                "ERROR": "#FE2472",
+                "FACEBOOK": "#3B5998",
+                "GREY": "#898989",
+                "ICON": "#000000",
+                "INFO": "#1232FF",
+                "INPUT": "#808080",
+                "MUTED": "#9FA5AA",
+                "NAVBAR": "#F9F9F9",
+                "NEUTRAL": "rgba(255,255,255, 0.65)",
+                "PLACEHOLDER": "#9FA5AA",
+                "PRIMARY": "#B23AFC",
+                "SUCCESS": "#45DF31",
+                "THEME": "#B23AFC",
+                "TRANSPARENT": "transparent",
+                "TWITTER": "#5BC0DE",
+                "WARNING": "#FF9C09",
+                "WHITE": "#FFFFFF",
+              },
+              "SIZES": Object {
+                "ANDROID_ELEVATION": 1,
+                "BASE": 16,
+                "BLOCK_SHADOW_OPACITY": 0.15,
+                "BLOCK_SHADOW_RADIUS": 8,
+                "BORDER_RADIUS": 6,
+                "BORDER_WIDTH": 0.8,
+                "BUTTON_HEIGHT": 44,
+                "BUTTON_SHADOW_RADIUS": 10,
+                "BUTTON_WIDTH": 144,
+                "CARD_AVATAR_HEIGHT": 40,
+                "CARD_AVATAR_RADIUS": 20,
+                "CARD_AVATAR_WIDTH": 40,
+                "CARD_BORDER_RADIUS": 6.4,
+                "CARD_BORDER_WIDTH": 0.8,
+                "CARD_FOOTER_HORIZONTAL": 12,
+                "CARD_FOOTER_VERTICAL": 12,
+                "CARD_IMAGE_HEIGHT": 200,
+                "CARD_MARGIN_VERTICAL": 14,
+                "CARD_ROUND": 3,
+                "CARD_ROUNDED": 8,
+                "CARD_WIDTH": 718,
+                "CHECKBOX_HEIGHT": 20,
+                "CHECKBOX_WIDTH": 20,
+                "FONT": 16,
+                "ICON": 16,
+                "INPUT_BORDER_RADIUS": 8,
+                "INPUT_BORDER_WIDTH": 0.8,
+                "INPUT_HEIGHT": 44,
+                "INPUT_HELP_TEXT": 12.8,
+                "INPUT_HORIZONTAL": 16,
+                "INPUT_LABEL_BOTTOM": 4,
+                "INPUT_LABEL_TEXT": 14.4,
+                "INPUT_ROUNDED": 27.2,
+                "INPUT_TEXT": 14,
+                "NAVBAR_HEIGHT": 66,
+                "NAVBAR_LEFT_FLEX": 0.5,
+                "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                "NAVBAR_LEFT_MARGIN": 16,
+                "NAVBAR_RIGHT_FLEX": 0.5,
+                "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                "NAVBAR_RIGHT_MARGIN": 16,
+                "NAVBAR_TITLE_FLEX": 2,
+                "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                "NAVBAR_TITLE_TEXT": 14,
+                "NAVBAR_VERTICAL": 16,
+                "OPACITY": 0.8,
+                "RADIO_HEIGHT": 24,
+                "RADIO_THICKNESS": 2,
+                "RADIO_WIDTH": 24,
+                "THUMB_SIZE": 25,
+                "TRACK_SIZE": 4,
+              },
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "column",
+                },
+                false,
+                Object {
+                  "flex": 0.5,
+                },
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                },
+                false,
+                false,
+                false,
+                false,
+                false,
+                null,
+                false,
+                false,
+                false,
+                null,
+                null,
+                null,
+                undefined,
+              ]
+            }
+            theme={
+              Object {
+                "COLORS": Object {
+                  "BLACK": "#000000",
+                  "BLOCK": "#808080",
+                  "DRIBBBLE": "#EA4C89",
+                  "ERROR": "#FE2472",
+                  "FACEBOOK": "#3B5998",
+                  "GREY": "#898989",
+                  "ICON": "#000000",
+                  "INFO": "#1232FF",
+                  "INPUT": "#808080",
+                  "MUTED": "#9FA5AA",
+                  "NAVBAR": "#F9F9F9",
+                  "NEUTRAL": "rgba(255,255,255, 0.65)",
+                  "PLACEHOLDER": "#9FA5AA",
+                  "PRIMARY": "#B23AFC",
+                  "SUCCESS": "#45DF31",
+                  "THEME": "#B23AFC",
+                  "TRANSPARENT": "transparent",
+                  "TWITTER": "#5BC0DE",
+                  "WARNING": "#FF9C09",
+                  "WHITE": "#FFFFFF",
+                },
+                "SIZES": Object {
+                  "ANDROID_ELEVATION": 1,
+                  "BASE": 16,
+                  "BLOCK_SHADOW_OPACITY": 0.15,
+                  "BLOCK_SHADOW_RADIUS": 8,
+                  "BORDER_RADIUS": 6,
+                  "BORDER_WIDTH": 0.8,
+                  "BUTTON_HEIGHT": 44,
+                  "BUTTON_SHADOW_RADIUS": 10,
+                  "BUTTON_WIDTH": 144,
+                  "CARD_AVATAR_HEIGHT": 40,
+                  "CARD_AVATAR_RADIUS": 20,
+                  "CARD_AVATAR_WIDTH": 40,
+                  "CARD_BORDER_RADIUS": 6.4,
+                  "CARD_BORDER_WIDTH": 0.8,
+                  "CARD_FOOTER_HORIZONTAL": 12,
+                  "CARD_FOOTER_VERTICAL": 12,
+                  "CARD_IMAGE_HEIGHT": 200,
+                  "CARD_MARGIN_VERTICAL": 14,
+                  "CARD_ROUND": 3,
+                  "CARD_ROUNDED": 8,
+                  "CARD_WIDTH": 718,
+                  "CHECKBOX_HEIGHT": 20,
+                  "CHECKBOX_WIDTH": 20,
+                  "FONT": 16,
+                  "ICON": 16,
+                  "INPUT_BORDER_RADIUS": 8,
+                  "INPUT_BORDER_WIDTH": 0.8,
+                  "INPUT_HEIGHT": 44,
+                  "INPUT_HELP_TEXT": 12.8,
+                  "INPUT_HORIZONTAL": 16,
+                  "INPUT_LABEL_BOTTOM": 4,
+                  "INPUT_LABEL_TEXT": 14.4,
+                  "INPUT_ROUNDED": 27.2,
+                  "INPUT_TEXT": 14,
+                  "NAVBAR_HEIGHT": 66,
+                  "NAVBAR_LEFT_FLEX": 0.5,
+                  "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                  "NAVBAR_LEFT_MARGIN": 16,
+                  "NAVBAR_RIGHT_FLEX": 0.5,
+                  "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                  "NAVBAR_RIGHT_MARGIN": 16,
+                  "NAVBAR_TITLE_FLEX": 2,
+                  "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                  "NAVBAR_TITLE_TEXT": 14,
+                  "NAVBAR_VERTICAL": 16,
+                  "OPACITY": 0.8,
+                  "RADIO_HEIGHT": 24,
+                  "RADIO_THICKNESS": 2,
+                  "RADIO_WIDTH": 24,
+                  "THUMB_SIZE": 25,
+                  "TRACK_SIZE": 4,
+                },
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "column",
+                  },
+                  false,
+                  Object {
+                    "flex": 1,
+                  },
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  Object {
+                    "justifyContent": "space-between",
+                  },
+                  false,
+                  false,
+                  false,
+                  null,
+                  null,
+                  null,
+                  undefined,
+                ]
+              }
+              theme={
+                Object {
+                  "COLORS": Object {
+                    "BLACK": "#000000",
+                    "BLOCK": "#808080",
+                    "DRIBBBLE": "#EA4C89",
+                    "ERROR": "#FE2472",
+                    "FACEBOOK": "#3B5998",
+                    "GREY": "#898989",
+                    "ICON": "#000000",
+                    "INFO": "#1232FF",
+                    "INPUT": "#808080",
+                    "MUTED": "#9FA5AA",
+                    "NAVBAR": "#F9F9F9",
+                    "NEUTRAL": "rgba(255,255,255, 0.65)",
+                    "PLACEHOLDER": "#9FA5AA",
+                    "PRIMARY": "#B23AFC",
+                    "SUCCESS": "#45DF31",
+                    "THEME": "#B23AFC",
+                    "TRANSPARENT": "transparent",
+                    "TWITTER": "#5BC0DE",
+                    "WARNING": "#FF9C09",
+                    "WHITE": "#FFFFFF",
+                  },
+                  "SIZES": Object {
+                    "ANDROID_ELEVATION": 1,
+                    "BASE": 16,
+                    "BLOCK_SHADOW_OPACITY": 0.15,
+                    "BLOCK_SHADOW_RADIUS": 8,
+                    "BORDER_RADIUS": 6,
+                    "BORDER_WIDTH": 0.8,
+                    "BUTTON_HEIGHT": 44,
+                    "BUTTON_SHADOW_RADIUS": 10,
+                    "BUTTON_WIDTH": 144,
+                    "CARD_AVATAR_HEIGHT": 40,
+                    "CARD_AVATAR_RADIUS": 20,
+                    "CARD_AVATAR_WIDTH": 40,
+                    "CARD_BORDER_RADIUS": 6.4,
+                    "CARD_BORDER_WIDTH": 0.8,
+                    "CARD_FOOTER_HORIZONTAL": 12,
+                    "CARD_FOOTER_VERTICAL": 12,
+                    "CARD_IMAGE_HEIGHT": 200,
+                    "CARD_MARGIN_VERTICAL": 14,
+                    "CARD_ROUND": 3,
+                    "CARD_ROUNDED": 8,
+                    "CARD_WIDTH": 718,
+                    "CHECKBOX_HEIGHT": 20,
+                    "CHECKBOX_WIDTH": 20,
+                    "FONT": 16,
+                    "ICON": 16,
+                    "INPUT_BORDER_RADIUS": 8,
+                    "INPUT_BORDER_WIDTH": 0.8,
+                    "INPUT_HEIGHT": 44,
+                    "INPUT_HELP_TEXT": 12.8,
+                    "INPUT_HORIZONTAL": 16,
+                    "INPUT_LABEL_BOTTOM": 4,
+                    "INPUT_LABEL_TEXT": 14.4,
+                    "INPUT_ROUNDED": 27.2,
+                    "INPUT_TEXT": 14,
+                    "NAVBAR_HEIGHT": 66,
+                    "NAVBAR_LEFT_FLEX": 0.5,
+                    "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                    "NAVBAR_LEFT_MARGIN": 16,
+                    "NAVBAR_RIGHT_FLEX": 0.5,
+                    "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                    "NAVBAR_RIGHT_MARGIN": 16,
+                    "NAVBAR_TITLE_FLEX": 2,
+                    "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                    "NAVBAR_TITLE_TEXT": 14,
+                    "NAVBAR_VERTICAL": 16,
+                    "OPACITY": 0.8,
+                    "RADIO_HEIGHT": 24,
+                    "RADIO_THICKNESS": 2,
+                    "RADIO_WIDTH": 24,
+                    "THUMB_SIZE": 25,
+                    "TRACK_SIZE": 4,
+                  },
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "column",
+                    },
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    null,
+                    false,
+                    false,
+                    false,
+                    null,
+                    null,
+                    null,
+                    undefined,
+                  ]
+                }
+                theme={
+                  Object {
+                    "COLORS": Object {
+                      "BLACK": "#000000",
+                      "BLOCK": "#808080",
+                      "DRIBBBLE": "#EA4C89",
+                      "ERROR": "#FE2472",
+                      "FACEBOOK": "#3B5998",
+                      "GREY": "#898989",
+                      "ICON": "#000000",
+                      "INFO": "#1232FF",
+                      "INPUT": "#808080",
+                      "MUTED": "#9FA5AA",
+                      "NAVBAR": "#F9F9F9",
+                      "NEUTRAL": "rgba(255,255,255, 0.65)",
+                      "PLACEHOLDER": "#9FA5AA",
+                      "PRIMARY": "#B23AFC",
+                      "SUCCESS": "#45DF31",
+                      "THEME": "#B23AFC",
+                      "TRANSPARENT": "transparent",
+                      "TWITTER": "#5BC0DE",
+                      "WARNING": "#FF9C09",
+                      "WHITE": "#FFFFFF",
+                    },
+                    "SIZES": Object {
+                      "ANDROID_ELEVATION": 1,
+                      "BASE": 16,
+                      "BLOCK_SHADOW_OPACITY": 0.15,
+                      "BLOCK_SHADOW_RADIUS": 8,
+                      "BORDER_RADIUS": 6,
+                      "BORDER_WIDTH": 0.8,
+                      "BUTTON_HEIGHT": 44,
+                      "BUTTON_SHADOW_RADIUS": 10,
+                      "BUTTON_WIDTH": 144,
+                      "CARD_AVATAR_HEIGHT": 40,
+                      "CARD_AVATAR_RADIUS": 20,
+                      "CARD_AVATAR_WIDTH": 40,
+                      "CARD_BORDER_RADIUS": 6.4,
+                      "CARD_BORDER_WIDTH": 0.8,
+                      "CARD_FOOTER_HORIZONTAL": 12,
+                      "CARD_FOOTER_VERTICAL": 12,
+                      "CARD_IMAGE_HEIGHT": 200,
+                      "CARD_MARGIN_VERTICAL": 14,
+                      "CARD_ROUND": 3,
+                      "CARD_ROUNDED": 8,
+                      "CARD_WIDTH": 718,
+                      "CHECKBOX_HEIGHT": 20,
+                      "CHECKBOX_WIDTH": 20,
+                      "FONT": 16,
+                      "ICON": 16,
+                      "INPUT_BORDER_RADIUS": 8,
+                      "INPUT_BORDER_WIDTH": 0.8,
+                      "INPUT_HEIGHT": 44,
+                      "INPUT_HELP_TEXT": 12.8,
+                      "INPUT_HORIZONTAL": 16,
+                      "INPUT_LABEL_BOTTOM": 4,
+                      "INPUT_LABEL_TEXT": 14.4,
+                      "INPUT_ROUNDED": 27.2,
+                      "INPUT_TEXT": 14,
+                      "NAVBAR_HEIGHT": 66,
+                      "NAVBAR_LEFT_FLEX": 0.5,
+                      "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_LEFT_MARGIN": 16,
+                      "NAVBAR_RIGHT_FLEX": 0.5,
+                      "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_RIGHT_MARGIN": 16,
+                      "NAVBAR_TITLE_FLEX": 2,
+                      "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                      "NAVBAR_TITLE_TEXT": 14,
+                      "NAVBAR_VERTICAL": 16,
+                      "OPACITY": 0.8,
+                      "RADIO_HEIGHT": 24,
+                      "RADIO_THICKNESS": 2,
+                      "RADIO_WIDTH": 24,
+                      "THUMB_SIZE": 25,
+                      "TRACK_SIZE": 4,
+                    },
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Email"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={false}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Contraseña"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={true}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Confirmar contraseña"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={true}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Nombre"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={false}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Apellido"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={false}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexDirection": "column",
+                      },
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      false,
+                      null,
+                      false,
+                      false,
+                      false,
+                      null,
+                      Object {
+                        "width": 600,
+                      },
+                      null,
+                      undefined,
+                    ]
+                  }
+                  theme={
+                    Object {
+                      "COLORS": Object {
+                        "BLACK": "#000000",
+                        "BLOCK": "#808080",
+                        "DRIBBBLE": "#EA4C89",
+                        "ERROR": "#FE2472",
+                        "FACEBOOK": "#3B5998",
+                        "GREY": "#898989",
+                        "ICON": "#000000",
+                        "INFO": "#1232FF",
+                        "INPUT": "#808080",
+                        "MUTED": "#9FA5AA",
+                        "NAVBAR": "#F9F9F9",
+                        "NEUTRAL": "rgba(255,255,255, 0.65)",
+                        "PLACEHOLDER": "#9FA5AA",
+                        "PRIMARY": "#B23AFC",
+                        "SUCCESS": "#45DF31",
+                        "THEME": "#B23AFC",
+                        "TRANSPARENT": "transparent",
+                        "TWITTER": "#5BC0DE",
+                        "WARNING": "#FF9C09",
+                        "WHITE": "#FFFFFF",
+                      },
+                      "SIZES": Object {
+                        "ANDROID_ELEVATION": 1,
+                        "BASE": 16,
+                        "BLOCK_SHADOW_OPACITY": 0.15,
+                        "BLOCK_SHADOW_RADIUS": 8,
+                        "BORDER_RADIUS": 6,
+                        "BORDER_WIDTH": 0.8,
+                        "BUTTON_HEIGHT": 44,
+                        "BUTTON_SHADOW_RADIUS": 10,
+                        "BUTTON_WIDTH": 144,
+                        "CARD_AVATAR_HEIGHT": 40,
+                        "CARD_AVATAR_RADIUS": 20,
+                        "CARD_AVATAR_WIDTH": 40,
+                        "CARD_BORDER_RADIUS": 6.4,
+                        "CARD_BORDER_WIDTH": 0.8,
+                        "CARD_FOOTER_HORIZONTAL": 12,
+                        "CARD_FOOTER_VERTICAL": 12,
+                        "CARD_IMAGE_HEIGHT": 200,
+                        "CARD_MARGIN_VERTICAL": 14,
+                        "CARD_ROUND": 3,
+                        "CARD_ROUNDED": 8,
+                        "CARD_WIDTH": 718,
+                        "CHECKBOX_HEIGHT": 20,
+                        "CHECKBOX_WIDTH": 20,
+                        "FONT": 16,
+                        "ICON": 16,
+                        "INPUT_BORDER_RADIUS": 8,
+                        "INPUT_BORDER_WIDTH": 0.8,
+                        "INPUT_HEIGHT": 44,
+                        "INPUT_HELP_TEXT": 12.8,
+                        "INPUT_HORIZONTAL": 16,
+                        "INPUT_LABEL_BOTTOM": 4,
+                        "INPUT_LABEL_TEXT": 14.4,
+                        "INPUT_ROUNDED": 27.2,
+                        "INPUT_TEXT": 14,
+                        "NAVBAR_HEIGHT": 66,
+                        "NAVBAR_LEFT_FLEX": 0.5,
+                        "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_LEFT_MARGIN": 16,
+                        "NAVBAR_RIGHT_FLEX": 0.5,
+                        "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                        "NAVBAR_RIGHT_MARGIN": 16,
+                        "NAVBAR_TITLE_FLEX": 2,
+                        "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                        "NAVBAR_TITLE_TEXT": 14,
+                        "NAVBAR_VERTICAL": 16,
+                        "OPACITY": 0.8,
+                        "RADIO_HEIGHT": 24,
+                        "RADIO_THICKNESS": 2,
+                        "RADIO_WIDTH": 24,
+                        "THUMB_SIZE": 25,
+                        "TRACK_SIZE": 4,
+                      },
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "marginVertical": 8,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#FFFFFF",
+                            "borderColor": "#808080",
+                            "borderRadius": 8,
+                            "borderWidth": 0.8,
+                            "height": 44,
+                            "paddingHorizontal": 16,
+                            "width": "100%",
+                          },
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          null,
+                          false,
+                          false,
+                          Object {
+                            "alignSelf": "center",
+                            "borderColor": "#E3E3E3",
+                            "borderRadius": 21.5,
+                            "borderWidth": 1,
+                            "width": 487.5,
+                          },
+                        ]
+                      }
+                    >
+                      <TextInput
+                        allowFontScaling={true}
+                        error={false}
+                        keyboardType="default"
+                        onRef={null}
+                        placeholder="Usuario"
+                        placeholderTextColor="#8898AA"
+                        primary={false}
+                        rejectResponderTermination={true}
+                        secureTextEntry={false}
+                        shadowless={false}
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                            },
+                            false,
+                            Object {
+                              "color": "#808080",
+                              "fontSize": 14,
+                              "textDecorationColor": "transparent",
+                              "textShadowColor": "transparent",
+                            },
+                            Object {
+                              "color": "#0f1e2e",
+                            },
+                          ]
+                        }
+                        success={false}
+                        underlineColorAndroid="transparent"
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "column",
+                    },
+                    false,
+                    false,
+                    Object {
+                      "alignItems": "center",
+                      "alignSelf": "center",
+                    },
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    null,
+                    false,
+                    false,
+                    false,
+                    null,
+                    null,
+                    null,
+                    undefined,
+                  ]
+                }
+                theme={
+                  Object {
+                    "COLORS": Object {
+                      "BLACK": "#000000",
+                      "BLOCK": "#808080",
+                      "DRIBBBLE": "#EA4C89",
+                      "ERROR": "#FE2472",
+                      "FACEBOOK": "#3B5998",
+                      "GREY": "#898989",
+                      "ICON": "#000000",
+                      "INFO": "#1232FF",
+                      "INPUT": "#808080",
+                      "MUTED": "#9FA5AA",
+                      "NAVBAR": "#F9F9F9",
+                      "NEUTRAL": "rgba(255,255,255, 0.65)",
+                      "PLACEHOLDER": "#9FA5AA",
+                      "PRIMARY": "#B23AFC",
+                      "SUCCESS": "#45DF31",
+                      "THEME": "#B23AFC",
+                      "TRANSPARENT": "transparent",
+                      "TWITTER": "#5BC0DE",
+                      "WARNING": "#FF9C09",
+                      "WHITE": "#FFFFFF",
+                    },
+                    "SIZES": Object {
+                      "ANDROID_ELEVATION": 1,
+                      "BASE": 16,
+                      "BLOCK_SHADOW_OPACITY": 0.15,
+                      "BLOCK_SHADOW_RADIUS": 8,
+                      "BORDER_RADIUS": 6,
+                      "BORDER_WIDTH": 0.8,
+                      "BUTTON_HEIGHT": 44,
+                      "BUTTON_SHADOW_RADIUS": 10,
+                      "BUTTON_WIDTH": 144,
+                      "CARD_AVATAR_HEIGHT": 40,
+                      "CARD_AVATAR_RADIUS": 20,
+                      "CARD_AVATAR_WIDTH": 40,
+                      "CARD_BORDER_RADIUS": 6.4,
+                      "CARD_BORDER_WIDTH": 0.8,
+                      "CARD_FOOTER_HORIZONTAL": 12,
+                      "CARD_FOOTER_VERTICAL": 12,
+                      "CARD_IMAGE_HEIGHT": 200,
+                      "CARD_MARGIN_VERTICAL": 14,
+                      "CARD_ROUND": 3,
+                      "CARD_ROUNDED": 8,
+                      "CARD_WIDTH": 718,
+                      "CHECKBOX_HEIGHT": 20,
+                      "CHECKBOX_WIDTH": 20,
+                      "FONT": 16,
+                      "ICON": 16,
+                      "INPUT_BORDER_RADIUS": 8,
+                      "INPUT_BORDER_WIDTH": 0.8,
+                      "INPUT_HEIGHT": 44,
+                      "INPUT_HELP_TEXT": 12.8,
+                      "INPUT_HORIZONTAL": 16,
+                      "INPUT_LABEL_BOTTOM": 4,
+                      "INPUT_LABEL_TEXT": 14.4,
+                      "INPUT_ROUNDED": 27.2,
+                      "INPUT_TEXT": 14,
+                      "NAVBAR_HEIGHT": 66,
+                      "NAVBAR_LEFT_FLEX": 0.5,
+                      "NAVBAR_LEFT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_LEFT_MARGIN": 16,
+                      "NAVBAR_RIGHT_FLEX": 0.5,
+                      "NAVBAR_RIGHT_HEIGHT": 93.38000000000001,
+                      "NAVBAR_RIGHT_MARGIN": 16,
+                      "NAVBAR_TITLE_FLEX": 2,
+                      "NAVBAR_TITLE_HEIGHT": 93.38000000000001,
+                      "NAVBAR_TITLE_TEXT": 14,
+                      "NAVBAR_VERTICAL": 16,
+                      "OPACITY": 0.8,
+                      "RADIO_HEIGHT": 24,
+                      "RADIO_THICKNESS": 2,
+                      "RADIO_WIDTH": 24,
+                      "THUMB_SIZE": 25,
+                      "TRACK_SIZE": 4,
+                    },
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={false}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#B23AFC",
+                      "borderRadius": 24,
+                      "elevation": 1,
+                      "fontFamily": "montserrat-bold",
+                      "height": 44,
+                      "justifyContent": "center",
+                      "marginTop": 10,
+                      "opacity": 1,
+                      "shadowColor": "#B23AFC",
+                      "width": 250,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "color": "#c1c1c2",
+                        },
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontFamily": "montserrat-bold",
+                        },
+                      ]
+                    }
+                  >
+                    CREAR CUENTA
+                  </Text>
+                </View>
+                <View
+                  accessible={true}
+                  focusable={false}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#B23AFC",
+                      "borderRadius": 24,
+                      "elevation": 1,
+                      "fontFamily": "montserrat-bold",
+                      "height": 44,
+                      "justifyContent": "center",
+                      "marginTop": 10,
+                      "opacity": 1,
+                      "shadowColor": "#B23AFC",
+                      "width": 250,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "color": "#c1c1c2",
+                        },
+                        false,
+                        false,
+                        undefined,
+                        Object {
+                          "fontFamily": "montserrat-bold",
+                        },
+                      ]
+                    }
+                  >
+                    ¿Ya tienes una cuenta? Inicia sesión
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

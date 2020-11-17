@@ -117,6 +117,7 @@ function AccountStack(props) {
 }
 
 function LogoutStack(props) {
+  
   Alert.alert('Cerrar Sesión', '¿Está seguro que desea cerrar su sesión?', [
     {
       text: 'Si',

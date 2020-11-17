@@ -9,6 +9,7 @@ import LoadingView from 'react-native-loading-view';
 import { getPerfil, getBiblioteca } from '../../Controladores/UsuarioControler';
 import { getRecetasBiblioteca } from '../../Controladores/RecetaControler';
 import { RefreshControl } from 'react-native';
+import * as firebase from 'firebase';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -48,7 +49,7 @@ class Perfil extends React.Component {
     });
   };
 
-  async componentDidMount() {
+  async cargar() {
     //TEMPORIZADOR DE CARGAR
     try {
       await getPerfil(this.onPerfilRecibido);
@@ -59,6 +60,17 @@ class Perfil extends React.Component {
     this.setState({
       loading: false,
     });
+  }
+
+  async cambiarUsuario() {
+    await firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        if(user.uid !== this.state.usuario.usuarioID){
+          console.log('aqui');
+          this.cargar();
+        }
+      }
+    })
   }
 
   renderPerfil = () => {
@@ -167,6 +179,7 @@ class Perfil extends React.Component {
     );
   };
   render() {
+    this.cambiarUsuario();
     return (
       <Block flex center>
         {this.renderPerfil()}
