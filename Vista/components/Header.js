@@ -129,7 +129,7 @@ class Header extends React.Component {
         right
         color="#e63746"
         style={styles.search}
-        placeholder="¿Qué receta buscas?"
+        placeholder="Ingrese el nombre de la receta que busca..."
         placeholderTextColor={'#8b8c89'}
         name='textSearcher'
         value = {this.state.textSearcher}

@@ -4,108 +4,113 @@ import { getRecetasBiblioteca } from '../Controladores/RecetaControler';
 
 import * as firebase from 'firebase';
 
-
 // FUNCION AUMENTAR LA PORCION DE LA RECETA
 export function registerUsuario(usuario: Usuario, password: string, password2: string) {
-  return new Promise(function(resolve, reject) {
-  // VALIDAR FORMULARIO
-  if (
-    usuario.nombre !== '' &&
-    usuario.apellido !== '' &&
-    usuario.usuario !== '' &&
-    usuario.email !== '' &&
-    password !== '' &&
-    password2 !== ''
-  ) {
-    let isEmail = validarEmail(usuario.email);
-    let isPass = validarClave(password, password2);
+  return new Promise(function (resolve, reject) {
+    // VALIDAR FORMULARIO
+    if (
+      usuario.nombre !== '' &&
+      usuario.apellido !== '' &&
+      usuario.usuario !== '' &&
+      usuario.email !== '' &&
+      password !== '' &&
+      password2 !== ''
+    ) {
+      let isEmail = validarEmail(usuario.email);
+      let isPass = validarClave(password, password2);
 
-    // SI PASA VALIDACION REGISTRA AL USUARIO
-    if (isEmail && isPass) {
-      // REVISAR QUE NO HAYA OTRO USUARIO CON EL MISMO USERNAME
-      firebase
-        .firestore()
-        .collection('Usuarios')
-        .where('usuario', '==', usuario.usuario)
-        .get()
-        .then((usuarios) => {
-          if (usuarios.docs.length === 0) {
-            try {
-              firebase
-                .auth()
-                .createUserWithEmailAndPassword(usuario.email, password)
-                .then((user) => {
-                  usuario.usuarioID = user.user?.uid;
-                  firebase
-                    .firestore()
-                    .collection('Usuarios')
-                    .add(usuario)
-                    .then(() => {
-                      firebase
-                        .auth()
-                        .signOut()
-                        .then(() => {
-                          resolve('Su usuario ha sido creado con éxito. Proceda a iniciar sesión.');
-                        });
-                    })
-                    .catch((error) => {
-                      reject('Error, compruebe los datos ingresados e intente nuevamente.');
-                    });
-                })
-                .catch((error) => {
-                  reject('Error, compruebe los datos ingresados e intente nuevamente.');
-                });
-            } catch (error) {
-              reject('Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.');
+      // SI PASA VALIDACION REGISTRA AL USUARIO
+      if (isEmail && isPass) {
+        // REVISAR QUE NO HAYA OTRO USUARIO CON EL MISMO USERNAME
+        firebase
+          .firestore()
+          .collection('Usuarios')
+          .where('usuario', '==', usuario.usuario)
+          .get()
+          .then((usuarios) => {
+            if (usuarios.docs.length === 0) {
+              try {
+                firebase
+                  .auth()
+                  .createUserWithEmailAndPassword(usuario.email, password)
+                  .then((user) => {
+                    usuario.usuarioID = user.user?.uid;
+                    firebase
+                      .firestore()
+                      .collection('Usuarios')
+                      .add(usuario)
+                      .then(() => {
+                        firebase
+                          .auth()
+                          .signOut()
+                          .then(() => {
+                            resolve(
+                              'Su usuario ha sido creado con éxito. Proceda a iniciar sesión.'
+                            );
+                          });
+                      })
+                      .catch((error) => {
+                        reject('Error, compruebe los datos ingresados e intente nuevamente.');
+                      });
+                  })
+                  .catch((error) => {
+                    reject('Error, compruebe los datos ingresados e intente nuevamente.');
+                  });
+              } catch (error) {
+                reject(
+                  'Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.'
+                );
+              }
+            } else {
+              reject('Error, ya hay alguien con ese nombre de usuario.');
             }
-          } else {
-            reject('Error, ya hay alguien con ese nombre de usuario.');
-          }
-        })
-        .catch(() => {
-          reject('Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.')
-        });
+          })
+          .catch(() => {
+            reject(
+              'Error, compruebe su conexión a internet o los datos ingresados e intente nuevamente.'
+            );
+          });
 
-      // MENSAJES DE ERROR
-    } else {
-      if (!isEmail) {
-        reject('Error, email inválido.');
+        // MENSAJES DE ERROR
       } else {
-        if (password.length < 8) {
-          reject('Error, la contraseña debe tener al menos 8 caracteres.');
+        if (!isEmail) {
+          reject('Error, email inválido.');
         } else {
-          reject('Error, las contraseñas no coinciden.');
+          if (password.length < 8) {
+            reject('Error, la contraseña debe tener al menos 8 caracteres.');
+          } else {
+            reject('Error, las contraseñas no coinciden.');
+          }
         }
       }
+    } else {
+      reject('Por favor rellene todos los campos.');
     }
-  } else {
-    reject('Por favor rellene todos los campos.');
-  }
   });
 }
 
 export function loginUsuario(email: string, password: string) {
-  return new Promise(function(resolve, reject) {
-  if (email !== '' && password !== '') {
-    let isEmail = validarEmail(email);
+  return new Promise(function (resolve, reject) {
+    if (email !== '' && password !== '') {
+      let isEmail = validarEmail(email);
 
-    if (isEmail) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          resolve("Bienvenido a Mixo's");
-        })
-        .catch(() => {
-          reject('Error, usuario y clave incorrectos.');
-        });
+      if (isEmail) {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            resolve("Bienvenido a Mixo's");
+          })
+          .catch(() => {
+            reject('Error, usuario y clave incorrectos.');
+          });
+      } else {
+        Alert.alert('Error, email inválido.');
+      }
     } else {
-      Alert.alert('Error, email inválido.');
+      reject('Por favor rellene todos los campos.');
     }
-  } else {
-    reject('Por favor rellene todos los campos.');
-  }
-});
+  });
 }
 
 export function validarClave(clave: string, clave2: string) {
@@ -131,82 +136,104 @@ export function validarEmail(email: string) {
 
 // FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
 export function recuperarContrasena(email: string) {
-  return new Promise(function(resolve, reject) {
-  
-  let isEmail = validarEmail(email);
+  return new Promise(function (resolve, reject) {
+    let isEmail = validarEmail(email);
 
-  if(isEmail){
-    firebase.auth().sendPasswordResetEmail(email).then(() => {
-      resolve('Estimado usuario, se le ha enviado un email para proceder con el cambio de clave.')
-    }).catch(() => {
-      reject('Error, ese email no tiene ningún usuario registrado.');
-    });
-  }else {
-    reject('Por favor instroduzca un email válido.');
-  }
-});
+    if (isEmail) {
+      firebase
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          resolve(
+            'Estimado usuario, se le ha enviado un email para proceder con el cambio de clave.'
+          );
+        })
+        .catch(() => {
+          reject('Error, ese email no tiene ningún usuario registrado.');
+        });
+    } else {
+      reject('Por favor instroduzca un email válido.');
+    }
+  });
 }
 
 export async function getPerfil(pasarPerfil: Function) {
-  let snapshot = await firebase.firestore().collection('Usuarios').where('usuarioID', '==', firebase.auth().currentUser?.uid).get();
+  let snapshot = await firebase
+    .firestore()
+    .collection('Usuarios')
+    .where('usuarioID', '==', firebase.auth().currentUser?.uid)
+    .get();
   let usuario = {};
 
   snapshot.forEach((doc) => {
     usuario = {
-      ...doc.data() as Usuario
+      ...(doc.data() as Usuario),
     };
   });
-  
+
   pasarPerfil(usuario);
 }
 
-//FUNCION PARA RECUPERAR LA BIBLIOTECA DEL USUARIO 
-export async function getBiblioteca(bibliotecaRecibida: Function){
-let id = firebase.auth().currentUser?.uid;
-let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
-let biblioteca: string[] = [];
-
-snapshot.forEach((doc) => {
-  biblioteca = doc.data().biblioteca;
-});
-
-biblioteca = biblioteca.reverse();
-
-bibliotecaRecibida(biblioteca);
-}
-
-// FUNCION PARA COMPARAR SI UNA RECETA ESTA GUARDADA EN LA BIBLIOTECA O NO 
-export async function esFavorito(idRecibido : string, onFavoritoRecibido: Function){
-  let userId = firebase.auth().currentUser?.uid;
-  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', userId).get();
-
+//FUNCION PARA RECUPERAR LA BIBLIOTECA DEL USUARIO
+export async function getBiblioteca(bibliotecaRecibida: Function) {
+  let id = firebase.auth().currentUser?.uid;
+  let snapshot = await firebase
+    .firestore()
+    .collection('Usuarios')
+    .where('usuarioID', '==', id)
+    .get();
   let biblioteca: string[] = [];
 
   snapshot.forEach((doc) => {
     biblioteca = doc.data().biblioteca;
   });
 
-  let flag = false;
+  biblioteca = biblioteca.reverse();
 
-  biblioteca.forEach(idReceta => {
-    if(idReceta == idRecibido){
-      flag = true;
+  bibliotecaRecibida(biblioteca);
+}
+
+// FUNCION PARA COMPARAR SI UNA RECETA ESTA GUARDADA EN LA BIBLIOTECA O NO
+export async function esFavorito(idRecibido: string, onFavoritoRecibido: Function) {
+  let userId = firebase.auth().currentUser?.uid;
+  if (userId) {
+    let snapshot = await firebase
+      .firestore()
+      .collection('Usuarios')
+      .where('usuarioID', '==', userId)
+      .get();
+
+    let biblioteca: string[] = [];
+
+    snapshot.forEach((doc) => {
+      biblioteca = doc.data().biblioteca;
+    });
+
+    let flag = false;
+
+    biblioteca.forEach((idReceta) => {
+      if (idReceta == idRecibido) {
+        flag = true;
+      }
+    });
+
+    if (flag) {
+      onFavoritoRecibido(true);
+    } else {
+      onFavoritoRecibido(false);
     }
-  });
-
-  if(flag){
-    onFavoritoRecibido(true);
-  }else {
-    onFavoritoRecibido(false);
   }
- 
 }
 
 // FUNCION PARA AGREGAR UNA RECETA A LA BIBLIOTECA
-export async function agregarEnBiblioteca(recetaId : string, onFavoritoRecibido: Function){
+export async function agregarEnBiblioteca(recetaId: string, onFavoritoRecibido: Function) {
   let userId = firebase.auth().currentUser?.uid;
-  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', userId).get();
-  
+  let snapshot = await firebase
+    .firestore()
+    .collection('Usuarios')
+    .where('usuarioID', '==', userId)
+    .get();
+
   let biblioteca: string[] = [];
   let id: string = '';
 
@@ -217,19 +244,27 @@ export async function agregarEnBiblioteca(recetaId : string, onFavoritoRecibido:
 
   biblioteca.push(recetaId);
 
-  firebase.firestore().collection('Usuarios').doc(id).update({
-    biblioteca: biblioteca
-  }).then(() => {
-    esFavorito(recetaId, onFavoritoRecibido);
-  }).catch((error) => console.log(error)
-  );
-
+  firebase
+    .firestore()
+    .collection('Usuarios')
+    .doc(id)
+    .update({
+      biblioteca: biblioteca,
+    })
+    .then(() => {
+      esFavorito(recetaId, onFavoritoRecibido);
+    })
+    .catch((error) => console.log(error));
 }
 
 // FUNCION PARA ELIMINAR UNA RECETA DE LA BIBLIOTECA
-export async function eliminarEnBiblioteca(recetaId : string, onFavoritoRecibido: Function){
+export async function eliminarEnBiblioteca(recetaId: string, onFavoritoRecibido: Function) {
   let userId = firebase.auth().currentUser?.uid;
-  let snapshot= await firebase.firestore().collection('Usuarios').where('usuarioID', '==', userId).get();
+  let snapshot = await firebase
+    .firestore()
+    .collection('Usuarios')
+    .where('usuarioID', '==', userId)
+    .get();
 
   let biblioteca: string[] = [];
   let id: string = '';
@@ -239,12 +274,17 @@ export async function eliminarEnBiblioteca(recetaId : string, onFavoritoRecibido
     id = doc.id;
   });
 
-  biblioteca = biblioteca.filter(id => id !== recetaId);
+  biblioteca = biblioteca.filter((id) => id !== recetaId);
 
-  firebase.firestore().collection('Usuarios').doc(id).update({
-    biblioteca: biblioteca
-  }).then(() => {
-    esFavorito(recetaId, onFavoritoRecibido);
-  }).catch((error) => console.log(error)
-  );
+  firebase
+    .firestore()
+    .collection('Usuarios')
+    .doc(id)
+    .update({
+      biblioteca: biblioteca,
+    })
+    .then(() => {
+      esFavorito(recetaId, onFavoritoRecibido);
+    })
+    .catch((error) => console.log(error));
 }

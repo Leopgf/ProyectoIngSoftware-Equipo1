@@ -7,10 +7,14 @@ import { Button } from '../components';
 import { nowTheme } from '../constants';
 import { getDetallesReceta, getCategoriaReceta } from '../../Controladores/RecetaControler';
 import { aumentarPorcion, disminuirPorcion } from '../../Controladores/ConversorControler';
-import { esFavorito, agregarEnBiblioteca, eliminarEnBiblioteca } from '../../Controladores/UsuarioControler';
+import {
+  esFavorito,
+  agregarEnBiblioteca,
+  eliminarEnBiblioteca,
+} from '../../Controladores/UsuarioControler';
 import LoadingView from 'react-native-loading-view';
 import Moment from 'moment';
-import { HeaderHeight } from '../constants/utils';
+import * as firebase from 'firebase';
 
 //CONST
 const { width, height } = Dimensions.get('screen');
@@ -21,6 +25,7 @@ class DetallesReceta extends React.Component {
   //TRAER DETALLES
   state = {
     loading: true,
+    user: false,
     detalles: {
       categorias: [],
       pasos: [],
@@ -42,13 +47,12 @@ class DetallesReceta extends React.Component {
     });
   };
 
-  
   onCategoriaRecetas = async (detalles) => {
     await this.setState({
       detalles: detalles,
     });
   };
-  
+
   onFavoritoRecibido = async (favorito) => {
     await this.setState({
       isFavorito: favorito,
@@ -58,7 +62,7 @@ class DetallesReceta extends React.Component {
   async componentDidMount() {
     try {
       await getDetallesReceta(this.onDetallesRecetas, this.state.id);
-      await esFavorito(this.state.id, this.onFavoritoRecibido);
+      await this.isUser();
     } catch (error) {
       console.error(error);
     }
@@ -68,6 +72,17 @@ class DetallesReceta extends React.Component {
     this.setState({
       porcion: this.state.detalles.porcionDefecto,
       ingredientesCambiados: this.state.detalles.ingredientes,
+    });
+  }
+
+  async isUser() {
+    let user = await firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user: true });
+        esFavorito(this.state.id, this.onFavoritoRecibido);
+      } else {
+        this.setState({ user: false });
+      }
     });
   }
 
@@ -89,11 +104,11 @@ class DetallesReceta extends React.Component {
 
   agregarFavorito = () => {
     agregarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
-  }
+  };
 
   eliminarFavorito = () => {
     eliminarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
-  }
+  };
 
   renderDetallesReceta = () => {
     return (
@@ -148,57 +163,64 @@ class DetallesReceta extends React.Component {
             <ScrollView showsVerticalScrollIndicator={false}>
               <Block flex style={{ marginTop: 20 }}>
                 <Block>
-                  {/* OJOOOOO BOTONES PARA CAMBIAR FAV o NO FAV TIENE QUE BUSCAR SUSTITUIR EN LUGAR DEL PRIMERO EL SEGUNDO OJOOO  */}
-                  <Block
-                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 225 }}
-                  >
-                    <Text
-                      style={{
-                        color: '#2c2c2c',
-                        fontSize: 11,
-                        marginTop: 15,
-                        marginBottom: 15,
-                        zIndex: 2,
-                        marginTop: 18,
-                      }}
+                  {this.state.user ? (
+                    <Block
+                      style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 225 }}
                     >
-                      Agregar a Favoritos
-                    </Text>
-                    {this.state.isFavorito ? (
-                      <GaButton
-                        round
-                        onlyIcon
-                        shadowless
-                        icon="star"
-                        iconFamily="Font-Awesome"
-                        iconColor={'#E63746'}
-                        iconSize={nowTheme.SIZES.BASE * 1.4}
-                        color={'#FFFFFF'}
-                        style={[styles.social, styles.shadow]}
-                        onPress = {() => {this.eliminarFavorito()}}
-                      />
-                    ) : (
-                      <GaButton
-                        round
-                        onlyIcon
-                        shadowless
-                        icon="star"
-                        iconFamily="Font-Awesome"
-                        iconColor={'#c2c2c1'}
-                        iconSize={nowTheme.SIZES.BASE * 1.4}
-                        color={'#ffffff'}
-                        style={[styles.social, styles.shadow]}
-                        onPress = {() => {this.agregarFavorito()}}
-                      />
-                    )}
-                  </Block>
+                      <Text
+                        style={{
+                          color: '#2c2c2c',
+                          fontSize: 11,
+                          marginTop: 15,
+                          marginBottom: 15,
+                          zIndex: 2,
+                          marginTop: 18,
+                        }}
+                      >
+                        Agregar a Favoritos
+                      </Text>
+                      {this.state.isFavorito ? (
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="star"
+                          iconFamily="Font-Awesome"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#FFFFFF'}
+                          style={[styles.social, styles.shadow]}
+                          onPress={() => {
+                            this.eliminarFavorito();
+                          }}
+                        />
+                      ) : (
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="star"
+                          iconFamily="Font-Awesome"
+                          iconColor={'#c2c2c1'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#ffffff'}
+                          style={[styles.social, styles.shadow]}
+                          onPress={() => {
+                            this.agregarFavorito();
+                          }}
+                        />
+                      )}
+                    </Block>
+                  ) : (
+                    <Block flex style={{ marginTop: 20 }}></Block>
+                  )}
 
                   <Block
-                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -37 }}
+                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -40 }}
                   >
                     {/* CATEGORIAS DE LA RECETA */}
                     <Text
-                      style={{ textAlign: 'left', fontSize: 15, marginTop: 5, marginBottom: 30 }}
+                      style={{ textAlign: 'left', fontSize: 15, marginTop: 5, marginBottom: 10 }}
                     >
                       {'Categorías: '}
                     </Text>
@@ -211,7 +233,7 @@ class DetallesReceta extends React.Component {
                               textAlign: 'left',
                               fontSize: 15,
                               marginTop: 5,
-                              marginBottom: 30,
+                              marginBottom: 10,
                             }}
                           >
                             {categoria + '.'}
@@ -225,7 +247,7 @@ class DetallesReceta extends React.Component {
                               textAlign: 'left',
                               fontSize: 15,
                               marginTop: 5,
-                              marginBottom: 30,
+                              marginBottom: 10,
                             }}
                           >
                             {categoria + ', '}
@@ -286,7 +308,7 @@ class DetallesReceta extends React.Component {
                     <Text
                       style={{
                         textAlign: 'center',
-                        with: 400,
+                        width: 400,
                         height: 10,
                         color: '#0f1e2e',
                         fontSize: 10,
@@ -300,12 +322,6 @@ class DetallesReceta extends React.Component {
                       porciones.
                     </Text>
                   </Block>
-
-                  <Text style={styles.subtitle}>DESCRIPCIÓN</Text>
-
-                  <Text size={16} muted style={styles.text}>
-                    {this.state.detalles.descripcion}
-                  </Text>
 
                   <Text style={styles.subtitle}>INGREDIENTES</Text>
 
@@ -345,21 +361,15 @@ class DetallesReceta extends React.Component {
                 </Block>
               </Block>
 
-              {/* <Block row style={{ paddingVertical: 14, paddingHorizontal: 15 }} space="between">
-                <Text bold size={16} color="#0f1e2e" style={{ marginTop: 3 }}>
-                  Album
-                </Text>
-                <Button small color="transparent">
-                  View all
-                </Button>
-              </Block>
+              <Text style={styles.subtitle}>MÁS INFORMACIÓN SOBRE LA RECETA</Text>
 
-              <Block style={{ paddingBottom: -HeaderHeight * 2, paddingHorizontal: 15 }}>
-                <Block row space="between" style={{ flexWrap: 'wrap' }}>
-                  IMAGENES AQUI 
-                </Block>
+              <Text size={16} muted style={styles.text}>
+                {this.state.detalles.descripcion}
+              </Text>
+
+              <Block flex row>
+                <Button>DUDAS Y COMENTARIOS</Button>
               </Block>
-               */}
             </ScrollView>
           </Block>
         </Block>
