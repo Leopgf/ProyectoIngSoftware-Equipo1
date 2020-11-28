@@ -102,6 +102,10 @@ class DetallesReceta extends React.Component {
     });
   };
 
+  handleReviews = () => {
+    this.props.navigation.navigate('Reviews',{recetaID: this.state.detalles.recetaID});
+  }
+
   agregarFavorito = () => {
     agregarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
   };
@@ -368,7 +372,7 @@ class DetallesReceta extends React.Component {
               </Text>
 
               <Block flex row>
-                <Button>DUDAS Y COMENTARIOS</Button>
+                <Button onPress= {() => this.handleReviews()}>VER REVIEWS</Button>
               </Block>
             </ScrollView>
           </Block>

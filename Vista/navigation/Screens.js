@@ -9,7 +9,7 @@ import Pro from '../screens/noUsadas/Pro';
 import Perfil from '../screens/Perfil';
 import Register from '../screens/RegisterAndLogin';
 import Components from '../screens/noUsadas/Components';
-import Articles from '../screens/noUsadas/Articles';
+import Reviews from '../screens/Reviews';
 import Onboarding from '../screens/Onboarding';
 // drawer
 import CustomDrawerContent from './Menu';
@@ -18,6 +18,7 @@ import { Header, Icon } from '../components';
 import { nowTheme, tabs } from '../constants';
 
 import * as firebase from 'firebase';
+import AddReview from '../screens/AddReview';
 
 const { width } = Dimensions.get('screen');
 
@@ -94,6 +95,46 @@ function DetallesRecetaStack(props) {
   );
 }
 
+function AddReviewStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Escribir Review" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Escribir Review"
+        component={() => <AddReview {...props} />}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              back
+              title="Escribe tu review"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ReviewsStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Reviews" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Reviews"
+        component={() => <Reviews {...props} />}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header back title="Reviews de la Receta" navigation={navigation} scene={scene} />
+          ),
+          cardStyle: { backgroundColor: '#FFFFFF' },
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function AccountStack(props) {
   return (
     <Stack.Navigator initialRouteName="Iniciar Sesión" mode="card" headerMode="screen">
@@ -117,7 +158,6 @@ function AccountStack(props) {
 }
 
 function LogoutStack(props) {
-  
   Alert.alert('Cerrar Sesión', '¿Está seguro que desea cerrar su sesión?', [
     {
       text: 'Si',
@@ -191,22 +231,6 @@ function PerfilStack(props) {
 }
 
 // Renderizados que no estamos usando
-function ArticlesStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="Articles" mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Articles"
-        component={Articles}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Articles" navigation={navigation} scene={scene} />
-          ),
-          backgroundColor: '#FFFFFF',
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 // Renderizado de la app
 function AppStack(props) {
@@ -245,6 +269,8 @@ function AppStack(props) {
       <Drawer.Screen name="Perfil" component={PerfilStack}/>
       <Drawer.Screen name="Cerrar Sesión" component={LogoutStack}/>
       <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
+      <Drawer.Screen name="Reviews" component={ReviewsStack} />
+      <Drawer.Screen name="Escribir Review" component={AddReviewStack} />
     </Drawer.Navigator>
   );
 }
