@@ -17,13 +17,17 @@ function getInitialNav(){
     if(user){
       screens = [
         "Inicio",
+        "Conversor",
         "Perfil",
-        "Cerrar Sesión"
+        "Cerrar Sesión",
+        
       ];
     }else {
       screens = [
         "Inicio",
+        "Conversor",
         "Iniciar Sesión",
+        
       ];
     }
   })
