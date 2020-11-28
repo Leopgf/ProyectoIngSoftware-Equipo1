@@ -169,7 +169,7 @@ class DetallesReceta extends React.Component {
                 <Block>
                   {this.state.user ? (
                     <Block
-                      style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 225 }}
+                      style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 215 }}
                     >
                       <Text
                         style={{
@@ -220,7 +220,7 @@ class DetallesReceta extends React.Component {
                   )}
 
                   <Block
-                    style={{ flexDirection: 'row', alignSelf: 'flex-between', marginTop: -40 }}
+                    style={{ flexDirection: 'row', alignSelf: 'flex-between' }}
                   >
                     {/* CATEGORIAS DE LA RECETA */}
                     <Text
