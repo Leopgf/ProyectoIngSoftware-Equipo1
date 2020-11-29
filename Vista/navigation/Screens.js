@@ -20,6 +20,7 @@ import { nowTheme, tabs } from '../constants';
 import * as firebase from 'firebase';
 import AddReview from '../screens/AddReview';
 import Conversor from '../screens/Conversor';
+import AddReceta from '../screens/AddReceta';
 
 const { width } = Dimensions.get('screen');
 
@@ -145,6 +146,24 @@ function ConversorStack(props) {
         options={{
           header: ({ navigation, scene }) => (
             <Header back title="Conversor de unidades" navigation={navigation} scene={scene} />
+          ),
+          cardStyle: { backgroundColor: '#FFFFFF' },
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function AddRecetaStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="AddReceta" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="AddReceta"
+        component={AddReceta}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header back title="Publicar Receta" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: '#FFFFFF' },
           headerTransparent: true,
@@ -291,6 +310,7 @@ function AppStack(props) {
       <Drawer.Screen name="Reviews" component={ReviewsStack} />
       <Drawer.Screen name="Escribir Review" component={AddReviewStack} />
       <Drawer.Screen name="Conversor" component={ConversorStack} />
+      <Drawer.Screen name="Publicar Receta" component={AddRecetaStack} />
     </Drawer.Navigator>
   );
 }
