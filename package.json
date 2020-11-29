@@ -25,6 +25,7 @@
     "expo": "^37.0.0",
     "expo-asset": "~8.1.5",
     "expo-font": "~8.1.0",
+    "expo-image-picker": "~8.1.0",
     "firebase": "^7.24.0",
     "galio-framework": "^0.6.3",
     "moment": "^2.29.1",
@@ -38,7 +39,8 @@
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
-    "react-native-svg": "11.0.1"
+    "react-native-svg": "11.0.1",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@types/react-native": "^0.63.35",
