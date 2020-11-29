@@ -1,4 +1,5 @@
 import Usuario from '../Modelos/Usuario';
+import Receta from "../Modelos/Receta";
 import { Alert } from 'react-native';
 import { getRecetasBiblioteca } from '../Controladores/RecetaControler';
 
@@ -287,4 +288,32 @@ export async function eliminarEnBiblioteca(recetaId: string, onFavoritoRecibido:
       esFavorito(recetaId, onFavoritoRecibido);
     })
     .catch((error) => console.log(error));
+}
+
+//FUNCION PARA QUE EL USUARIO PUEDA AGREGAR UNA RECETA 
+export async function agregarReceta(receta: Receta) {
+  let userId = firebase.auth().currentUser?.uid;
+  return new Promise(function (resolve, reject) {
+    if (
+      receta.nombre !== '' &&
+      receta.descripcion !== '' &&
+      receta.porcionDefecto !== null &&
+      receta.unidadPorcion !== '' &&
+      receta.categorias !== null &&
+      receta.pasos !== null &&
+      receta.imagen !== '' &&
+      receta.ingredientes !== null
+    ) {
+      receta.usuarioID = userId;
+      firebase
+        .firestore()
+        .collection('Recetas')
+        .add({ receta })
+        .then(() => {
+          resolve('Receta creada con exito')
+        }).catch((error) => console.log(error));
+    } else {
+      reject('Por favor rellene todos los campos.');
+    }
+  })
 }
