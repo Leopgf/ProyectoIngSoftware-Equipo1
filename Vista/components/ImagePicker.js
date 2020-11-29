@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Image, View, Platform, Dimensions } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
 import { Button } from 'galio-framework';
-
-import nowTheme from '../constants/Theme';
 
 export default function ImagePickerExample({onImagePicked}) {
 

@@ -2,14 +2,16 @@
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import PropTypes from 'prop-types';
+import { Button as GaButton } from 'galio-framework';
 import { StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { nowTheme } from '../constants';
-import { color } from 'react-native-reanimated';
+
+import * as firebase from 'firebase';
 
 //CLASE DE CARD
 class Card extends React.Component {
-  render() {
+   render() {
     const {
       navigation,
       item,
@@ -32,86 +34,183 @@ class Card extends React.Component {
       styles.shadow,
     ];
 
-    return (
-      <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
-          <Block flex style={imgContainer}>
-            <Image
-              resizeMode="cover"
-              source={item.imagen && { uri: item.imagen }}
-              style={imageStyles}
-            />
-          </Block>
-        </TouchableWithoutFeedback>
+    var user = '';
 
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
-          <Block flex space="between" style={styles.cardDescription}>
-            <Block flex>
-              <Block flex style={{ justifyContent: 'center' }}>
-                {item.nombre && !horizontal ? (
-                  <Text size={24} style={styles.cardTitle} color={'#e63746'}>
-                    {/*TITULO DE LA RECETA*/}
-                    {item.nombre}
-                  </Text>
-                ) : (
-                  <Text size={24} style={styles.cardTitle2} color={'#e63746'}>
-                    {/*TITULO DE LA RECETA*/}
-                    {item.nombre}
-                  </Text>
-                )}
+    if(item.userID){
+      firebase.firestore().collection('Usuarios').where('usuarioID', '==', item.userID).get().then((usuarios) => {
+
+        usuarios.forEach((usuario) => {
+          user = usuario.data().usuario;
+        });
+      });
+    }
+
+    if(item.nombre){
+      return (
+        <Block row={horizontal} card flex style={cardContainer}>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
+            <Block flex style={imgContainer}>
+              <Image
+                resizeMode="cover"
+                source={item.imagen && { uri: item.imagen }}
+                style={imageStyles}
+              />
+            </Block>
+          </TouchableWithoutFeedback>
+  
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('DetallesReceta', params)}>
+            <Block flex space="between" style={styles.cardDescription}>
+              <Block flex>
+                <Block flex style={{ justifyContent: 'center' }}>
+                  {item.nombre && !horizontal ? (
+                    <Text size={24} style={styles.cardTitle} color={'#e63746'}>
+                      {/*TITULO DE LA RECETA*/}
+                      {item.nombre}
+                    </Text>
+                  ) : (
+                    <Text size={24} style={styles.cardTitle2} color={'#e63746'}>
+                      {/*TITULO DE LA RECETA*/}
+                      {item.nombre}
+                    </Text>
+                  )}
+                </Block>
+                {item.subtitle ? (
+                  <Block flex center>
+                    <Text
+                      style={{ fontFamily: 'montserrat-regular' }}
+                      size={32}
+                      color={nowTheme.COLORS.BLACK}
+                    >
+                      {item.subtitle}
+                    </Text>
+                  </Block>
+                ) : null}
+                {/*DESCRIPCION RECETA*/}
+                {item.descripcion && !horizontal ? (
+                  <Block flex center>
+                    <Text
+                      style={{ fontFamily: 'montserrat-regular', textAlign: 'left', padding: 15 }}
+                      size={14}
+                      color={'#0f1e2e'}
+                    >
+                      {item.descripcion}
+                    </Text>
+                  </Block>
+                ) : null}
+                {item.body ? (
+                  <Block flex left>
+                    <Text
+                      style={{ fontFamily: 'montserrat-regular' }}
+                      size={12}
+                      color={nowTheme.COLORS.TEXT}
+                    >
+                      {item.body}
+                    </Text>
+                  </Block>
+                ) : null}
               </Block>
-              {item.subtitle ? (
-                <Block flex center>
+              {ctaRight ? (
+                <Block right={ctaRight ? true : false}>
                   <Text
-                    style={{ fontFamily: 'montserrat-regular' }}
-                    size={32}
-                    color={nowTheme.COLORS.BLACK}
-                  >
-                    {item.subtitle}
-                  </Text>
-                </Block>
-              ) : null}
-              {/*DESCRIPCION RECETA*/}
-              {item.descripcion && !horizontal ? (
-                <Block flex center>
-                  <Text
-                    style={{ fontFamily: 'montserrat-regular', textAlign: 'left', padding: 15 }}
-                    size={14}
-                    color={'#0f1e2e'}
-                  >
-                    {item.descripcion}
-                  </Text>
-                </Block>
-              ) : null}
-              {item.body ? (
-                <Block flex left>
-                  <Text
-                    style={{ fontFamily: 'montserrat-regular' }}
+                    style={styles.articleButton}
                     size={12}
-                    color={nowTheme.COLORS.TEXT}
+                    muted={!ctaColor}
+                    color={ctaColor || nowTheme.COLORS.ACTIVE}
+                    bold
                   >
-                    {item.body}
+                    {item.cta}
                   </Text>
                 </Block>
               ) : null}
             </Block>
-            {ctaRight ? (
-              <Block right={ctaRight ? true : false}>
-                <Text
-                  style={styles.articleButton}
-                  size={12}
-                  muted={!ctaColor}
-                  color={ctaColor || nowTheme.COLORS.ACTIVE}
-                  bold
-                >
-                  {item.cta}
-                </Text>
+          </TouchableWithoutFeedback>
+        </Block>
+      );
+    }else{
+        return (
+          <Block row={horizontal} card flex style={cardContainer}>
+            <Block flex style={imgContainer}>
+              <Image
+                resizeMode="cover"
+                source={item.imagen && { uri: item.imagen }}
+                style={imageStyles}
+              />
+            </Block>
+  
+            <Block flex space="between" style={styles.cardDescription}>
+              <Block flex>
+                <Block flex style={{ justifyContent: 'center' }}>
+                  {item.titulo && !horizontal ? (
+                    <Text size={24} style={styles.cardTitle} color={'#e63746'}>
+                      {/*TITULO DE LA REVIEW*/}
+                      {item.titulo}
+                    </Text>
+                  ) : (
+                    <Text size={24} style={styles.cardTitle2} color={'#e63746'}>
+                      {/*TITULO DE LA REVIEW*/}
+                      {item.titulo}
+                    </Text>
+                  )}
+                </Block>
+                {/*DESCRIPCION REVIEW*/}
+                {item.mensaje ? (
+                  <Block flex center>
+                    <Text
+                      style={{ fontFamily: 'montserrat-regular', textAlign: 'left', padding: 15 }}
+                      size={14}
+                      color={'#0f1e2e'}
+                    >
+                      {item.mensaje}
+                    </Text>
+                  </Block>
+                ) : null}
+                {item.userID && item.valoracion ? (
+                  <Block flex left>
+                    <Text
+                      style={{ fontFamily: 'montserrat-regular' }}
+                      size={12}
+                      color={nowTheme.COLORS.TEXT}
+                    >
+                      {item.userID}
+                    </Text>
+                    <Text
+                      style={{ fontFamily: 'montserrat-regular' }}
+                      size={12}
+                      color={nowTheme.COLORS.TEXT}
+                    >
+                      {item.valoracion}
+                    </Text>
+                    <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="star"
+                          iconFamily="Font-Awesome"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#FFFFFF'}
+                          style={[styles.social, styles.shadow]}
+                        />
+                  </Block>
+                ) : null}
               </Block>
-            ) : null}
+              {ctaRight ? (
+                <Block right={ctaRight ? true : false}>
+                  <Text
+                    style={styles.articleButton}
+                    size={12}
+                    muted={!ctaColor}
+                    color={ctaColor || nowTheme.COLORS.ACTIVE}
+                    bold
+                  >
+                    {item.cta}
+                  </Text>
+                </Block>
+              ) : null}
+            </Block>
           </Block>
-        </TouchableWithoutFeedback>
-      </Block>
-    );
+        );
+    }
   }
 }
 
