@@ -1,7 +1,9 @@
 import Receta from '../Modelos/Receta';
 import CategoriaReceta from '../Modelos/CategoriaReceta';
+import Review from '../Modelos/Review';
 
 import * as firebase from 'firebase';
+
 
 // FUNCION PARA RECUPERAR LAS RECETAS PARA LA FEED
 export async function getRecetas(recetasRecibidas: Function, limit: number) {
@@ -135,4 +137,34 @@ export async function getRecetasFiltroCategoria(recetasRecibidas: Function, idCa
 
   }
 }  
+
+export async function agregarReview(review: Review) {
+  return new Promise(function (resolve, reject) {
+    if(review.imagen === '' || review.titulo === '' || review.mensaje === '' || review.valoracion === 0){
+      reject('Error, por favor rellene todos los campos.');
+    }else{
+      const nombreImagen = review.imagen.split('/ImagePicker/').pop();
+      
+      var storageRef = firebase.storage().ref(nombreImagen);
+      
+      storageRef.putFile(review.imagen).then(() =>{
+        storageRef.getDownloadURL().then((imagen) => {
+          review.imagen = imagen;
+          firebase.firestore().collection('Reviews').add(review).then(() => {
+            resolve(
+              'Review publicada con éxito.'
+            );
+          }).catch(() => {
+            reject('Error de conexión, intente nuevamente');
+          });
+        }).catch(() => {
+          reject('Error de conexión, intente nuevamente');
+        });
+      }).catch(() => {
+        reject('Error, intente nuevamente')
+      });
+
+    }
+  });
+}
  

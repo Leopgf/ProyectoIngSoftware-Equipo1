@@ -8,14 +8,19 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
 import { Button, Icon, Input } from '../components';
 import { Images, nowTheme } from '../constants';
+import ImagePickerExample from '../components/ImagePicker';
+import { ScrollView } from 'react-native-gesture-handler';
+import ModalDropdown from 'react-native-modal-dropdown';
 
-//AQUI LO IMPORTO PERO DICE QUE NO SILVE AUSILIO 
-import { Picker } from 'react-native';
+import { agregarReview } from '../../Controladores/RecetaControler';
+import Review from '../../Modelos/Review';
+import * as firebase from 'firebase';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -24,13 +29,52 @@ const DismissKeyboard = ({ children }) => (
 );
 
 class AddReview extends React.Component {
-  state = {
-    recetaID: this.props.route.params.recetaID,
-    valoracion: [0, 1, 2, 3, 4, 5],
-  };
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      recetaID: this.props.route.params.recetaID,
+      valoracion: 0,
+      titulo: '',
+      mensaje: '',
+      imagen: '',
+    };
+    this._dropdown_select = this._dropdown_select.bind(this)
+}
+
+_dropdown_select(event){
+  this.setState({valoracion: event.target.index + 1});
+}
 
   async componentDidMount() {
     console.log(this.props.route.params.recetaID);
+  }
+
+  setImagen = (uri) => {
+    this.setState({ imagen: uri.uri });
+  };
+
+  async addReview() {
+    // Publicar review
+    const review = {
+      recetaID: this.state.recetaID,
+      userID: firebase.auth().currentUser.uid,
+      imagen: this.state.imagen,
+      titulo: this.state.titulo,
+      mensaje: this.state.mensaje,
+      valoracion: parseInt(this.state.valoracion) + 1,
+      fecha: new Date(),
+      likes: 0,
+    };
+
+    await agregarReview(review)
+      .then((resolve) => {
+        Alert.alert(resolve);
+        this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
   }
 
   render() {
@@ -44,77 +88,84 @@ class AddReview extends React.Component {
           >
             <Block flex middle>
               <Block style={styles.registerContainer}>
-                <Block flex space="evenly">
-                  <Block flex={0.8} middle>
-                    <Block middle>
-                      <Text
-                        style={{
-                          fontFamily: 'montserrat-bold',
-                          textAlign: 'center',
-                          fontWeight: '500',
-                        }}
-                        color="#0f1e2e"
-                        size={24}
-                      >
-                        Escribe tu review de la receta
-                      </Text>
-                      <Block flex space="between">
-                        <Block>
-                          <Block center width={width * 0.8}>
-                            <Input
-                              placeholder="Titulo"
-                              style={styles.inputs}
-                              // onChangeText={(email) => this.setState({ email })}
-                              iconContent={<Icon size={18} name="email" family="ArgonExtra" />}
-                            />
-                            <Input
-                              placeholder="Mensaje"
-                              style={styles.inputs}
-                              // onChangeText={(email) => this.setState({ email })}
-                              iconContent={<Icon size={18} name="email" family="ArgonExtra" />}
-                            />
-                            {/* CRASHEA LA APP NO SE POR QUE */}
-                            <Picker
-                              selectedValue={this.state.valoracion[0]}
-                              style={{ height: 50, width: 100 }}
-                              onValueChange={(itemValue, itemIndex) =>
-                                this.setState({ valoracion: itemValue })
-                              }
-                            >
-                              {
-                                this.state.valoracion.map((punto) => 
-                                <Picker.Item label={punto} value={punto} />
-                                )
-                              }
-                            </Picker>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  <Block flex space="evenly">
+                    <Block flex={0.8} middle>
+                      <Block middle>
+                        <Text
+                          style={{
+                            fontFamily: 'montserrat-bold',
+                            textAlign: 'center',
+                            fontWeight: '500',
+                          }}
+                          color="#0f1e2e"
+                          size={24}
+                        >
+                          Escribe tu review de la receta
+                        </Text>
+                        <Block flex space="between">
+                          <Block>
+                            <Block center width={width * 0.8}>
+                              <Block flex={1} style={{ marginTop: 20, marginBottom: 20 }} middle>
+                                <ImagePickerExample onImagePicked={this.setImagen} />
+                              </Block>
+                              <Block>
+                                <Input
+                                  placeholder="Titulo"
+                                  style={styles.inputs}
+                                  onChangeText={(titulo) => this.setState({ titulo })}
+                                  iconContent={
+                                    <Icon size={18} name="message" family="ArgonExtra" />
+                                  }
+                                />
+                                <Input
+                                  placeholder="Mensaje"
+                                  style={styles.inputs}
+                                  onChangeText={(mensaje) => this.setState({ mensaje })}
+                                  iconContent={
+                                    <Icon size={18} name="message" family="ArgonExtra" />
+                                  }
+                                />
+                                <Text>Valoración:</Text>
+                                <ModalDropdown
+                                  ref="dropdown"
+                                  defaultValue={'Seleccione'}
+                                  textStyle={styles.dropdownText}
+                                  style={styles.dropdown}
+                                  dropdownStyle={styles.dropdownOption}
+                                  options={[1, 2, 3, 4, 5]}
+                                  onSelect = { (value) => this.setState({valoracion: (value)})}
+                                />
+                              </Block>
+                            </Block>
                           </Block>
-                        </Block>
-                        <Block center>
-                          <Button
-                            style={{
-                              fontFamily: 'montserrat-bold',
-                              borderRadius: nowTheme.SIZES.BASE * 1.5,
-                              width: 200,
-                              marginBottom: 30,
-                              marginTop: 30,
-                            }}
-                            color="primary"
-                            round
-                            // onPress={() => this.login()}
-                          >
-                            <Text
-                              style={{ fontFamily: 'montserrat-bold' }}
-                              size={14}
-                              color={nowTheme.COLORS.WHITE}
+                          <Block center>
+                            <Button
+                              style={{
+                                fontFamily: 'montserrat-bold',
+                                borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                width: 200,
+                                marginBottom: 30,
+                                marginTop: 30,
+                              }}
+                              color="primary"
+                              round
+                              onPress={() => this.addReview()}
                             >
-                              Publicar
-                            </Text>
-                          </Button>
+                              <Text
+                                style={{ fontFamily: 'montserrat-bold' }}
+                                size={14}
+                                color={nowTheme.COLORS.WHITE}
+                              >
+                                Publicar
+                              </Text>
+                            </Button>
+                          </Block>
                         </Block>
                       </Block>
                     </Block>
                   </Block>
-                </Block>
+                </ScrollView>
               </Block>
             </Block>
           </ImageBackground>
@@ -150,6 +201,34 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 1,
     overflow: 'hidden',
+  },
+  dropdown: {
+    alignSelf: 'center',
+    width: width / 4,
+    height: height / 18,
+    marginTop: 10,
+    alignItems: 'center',
+    right: 8,
+    borderWidth: 0,
+    borderRadius: 15,
+    backgroundColor: '#e63746',
+  },
+
+  dropdownOption: {
+    width: width / 5,
+    alignItems: 'center',
+    borderColor: '#e63746',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderRadius: 3,
+  },
+  dropdownText: {
+    marginVertical: 10,
+    marginHorizontal: 6,
+    fontSize: 18,
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
   socialConnect: {
     backgroundColor: nowTheme.COLORS.WHITE,
