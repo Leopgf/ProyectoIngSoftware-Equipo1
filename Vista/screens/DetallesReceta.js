@@ -372,7 +372,14 @@ class DetallesReceta extends React.Component {
               </Text>
 
               <Block flex row>
-                <Button onPress= {() => this.handleReviews()}>VER REVIEWS</Button>
+                <Button  
+                primary
+                style={{
+                  borderRadius: nowTheme.SIZES.BASE * 1.5,
+                  marginTop: 20,
+                }} onPress= {() => this.handleReviews()}>VER REVIEWS</Button>
+              </Block>
+              <Block flex row style={{ marginBottom: 30 }}>
               </Block>
             </ScrollView>
           </Block>
