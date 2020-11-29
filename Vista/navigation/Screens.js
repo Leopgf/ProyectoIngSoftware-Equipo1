@@ -145,9 +145,13 @@ function ConversorStack(props) {
         component={Conversor}
         options={{
           header: ({ navigation, scene }) => (
-            <Header back title="Conversor de unidades" navigation={navigation} scene={scene} />
+            <Header
+              transparent
+              title="Conversor de Unidades"
+              navigation={navigation}
+              scene={scene}
+            />
           ),
-          cardStyle: { backgroundColor: '#FFFFFF' },
           headerTransparent: true,
         }}
       />
