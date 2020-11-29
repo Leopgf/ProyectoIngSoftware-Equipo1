@@ -157,9 +157,9 @@ function ConversorStack(props) {
 
 function AddRecetaStack(props) {
   return (
-    <Stack.Navigator initialRouteName="AddReceta" mode="card" headerMode="screen">
+    <Stack.Navigator initialRouteName="Publicar Receta" mode="card" headerMode="screen">
       <Stack.Screen
-        name="AddReceta"
+        name="Publicar Receta"
         component={AddReceta}
         options={{
           header: ({ navigation, scene }) => (

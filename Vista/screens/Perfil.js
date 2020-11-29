@@ -24,7 +24,7 @@ class Perfil extends React.Component {
   };
 
   handleAddReview = () => {
-    this.props.navigation.navigate('AddReceta');
+    this.props.navigation.navigate('Publicar Receta');
   }
 
   onPerfilRecibido = (usuario) => {
