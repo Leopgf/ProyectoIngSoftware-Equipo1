@@ -317,3 +317,34 @@ export async function agregarReceta(receta: Receta) {
     }
   })
 }
+
+// BORRAR RECETAS
+export async function eliminarReceta(recetaId: string){
+  firebase
+  .firestore()
+  .collection('Recetas')
+  .doc(recetaId)
+  .delete()
+  .then( () =>{
+    Alert.alert('Receta eliminada')
+  })
+}
+
+//FUNCION PARA RECUPERAR LAS RECETAS DEL USUSARIO
+export async function getRecetasUsuarios(recetasRecibidas: Function) {
+  let userId = firebase.auth().currentUser?.uid;
+  let recetas: Receta[] = [];
+  let snapshot = await firebase.firestore().collection('Recetas').where('usuarioID', '==', userId).get();  
+
+  snapshot.forEach((doc) => {
+    
+    const id = doc.id;
+    let receta = { recetaID: id, ...(doc.data() as Receta) };
+    receta.fecha = new Date(doc.data().fecha);
+    receta.descripcion = doc.data().descripcion.substring(0,200)+'. . .';
+    
+    recetas.push(receta);
+  });
+  
+  recetasRecibidas(recetas);
+}
