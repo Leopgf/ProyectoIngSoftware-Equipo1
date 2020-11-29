@@ -23,6 +23,10 @@ class Perfil extends React.Component {
     refreshing: false, //Refresh
   };
 
+  handleAddReview = () => {
+    this.props.navigation.navigate('Publicar Receta');
+  }
+
   onPerfilRecibido = (usuario) => {
     this.setState((prevState) => ({
       usuario: usuario,
@@ -140,17 +144,32 @@ class Perfil extends React.Component {
                 />
               }
             >
-              <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                {/* <Button
-                  primary
-                  style={{ borderRadius: nowTheme.SIZES.BASE * 1.5, width: 150, marginRight: 10 }}
-                  onPress={() => this.cargarBiblioteca()}
-                >
-                  Mi Biblioteca
-                </Button> */}
-                {/* <Button primary style={{  borderRadius: nowTheme.SIZES.BASE * 1.5, width:150, marginLeft: 5}} 
-                >Mis Publicaciones</Button> */}
+              {/* BTN a publicar receta */}
+            <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <Text
+                style={{
+                  fontFamily: 'montserrat-bold',
+                  marginBottom: theme.SIZES.BASE / 2,
+                  marginTop:10,
+                  fontWeight: '900',
+                  fontSize: 15,
+                }}
+                color="#0f1e2e"
+              >
+              ¿Desea publicar una receta?
+              </Text>
+            
+            <Button
+                primary
+                style={{ borderRadius: nowTheme.SIZES.BASE * 1, width: 120, marginRight: 10,marginLeft: 15 }}
+                onPress={() => this.handleAddReview()}>
+                  Publicar Receta
+                </Button> 
 
+            </Block>
+  {/* texto biblioteca */}
+              <Block middle style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
+            
                 <Text
                   style={{
                     fontFamily: 'montserrat-bold',
