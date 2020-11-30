@@ -130,28 +130,44 @@ class Card extends React.Component {
             </Block>
             <Block flex space="between" style={styles.cardDescription}>
               <Block flex>
-              <Block flex style={{ justifyContent: 'center' }}>
+              <Block flex style={{ justifyContent: 'center',marginTop:5 }}>
                   {isActualUser ? (
                     <Block flex row style={styles.cardDescription}>
+                    <Text
+                    style={styles.articleButton}
+                    size={11}
+                    muted={!ctaColor}
+                    color={ctaColor || nowTheme.COLORS.ACTIVE}
+                    bold
+                  >
+                   Editar
+                  </Text>
                       <GaButton
                           round
                           onlyIcon
                           shadowless
                           icon="edit"
                           iconFamily="MaterialIcons"
-                          iconColor={'#E63746'}
                           iconSize={nowTheme.SIZES.BASE * 1.4}
                           color={'#FFFFFF'}
                           style={[styles.social, styles.shadow]}
                           onPress={() => this.props.navigation.navigate('Editar Review', { reviewID: item.id, recetaID: item.recetaID })}
                         />
+                        <Text
+                        style={styles.articleButton}
+                        size={11}
+                        muted={!ctaColor}
+                        color={ctaColor || nowTheme.COLORS.ACTIVE}
+                        bold
+                      >
+                       Eliminar
+                      </Text>
                         <GaButton
                           round
                           onlyIcon
                           shadowless
                           icon="delete"
                           iconFamily="MaterialIcons"
-                          iconColor={'#E63746'}
                           iconSize={nowTheme.SIZES.BASE * 1.4}
                           color={'#FFFFFF'}
                           style={[styles.social, styles.shadow]}
@@ -178,7 +194,7 @@ class Card extends React.Component {
                 </Block>
                 <Block flex style={{ justifyContent: 'center' }}>
                   {item.titulo && !horizontal ? (
-                    <Text size={24} style={styles.cardTitle} color={'#e63746'}>
+                    <Text size={23} style={styles.cardTitle} color={'#E63746'}>
                       {/*TITULO DE LA REVIEW*/}
                       {item.titulo}
                     </Text>
@@ -202,32 +218,22 @@ class Card extends React.Component {
                   </Block>
                 ) : null}
                 {item.userID && item.valoracion ? (
-                  <Block flex left>
+                  <Block flex style={{ fontFamily: 'montserrat-regular',marginRigth: 100}}>
                     <Text
-                      style={{ fontFamily: 'montserrat-regular' }}
+                      style={{ fontFamily: 'montserrat-regular', marginLeft: 5}}
                       size={12}
                       color={nowTheme.COLORS.TEXT}
                     >
-                      {item.userID}
+                     Usuario: {item.userID}
                     </Text>
                     <Text
-                      style={{ fontFamily: 'montserrat-regular' }}
-                      size={12}
-                      color={nowTheme.COLORS.TEXT}
+                      style={{ fontFamily: 'montserrat-regular',marginLeft: 5 }}
+                      size={15}
+                      color={'#e63746'}
                     >
-                      {item.valoracion}
+                      Puntuación: {item.valoracion}
                     </Text>
-                    <GaButton
-                          round
-                          onlyIcon
-                          shadowless
-                          icon="star"
-                          iconFamily="Font-Awesome"
-                          iconColor={'#E63746'}
-                          iconSize={nowTheme.SIZES.BASE * 1.4}
-                          color={'#FFFFFF'}
-                          style={[styles.social, styles.shadow]}
-                        />
+                    
                   </Block>
                 ) : null}
               </Block>
@@ -299,8 +305,8 @@ const styles = StyleSheet.create({
     // borderRadius: 3,
   },
   social: {
-    width: nowTheme.SIZES.BASE * 3,
-    height: nowTheme.SIZES.BASE * 3,
+    width: nowTheme.SIZES.BASE * 1.5,
+    height: nowTheme.SIZES.BASE * 1.5,
     borderRadius: nowTheme.SIZES.BASE * 1.5,
     justifyContent: 'center',
     zIndex: 99,

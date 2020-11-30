@@ -65,12 +65,13 @@ export default function ImagePickerExample({ onImagePicked, defaultImage }) {
     },
     Button: {
       width: width / 2.5,
-      height: height / 13,
+      height: height / 20,
+      shadowOpacity: 0,
     },
   });
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',shadowOpacity: 0}}>
       <Button style={styles.Button} onPress={pickImage}>
         Subir imagen
       </Button>

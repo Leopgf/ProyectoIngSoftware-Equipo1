@@ -94,16 +94,23 @@ class Conversor extends React.Component {
                   color="#0f1e2e"
                   style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
                 >
-                  Seleccione 
+                  Seleccione con qué unidades desea trabajar y los números
                 </Text>
               </Block>
 
               <Block flex>
-             
+              <Text
+                  size={16}
+                  color="#0f1e2e"
+                  style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
+                >
+                  Seleccione con qué unidades desea trabajar y los números
+                </Text>
+              <ModalDropdown ref="dropdown" textStyle={styles.dropdownText} style={styles.dropdown} dropdownStyle={styles.dropdownOption} options={['option 1', 'option 2']}/>
               </Block>
 
 
-              <ModalDropdown ref="dropdown" textStyle={styles.dropdownText} style={styles.dropdown} dropdownStyle={styles.dropdownOption} options={['option 1', 'option 2']}/>
+              
               
 
 

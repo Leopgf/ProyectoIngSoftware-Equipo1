@@ -1,8 +1,9 @@
 // NO SE ESTÁ USANDO
 
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, ImageBackground,Dimensions } from 'react-native';
 import LoadingView from 'react-native-loading-view';
+import { Images} from '../constants';
 //galio
 import { Block, Text, theme } from 'galio-framework';
 
@@ -11,6 +12,9 @@ import { Button, Card } from '../components';
 
 import { getReviews, getUsuarioReviewReceta } from '../../Controladores/RecetaControler';
 import * as firebase from 'firebase';
+
+
+const { width, height } = Dimensions.get('screen');
 
 class Reviews extends React.Component {
   state = {
@@ -65,6 +69,7 @@ class Reviews extends React.Component {
       loading: false,
     });
   }
+  
 
   renderReviews = () => {
     return (
@@ -72,20 +77,64 @@ class Reviews extends React.Component {
         loading={this.state.loading}
         size="large"
         style={styles.cargar}
-        text="Cargando reviews..."
+        text="Cargando Reviews..."
       >
-        <Block flex={0.9} style={{ padding: theme.SIZES.BASE, marginTop: 90 }}>
+
+          <Block flex={0.6}>
+          {/*Background*/}
+          <ImageBackground
+            source={Images.Review}
+            style={styles.profileContainer}
+            imageStyle={styles.profileBackground}
+          >
+            <Block flex style={styles.profileCard}>
+              <Block
+                style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 20 }}
+              >
+                <Block style={{ top: height * 0.2 }}>
+                  <Block middle>
+                    {/*nombre "conversor"*/}
+                    <Text
+                      style={{
+                        fontFamily: 'montserrat-bold',
+                        marginBottom: theme.SIZES.BASE / 2,
+                        fontWeight: '900',
+                        fontSize: 30,
+                      }}
+                      color="#e63746"
+                    >
+                    REVIEWS
+                    </Text>
+                    {/*texto de conversor de Mixo´s*/}
+                    <Text
+                      size={16}
+                      color="#0f1e2e"
+                      style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
+                    >
+                      Reviews de la receta
+                    </Text>
+                  </Block>
+                </Block>
+              </Block>
+            </Block>
+          </ImageBackground>
+        </Block>
+
+        <Block flex={0.9} style={{ padding: theme.SIZES.BASE, marginTop: 50}}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Block flex>
-              <Text>REVIEWS</Text>
+            <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <Text   size={16}
+              color="#0f1e2e"
+              style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
+           >¿Desea publicar una Review de la Receta?</Text>
             </Block>
 
             {this.state.user ? (
-              <Block>
-                <Button onPress={() => this.handleAddReview()}>ESCRIBIR REVIEW</Button>
+              <Block style={{ marginTop: 6}}>
+               <Button onPress={() => this.handleAddReview()}>ESCRIBIR REVIEW</Button>
               </Block>
             ) : (
-              <Block>
+              <Block style={{marginTop: 3}}>
                 <Button onPress={() => this.handleLogin()}>
                   INICIAR SESIÓN PARA PUBLICAR REVIEW
                 </Button>
@@ -112,7 +161,9 @@ class Reviews extends React.Component {
               </Block>
             ) : (
               <Block flex>
-                <Text>No hay reviews para esta receta</Text>
+                <Text  size={16}
+                color="#0f1e2e"
+                style={{ marginTop: 20, lineHeight: 20, fontSize: 18, opacity: 0.8 }}>No hay Reviews para esta receta</Text>
               </Block>
             )}
           </ScrollView>
@@ -140,6 +191,17 @@ const styles = StyleSheet.create({
     marginTop: 44,
     color: nowTheme.COLORS.HEADER,
   },
+  profileContainer: {
+    width,
+    height,
+    padding: 0,
+    zIndex: 1,
+  },
+  profileBackground: {
+    width,
+    height: height * 0.4,
+  },
+  
 });
 
 export default Reviews;

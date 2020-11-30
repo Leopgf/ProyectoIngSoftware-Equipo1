@@ -124,7 +124,7 @@ class DetallesReceta extends React.Component {
       >
         <Block style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
           <Block flex={0.15} />
-          <Block flex={0.48}>
+          <Block flex={0.50}>
             <ImageBackground
               source={this.state.detalles.imagen && { uri: this.state.detalles.imagen }}
               style={styles.profileContainer}
@@ -169,48 +169,7 @@ class DetallesReceta extends React.Component {
                 <Block>
                   <Block flex style={{ flexDirection: 'row', alignContent: 'space-between'}}>
 
-                  <Block flex
-                    style={{ flexDirection: 'row' }}
-                  >
-                    {/* CATEGORIAS DE LA RECETA */}
-                    <Text
-                      style={{ textAlign: 'left', fontSize: 15, marginTop: 5, marginBottom: 10 }}
-                    >
-                      {'Categorías: '}
-                    </Text>
-                    {this.state.detalles.categorias.map((categoria, index) => {
-                      if (index === this.state.detalles.categorias.length - 1) {
-                        return (
-                          <Text
-                            key={categoria}
-                            style={{
-                              textAlign: 'left',
-                              fontSize: 15,
-                              marginTop: 5,
-                              marginBottom: 10,
-                            }}
-                          >
-                            {categoria + '.'}
-                          </Text>
-                        );
-                      } else {
-                        return (
-                          <Text
-                            key={categoria}
-                            style={{
-                              textAlign: 'left',
-                              fontSize: 15,
-                              marginTop: 5,
-                              marginBottom: 10,
-                            }}
-                          >
-                            {categoria + ', '}
-                          </Text>
-                        );
-                      }
-                    })}
-                  </Block>
-
+                 
                   {this.state.user ? (
                     <Block flex
                       style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
@@ -265,6 +224,48 @@ class DetallesReceta extends React.Component {
                   )}
 
                   </Block>
+                  <Block flex
+                  style={{ flexDirection: 'row' }}
+                >
+                  {/* CATEGORIAS DE LA RECETA */}
+                  <Text
+                    style={{ textAlign: 'left', fontSize: 15, marginTop: 7, marginBottom: 10 }}
+                  >
+                    {'Categorías: '}
+                  </Text>
+                  {this.state.detalles.categorias.map((categoria, index) => {
+                    if (index === this.state.detalles.categorias.length - 1) {
+                      return (
+                        <Text
+                          key={categoria}
+                          style={{
+                            textAlign: 'left',
+                            fontSize: 15,
+                            marginTop: 7,
+                            marginBottom: 10,
+                          }}
+                        >
+                          {categoria + '.'}
+                        </Text>
+                      );
+                    } else {
+                      return (
+                        <Text
+                          key={categoria}
+                          style={{
+                            textAlign: 'left',
+                            fontSize: 15,
+                            marginTop: 7,
+                            marginBottom: 10,
+                          }}
+                        >
+                          {categoria + ', '}
+                        </Text>
+                      );
+                    }
+                  })}
+                </Block>
+
 
                   {/* PORCIONES DE LA RECETA */}
                   <Block style={{ flexDirection: 'row', alignSelf: 'flex-between' }}>
@@ -313,22 +314,22 @@ class DetallesReceta extends React.Component {
                       {this.state.porcion} {this.state.detalles.unidadPorcion}
                     </Text>
                   </Block>
-                  <Block style={{ marginTop: -5, backgroundColor: '#e3e4e5', borderRadius: 50 }}>
+                  <Block style={{ marginTop: -5, backgroundColor: '#e3e4e5', borderRadius: 50}}>
                     <Text
                       style={{
                         textAlign: 'center',
-                        width: 400,
+                        width: 300,
                         height: 10,
                         color: '#0f1e2e',
-                        fontSize: 10,
+                        fontSize: 11,
                         marginTop: 1,
                         marginBottom: 15,
+                        marginLeft: 29,
                         zIndex: 2,
                         marginTop: 18,
                       }}
                     >
-                      Pulsa los botones + / - para ajustar la receta dependiendo de la cantidad de
-                      porciones.
+                      Pulsa los botones + / - para ajustar la receta por porciones.
                     </Text>
                   </Block>
 
@@ -370,6 +371,7 @@ class DetallesReceta extends React.Component {
                 </Block>
               </Block>
 
+              
               <Text style={styles.subtitle}>MÁS INFORMACIÓN SOBRE LA RECETA</Text>
 
               <Text size={16} muted style={styles.text}>

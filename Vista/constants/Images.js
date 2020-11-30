@@ -9,6 +9,7 @@ const iOSLogo = require('../assets/imgs/ios.png');
 const androidLogo = require('../assets/imgs/android.png');
 const ProfilePicture = require('../assets/imgs/profile-img.jpg');
 const Conversor = require('../assets/imgs/conversor.jpg');
+const Review = require('../assets/imgs/review.jpg');
 const AddReceta = require('../assets/imgs/addReceta.jpg');
 const CreativeTimLogo = require('../assets/imgs/creative-tim-white-slim2.png');
 const InvisionLogo = require('../assets/imgs/invision-white-slim.png');
@@ -32,6 +33,7 @@ export default {
   Logo,
   ProfileBackground,
   Conversor,
+  Review,
   ProfilePicture,
   RegisterBackground,
   AddReceta,

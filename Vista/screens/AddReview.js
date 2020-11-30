@@ -79,7 +79,7 @@ _dropdown_select(event){
       <DismissKeyboard>
         <Block flex middle>
           <ImageBackground
-            source={Images.RegisterBackground}
+            source={Images.Review}
             style={styles.imageBackgroundContainer}
             imageStyle={styles.imageBackground}
           >
@@ -93,12 +93,22 @@ _dropdown_select(event){
                           style={{
                             fontFamily: 'montserrat-bold',
                             textAlign: 'center',
-                            fontWeight: '500',
+                            fontWeight: '500', marginTop:50
                           }}
-                          color="#0f1e2e"
+                          color="#e63746"
                           size={24}
                         >
-                          Escribe tu review de la receta
+                          REVIEW DE LA RECETA
+                        </Text>
+                        <Text
+                          style={{
+                            textAlign: 'center',
+                            fontWeight: '500', marginTop:16
+                          }}
+                          color="#0f1e2e"
+                          size={16}
+                        >
+                          Escribe tu Review de la receta realizada
                         </Text>
                         <Block flex space="between">
                           <Block>
@@ -108,7 +118,7 @@ _dropdown_select(event){
                               </Block>
                               <Block>
                                 <Input
-                                  placeholder="Titulo"
+                                  placeholder="Título de la Review"
                                   style={styles.inputs}
                                   onChangeText={(titulo) => this.setState({ titulo })}
                                   iconContent={
@@ -116,34 +126,41 @@ _dropdown_select(event){
                                   }
                                 />
                                 <Input
-                                  placeholder="Mensaje"
+                                  placeholder="Mensaje de la Review"
                                   style={styles.inputs}
                                   onChangeText={(mensaje) => this.setState({ mensaje })}
                                   iconContent={
                                     <Icon size={18} name="message" family="ArgonExtra" />
                                   }
                                 />
-                                <Text>Valoración:</Text>
+                                <Block >
+                                <Text style={{
+                                  fontWeight: '500', marginTop:16
+                                }}
+                                color="#0f1e2e"
+                                size={16}>Valoración que desea colocarle a la receta:</Text>
                                 <ModalDropdown
                                   ref="dropdown"
-                                  defaultValue={'Seleccione'}
+                                  defaultValue={'Valoración'}
                                   textStyle={styles.dropdownText}
                                   style={styles.dropdown}
                                   dropdownStyle={styles.dropdownOption}
                                   options={[1, 2, 3, 4, 5]}
                                   onSelect = { (value) => this.setState({valoracion: (value)})}
                                 />
+                                </Block>
                               </Block>
                             </Block>
                           </Block>
                           <Block center>
+                          
                             <Button
                               style={{
                                 fontFamily: 'montserrat-bold',
                                 borderRadius: nowTheme.SIZES.BASE * 1.5,
                                 width: 200,
                                 marginBottom: 30,
-                                marginTop: 30,
+                                marginTop: 50,
                               }}
                               color="primary"
                               round
@@ -201,13 +218,13 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     alignSelf: 'center',
-    width: width / 4,
-    height: height / 18,
+    width: width / 2.5,
+    height: height / 20,
     marginTop: 10,
     alignItems: 'center',
     right: 8,
     borderWidth: 0,
-    borderRadius: 15,
+    borderRadius: 7,
     backgroundColor: '#e63746',
   },
 
@@ -223,7 +240,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 6,
     fontSize: 18,
-    color: 'white',
+    color: '#c1c2c2',
     textAlign: 'center',
     textAlignVertical: 'center',
   },

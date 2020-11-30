@@ -105,7 +105,7 @@ class EditReview extends React.Component {
         <DismissKeyboard>
           <Block flex middle>
             <ImageBackground
-              source={Images.RegisterBackground}
+              source={Images.Review}
               style={styles.imageBackgroundContainer}
               imageStyle={styles.imageBackground}
             >
@@ -120,9 +120,22 @@ class EditReview extends React.Component {
                               fontFamily: 'montserrat-bold',
                               textAlign: 'center',
                               fontWeight: '500',
+                              marginTop: 10,
+                            }}
+                            color="#e63746"
+                            size={24}
+                          >
+                            Editar Review 
+                          </Text>
+                          <Text
+                            style={{
+                              fontFamily: 'montserrat-bold',
+                              textAlign: 'center',
+                              fontWeight: '500',
+                              marginTop: 10,
                             }}
                             color="#0f1e2e"
-                            size={24}
+                            size={14}
                           >
                             Edita tu review de la receta
                           </Text>
@@ -241,7 +254,7 @@ const styles = StyleSheet.create({
   dropdown: {
     alignSelf: 'center',
     width: width / 4,
-    height: height / 18,
+    height: height / 22,
     marginTop: 10,
     alignItems: 'center',
     right: 8,
