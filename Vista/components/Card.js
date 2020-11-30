@@ -3,12 +3,11 @@ import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import PropTypes from 'prop-types';
 import { Button as GaButton } from 'galio-framework';
-import { StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Image, TouchableWithoutFeedback, Alert } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { nowTheme } from '../constants';
 
-import * as firebase from 'firebase';
-import { Button } from '.';
+import { eliminarReview } from '../../Controladores/RecetaControler';
 
 //CLASE DE CARD
 class Card extends React.Component {
@@ -25,7 +24,8 @@ class Card extends React.Component {
       ctaRight,
       titleStyle,
       params,
-      isActualUser
+      isActualUser,
+      method,
     } = this.props;
 
     const imageStyles = [full ? styles.fullImage : styles.horizontalImage, imageStyle];
@@ -155,6 +155,21 @@ class Card extends React.Component {
                           iconSize={nowTheme.SIZES.BASE * 1.4}
                           color={'#FFFFFF'}
                           style={[styles.social, styles.shadow]}
+                          onPress={() => {
+                            Alert.alert('Eliminar review', '¿Está seguro que desea eliminar esta review?', [
+                              {
+                                text: 'Si',
+                                onPress: () => {
+                                  eliminarReview(item.id, item.recetaID, method);
+                                },
+                              },
+                              {
+                                text: 'No',
+                                onPress: () => console.log('Cancel Pressed'),
+                                style: 'cancel',
+                              },
+                            ]);
+                          }}
                         />
                     </Block>
                   ) : (

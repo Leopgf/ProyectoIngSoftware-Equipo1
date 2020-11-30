@@ -158,35 +158,16 @@ export async function agregarReview(review: Review) {
     ) {
       reject('Error, por favor rellene todos los campos.');
     } else {
-      const nombreImagen = review.imagen.split('/ImagePicker/').pop();
-
-      // var storageRef = firebase.storage().ref(nombreImagen);
-
-      // storageRef
-      //   .putFile(review.imagen)
-      //   .then(() => {
-      //     storageRef
-      //       .getDownloadURL()
-      //       .then((imagen) => {
-      //         review.imagen = imagen;
-      //         firebase
-      //           .firestore()
-      //           .collection('Reviews')
-      //           .add(review)
-      //           .then(() => {
-      //             resolve('Review publicada con éxito.');
-      //           })
-      //           .catch(() => {
-      //             reject('Error de conexión, intente nuevamente');
-      //           });
-      //       })
-      //       .catch(() => {
-      //         reject('Error de conexión, intente nuevamente');
-      //       });
-      //   })
-      //   .catch(() => {
-      //     reject('Error, intente nuevamente');
-      //   });
+      firebase
+        .firestore()
+        .collection('Reviews')
+        .add(review)
+        .then(() => {
+          resolve('Review publicada con éxito.');
+        })
+        .catch(() => {
+          reject('Error de conexión, intente nuevamente');
+        });
     }
   });
 }
@@ -201,44 +182,47 @@ export async function editarReview(review: Review) {
     ) {
       reject('Error, por favor rellene todos los campos.');
     } else {
-      const nombreImagen = review.imagen.split('://')[0];
-      
-      if(nombreImagen === 'https'){
-        
-      }else{
-
-      }
-      
-
-
-      // var storageRef = firebase.storage().ref(nombreImagen);
-
-      // storageRef
-      //   .putFile(review.imagen)
-      //   .then(() => {
-      //     storageRef
-      //       .getDownloadURL()
-      //       .then((imagen) => {
-      //         review.imagen = imagen;
-      //         firebase
-      //           .firestore()
-      //           .collection('Reviews')
-      //           .add(review)
-      //           .then(() => {
-      //             resolve('Review publicada con éxito.');
-      //           })
-      //           .catch(() => {
-      //             reject('Error de conexión, intente nuevamente');
-      //           });
-      //       })
-      //       .catch(() => {
-      //         reject('Error de conexión, intente nuevamente');
-      //       });
-      //   })
-      //   .catch(() => {
-      //     reject('Error, intente nuevamente');
-      //   });
+      firebase
+        .firestore()
+        .collection('Reviews')
+        .doc(review.id)
+        .update({
+          recetaID: review.recetaID,
+          userID: review.userID,
+          imagen: review.imagen,
+          titulo: review.titulo,
+          mensaje: review.mensaje,
+          valoracion: review.valoracion,
+          fecha: new Date(review.fecha),
+        })
+        .then(() => {
+          resolve('Su review ha sido actualizada con éxito');
+        })
+        .catch(() => {
+          reject('Error, intente nuevamente.');
+        });
     }
+  });
+}
+
+// FUNCION PARA ELIMINAR UNA REVIEW
+export async function eliminarReview(
+  reviewID: string,
+  recetaID: string,
+  onReviewsRecibidas: Function
+) {
+  return new Promise(function (resolve, reject) {
+    firebase
+      .firestore()
+      .collection('Reviews')
+      .doc(reviewID)
+      .delete()
+      .then(() => {
+        getReviews(recetaID, onReviewsRecibidas);
+      })
+      .catch(() => {
+        reject('Error, intente nuevamente.');
+      });
   });
 }
 
@@ -259,9 +243,8 @@ export async function getReviews(recetaID: string, onReviewsRecibidas: Function)
     review.fecha = new Date(doc.data().fecha);
     reviews.push(review);
   });
-  
-  onReviewsRecibidas(reviews);
 
+  onReviewsRecibidas(reviews);
 }
 
 // FUNCION PARA RECUPERAR UNA REVIEW
@@ -272,16 +255,15 @@ export async function getReview(reviewID: string, onReviewRecibida: Function) {
     .firestore()
     .collection('Reviews')
     .doc(reviewID)
-    .get().then((doc) => {
+    .get()
+    .then((doc) => {
       const id = doc.id;
       review = { id: id, ...(doc.data() as Review) };
-    // @ts-ignore
-      review.fecha = new Date(doc.data().fecha);
-    
-    onReviewRecibida(review);
-    }
-    );
-
+      // @ts-ignore
+      review.fecha = new Date(doc.data().fecha.toDate().toString());
+      
+      onReviewRecibida(review);
+    });
 }
 
 // FUNCION PARA RECUPERAR UNA CATEGORIA
@@ -291,11 +273,15 @@ export async function getUsuarioReviewReceta(
   id: string,
   index: number
 ) {
-  let snapshot = await firebase.firestore().collection('Usuarios').where('usuarioID', '==', id).get();
+  let snapshot = await firebase
+    .firestore()
+    .collection('Usuarios')
+    .where('usuarioID', '==', id)
+    .get();
   //@ts-ignore
   snapshot.forEach((usuario) => {
     reviews[index].userID = usuario.data().usuario;
-  
+
     onUserReview(reviews);
-  })
+  });
 }

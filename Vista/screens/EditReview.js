@@ -76,10 +76,12 @@ class EditReview extends React.Component {
       fecha: this.state.review.fecha,
     };
 
+    console.log(review);
+
     await editarReview(review)
       .then((resolve) => {
         Alert.alert(resolve);
-        // this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
+        this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
       })
       .catch((error) => {
         Alert.alert(error);
@@ -87,123 +89,123 @@ class EditReview extends React.Component {
   }
 
   setImagen = (uri) => {
-      let review = this.state.review;
-      review.imagen = uri.uri;
+    let review = this.state.review;
+    review.imagen = uri.uri;
     this.setState({ review });
   };
 
   render() {
     return (
-        <LoadingView
+      <LoadingView
         loading={this.state.loading}
         size="large"
         style={styles.cargar}
         text="Cargando edición de la review..."
       >
-      <DismissKeyboard>
-        <Block flex middle>
-          <ImageBackground
-            source={Images.RegisterBackground}
-            style={styles.imageBackgroundContainer}
-            imageStyle={styles.imageBackground}
-          >
-            <Block flex middle>
-              <Block style={styles.registerContainer}>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                  <Block flex space="evenly">
-                    <Block flex={0.8} middle>
-                      <Block middle>
-                        <Text
-                          style={{
-                            fontFamily: 'montserrat-bold',
-                            textAlign: 'center',
-                            fontWeight: '500',
-                          }}
-                          color="#0f1e2e"
-                          size={24}
-                        >
-                          Edita tu review de la receta
-                        </Text>
-                        <Block flex space="between">
-                          <Block>
-                            <Block center width={width * 0.8}>
+        <DismissKeyboard>
+          <Block flex middle>
+            <ImageBackground
+              source={Images.RegisterBackground}
+              style={styles.imageBackgroundContainer}
+              imageStyle={styles.imageBackground}
+            >
+              <Block flex middle>
+                <Block style={styles.registerContainer}>
+                  <ScrollView showsVerticalScrollIndicator={false}>
+                    <Block flex space="evenly">
+                      <Block flex={0.8} middle>
+                        <Block middle>
+                          <Text
+                            style={{
+                              fontFamily: 'montserrat-bold',
+                              textAlign: 'center',
+                              fontWeight: '500',
+                            }}
+                            color="#0f1e2e"
+                            size={24}
+                          >
+                            Edita tu review de la receta
+                          </Text>
+                          <Block flex space="between">
+                            <Block>
+                              <Block center width={width * 0.8}>
                                 {/* NO SE POR QUE NO SE VE AAAAAAAAAAAAA */}
                                 <Block flex={1} style={{ marginTop: 20, marginBottom: 20 }} middle>
-                                <ImagePickerExample onImagePicked={this.setImagen} defaultImage = {this.state.review.imagen}/>
-                              </Block>
-                              <Block>
-                                <Input
-                                  placeholder="Titulo"
-                                  style={styles.inputs}
-                                  value={this.state.review.titulo}
-                                  onChangeText={(titulo) => {
-                                    let review = this.state.review;
-                                    review.titulo = titulo;
-                                    this.setState({ review })}}
-                                  iconContent={
-                                    <Icon size={18} name="message" family="ArgonExtra" />
-                                  }
-                                />
-                                <Input
-                                  placeholder="Mensaje"
-                                  style={styles.inputs}
-                                  value={this.state.review.mensaje}
-                                  onChangeText={(mensaje) => {
+                                  <ImagePickerExample
+                                    onImagePicked={this.setImagen}
+                                    defaultImage={this.state.review.imagen}
+                                  />
+                                </Block>
+                                <Block>
+                                  <Input
+                                    placeholder="Titulo"
+                                    style={styles.inputs}
+                                    value={this.state.review.titulo}
+                                    onChangeText={(titulo) => {
+                                      let review = this.state.review;
+                                      review.titulo = titulo;
+                                      this.setState({ review });
+                                    }}
+                                    iconContent={
+                                      <Icon size={18} name="message" family="ArgonExtra" />
+                                    }
+                                  />
+                                  <Input
+                                    placeholder="Mensaje"
+                                    style={styles.inputs}
+                                    value={this.state.review.mensaje}
+                                    onChangeText={(mensaje) => {
                                       let review = this.state.review;
                                       review.mensaje = mensaje;
-                                      this.setState({ review })}}
-                                  iconContent={
-                                    <Icon size={18} name="message" family="ArgonExtra" />
-                                  }
-                                />
-                                <Text>Valoración:</Text>
-                                <ModalDropdown
-                                  ref="dropdown"
-                                  defaultValue={this.state.review.valoracion}
-                                  textStyle={styles.dropdownText}
-                                  style={styles.dropdown}
-                                  dropdownStyle={styles.dropdownOption}
-                                  options={[1, 2, 3, 4, 5]}
-                                  onSelect={(value) => {
-                                    let review = this.state.review;
-                                    review.valoracion = value;
-                                    this.setState({ review })}}
-                                />
+                                      this.setState({ review });
+                                    }}
+                                    iconContent={
+                                      <Icon size={18} name="message" family="ArgonExtra" />
+                                    }
+                                  />
+                                  <Text>Valoración:</Text>
+                                  <ModalDropdown
+                                    ref="dropdown"
+                                    defaultValue={this.state.review.valoracion}
+                                    textStyle={styles.dropdownText}
+                                    style={styles.dropdown}
+                                    dropdownStyle={styles.dropdownOption}
+                                    options={[1, 2, 3, 4, 5]}
+                                    onSelect={(value) => {
+                                      let review = this.state.review;
+                                      review.valoracion = value;
+                                      this.setState({ review });
+                                    }}
+                                  />
+                                </Block>
                               </Block>
                             </Block>
-                          </Block>
-                          <Block center>
-                            <Button
-                              style={{
-                                fontFamily: 'montserrat-bold',
-                                borderRadius: nowTheme.SIZES.BASE * 1.5,
-                                width: 200,
-                                marginBottom: 30,
-                                marginTop: 30,
-                              }}
-                              color="primary"
-                              round
-                              onPress={() => this.editReview()}
-                            >
-                              <Text
-                                style={{ fontFamily: 'montserrat-bold' }}
-                                size={14}
-                                color={nowTheme.COLORS.WHITE}
+                            <Block center>
+                              <Button
+                                style={{
+                                  fontFamily: 'montserrat-bold',
+                                  borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                  width: 200,
+                                  marginBottom: 30,
+                                  marginTop: 30,
+                                }}
+                                color="primary"
+                                round
+                                onPress={() => this.editReview()}
                               >
-                                Actualizar
-                              </Text>
-                            </Button>
+                                ACTUALIZAR
+                              </Button>
+                            </Block>
                           </Block>
                         </Block>
                       </Block>
                     </Block>
-                  </Block>
-                </ScrollView>
+                  </ScrollView>
+                </Block>
               </Block>
-            </Block>
-          </ImageBackground>
-        </Block>
-      </DismissKeyboard>
+            </ImageBackground>
+          </Block>
+        </DismissKeyboard>
       </LoadingView>
     );
   }

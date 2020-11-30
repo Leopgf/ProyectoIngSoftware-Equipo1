@@ -3,9 +3,9 @@ import { Image, View, Platform, Dimensions } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet } from 'react-native';
 import { Button } from 'galio-framework';
+import { cloudinary } from 'cloudinary-react';
 
-export default function ImagePickerExample({onImagePicked, defaultImage}) {
-
+export default function ImagePickerExample({ onImagePicked, defaultImage }) {
   const { width, height } = Dimensions.get('screen');
   const [image, setImage] = useState(null);
 
@@ -28,11 +28,33 @@ export default function ImagePickerExample({onImagePicked, defaultImage}) {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      setImage(result.uri);
-      onImagePicked({uri: result.uri});
+      let file = {
+        uri: result.uri,
+        type: `test/${result.uri.split('.').pop()}`,
+        name: result.uri,
+      };
+
+      let apiUrl = 'https://api.cloudinary.com/v1_1/mixosteam/image/upload';
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'zc9ttas7');
+      formData.append('cloud_name', 'mixosteam');
+
+      await fetch(apiUrl, {
+        body: formData,
+        method: 'POST',
+      })
+        .then(async (r) => await r.json())
+        .then((dato) => {
+          console.log('TOY AQUIIII');
+          setImage(dato.secure_url);
+          onImagePicked({ uri: dato.secure_url });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -42,20 +64,22 @@ export default function ImagePickerExample({onImagePicked, defaultImage}) {
       height: 28,
     },
     Button: {
-      width: width/1.70,
-      height: height/13,
+      width: width / 2.5,
+      height: height / 13,
     },
   });
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button style={styles.Button} onPress={pickImage} >
-      Cambiar imagen de la review
+      <Button style={styles.Button} onPress={pickImage}>
+        Subir imagen
       </Button>
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} />}
-      {defaultImage && !image && <Image source={{ uri: defaultImage }} style={{ width: 200, height: 200, marginTop: 20 }} />}
+      {image && (
+        <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} />
+      )}
+      {defaultImage && !image && (
+        <Image source={{ uri: defaultImage }} style={{ width: 200, height: 200, marginTop: 20 }} />
+      )}
     </View>
   );
 }
-
-  

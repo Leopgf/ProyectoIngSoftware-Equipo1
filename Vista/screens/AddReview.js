@@ -154,7 +154,7 @@ _dropdown_select(event){
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
                               >
-                                Publicar
+                                PUBLICAR
                               </Text>
                             </Button>
                           </Block>

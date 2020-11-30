@@ -52,9 +52,11 @@ class Reviews extends React.Component {
       if (firebase.auth().currentUser) {
         await firebase.firestore().collection('Usuarios').where('usuarioID', '==', firebase.auth().currentUser.uid).get().then((usuarios) => {
           usuarios.forEach((usuario) => {
-            this.setState({usuarioActual: usuario.data().usuario});
+            this.setState({user: true, usuarioActual: usuario.data().usuario});
           })
         })
+      } else{
+        this.setState({user: false});
       }
     } catch (error) {
       console.error(error);
@@ -96,13 +98,13 @@ class Reviews extends React.Component {
                   if (this.state.usuarioActual === review.userID) {
                     return (
                       <Block flex row key={index}>
-                        <Card item={review} horizontal isActualUser={true}/>
+                        <Card item={review} horizontal isActualUser={true} method={this.onReviewsRecibidas}/>
                       </Block>
                     );
                   } else {
                     return (
                       <Block flex row key={index}>
-                        <Card item={review} horizontal isActualUser={false}/>
+                        <Card item={review} horizontal isActualUser={false} method={this.onReviewsRecibidas}/>
                       </Block>
                     );
                   }
