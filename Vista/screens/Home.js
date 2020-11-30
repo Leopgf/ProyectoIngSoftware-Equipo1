@@ -10,11 +10,9 @@ import {
 } from '../../Controladores/RecetaControler';
 import LoadingView from 'react-native-loading-view';
 import { RefreshControl } from 'react-native';
-import { FlatList, ActivityIndicator, View } from 'react-native';
 
 //CONST
 const { width } = Dimensions.get('screen');
-
 //CLASE HOME
 class Home extends React.PureComponent {
   //PARA TRAER LAS RECETAS Y CARGAR EN TRUE
@@ -39,10 +37,9 @@ class Home extends React.PureComponent {
     }));
   };
 
-  isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+  isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
     const paddingToBottom = 20;
-    return layoutMeasurement.height + contentOffset.y >=
-      contentSize.height - paddingToBottom;
+    return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
   };
 
   async componentDidMount() {
@@ -126,7 +123,7 @@ class Home extends React.PureComponent {
             //REFRESH ARRIBA
             <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
           }
-          onScroll={({nativeEvent}) => {
+          onScroll={({ nativeEvent }) => {
             if (this.isCloseToBottom(nativeEvent)) {
               this.handleLoadMore();
             }
@@ -143,7 +140,6 @@ class Home extends React.PureComponent {
             {/* <Block flex row >
               <Button onPress={() => this.handleLoadMore()}> CARGAR MÁS</Button>
             </Block> */}
-
           </Block>
         </ScrollView>
       </LoadingView>

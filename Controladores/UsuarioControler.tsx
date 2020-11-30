@@ -293,27 +293,29 @@ export async function eliminarEnBiblioteca(recetaId: string, onFavoritoRecibido:
 //FUNCION PARA QUE EL USUARIO PUEDA AGREGAR UNA RECETA 
 export async function agregarReceta(receta: Receta) {
   let userId = firebase.auth().currentUser?.uid;
+
   return new Promise(function (resolve, reject) {
     if (
       receta.nombre !== '' &&
       receta.descripcion !== '' &&
-      receta.porcionDefecto !== null &&
+      receta.porcionDefecto !== 0 &&
       receta.unidadPorcion !== '' &&
-      receta.categorias !== null &&
-      receta.pasos !== null &&
+      receta.categorias !== [] &&
+      receta.pasos !== [] &&
       receta.imagen !== '' &&
-      receta.ingredientes !== null
-    ) {
+      receta.ingredientes !== []
+    ){
       receta.usuarioID = userId;
       firebase
         .firestore()
         .collection('Recetas')
-        .add({ receta })
+        .add(receta)
         .then(() => {
-          resolve('Receta creada con exito')
+          console.log('Publicado');
+          resolve('Receta creada con exito.');
         }).catch((error) => console.log(error));
     } else {
-      reject('Por favor rellene todos los campos.');
+      reject('Por favor rellene todos los campos correctamente.');
     }
   })
 }
