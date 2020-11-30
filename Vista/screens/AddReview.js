@@ -64,7 +64,6 @@ _dropdown_select(event){
       mensaje: this.state.mensaje,
       valoracion: parseInt(this.state.valoracion) + 1,
       fecha: new Date(),
-      likes: 0,
     };
 
     await agregarReview(review)

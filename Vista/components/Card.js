@@ -8,6 +8,7 @@ import { Block, Text, theme } from 'galio-framework';
 import { nowTheme } from '../constants';
 
 import * as firebase from 'firebase';
+import { Button } from '.';
 
 //CLASE DE CARD
 class Card extends React.Component {
@@ -23,6 +24,7 @@ class Card extends React.Component {
       ctaRight,
       titleStyle,
       params,
+      isActualUser
     } = this.props;
 
     const imageStyles = [full ? styles.fullImage : styles.horizontalImage, imageStyle];
@@ -33,17 +35,6 @@ class Card extends React.Component {
       horizontal ? styles.horizontalStyles : styles.verticalStyles,
       styles.shadow,
     ];
-
-    var user = '';
-
-    if(item.userID){
-      firebase.firestore().collection('Usuarios').where('usuarioID', '==', item.userID).get().then((usuarios) => {
-
-        usuarios.forEach((usuario) => {
-          user = usuario.data().usuario;
-        });
-      });
-    }
 
     if(item.nombre){
       return (
@@ -136,9 +127,38 @@ class Card extends React.Component {
                 style={imageStyles}
               />
             </Block>
-  
             <Block flex space="between" style={styles.cardDescription}>
               <Block flex>
+              <Block flex style={{ justifyContent: 'center' }}>
+                  {isActualUser ? (
+                    <Block flex row style={styles.cardDescription}>
+                      <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="edit"
+                          iconFamily="MaterialIcons"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#FFFFFF'}
+                          style={[styles.social, styles.shadow]}
+                        />
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="delete"
+                          iconFamily="MaterialIcons"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#FFFFFF'}
+                          style={[styles.social, styles.shadow]}
+                        />
+                    </Block>
+                  ) : (
+                    null
+                  )}
+                </Block>
                 <Block flex style={{ justifyContent: 'center' }}>
                   {item.titulo && !horizontal ? (
                     <Text size={24} style={styles.cardTitle} color={'#e63746'}>
@@ -260,6 +280,14 @@ const styles = StyleSheet.create({
   },
   image: {
     // borderRadius: 3,
+  },
+  social: {
+    width: nowTheme.SIZES.BASE * 3,
+    height: nowTheme.SIZES.BASE * 3,
+    borderRadius: nowTheme.SIZES.BASE * 1.5,
+    justifyContent: 'center',
+    zIndex: 99,
+    marginHorizontal: 5,
   },
   horizontalImage: {
     height: 200,

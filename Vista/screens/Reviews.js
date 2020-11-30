@@ -18,6 +18,7 @@ class Reviews extends React.Component {
     user: false,
     reviews: [],
     recetaID: this.props.route.params.recetaID,
+    usuarioActual: '',
   };
 
   handleAddReview = () => {
@@ -48,8 +49,12 @@ class Reviews extends React.Component {
     //TEMPORIZADOR DE CARGAR
     try {
       await getReviews(this.state.recetaID, this.onReviewsRecibidas);
-      if (await firebase.auth().currentUser) {
-        this.setState({ user: true });
+      if (firebase.auth().currentUser) {
+        await firebase.firestore().collection('Usuarios').where('usuarioID', '==', firebase.auth().currentUser.uid).get().then((usuarios) => {
+          usuarios.forEach((usuario) => {
+            this.setState({usuarioActual: usuario.data().usuario});
+          })
+        })
       }
     } catch (error) {
       console.error(error);
@@ -77,19 +82,31 @@ class Reviews extends React.Component {
               <Block>
                 <Button onPress={() => this.handleAddReview()}>ESCRIBIR REVIEW</Button>
               </Block>
-            ) : 
-            (<Block>
-              <Button onPress={() => this.handleLogin()}>INICIAR SESIÓN PARA PUBLICAR REVIEW</Button>
-            </Block>)
-            }
+            ) : (
+              <Block>
+                <Button onPress={() => this.handleLogin()}>
+                  INICIAR SESIÓN PARA PUBLICAR REVIEW
+                </Button>
+              </Block>
+            )}
 
             {this.state.reviews.length !== 0 ? (
               <Block flex>
-                {this.state.reviews.map((review, index) => (
-                  <Block flex row key={index}>
-                    <Card item={review} horizontal />
-                  </Block>
-                ))}
+                {this.state.reviews.map((review, index) => {
+                  if (this.state.usuarioActual === review.userID) {
+                    return (
+                      <Block flex row key={index}>
+                        <Card item={review} horizontal isActualUser={true}/>
+                      </Block>
+                    );
+                  } else {
+                    return (
+                      <Block flex row key={index}>
+                        <Card item={review} horizontal isActualUser={false}/>
+                      </Block>
+                    );
+                  }
+                })}
               </Block>
             ) : (
               <Block flex>

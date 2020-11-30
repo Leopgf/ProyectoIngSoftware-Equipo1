@@ -7,5 +7,4 @@ export default interface Review {
     mensaje: string;
     valoracion: number;
     fecha: Date;
-    likes: number;
 }
