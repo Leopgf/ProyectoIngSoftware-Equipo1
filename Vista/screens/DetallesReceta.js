@@ -167,60 +167,10 @@ class DetallesReceta extends React.Component {
             <ScrollView showsVerticalScrollIndicator={false}>
               <Block flex style={{ marginTop: 20 }}>
                 <Block>
-                  {this.state.user ? (
-                    <Block
-                      style={{ flexDirection: 'row', alignSelf: 'flex-between', marginLeft: 215 }}
-                    >
-                      <Text
-                        style={{
-                          color: '#2c2c2c',
-                          fontSize: 11,
-                          marginTop: 15,
-                          marginBottom: 15,
-                          zIndex: 2,
-                          marginTop: 18,
-                        }}
-                      >
-                        Agregar a Favoritos
-                      </Text>
-                      {this.state.isFavorito ? (
-                        <GaButton
-                          round
-                          onlyIcon
-                          shadowless
-                          icon="star"
-                          iconFamily="Font-Awesome"
-                          iconColor={'#E63746'}
-                          iconSize={nowTheme.SIZES.BASE * 1.4}
-                          color={'#FFFFFF'}
-                          style={[styles.social, styles.shadow]}
-                          onPress={() => {
-                            this.eliminarFavorito();
-                          }}
-                        />
-                      ) : (
-                        <GaButton
-                          round
-                          onlyIcon
-                          shadowless
-                          icon="star"
-                          iconFamily="Font-Awesome"
-                          iconColor={'#c2c2c1'}
-                          iconSize={nowTheme.SIZES.BASE * 1.4}
-                          color={'#ffffff'}
-                          style={[styles.social, styles.shadow]}
-                          onPress={() => {
-                            this.agregarFavorito();
-                          }}
-                        />
-                      )}
-                    </Block>
-                  ) : (
-                    <Block flex style={{ marginTop: 20 }}></Block>
-                  )}
+                  <Block flex style={{ flexDirection: 'row', alignContent: 'space-between'}}>
 
-                  <Block
-                    style={{ flexDirection: 'row', alignSelf: 'flex-between' }}
+                  <Block flex
+                    style={{ flexDirection: 'row' }}
                   >
                     {/* CATEGORIAS DE LA RECETA */}
                     <Text
@@ -259,6 +209,61 @@ class DetallesReceta extends React.Component {
                         );
                       }
                     })}
+                  </Block>
+
+                  {this.state.user ? (
+                    <Block flex
+                      style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
+                    >
+                      <Text
+                        style={{
+                          color: '#2c2c2c',
+                          fontSize: 15,
+                          marginTop: 15,
+                          marginBottom: 15,
+                          zIndex: 2,
+                          marginTop: 18,
+                        }}
+                      >
+
+                        Agregar a Favoritos
+                      </Text>
+                      {this.state.isFavorito ? (
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="star"
+                          iconFamily="Font-Awesome"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#FFFFFF'}
+                          style={[styles.social, styles.shadow]}
+                          onPress={() => {
+                            this.eliminarFavorito();
+                          }}
+                        />
+                      ) : (
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="star"
+                          iconFamily="Font-Awesome"
+                          iconColor={'#c2c2c1'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#ffffff'}
+                          style={[styles.social, styles.shadow]}
+                          onPress={() => {
+                            this.agregarFavorito();
+                          }}
+                        />
+                      )}
+                    </Block>
+                  ) : (
+                    <Block flex style={{ marginTop: 20 }}></Block>
+                  )}
+
                   </Block>
 
                   {/* PORCIONES DE LA RECETA */}
