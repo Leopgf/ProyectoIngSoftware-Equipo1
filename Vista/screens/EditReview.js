@@ -8,6 +8,7 @@ import {
   Keyboard,
   Alert,
 } from 'react-native';
+import LoadingView from 'react-native-loading-view';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
 import { Button, Icon, Input } from '../components';
@@ -16,9 +17,10 @@ import ImagePickerExample from '../components/ImagePicker';
 import { ScrollView } from 'react-native-gesture-handler';
 import ModalDropdown from 'react-native-modal-dropdown';
 
-import { agregarReview } from '../../Controladores/RecetaControler';
-import Review from '../../Modelos/Review';
+import { getReview, editarReview } from '../../Controladores/RecetaControler';
 import * as firebase from 'firebase';
+import { Image } from 'react-native-svg';
+import Img from '../components/Img';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -26,56 +28,78 @@ const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
 );
 
-class AddReview extends React.Component {
-
+class EditReview extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
+      loading: true,
+      review: {},
+      reviewID: this.props.route.params.reviewID,
       recetaID: this.props.route.params.recetaID,
-      valoracion: 0,
-      titulo: '',
-      mensaje: '',
-      imagen: '',
     };
-    this._dropdown_select = this._dropdown_select.bind(this)
-}
-
-_dropdown_select(event){
-  this.setState({valoracion: event.target.index + 1});
-}
-
-  async componentDidMount() {
-    console.log(this.props.route.params.recetaID);
+    this._dropdown_select = this._dropdown_select.bind(this);
   }
 
-  setImagen = (uri) => {
-    this.setState({ imagen: uri.uri });
+  _dropdown_select(event) {
+    let review = (this.state.review.valoracion = event.target.index + 1);
+    this.setState({ review: review });
+  }
+
+  async componentDidMount() {
+    try {
+      await getReview(this.state.reviewID, this.onReviewRecibida);
+    } catch (error) {
+      console.error(error);
+    }
+    this.setState({
+      loading: false,
+    });
+  }
+
+  onReviewRecibida = async (review) => {
+    await this.setState({
+      review: review,
+    });
+    console.log(review);
   };
 
-  async addReview() {
-    // Publicar review
+  async editReview() {
+    // Editar review
     const review = {
-      recetaID: this.state.recetaID,
+      id: this.state.review.id,
+      recetaID: this.state.review.recetaID,
       userID: firebase.auth().currentUser.uid,
-      imagen: this.state.imagen,
-      titulo: this.state.titulo,
-      mensaje: this.state.mensaje,
-      valoracion: parseInt(this.state.valoracion) + 1,
-      fecha: new Date(),
+      imagen: this.state.review.imagen,
+      titulo: this.state.review.titulo,
+      mensaje: this.state.review.mensaje,
+      valoracion: parseInt(this.state.review.valoracion) + 1,
+      fecha: this.state.review.fecha,
     };
 
-    await agregarReview(review)
+    await editarReview(review)
       .then((resolve) => {
         Alert.alert(resolve);
-        this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
+        // this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
       })
       .catch((error) => {
         Alert.alert(error);
       });
   }
 
+  setImagen = (uri) => {
+      let review = this.state.review;
+      review.imagen = uri.uri;
+    this.setState({ review });
+  };
+
   render() {
     return (
+        <LoadingView
+        loading={this.state.loading}
+        size="large"
+        style={styles.cargar}
+        text="Cargando edición de la review..."
+      >
       <DismissKeyboard>
         <Block flex middle>
           <ImageBackground
@@ -98,19 +122,24 @@ _dropdown_select(event){
                           color="#0f1e2e"
                           size={24}
                         >
-                          Escribe tu review de la receta
+                          Edita tu review de la receta
                         </Text>
                         <Block flex space="between">
                           <Block>
                             <Block center width={width * 0.8}>
-                              <Block flex={1} style={{ marginTop: 20, marginBottom: 20 }} middle>
-                                <ImagePickerExample onImagePicked={this.setImagen} />
+                                {/* NO SE POR QUE NO SE VE AAAAAAAAAAAAA */}
+                                <Block flex={1} style={{ marginTop: 20, marginBottom: 20 }} middle>
+                                <ImagePickerExample onImagePicked={this.setImagen} defaultImage = {this.state.review.imagen}/>
                               </Block>
                               <Block>
                                 <Input
                                   placeholder="Titulo"
                                   style={styles.inputs}
-                                  onChangeText={(titulo) => this.setState({ titulo })}
+                                  value={this.state.review.titulo}
+                                  onChangeText={(titulo) => {
+                                    let review = this.state.review;
+                                    review.titulo = titulo;
+                                    this.setState({ review })}}
                                   iconContent={
                                     <Icon size={18} name="message" family="ArgonExtra" />
                                   }
@@ -118,7 +147,11 @@ _dropdown_select(event){
                                 <Input
                                   placeholder="Mensaje"
                                   style={styles.inputs}
-                                  onChangeText={(mensaje) => this.setState({ mensaje })}
+                                  value={this.state.review.mensaje}
+                                  onChangeText={(mensaje) => {
+                                      let review = this.state.review;
+                                      review.mensaje = mensaje;
+                                      this.setState({ review })}}
                                   iconContent={
                                     <Icon size={18} name="message" family="ArgonExtra" />
                                   }
@@ -126,12 +159,15 @@ _dropdown_select(event){
                                 <Text>Valoración:</Text>
                                 <ModalDropdown
                                   ref="dropdown"
-                                  defaultValue={'Seleccione'}
+                                  defaultValue={this.state.review.valoracion}
                                   textStyle={styles.dropdownText}
                                   style={styles.dropdown}
                                   dropdownStyle={styles.dropdownOption}
                                   options={[1, 2, 3, 4, 5]}
-                                  onSelect = { (value) => this.setState({valoracion: (value)})}
+                                  onSelect={(value) => {
+                                    let review = this.state.review;
+                                    review.valoracion = value;
+                                    this.setState({ review })}}
                                 />
                               </Block>
                             </Block>
@@ -147,14 +183,14 @@ _dropdown_select(event){
                               }}
                               color="primary"
                               round
-                              onPress={() => this.addReview()}
+                              onPress={() => this.editReview()}
                             >
                               <Text
                                 style={{ fontFamily: 'montserrat-bold' }}
                                 size={14}
                                 color={nowTheme.COLORS.WHITE}
                               >
-                                Publicar
+                                Actualizar
                               </Text>
                             </Button>
                           </Block>
@@ -168,6 +204,7 @@ _dropdown_select(event){
           </ImageBackground>
         </Block>
       </DismissKeyboard>
+      </LoadingView>
     );
   }
 }
@@ -280,4 +317,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddReview;
+export default EditReview;

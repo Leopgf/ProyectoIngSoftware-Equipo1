@@ -160,33 +160,84 @@ export async function agregarReview(review: Review) {
     } else {
       const nombreImagen = review.imagen.split('/ImagePicker/').pop();
 
-      var storageRef = firebase.storage().ref(nombreImagen);
+      // var storageRef = firebase.storage().ref(nombreImagen);
 
-      storageRef
-        .putFile(review.imagen)
-        .then(() => {
-          storageRef
-            .getDownloadURL()
-            .then((imagen) => {
-              review.imagen = imagen;
-              firebase
-                .firestore()
-                .collection('Reviews')
-                .add(review)
-                .then(() => {
-                  resolve('Review publicada con éxito.');
-                })
-                .catch(() => {
-                  reject('Error de conexión, intente nuevamente');
-                });
-            })
-            .catch(() => {
-              reject('Error de conexión, intente nuevamente');
-            });
-        })
-        .catch(() => {
-          reject('Error, intente nuevamente');
-        });
+      // storageRef
+      //   .putFile(review.imagen)
+      //   .then(() => {
+      //     storageRef
+      //       .getDownloadURL()
+      //       .then((imagen) => {
+      //         review.imagen = imagen;
+      //         firebase
+      //           .firestore()
+      //           .collection('Reviews')
+      //           .add(review)
+      //           .then(() => {
+      //             resolve('Review publicada con éxito.');
+      //           })
+      //           .catch(() => {
+      //             reject('Error de conexión, intente nuevamente');
+      //           });
+      //       })
+      //       .catch(() => {
+      //         reject('Error de conexión, intente nuevamente');
+      //       });
+      //   })
+      //   .catch(() => {
+      //     reject('Error, intente nuevamente');
+      //   });
+    }
+  });
+}
+
+export async function editarReview(review: Review) {
+  return new Promise(function (resolve, reject) {
+    if (
+      review.imagen === '' ||
+      review.titulo === '' ||
+      review.mensaje === '' ||
+      review.valoracion === 0
+    ) {
+      reject('Error, por favor rellene todos los campos.');
+    } else {
+      const nombreImagen = review.imagen.split('://')[0];
+      
+      if(nombreImagen === 'https'){
+        
+      }else{
+
+      }
+      
+
+
+      // var storageRef = firebase.storage().ref(nombreImagen);
+
+      // storageRef
+      //   .putFile(review.imagen)
+      //   .then(() => {
+      //     storageRef
+      //       .getDownloadURL()
+      //       .then((imagen) => {
+      //         review.imagen = imagen;
+      //         firebase
+      //           .firestore()
+      //           .collection('Reviews')
+      //           .add(review)
+      //           .then(() => {
+      //             resolve('Review publicada con éxito.');
+      //           })
+      //           .catch(() => {
+      //             reject('Error de conexión, intente nuevamente');
+      //           });
+      //       })
+      //       .catch(() => {
+      //         reject('Error de conexión, intente nuevamente');
+      //       });
+      //   })
+      //   .catch(() => {
+      //     reject('Error, intente nuevamente');
+      //   });
     }
   });
 }
@@ -210,6 +261,26 @@ export async function getReviews(recetaID: string, onReviewsRecibidas: Function)
   });
   
   onReviewsRecibidas(reviews);
+
+}
+
+// FUNCION PARA RECUPERAR UNA REVIEW
+export async function getReview(reviewID: string, onReviewRecibida: Function) {
+  let review = {};
+
+  await firebase
+    .firestore()
+    .collection('Reviews')
+    .doc(reviewID)
+    .get().then((doc) => {
+      const id = doc.id;
+      review = { id: id, ...(doc.data() as Review) };
+    // @ts-ignore
+      review.fecha = new Date(doc.data().fecha);
+    
+    onReviewRecibida(review);
+    }
+    );
 
 }
 

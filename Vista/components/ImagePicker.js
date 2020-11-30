@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet } from 'react-native';
 import { Button } from 'galio-framework';
 
-export default function ImagePickerExample({onImagePicked}) {
+export default function ImagePickerExample({onImagePicked, defaultImage}) {
 
   const { width, height } = Dimensions.get('screen');
   const [image, setImage] = useState(null);
@@ -50,9 +50,10 @@ export default function ImagePickerExample({onImagePicked}) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button style={styles.Button} onPress={pickImage} >
-      Cargue una imagen para publicar
+      Cambiar imagen de la review
       </Button>
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} />}
+      {defaultImage && !image && <Image source={{ uri: defaultImage }} style={{ width: 200, height: 200, marginTop: 20 }} />}
     </View>
   );
 }

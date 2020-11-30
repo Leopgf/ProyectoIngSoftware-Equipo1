@@ -12,6 +12,7 @@ import { Button } from '.';
 
 //CLASE DE CARD
 class Card extends React.Component {
+
    render() {
     const {
       navigation,
@@ -142,6 +143,7 @@ class Card extends React.Component {
                           iconSize={nowTheme.SIZES.BASE * 1.4}
                           color={'#FFFFFF'}
                           style={[styles.social, styles.shadow]}
+                          onPress={() => this.props.navigation.navigate('Editar Review', { reviewID: item.id, recetaID: item.recetaID })}
                         />
                         <GaButton
                           round

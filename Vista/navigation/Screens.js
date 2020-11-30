@@ -19,6 +19,7 @@ import { nowTheme, tabs } from '../constants';
 
 import * as firebase from 'firebase';
 import AddReview from '../screens/AddReview';
+import EditReview from '../screens/EditReview';
 import Conversor from '../screens/Conversor';
 import AddReceta from '../screens/AddReceta';
 
@@ -90,6 +91,28 @@ function DetallesRecetaStack(props) {
             <Header back title="Detalles de la Receta" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: '#FFFFFF' },
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function EditReviewStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Editar Review" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Editar Review"
+        component={() => <EditReview {...props} />}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              back
+              title="Edita tu review"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
           headerTransparent: true,
         }}
       />
@@ -313,6 +336,7 @@ function AppStack(props) {
       <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
       <Drawer.Screen name="Reviews" component={ReviewsStack} />
       <Drawer.Screen name="Escribir Review" component={AddReviewStack} />
+      <Drawer.Screen name="Editar Review" component={EditReviewStack} />
       <Drawer.Screen name="Conversor" component={ConversorStack} />
       <Drawer.Screen name="Publicar Receta" component={AddRecetaStack} />
     </Drawer.Navigator>
