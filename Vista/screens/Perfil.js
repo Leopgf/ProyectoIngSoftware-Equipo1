@@ -200,6 +200,7 @@ class Perfil extends React.Component {
                     width: 120,
                     marginRight: 10,
                     marginLeft: 15,
+                    marginBottom: 15,
                   }}
                   onPress={() => this.handleAddReview()}
                 >
@@ -207,6 +208,18 @@ class Perfil extends React.Component {
                 </Button>
               </Block>
               {/* texto biblioteca */}
+              <Text
+                  style={{
+                    fontFamily: 'montserrat-bold',
+                    marginBottom: theme.SIZES.BASE / 2,
+                    marginTop: 20,
+                    fontWeight: '900',
+                    fontSize: 15, alignSelf: 'center',
+                  }}
+                  color="#0f1e2e"
+                >
+                  ¿Qué desea ver de su perfil?
+                </Text>
               <Block
                 middle
                 style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 15 }}

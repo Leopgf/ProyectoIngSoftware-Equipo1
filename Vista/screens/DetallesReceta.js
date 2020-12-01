@@ -260,6 +260,7 @@ class DetallesReceta extends React.Component {
                             marginBottom: 15,
                             zIndex: 2,
                             marginTop: 18,
+                            marginLeft:30
                           }}
                         >
                           Eliminar receta
@@ -269,10 +270,10 @@ class DetallesReceta extends React.Component {
                             onlyIcon
                             shadowless
                             icon="delete"
-                            iconFamily="Font-Awesome"
+                            iconFamily="AntDesign"
                             iconColor={'#E63746'}
                             iconSize={nowTheme.SIZES.BASE * 1.4}
-                            color={'#FFFFFF'}
+                            color={'#ffffff'}
                             style={[styles.social, styles.shadow]}
                             onPress={() => {
                               this.eliminarReceta();

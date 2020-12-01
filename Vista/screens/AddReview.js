@@ -139,6 +139,11 @@ _dropdown_select(event){
                                 }}
                                 color="#0f1e2e"
                                 size={16}>Valoración que desea colocarle a la receta:</Text>
+                                <Text style={{
+                                  fontWeight: '500', marginTop:16,marginBottom:3, alignSelf: 'center'
+                                }}
+                                color="#e63746"
+                                size={13}>Con 1-Muy mala  y 5-Excelente</Text>
                                 <ModalDropdown
                                   ref="dropdown"
                                   defaultValue={'Valoración'}
@@ -226,6 +231,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 7,
     backgroundColor: '#e63746',
+    marginLeft:10
   },
 
   dropdownOption: {

@@ -148,7 +148,7 @@ class AddReceta extends React.Component {
           >
             <Block flex middle>
               <Block style={styles.registerContainer}>
-                <ScrollView showsVerticalScrollIndicator={false} contentInset = {{top: 60, left: 0, bottom: 60, right: 0}}>
+                <ScrollView showsVerticalScrollIndicator={false} contentInset = {{top: 30, left: 0, bottom: 60, right: 0}}>
                   <Block flex space="evenly">
                     <Block flex={0.4} middle>
                       <Block flex={0.5} middle>
@@ -166,7 +166,7 @@ class AddReceta extends React.Component {
                         </Text>
                       </Block>
                     </Block>
-                    <Block flex={0.1} middle>
+                    <Block flex={0.1} middle style={{marginTop:10}}>
                       <Text color="#0f1e2e" size={16}>
                         ¡Publica tus recetas con nosotros!
                       </Text>
@@ -175,7 +175,7 @@ class AddReceta extends React.Component {
                       <Block center flex={0.9}>
                         <Block flex space="between">
                           <Block>
-                            <Block flex>
+                            <Block flex style={{marginTop:10}}>
                               <ImagePickerExample onImagePicked={this.setImagen} />
                             </Block>
                             <Block flex center width={width * 0.8}>
@@ -212,8 +212,10 @@ class AddReceta extends React.Component {
                               />
                             </Block>
                             <Block flex center width={width * 0.8}>
-                              <Text>Categoría:</Text>
+                            <Block row flex center >
+                              <Text color="#0f1e2e" size={16} style={{marginTop:10}}>Categoría:</Text>
                               <ModalDropdown
+                              
                                 ref="dropdown"
                                 defaultValue={'Seleccione'}
                                 textStyle={styles.dropdownText}
@@ -226,13 +228,19 @@ class AddReceta extends React.Component {
                                   this.setState({ categorias });
                                 }}
                               />
+                              </Block>
                               <Block flex center width={width * 0.8}>
-                                <Text>Pasos:</Text>
+                              <Block row flex center style={{marginTop:10}}>
+                                <Text color="#0f1e2e" size={16} style={{marginTop:10}}>Pasos de la receta:</Text>
+                                <Text color="#e63746" size={12} style={{marginTop:10, marginLeft:4}}>Click en + para añadir un paso</Text>
                                 <Button
                                   style={{
                                     fontFamily: 'montserrat-bold',
                                     borderRadius: nowTheme.SIZES.BASE * 1.5,
-                                    width: 200,
+                                    width: 30,
+                                    height:30,
+                                    marginTop:6,
+                                    marginLeft:2
                                   }}
                                   color="primary"
                                   round
@@ -240,8 +248,11 @@ class AddReceta extends React.Component {
                                 >
                                   +
                                 </Button>
+                                </Block>
                                 {this.state.pasos.map((paso, i) => (
+                              
                                   <Block flex syle={{ flexDirection: 'row' }} key={i}>
+                                  <Block row flex center style={{marginTop:10}} key={i}> 
                                     <Input
                                       placeholder={`Paso ${i + 1}`}
                                       style={styles.inputs}
@@ -256,8 +267,11 @@ class AddReceta extends React.Component {
                                     <Button
                                       style={{
                                         fontFamily: 'montserrat-bold',
-                                        borderRadius: nowTheme.SIZES.BASE * 1.5,
-                                        width: 200,
+                                    borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                    width: 30,
+                                    height:30,
+                                    marginTop:6,
+                                    marginLeft:2
                                       }}
                                       color="primary"
                                       round
@@ -265,28 +279,36 @@ class AddReceta extends React.Component {
                                     >
                                       -
                                     </Button>
+                                    </Block>
+                                   <Text color="#e63746" size={13} style={{marginLeft:4, alignSelf: 'center'}}>Click en - para eliminar el paso</Text>
                                   </Block>
                                 ))}
                               </Block>
-                              <Block flex center width={width * 0.8}>
-                                <Text>Ingredientes:</Text>
+                              <Block flex center width={width * 0.8} style={{marginTop:20}}>
+                                <Text color="#0f1e2e" size={16} >Ingredientes:</Text>
+                                <Block row>
+                                <Text color="#e63746" size={13} style={{marginTop:5, marginLeft:4, alignSelf: 'center'}}>Click en + para añadir ingrediente</Text>
                                 <Button
-                                  style={{
-                                    fontFamily: 'montserrat-bold',
-                                    borderRadius: nowTheme.SIZES.BASE * 1.5,
-                                    width: 200,
-                                  }}
+                                style={{
+                                      fontFamily: 'montserrat-bold',
+                                  borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                  width: 30,
+                                  height:30,
+                                  marginTop:6,
+                                  marginLeft:2
+                                }}
                                   color="primary"
                                   round
                                   onPress={() => this.addClickIngrediente()}
                                 >
                                   +
                                 </Button>
+                                </Block>
                                 {this.state.ingredientes.map((ingrediente, i) => (
                                   <Block flex syle={{ flexDirection: 'row' }} key={i}>
                                     <ModalDropdown
                                       ref="dropdown"
-                                      defaultValue={'Seleccione al gusto'}
+                                      defaultValue={'Cantidad'}
                                       textStyle={styles.dropdownText}
                                       style={styles.dropdown}
                                       dropdownStyle={styles.dropdownOption}
@@ -331,24 +353,29 @@ class AddReceta extends React.Component {
                                         this.setState({ ingredientes });
                                       }}
                                     />
+                                    <Block row>
+                                    <Text color="#e63746" size={13} style={{ marginLeft:6, alignSelf: 'center'}}>Click en - para eliminar el ingrediente</Text>
                                     <Button
-                                      style={{
-                                        fontFamily: 'montserrat-bold',
-                                        borderRadius: nowTheme.SIZES.BASE * 1.5,
-                                        width: 200,
-                                      }}
+                                    style={{
+                                      fontFamily: 'montserrat-bold',
+                                  borderRadius: nowTheme.SIZES.BASE * 1.5,
+                                  width: 20,
+                                  height:20,
+                                  marginLeft:2
+                                }}
                                       color="primary"
                                       round
                                       onPress={() => this.removeClickIngrediente(i)}
                                     >
                                       -
                                     </Button>
+                                    </Block>
                                   </Block>
                                 ))}
                               </Block>
                             </Block>
                           </Block>
-                          <Block center>
+                          <Block center style={{marginTop:10}}>
                             <Button
                               style={{
                                 fontFamily: 'montserrat-bold',
@@ -401,9 +428,10 @@ const styles = StyleSheet.create({
     height: height,
   },
   dropdown: {
+    marginLeft:15,
     alignSelf: 'center',
-    width: width / 4,
-    height: height / 18,
+    width: width / 3,
+    height: height / 24,
     marginTop: 10,
     alignItems: 'center',
     right: 8,
@@ -413,6 +441,7 @@ const styles = StyleSheet.create({
   },
 
   dropdownOption: {
+    
     width: width / 5,
     alignItems: 'center',
     borderColor: '#e63746',
@@ -423,8 +452,8 @@ const styles = StyleSheet.create({
   dropdownText: {
     marginVertical: 10,
     marginHorizontal: 6,
-    fontSize: 18,
-    color: 'white',
+    fontSize: 15,
+    color: '#c2c1c1',
     textAlign: 'center',
     textAlignVertical: 'center',
   },
