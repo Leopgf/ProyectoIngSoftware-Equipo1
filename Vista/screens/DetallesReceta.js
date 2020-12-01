@@ -129,8 +129,21 @@ class DetallesReceta extends React.Component {
   };
 
   eliminarReceta = async () => {
-    await eliminarReceta(this.state.id);
-    this.props.navigation.navigate('Inicio');
+    Alert.alert('Eliminar receta', '¿Está seguro que desea eliminar esta receta?', [
+      {
+        text: 'Si',
+        onPress: () => {
+          await eliminarReceta(this.state.id);
+          this.props.navigation.navigate('Inicio');
+        },
+      },
+      {
+        text: 'No',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+    ]);
+    
   }
 
   renderDetallesReceta = () => {
