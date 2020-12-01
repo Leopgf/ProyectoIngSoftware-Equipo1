@@ -300,11 +300,33 @@ export async function agregarReceta(receta: Receta) {
       receta.descripcion !== '' &&
       receta.porcionDefecto !== 0 &&
       receta.unidadPorcion !== '' &&
-      receta.categorias !== [] &&
+      receta.categorias[0] !== '' &&
       receta.pasos !== [] &&
       receta.imagen !== '' &&
       receta.ingredientes !== []
     ){
+
+      receta.pasos.forEach((paso) => {
+        if(paso === ''){
+          reject('Por favor rellene todos los campos correctamente.');
+        }
+      })
+
+      receta.ingredientes.forEach((ingrediente) => {
+        // @ts-ignore
+        if(ingrediente.ingrediente === ''){
+          reject('Por favor rellene todos los campos correctamente.');
+        }
+        // @ts-ignore
+        if(ingrediente.alGusto === false && ingrediente.cantidad === 0){
+          reject('Por favor rellene todos los campos correctamente.');
+        }
+        // @ts-ignore
+        if(ingrediente.alGusto === false && ingrediente.cantidad === ''){
+          reject('Por favor rellene todos los campos correctamente.');
+        }
+      });
+
       receta.usuarioID = userId;
       firebase
         .firestore()

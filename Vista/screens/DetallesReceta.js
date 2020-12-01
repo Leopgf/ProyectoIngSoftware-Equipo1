@@ -132,7 +132,7 @@ class DetallesReceta extends React.Component {
     Alert.alert('Eliminar receta', '¿Está seguro que desea eliminar esta receta?', [
       {
         text: 'Si',
-        onPress: () => {
+        onPress: async () => {
           await eliminarReceta(this.state.id);
           this.props.navigation.navigate('Inicio');
         },

@@ -21,6 +21,7 @@ class Home extends React.PureComponent {
     loading: true, //Carga arriba
     refreshing: false, //Refresh
     limite: 5,
+    isTab: false
   };
 
   //Refresh arriba
@@ -67,6 +68,7 @@ class Home extends React.PureComponent {
       this.setState({
         // Pantalla de carga
         loading: true,
+        isTab: true,
       });
       try {
         if (this.props.searchText.length > 0) {
@@ -88,6 +90,7 @@ class Home extends React.PureComponent {
     if (this.props.currentTab !== prevProps.currentTab) {
       this.setState({
         loading: true,
+        isTab: true,
       });
       try {
         if (this.props.currentTab.length > 0) {
@@ -124,7 +127,7 @@ class Home extends React.PureComponent {
             <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
           }
           onScroll={({ nativeEvent }) => {
-            if (this.isCloseToBottom(nativeEvent)) {
+            if (this.isCloseToBottom(nativeEvent) && !this.state.isTab) {
               this.handleLoadMore();
             }
           }}
