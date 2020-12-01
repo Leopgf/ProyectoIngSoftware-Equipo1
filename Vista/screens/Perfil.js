@@ -6,7 +6,7 @@ import { Button } from '../components';
 import { Images, nowTheme } from '../constants';
 import { HeaderHeight } from '../constants/utils';
 import LoadingView from 'react-native-loading-view';
-import { getPerfil, getBiblioteca } from '../../Controladores/UsuarioControler';
+import { getPerfil, getBiblioteca, getRecetasUsuarios } from '../../Controladores/UsuarioControler';
 import { getRecetasBiblioteca } from '../../Controladores/RecetaControler';
 import { RefreshControl } from 'react-native';
 import * as firebase from 'firebase';
@@ -17,15 +17,18 @@ const thumbMeasure = (width - 48 - 32) / 3;
 
 class Perfil extends React.Component {
   state = {
-    recetas: [],
+    biblioteca: [],
+    publicaciones: [],
     usuario: {},
+    isPublicaciones: true,
     loading: true,
+    isLoading: false,
     refreshing: false, //Refresh
   };
 
   handleAddReview = () => {
     this.props.navigation.navigate('Publicar Receta');
-  }
+  };
 
   onPerfilRecibido = (usuario) => {
     this.setState((prevState) => ({
@@ -34,10 +37,12 @@ class Perfil extends React.Component {
   };
 
   onRecetaRecibidas = (receta) => {
-    let recetas = this.state.recetas;
+    let recetas = this.state.biblioteca;
     recetas.push(receta);
     this.setState({
-      recetas: recetas,
+      biblioteca: recetas,
+      isPublicaciones: false,
+      isLoading: false,
     });
   };
 
@@ -45,19 +50,48 @@ class Perfil extends React.Component {
     getRecetasBiblioteca(biblioteca, this.onRecetaRecibidas);
   };
 
-  //Refresh arriba
-  _onRefresh = () => {
-    this.setState({ refreshing: true, recetas: [] });
-    getBiblioteca(this.onBibliotecaRecibida).then(() => {
-      this.setState({ refreshing: false });
+  getBiblioteca = async () => {
+    console.log('Cargando biblioteca');
+    this.setState({
+      isLoading: true,
     });
+    await getBiblioteca(this.onBibliotecaRecibida);
+  };
+
+  getPublicaciones = async () => {
+    console.log('Cargando publicaciones');
+    this.setState({
+      isLoading: true,
+    });
+    await getRecetasUsuarios(this.PublicacionesRecibidas);
+  };
+
+  PublicacionesRecibidas = (publicaciones) => {
+    this.setState({
+      publicaciones: publicaciones,
+      isPublicaciones: true,
+      isLoading: false,
+    });
+  };
+
+  //Refresh arriba
+  _onRefresh = async () => {
+    if (this.state.isPublicaciones) {
+      this.setState({ refreshing: true, publicaciones: [] });
+      await getRecetasUsuarios(this.PublicacionesRecibidas);
+      this.setState({ refreshing: false });
+    } else {
+      this.setState({ refreshing: true, biblioteca: [] });
+      await getBiblioteca(this.onBibliotecaRecibida);
+      this.setState({ refreshing: false });
+    }
   };
 
   async cargar() {
     //TEMPORIZADOR DE CARGAR
     try {
       await getPerfil(this.onPerfilRecibido);
-      await getBiblioteca(this.onBibliotecaRecibida);
+      await getRecetasUsuarios(this.PublicacionesRecibidas);
     } catch (error) {
       console.error(error);
     }
@@ -68,13 +102,13 @@ class Perfil extends React.Component {
 
   async cambiarUsuario() {
     await firebase.auth().onAuthStateChanged((user) => {
-      if(user){
-        if(user.uid !== this.state.usuario.usuarioID){
+      if (user) {
+        if (user.uid !== this.state.usuario.usuarioID) {
           console.log('aqui');
           this.cargar();
         }
       }
-    })
+    });
   }
 
   renderPerfil = () => {
@@ -145,58 +179,97 @@ class Perfil extends React.Component {
               }
             >
               {/* BTN a publicar receta */}
-            <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <Text
-                style={{
-                  fontFamily: 'montserrat-bold',
-                  marginBottom: theme.SIZES.BASE / 2,
-                  marginTop:10,
-                  fontWeight: '900',
-                  fontSize: 15,
-                }}
-                color="#0f1e2e"
-              >
-              ¿Desea publicar una receta?
-              </Text>
-            
-            <Button
-                primary
-                style={{ borderRadius: nowTheme.SIZES.BASE * 1, width: 120, marginRight: 10,marginLeft: 15 }}
-                onPress={() => this.handleAddReview()}>
-                  Publicar Receta
-                </Button> 
-
-            </Block>
-  {/* texto biblioteca */}
-              <Block middle style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
-            
+              <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text
                   style={{
                     fontFamily: 'montserrat-bold',
                     marginBottom: theme.SIZES.BASE / 2,
+                    marginTop: 10,
                     fontWeight: '900',
-                    fontSize: 25,
+                    fontSize: 15,
                   }}
-                  color="#e63746"
+                  color="#0f1e2e"
                 >
-                  Mi Biblioteca
+                  ¿Desea publicar una receta?
                 </Text>
+
+                <Button
+                  primary
+                  style={{
+                    borderRadius: nowTheme.SIZES.BASE * 1,
+                    width: 120,
+                    marginRight: 10,
+                    marginLeft: 15,
+                  }}
+                  onPress={() => this.handleAddReview()}
+                >
+                  Publicar Receta
+                </Button>
+              </Block>
+              {/* texto biblioteca */}
+              <Block
+                middle
+                style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 15 }}
+              >
+                <Button
+                  primary
+                  style={{
+                    borderRadius: nowTheme.SIZES.BASE * 1,
+                    width: 120,
+                    marginRight: 10,
+                    marginLeft: 15,
+                  }}
+                  onPress={() => this.getPublicaciones()}
+                >
+                  Publicaciones
+                </Button>
+                <Button
+                  primary
+                  style={{
+                    borderRadius: nowTheme.SIZES.BASE * 1,
+                    width: 120,
+                    marginRight: 10,
+                    marginLeft: 15,
+                  }}
+                  onPress={() => this.getBiblioteca()}
+                >
+                  Biblioteca
+                </Button>
               </Block>
               {/* COLOCAR AQUI ITEM PARA TRAER RECETAS DE MI LIBRERIA */}
-
-              <Block flex>
-                {this.state.recetas.map((receta, index) => (
-                  <Block flex row key={index}>
-                    <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
-                  </Block>
-                ))}
-              </Block>
+              <LoadingView
+                loading={this.state.isLoading}
+                size="large"
+                style={styles.cargar}
+                text="Cargando..."
+              >
+                <Block>
+                  {this.state.isPublicaciones ? (
+                    <Block flex>
+                      {this.state.publicaciones.map((receta, index) => (
+                        <Block flex row key={index}>
+                          <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
+                        </Block>
+                      ))}
+                    </Block>
+                  ) : (
+                    <Block flex>
+                      {this.state.biblioteca.map((receta, index) => (
+                        <Block flex row key={index}>
+                          <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
+                        </Block>
+                      ))}
+                    </Block>
+                  )}
+                </Block>
+              </LoadingView>
             </ScrollView>
           </Block>
         </Block>
       </LoadingView>
     );
   };
+
   render() {
     this.cambiarUsuario();
     return (
