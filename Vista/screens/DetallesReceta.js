@@ -11,6 +11,7 @@ import {
   esFavorito,
   agregarEnBiblioteca,
   eliminarEnBiblioteca,
+  eliminarReceta
 } from '../../Controladores/UsuarioControler';
 import LoadingView from 'react-native-loading-view';
 import Moment from 'moment';
@@ -26,6 +27,7 @@ class DetallesReceta extends React.Component {
   state = {
     loading: true,
     user: false,
+    isSameUser: false,
     detalles: {
       categorias: [],
       pasos: [],
@@ -74,7 +76,7 @@ class DetallesReceta extends React.Component {
       ingredientesCambiados: this.state.detalles.ingredientes,
     });
   }
-
+  
   async isUser() {
     let user = await firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -83,7 +85,19 @@ class DetallesReceta extends React.Component {
       } else {
         this.setState({ user: false });
       }
+
+      if(user.uid === this.state.detalles.usuarioID){
+        this.setState({
+          isSameUser: true
+        });
+      }else{
+        this.setState({
+          isSameUser: false
+        });
+      }
     });
+
+    
   }
 
   //FUNCIONES PARA CONVERTIR LAS PORCIONES
@@ -103,8 +117,8 @@ class DetallesReceta extends React.Component {
   };
 
   handleReviews = () => {
-    this.props.navigation.navigate('Reviews',{recetaID: this.state.detalles.recetaID});
-  }
+    this.props.navigation.navigate('Reviews', { recetaID: this.state.detalles.recetaID });
+  };
 
   agregarFavorito = () => {
     agregarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
@@ -113,6 +127,11 @@ class DetallesReceta extends React.Component {
   eliminarFavorito = () => {
     eliminarEnBiblioteca(this.state.id, this.onFavoritoRecibido);
   };
+
+  eliminarReceta = async () => {
+    await eliminarReceta(this.state.id);
+    this.props.navigation.navigate('Inicio');
+  }
 
   renderDetallesReceta = () => {
     return (
@@ -124,7 +143,7 @@ class DetallesReceta extends React.Component {
       >
         <Block style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
           <Block flex={0.15} />
-          <Block flex={0.50}>
+          <Block flex={0.5}>
             <ImageBackground
               source={this.state.detalles.imagen && { uri: this.state.detalles.imagen }}
               style={styles.profileContainer}
@@ -167,105 +186,129 @@ class DetallesReceta extends React.Component {
             <ScrollView showsVerticalScrollIndicator={false}>
               <Block flex style={{ marginTop: 20 }}>
                 <Block>
-                  <Block flex style={{ flexDirection: 'row', alignContent: 'space-between'}}>
-
-                 
-                  {this.state.user ? (
-                    <Block flex
-                      style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
-                    >
-                      <Text
-                        style={{
-                          color: '#2c2c2c',
-                          fontSize: 15,
-                          marginTop: 15,
-                          marginBottom: 15,
-                          zIndex: 2,
-                          marginTop: 18,
-                        }}
-                      >
-
-                        Agregar a Favoritos
-                      </Text>
-                      {this.state.isFavorito ? (
-                        <GaButton
-                          round
-                          onlyIcon
-                          shadowless
-                          icon="star"
-                          iconFamily="Font-Awesome"
-                          iconColor={'#E63746'}
-                          iconSize={nowTheme.SIZES.BASE * 1.4}
-                          color={'#FFFFFF'}
-                          style={[styles.social, styles.shadow]}
-                          onPress={() => {
-                            this.eliminarFavorito();
+                  <Block flex style={{ flexDirection: 'row', alignContent: 'space-between' }}>
+                    {this.state.user ? (
+                      <Block flex style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                        <Text
+                          style={{
+                            color: '#2c2c2c',
+                            fontSize: 15,
+                            marginTop: 15,
+                            marginBottom: 15,
+                            zIndex: 2,
+                            marginTop: 18,
                           }}
-                        />
-                      ) : (
-                        <GaButton
-                          round
-                          onlyIcon
-                          shadowless
-                          icon="star"
-                          iconFamily="Font-Awesome"
-                          iconColor={'#c2c2c1'}
-                          iconSize={nowTheme.SIZES.BASE * 1.4}
-                          color={'#ffffff'}
-                          style={[styles.social, styles.shadow]}
-                          onPress={() => {
-                            this.agregarFavorito();
-                          }}
-                        />
-                      )}
-                    </Block>
-                  ) : (
-                    <Block flex style={{ marginTop: 20 }}></Block>
-                  )}
+                        >
+                          Agregar a Favoritos
+                        </Text>
+                        {this.state.isFavorito ? (
+                          <GaButton
+                            round
+                            onlyIcon
+                            shadowless
+                            icon="star"
+                            iconFamily="Font-Awesome"
+                            iconColor={'#E63746'}
+                            iconSize={nowTheme.SIZES.BASE * 1.4}
+                            color={'#FFFFFF'}
+                            style={[styles.social, styles.shadow]}
+                            onPress={() => {
+                              this.eliminarFavorito();
+                            }}
+                          />
+                        ) : (
+                          <GaButton
+                            round
+                            onlyIcon
+                            shadowless
+                            icon="star"
+                            iconFamily="Font-Awesome"
+                            iconColor={'#c2c2c1'}
+                            iconSize={nowTheme.SIZES.BASE * 1.4}
+                            color={'#ffffff'}
+                            style={[styles.social, styles.shadow]}
+                            onPress={() => {
+                              this.agregarFavorito();
+                            }}
+                          />
+                        )}
+                      </Block>
+                    ) : (
+                      <Block flex style={{ marginTop: 20 }}></Block>
+                    )}
 
+                    {this.state.isSameUser ? (
+                      <Block flex style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                        <Text
+                          style={{
+                            color: '#2c2c2c',
+                            fontSize: 15,
+                            marginTop: 15,
+                            marginBottom: 15,
+                            zIndex: 2,
+                            marginTop: 18,
+                          }}
+                        >
+                          Eliminar receta
+                        </Text>
+                          <GaButton
+                            round
+                            onlyIcon
+                            shadowless
+                            icon="delete"
+                            iconFamily="Font-Awesome"
+                            iconColor={'#E63746'}
+                            iconSize={nowTheme.SIZES.BASE * 1.4}
+                            color={'#FFFFFF'}
+                            style={[styles.social, styles.shadow]}
+                            onPress={() => {
+                              this.eliminarReceta();
+                            }}
+                          />
+                      </Block>
+                    ) : (
+                      <Block flex style={{ marginTop: 20 }}></Block>
+                    )}
                   </Block>
-                  <Block flex
-                  style={{ flexDirection: 'row' }}
-                >
-                  {/* CATEGORIAS DE LA RECETA */}
-                  <Text
-                    style={{ textAlign: 'left', fontSize: 15, marginTop: 7, marginBottom: 10 }}
-                  >
-                    {'Categorías: '}
-                  </Text>
-                  {this.state.detalles.categorias.map((categoria, index) => {
-                    if (index === this.state.detalles.categorias.length - 1) {
-                      return (
-                        <Text
-                          key={categoria}
-                          style={{
-                            textAlign: 'left',
-                            fontSize: 15,
-                            marginTop: 7,
-                            marginBottom: 10,
-                          }}
-                        >
-                          {categoria + '.'}
-                        </Text>
-                      );
-                    } else {
-                      return (
-                        <Text
-                          key={categoria}
-                          style={{
-                            textAlign: 'left',
-                            fontSize: 15,
-                            marginTop: 7,
-                            marginBottom: 10,
-                          }}
-                        >
-                          {categoria + ', '}
-                        </Text>
-                      );
-                    }
-                  })}
-                </Block>
-
+                  <Block flex style={{ flexDirection: 'row' }}>
+                    {/* CATEGORIAS DE LA RECETA */}
+                    <Text
+                      style={{ textAlign: 'left', fontSize: 15, marginTop: 7, marginBottom: 10 }}
+                    >
+                      {'Categorías: '}
+                    </Text>
+                    {this.state.detalles.categorias.map((categoria, index) => {
+                      if (index === this.state.detalles.categorias.length - 1) {
+                        return (
+                          <Text
+                            key={categoria}
+                            style={{
+                              textAlign: 'left',
+                              fontSize: 15,
+                              marginTop: 7,
+                              marginBottom: 10,
+                            }}
+                          >
+                            {categoria + '.'}
+                          </Text>
+                        );
+                      } else {
+                        return (
+                          <Text
+                            key={categoria}
+                            style={{
+                              textAlign: 'left',
+                              fontSize: 15,
+                              marginTop: 7,
+                              marginBottom: 10,
+                            }}
+                          >
+                            {categoria + ', '}
+                          </Text>
+                        );
+                      }
+                    })}
+                  </Block>
 
                   {/* PORCIONES DE LA RECETA */}
                   <Block style={{ flexDirection: 'row', alignSelf: 'flex-between' }}>
@@ -314,7 +357,7 @@ class DetallesReceta extends React.Component {
                       {this.state.porcion} {this.state.detalles.unidadPorcion}
                     </Text>
                   </Block>
-                  <Block style={{ marginTop: -5, backgroundColor: '#e3e4e5', borderRadius: 50}}>
+                  <Block style={{ marginTop: -5, backgroundColor: '#e3e4e5', borderRadius: 50 }}>
                     <Text
                       style={{
                         textAlign: 'center',
@@ -371,7 +414,6 @@ class DetallesReceta extends React.Component {
                 </Block>
               </Block>
 
-              
               <Text style={styles.subtitle}>MÁS INFORMACIÓN SOBRE LA RECETA</Text>
 
               <Text size={16} muted style={styles.text}>
@@ -379,15 +421,18 @@ class DetallesReceta extends React.Component {
               </Text>
 
               <Block flex row>
-                <Button  
-                primary
-                style={{
-                  borderRadius: nowTheme.SIZES.BASE * 1.5,
-                  marginTop: 20,
-                }} onPress= {() => this.handleReviews()}>VER REVIEWS</Button>
+                <Button
+                  primary
+                  style={{
+                    borderRadius: nowTheme.SIZES.BASE * 1.5,
+                    marginTop: 20,
+                  }}
+                  onPress={() => this.handleReviews()}
+                >
+                  VER REVIEWS
+                </Button>
               </Block>
-              <Block flex row style={{ marginBottom: 30 }}>
-              </Block>
+              <Block flex row style={{ marginBottom: 30 }}></Block>
             </ScrollView>
           </Block>
         </Block>

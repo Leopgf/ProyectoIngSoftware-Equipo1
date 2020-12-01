@@ -322,13 +322,13 @@ export async function agregarReceta(receta: Receta) {
 
 // BORRAR RECETAS
 export async function eliminarReceta(recetaId: string){
-  firebase
+   await firebase
   .firestore()
   .collection('Recetas')
   .doc(recetaId)
   .delete()
   .then( () =>{
-    Alert.alert('Receta eliminada')
+    Alert.alert('Receta eliminada.');
   })
 }
 
@@ -336,7 +336,7 @@ export async function eliminarReceta(recetaId: string){
 export async function getRecetasUsuarios(recetasRecibidas: Function) {
   let userId = firebase.auth().currentUser?.uid;
   let recetas: Receta[] = [];
-  let snapshot = await firebase.firestore().collection('Recetas').where('usuarioID', '==', userId).get();  
+  let snapshot = await firebase.firestore().collection('Recetas').where('usuarioID', '==', userId).orderBy('fecha', 'desc').get();  
 
   snapshot.forEach((doc) => {
     
