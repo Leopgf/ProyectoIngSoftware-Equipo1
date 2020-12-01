@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, Alert } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { Card } from '../components';
 import { Button } from '../components';
@@ -24,6 +24,31 @@ class Perfil extends React.Component {
     loading: true,
     isLoading: false,
     refreshing: false, //Refresh
+  };
+
+  handleLogout = () => {
+    Alert.alert('Cerrar Sesión', '¿Está seguro que desea cerrar su sesión?', [
+      {
+        text: 'Si',
+        onPress: () => {
+          firebase
+            .auth()
+            .signOut()
+            .then(function () {
+              Alert.alert('Su sesión ha sido cerrada');
+            })
+            .catch(function (error) {
+              Alert.alert('Error');
+              console.log(error);
+            });
+        },
+      },
+      {
+        text: 'No',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+    ]);
   };
 
   handleAddReview = () => {
@@ -174,10 +199,28 @@ class Perfil extends React.Component {
                 <RefreshControl
                   refreshing={this.state.refreshing}
                   onRefresh={this._onRefresh}
-                  text="Actualizando biblioteca..."
+                  text="Actualizando..."
                 />
               }
             >
+              <Block flex>
+                <Text>Cerrar sesión</Text>
+                <GaButton
+                  round
+                  onlyIcon
+                  shadowless
+                  icon="logout"
+                  iconFamily="AntDesign"
+                  iconColor={'#E63746'}
+                  iconSize={nowTheme.SIZES.BASE * 1.4}
+                  color={'#ffffff'}
+                  style={[styles.social, styles.shadow]}
+                  onPress={async () => {
+                    await this.handleLogout();
+                    this.props.navigation.navigate('Inicio');
+                  }}
+                />
+              </Block>
               {/* BTN a publicar receta */}
               <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text
@@ -209,17 +252,18 @@ class Perfil extends React.Component {
               </Block>
               {/* texto biblioteca */}
               <Text
-                  style={{
-                    fontFamily: 'montserrat-bold',
-                    marginBottom: theme.SIZES.BASE / 2,
-                    marginTop: 20,
-                    fontWeight: '900',
-                    fontSize: 15, alignSelf: 'center',
-                  }}
-                  color="#0f1e2e"
-                >
-                  ¿Qué desea ver de su perfil?
-                </Text>
+                style={{
+                  fontFamily: 'montserrat-bold',
+                  marginBottom: theme.SIZES.BASE / 2,
+                  marginTop: 20,
+                  fontWeight: '900',
+                  fontSize: 15,
+                  alignSelf: 'center',
+                }}
+                color="#0f1e2e"
+              >
+                ¿Qué desea ver de su perfil?
+              </Text>
               <Block
                 middle
                 style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 15 }}

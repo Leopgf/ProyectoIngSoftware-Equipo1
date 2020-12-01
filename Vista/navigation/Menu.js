@@ -19,7 +19,6 @@ function getInitialNav(){
         "Inicio",
         "Conversor",
         "Perfil",
-        "Cerrar Sesión",
         
       ];
     }else {
@@ -27,7 +26,6 @@ function getInitialNav(){
         "Inicio",
         "Conversor",
         "Iniciar Sesión",
-        
       ];
     }
   })

@@ -26,10 +26,12 @@ class Home extends React.PureComponent {
 
   //Refresh arriba
   _onRefresh = () => {
-    this.setState({ refreshing: true });
-    getRecetas(this.onRecetasRecibidas, this.state.limite).then(() => {
-      this.setState({ refreshing: false });
-    });
+    if(!this.state.isTab || this.props.currentTab === '0'){
+      this.setState({ refreshing: true });
+      getRecetas(this.onRecetasRecibidas, this.state.limite).then(() => {
+        this.setState({ refreshing: false });
+      });
+    }
   };
 
   onRecetasRecibidas = (recetas) => {
@@ -123,8 +125,8 @@ class Home extends React.PureComponent {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.articles}
           refreshControl={
-            //REFRESH ARRIBA
-            <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
+              //REFRESH ARRIBA
+              <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />
           }
           onScroll={({ nativeEvent }) => {
             if (this.isCloseToBottom(nativeEvent) && !this.state.isTab) {

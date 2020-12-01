@@ -222,51 +222,6 @@ function AccountStack(props) {
   );
 }
 
-function LogoutStack(props) {
-  Alert.alert('Cerrar Sesión', '¿Está seguro que desea cerrar su sesión?', [
-    {
-      text: 'Si',
-      onPress: () => {
-        firebase
-          .auth()
-          .signOut()
-          .then(function () {
-            Alert.alert('Su sesión ha sido cerrada');
-          })
-          .catch(function (error) {
-            Alert.alert('Error');
-          });
-      },
-    },
-    {
-      text: 'No',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-  ]);
-  return (
-    <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Inicio"
-        component={Home}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title="Inicio"
-              search
-              // options
-              tabs
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          cardStyle: { backgroundColor: '#FFFFFF' },
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
-
 function PerfilStack(props) {
   return (
     <Stack.Navigator initialRouteName="Perfil" mode="card" headerMode="screen">
@@ -275,7 +230,7 @@ function PerfilStack(props) {
         component={Perfil}
         options={{
           header: ({ navigation, scene }) => (
-            <Header transparent white title="Perfil" navigation={navigation} scene={scene} />
+            <Header title="Perfil" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: '#FFFFFF' },
           headerTransparent: true,
@@ -332,7 +287,6 @@ function AppStack(props) {
       <Drawer.Screen name="Inicio" component={HomeStack}/>
       <Drawer.Screen name="Iniciar Sesión" component={AccountStack}/>
       <Drawer.Screen name="Perfil" component={PerfilStack}/>
-      <Drawer.Screen name="Cerrar Sesión" component={LogoutStack}/>
       <Drawer.Screen name="DetallesReceta" component={DetallesRecetaStack} />
       <Drawer.Screen name="Reviews" component={ReviewsStack} />
       <Drawer.Screen name="Escribir Review" component={AddReviewStack} />

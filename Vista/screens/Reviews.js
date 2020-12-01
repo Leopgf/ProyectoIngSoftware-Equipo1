@@ -91,7 +91,7 @@ class Reviews extends React.Component {
               <Block
                 style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 20 }}
               >
-                <Block style={{ top: height * 0.2 }}>
+                <Block style={{ top: height * 0.17 }}>
                   <Block middle>
                     {/*nombre "conversor"*/}
                     <Text

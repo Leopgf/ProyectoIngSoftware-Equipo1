@@ -27,9 +27,8 @@ const DismissKeyboard = ({ children }) => (
 );
 
 class AddReview extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       recetaID: this.props.route.params.recetaID,
       valoracion: 0,
@@ -37,12 +36,12 @@ class AddReview extends React.Component {
       mensaje: '',
       imagen: '',
     };
-    this._dropdown_select = this._dropdown_select.bind(this)
-}
+    this._dropdown_select = this._dropdown_select.bind(this);
+  }
 
-_dropdown_select(event){
-  this.setState({valoracion: event.target.index + 1});
-}
+  _dropdown_select(event) {
+    this.setState({ valoracion: event.target.index + 1 });
+  }
 
   async componentDidMount() {
     console.log(this.props.route.params.recetaID);
@@ -93,7 +92,8 @@ _dropdown_select(event){
                           style={{
                             fontFamily: 'montserrat-bold',
                             textAlign: 'center',
-                            fontWeight: '500', marginTop:50
+                            fontWeight: '500',
+                            marginTop: 50,
                           }}
                           color="#e63746"
                           size={24}
@@ -103,7 +103,8 @@ _dropdown_select(event){
                         <Text
                           style={{
                             textAlign: 'center',
-                            fontWeight: '500', marginTop:16
+                            fontWeight: '500',
+                            marginTop: 16,
                           }}
                           color="#0f1e2e"
                           size={16}
@@ -133,32 +134,43 @@ _dropdown_select(event){
                                     <Icon size={18} name="message" family="ArgonExtra" />
                                   }
                                 />
-                                <Block >
-                                <Text style={{
-                                  fontWeight: '500', marginTop:16
-                                }}
-                                color="#0f1e2e"
-                                size={16}>Valoración que desea colocarle a la receta:</Text>
-                                <Text style={{
-                                  fontWeight: '500', marginTop:16,marginBottom:3, alignSelf: 'center'
-                                }}
-                                color="#e63746"
-                                size={13}>Con 1-Muy mala  y 5-Excelente</Text>
-                                <ModalDropdown
-                                  ref="dropdown"
-                                  defaultValue={'Valoración'}
-                                  textStyle={styles.dropdownText}
-                                  style={styles.dropdown}
-                                  dropdownStyle={styles.dropdownOption}
-                                  options={[1, 2, 3, 4, 5]}
-                                  onSelect = { (value) => this.setState({valoracion: (value)})}
-                                />
+                                <Block>
+                                  <Text
+                                    style={{
+                                      fontWeight: '500',
+                                      marginTop: 16,
+                                    }}
+                                    color="#0f1e2e"
+                                    size={18}
+                                  >
+                                    Valoración que desea colocarle a la receta:
+                                  </Text>
+                                  <Block style = {{ backgroundColor: '#ffffff', borderRadius: 50, alignSelf: 'center', padding: 10, margin: 5}}>
+                                  <Text
+                                    style={{
+                                      fontWeight: '500',
+                                      alignSelf: 'center',
+                                    }}
+                                    color="#e63746"
+                                    size={13}
+                                  >
+                                    Con 1-Muy mala y 5-Excelente
+                                  </Text>
+                                  </Block>
+                                  <ModalDropdown
+                                    ref="dropdown"
+                                    defaultValue={'Valoración'}
+                                    textStyle={styles.dropdownText}
+                                    style={styles.dropdown}
+                                    dropdownStyle={styles.dropdownOption}
+                                    options={[1, 2, 3, 4, 5]}
+                                    onSelect={(value) => this.setState({ valoracion: value })}
+                                  />
                                 </Block>
                               </Block>
                             </Block>
                           </Block>
                           <Block center>
-                          
                             <Button
                               style={{
                                 fontFamily: 'montserrat-bold',
@@ -231,7 +243,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 7,
     backgroundColor: '#e63746',
-    marginLeft:10
+    marginLeft: 10,
   },
 
   dropdownOption: {
@@ -286,7 +298,7 @@ const styles = StyleSheet.create({
   },
   inputsGrandes: {
     width: width * 0.65,
-    height:50,
+    height: 50,
     borderWidth: 1,
     borderColor: '#E3E3E3',
     borderRadius: 21.5,
