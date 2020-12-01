@@ -127,7 +127,7 @@ _dropdown_select(event){
                                 />
                                 <Input
                                   placeholder="Mensaje de la Review"
-                                  style={styles.inputs}
+                                  style={styles.inputsGrandes}
                                   onChangeText={(mensaje) => this.setState({ mensaje })}
                                   iconContent={
                                     <Icon size={18} name="message" family="ArgonExtra" />
@@ -279,6 +279,14 @@ const styles = StyleSheet.create({
   },
   inputs: {
     width: width * 0.65,
+    borderWidth: 1,
+    borderColor: '#E3E3E3',
+    borderRadius: 21.5,
+    alignSelf: 'center',
+  },
+  inputsGrandes: {
+    width: width * 0.65,
+    height:50,
     borderWidth: 1,
     borderColor: '#E3E3E3',
     borderRadius: 21.5,
