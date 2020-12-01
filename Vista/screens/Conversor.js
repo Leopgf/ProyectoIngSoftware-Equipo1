@@ -1,41 +1,137 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform,  TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  Image,
+  ImageBackground,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { Images, nowTheme } from '../constants';
 import LoadingView from 'react-native-loading-view';
 import ModalDropdown from 'react-native-modal-dropdown';
-
+import { Icon, Input } from '../components';
 
 const { width, height } = Dimensions.get('screen');
 
 const thumbMeasure = (width - 48 - 32) / 3;
 
 class Conversor extends React.Component {
-
-
   state = {
     loading: true,
-    
+    cantidad: 0,
+    unidad: '',
+    unidadDestino: '',
+    conversion: 0,
+    tiposUnidades: [
+      'Longitud',
+      'Masa',
+      'Volúmen',
+      'Temperatura',
+      'Tiempo',
+      'Frecuencia',
+      'Presión',
+    ],
+    tipoUnidad: 0,
+    opciones: [
+      ['mm', 'cm', 'm', 'in', 'ft', 'mi'],
+      ['mcg', 'mg', 'g', 'kg', 'oz', 'lb', 'mt', 't'],
+      [
+        'mm3',
+        'cm3',
+        'ml',
+        'l',
+        'kl',
+        'm3',
+        'km3',
+        'tsp',
+        'Tbs',
+        'in3',
+        'fl-oz',
+        'cup',
+        'gal',
+        'ft3',
+        'yd3',
+      ],
+      ['C', 'F', 'K', 'R'],
+      ['ns', 'ms', 's', 'min', 'h', 'd', 'week', 'month', 'year'],
+      ['Hz', 'mHz', 'kHz', 'MHz', 'GHz', 'THz'],
+    ],
+    opcionesTexto: [
+      ['Milímetros', 'Centímetros', 'Metros', 'Pulgadas', 'Pies', 'Millas'],
+      [
+        'Microgramos',
+        'Miligramos',
+        'Gramos',
+        'Kilogramos',
+        'Onzas',
+        'Libras',
+        'Militoneladas',
+        'Toneladas',
+      ],
+      [
+        'Milímetros cúbicos',
+        'Centímetros cúbicos',
+        'Mililitros',
+        'Litros',
+        'Kilolitros',
+        'Metros cúbicos',
+        'Kilómetros cúbicos',
+        'Cucharitas',
+        'Cucharadas',
+        'Pulgadas cúbicas',
+        'Onzas líquidas',
+        'Tazas',
+        'Galones',
+        'Pies cúbicos',
+        'Yardas cúbicas',
+      ],
+      ['Centígrados', 'Farenheit', 'Kelvin', 'Rankine'],
+      [
+        'Nanosegundos',
+        'Milisegundos',
+        'Segundos',
+        'Minutos',
+        'Horas',
+        'Días',
+        'Semanas',
+        'Meses',
+        'Años',
+      ],
+      ['Hertz', 'Milihertz ', 'Kilohertz', 'Megahertz', 'Gigahertz', 'Terahertz'],
+    ],
   };
-  
-//TEMPORIZADOR DE INICIO CARGA DE CONVERSOR CON TIEMPO INDICADO 
-  componentDidMount = () => {
 
+  //TEMPORIZADOR DE INICIO CARGA DE CONVERSOR CON TIEMPO INDICADO
+  componentDidMount = () => {
     setTimeout(() => {
       this.setState({
-        loading: false
-      })
-    }, 3000)
-  }
+        loading: false,
+      });
+    }, 1000);
+  };
+
+  convertir = () => {
+    if (this.state.unidad !== '' || this.state.unidadDestino !== '' || this.state.cantidad !== 0) {
+      console.log(this.state.unidad);
+      console.log(this.state.unidadDestino);
+      var convert = require('convert-units');
+      this.setState({
+        conversion: convert(this.state.cantidad).from(this.state.unidad).to(this.state.unidadDestino),
+      });
+    }
+  };
 
   renderConversor = () => {
     return (
-        <LoadingView
-          loading={this.state.loading}
-          size="large"
-          style={styles.cargar}
-          text="Cargando conversor..."
-        >
+      <LoadingView
+        loading={this.state.loading}
+        size="large"
+        style={styles.cargar}
+        text="Cargando conversor..."
+      >
         <Block
           style={{
             flex: 1,
@@ -66,7 +162,7 @@ class Conversor extends React.Component {
                         }}
                         color="#e63746"
                       >
-                       Conversor
+                        Conversor
                       </Text>
                       {/*texto de conversor de Mixo´s*/}
                       <Text
@@ -84,39 +180,95 @@ class Conversor extends React.Component {
           </Block>
           <Block />
           <Block flex={1}>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-             
-            >
-              <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Text
-                  size={16}
-                  color="#0f1e2e"
-                  style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
-                >
-                  Seleccione con qué unidades desea trabajar y los números
-                </Text>
-              </Block>
-
+            <ScrollView showsVerticalScrollIndicator={false}>
               <Block flex>
-              <Text
+                <Text
                   size={16}
                   color="#0f1e2e"
                   style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
                 >
-                  Seleccione con qué unidades desea trabajar y los números
+                  Seleccione con la unidad y el valor que desea convertir
                 </Text>
-              <ModalDropdown ref="dropdown" textStyle={styles.dropdownText} style={styles.dropdown} dropdownStyle={styles.dropdownOption} options={['option 1', 'option 2']}/>
               </Block>
-
-
-              
-              
-
-
-
-
-
+              <Text>Seleccione el tipo de unidad: </Text>
+              <ModalDropdown
+                ref="dropdown"
+                defaultValue={'Tipo'}
+                textStyle={styles.dropdownText}
+                style={styles.dropdown}
+                dropdownStyle={styles.dropdownOption}
+                options={this.state.tiposUnidades}
+                onSelect={(value) => this.setState({ tipoUnidad: [value] })}
+              />
+              <Block flex>
+                <Input
+                  placeholder={`Número a convertir`}
+                  style={styles.inputs}
+                  keyboardType="numeric"
+                  iconContent={<Icon size={18} name="tag" family="AntDesign" />}
+                  onChangeText={async (cantidad) => {
+                    await this.setState({ cantidad });
+                    if (
+                      this.state.unidad !== '' ||
+                      this.state.unidadDestino !== '' ||
+                      this.state.cantidad !== 0
+                    ) {
+                      this.convertir();
+                    }
+                  }}
+                />
+                  <Text>Seleccione la unidad de Oringen: </Text>
+                <ModalDropdown
+                  ref="dropdown"
+                  defaultValue={'Origen'}
+                  textStyle={styles.dropdownText}
+                  style={styles.dropdown}
+                  dropdownStyle={styles.dropdownOption}
+                  options={this.state.opcionesTexto[this.state.tipoUnidad]}
+                  onSelect={async (value) => {
+                    await this.setState({ unidad: this.state.opciones[this.state.tipoUnidad][value] });
+                    if (
+                      this.state.unidad !== '' ||
+                      this.state.unidadDestino !== '' ||
+                      this.state.cantidad !== 0
+                    ) {
+                      this.convertir();
+                    }
+                  }}
+                />
+              </Block>
+              <Block flex>
+                <Text>Seleccione la unidad de destino: </Text>
+                <ModalDropdown
+                  ref="dropdown"
+                  defaultValue={'Destino'}
+                  textStyle={styles.dropdownText}
+                  style={styles.dropdown}
+                  dropdownStyle={styles.dropdownOption}
+                  options={this.state.opcionesTexto[this.state.tipoUnidad]}
+                  onSelect={async (value) => {
+                    await this.setState({
+                      unidadDestino: this.state.opciones[this.state.tipoUnidad][value],
+                    });
+                    if (
+                      this.state.unidad !== '' ||
+                      this.state.unidadDestino !== '' ||
+                      this.state.cantidad !== 0
+                    ) {
+                      this.convertir();
+                    }
+                  }}
+                />
+              </Block>
+              <Block>
+                {this.state.conversion !== 0 ? (
+                  <Block>
+                    <Text>
+                      {this.state.cantidad} {this.state.unidad} = {this.state.conversion} {this.state.unidadDestino}
+                    </Text>
+                  </Block>
+                ) : null}
+              </Block>
             </ScrollView>
           </Block>
         </Block>
@@ -124,13 +276,12 @@ class Conversor extends React.Component {
     );
   };
   render() {
-   
     return (
       <Block flex center>
         {this.renderConversor()}
       </Block>
-
-     ); }
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -178,7 +329,7 @@ const styles = StyleSheet.create({
     zIndex: 99,
     marginHorizontal: 5,
   },
-  
+
   dropdown: {
     alignSelf: 'flex-end',
     width: 150,
@@ -189,14 +340,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#e63746',
   },
 
-  dropdownOption:{
+  dropdownOption: {
     width: 150,
     height: 100,
     borderColor: '#e63746',
     borderWidth: 2,
     borderRadius: 3,
   },
-  dropdownText:{
+  dropdownText: {
     marginVertical: 10,
     marginHorizontal: 6,
     fontSize: 18,
@@ -204,8 +355,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
-
-
 });
 
 export default Conversor;
