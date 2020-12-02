@@ -181,31 +181,44 @@ class Conversor extends React.Component {
           <Block />
           <Block flex={1}>
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Block flex>
-                <Text
-                  size={16}
-                  color="#0f1e2e"
-                  style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
-                >
-                  Seleccione con la unidad y el valor que desea convertir
-                </Text>
-              </Block>
-              <Text>Seleccione el tipo de unidad: </Text>
-              <ModalDropdown
+            <Block style={{ backgroundColor: '#e3e4e5', borderRadius: 50 }}>
+            <Text
+              style={{
+                textAlign: 'center',
+                width: 300,
+                height: 18,
+                color: '#0f1e2e',
+                fontSize: 15,
+                marginTop: 1,
+                marginBottom: 15,
+                marginLeft: 29,
+                zIndex: 2,
+                marginTop: 18,
+              }}
+            >
+              Para usar el conversor siga las instrucciones
+            </Text>
+          </Block>
+              <Block row >
+              <Text style={{
+                color: '#0f1e2e',marginTop:45, marginLeft:10
+              }}>Seleccione el tipo de unidad:</Text>
+              <ModalDropdown 
                 ref="dropdown"
                 defaultValue={'Tipo'}
                 textStyle={styles.dropdownText}
-                style={styles.dropdown}
+                style={styles.dropdown2}
                 dropdownStyle={styles.dropdownOption}
                 options={this.state.tiposUnidades}
                 onSelect={(value) => this.setState({ tipoUnidad: [value] })}
               />
-              <Block flex>
+              </Block>
+              <Block flex style={{marginTop:6}}>
                 <Input
-                  placeholder={`Número a convertir`}
+                  placeholder={`  Coloque el número a convertir`}
                   style={styles.inputs}
                   keyboardType="numeric"
-                  iconContent={<Icon size={18} name="tag" family="AntDesign" />}
+                  iconContent={<Icon size={18} name="keyboard" family="Etypo" />}
                   onChangeText={async (cantidad) => {
                     await this.setState({ cantidad });
                     if (
@@ -217,12 +230,16 @@ class Conversor extends React.Component {
                     }
                   }}
                 />
-                  <Text>Seleccione la unidad de Oringen: </Text>
+
+                <Block  row flex style={{marginBottom:10}}>
+                  <Text style={{
+                    color: '#0f1e2e',marginTop:15, marginLeft:10
+                  }}>Seleccione la unidad de Origen: </Text>
                 <ModalDropdown
                   ref="dropdown"
                   defaultValue={'Origen'}
                   textStyle={styles.dropdownText}
-                  style={styles.dropdown}
+                  style={styles.dropdown3}
                   dropdownStyle={styles.dropdownOption}
                   options={this.state.opcionesTexto[this.state.tipoUnidad]}
                   onSelect={async (value) => {
@@ -236,14 +253,17 @@ class Conversor extends React.Component {
                     }
                   }}
                 />
+                </Block>
               </Block>
-              <Block flex>
-                <Text>Seleccione la unidad de destino: </Text>
+              <Block row flex style={{marginBottom:20}}>
+                <Text style={{
+                  color: '#0f1e2e',marginTop:15, marginLeft:10
+                }}>Seleccione la unidad de Destino: </Text>
                 <ModalDropdown
                   ref="dropdown"
                   defaultValue={'Destino'}
                   textStyle={styles.dropdownText}
-                  style={styles.dropdown}
+                  style={styles.dropdown3}
                   dropdownStyle={styles.dropdownOption}
                   options={this.state.opcionesTexto[this.state.tipoUnidad]}
                   onSelect={async (value) => {
@@ -262,9 +282,18 @@ class Conversor extends React.Component {
               </Block>
               <Block>
                 {this.state.conversion !== 0 ? (
-                  <Block>
-                    <Text>
-                      {this.state.cantidad} {this.state.unidad} = {this.state.conversion} {this.state.unidadDestino}
+               
+                  <Block style={{ backgroundColor: '#e3e4e5', borderRadius: 50, wiht:40 }}>
+                    <Text style={{
+                      fontFamily: 'montserrat-bold',
+                      alignSelf: 'center',
+                      marginBottom: theme.SIZES.BASE / 2,
+                      fontWeight: '900',
+                      fontSize: 20,
+                      marginTop:5
+                    }}
+                    color="#e63746">
+                      Conversión: {this.state.cantidad} {this.state.unidad} = {this.state.conversion} {this.state.unidadDestino}
                     </Text>
                   </Block>
                 ) : null}
@@ -332,14 +361,32 @@ const styles = StyleSheet.create({
 
   dropdown: {
     alignSelf: 'flex-end',
-    width: 150,
+    width: 105,
     marginTop: 32,
     right: 8,
     borderWidth: 0,
     borderRadius: 15,
     backgroundColor: '#e63746',
   },
-
+  dropdown2: {
+    alignSelf: 'flex-end',
+    width: 105,
+    marginTop: 32,
+    marginLeft:20,
+    right: 8,
+    borderWidth: 0,
+    borderRadius: 15,
+    backgroundColor: '#e63746',
+  },
+  dropdown3: {
+    width: 105,
+    marginBottom:2,
+    marginLeft:20,
+    right: 8,
+    borderWidth: 0,
+    borderRadius: 15,
+    backgroundColor: '#e63746',
+  },
   dropdownOption: {
     width: 150,
     height: 100,

@@ -162,7 +162,7 @@ class Perfil extends React.Component {
                 <Block
                   style={{ position: 'absolute', width: width, zIndex: 5, paddingHorizontal: 20 }}
                 >
-                  <Block style={{ top: height * 0.23 }}>
+                  <Block style={{ top: height * 0.21 }}>
                     <Block middle>
                       {/*nombre usuario*/}
                       <Text
@@ -180,10 +180,30 @@ class Perfil extends React.Component {
                       <Text
                         size={16}
                         color="#0f1e2e"
-                        style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8 }}
+                        style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8, marginBottom: 5 }}
                       >
                         @{this.state.usuario.usuario}
                       </Text>
+                      <Block row flex style={styles.contenidoDerecha}>
+                      <Text color="#0f1e2e" style={{marginTop:8}}>Cerrar sesión</Text>
+                      <GaButton
+                        round
+                        onlyIcon
+                        shadowless
+                        icon="logout"
+                        iconFamily="AntDesign"
+                        iconColor={'#E63746'}
+                        iconSize={nowTheme.SIZES.BASE * 1.2}
+                        color={'#ffffff'}
+                        style={[styles.social, styles.shadow]}
+                        onPress={async () => {
+                          await this.handleLogout();
+                          this.props.navigation.navigate('Inicio');
+                        }}
+                        />
+                      
+                      
+                      </Block>
                     </Block>
                   </Block>
                 </Block>
@@ -203,24 +223,6 @@ class Perfil extends React.Component {
                 />
               }
             >
-              <Block flex>
-                <Text>Cerrar sesión</Text>
-                <GaButton
-                  round
-                  onlyIcon
-                  shadowless
-                  icon="logout"
-                  iconFamily="AntDesign"
-                  iconColor={'#E63746'}
-                  iconSize={nowTheme.SIZES.BASE * 1.4}
-                  color={'#ffffff'}
-                  style={[styles.social, styles.shadow]}
-                  onPress={async () => {
-                    await this.handleLogout();
-                    this.props.navigation.navigate('Inicio');
-                  }}
-                />
-              </Block>
               {/* BTN a publicar receta */}
               <Block middle style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <Text
@@ -375,13 +377,20 @@ const styles = StyleSheet.create({
     height: thumbMeasure,
   },
   social: {
-    width: nowTheme.SIZES.BASE * 3,
-    height: nowTheme.SIZES.BASE * 3,
+    width: nowTheme.SIZES.BASE * 2,
+    height: nowTheme.SIZES.BASE * 2,
     borderRadius: nowTheme.SIZES.BASE * 1.5,
     justifyContent: 'center',
     zIndex: 99,
     marginHorizontal: 5,
   },
+  contenidoDerecha: {
+    flex: 1,
+    marginTop:7,
+    marginLeft:190
+  },
+
+
 });
 
 export default Perfil;
