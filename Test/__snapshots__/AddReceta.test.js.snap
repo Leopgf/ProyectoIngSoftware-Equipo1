@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddReceta /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+    ]
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="large"
+    style={
+      Array [
+        undefined,
+      ]
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 18,
+          "fontWeight": "600",
+          "marginTop": 10,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Cargando Publicar Receta...
+  </Text>
+</View>
+`;
