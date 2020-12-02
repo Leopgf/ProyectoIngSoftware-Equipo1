@@ -46,6 +46,7 @@ class Home extends React.PureComponent {
   };
 
   async componentDidMount() {
+    console.disableYellowBox=true;
     //TEMPORIZADOR DE CARGAR
     try {
       await getRecetas(this.onRecetasRecibidas, this.state.limite);

@@ -106,6 +106,7 @@ class Conversor extends React.Component {
 
   //TEMPORIZADOR DE INICIO CARGA DE CONVERSOR CON TIEMPO INDICADO
   componentDidMount = () => {
+    console.disableYellowBox=true;
     setTimeout(() => {
       this.setState({
         loading: false,
@@ -185,7 +186,7 @@ class Conversor extends React.Component {
             <Text
               style={{
                 textAlign: 'center',
-                width: 300,
+                width: 350,
                 height: 18,
                 color: '#0f1e2e',
                 fontSize: 15,
@@ -289,7 +290,7 @@ class Conversor extends React.Component {
                       alignSelf: 'center',
                       marginBottom: theme.SIZES.BASE / 2,
                       fontWeight: '900',
-                      fontSize: 20,
+                      fontSize: 15,
                       marginTop:5
                     }}
                     color="#e63746">

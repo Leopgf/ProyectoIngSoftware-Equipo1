@@ -10,6 +10,10 @@ const { height, width } = Dimensions.get('screen');
 //CLASE Onboarding INICIO APP
 export default class Onboarding extends React.Component {
 
+  async componentDidMount() {
+    console.disableYellowBox=true;
+  }
+  
   render() {
     const { navigation } = this.props;
 

@@ -46,6 +46,7 @@ class EditReview extends React.Component {
   }
 
   async componentDidMount() {
+    console.disableYellowBox=true;
     try {
       await getReview(this.state.reviewID, this.onReviewRecibida);
     } catch (error) {

@@ -62,6 +62,7 @@ class DetallesReceta extends React.Component {
   };
 
   async componentDidMount() {
+    console.disableYellowBox=true;
     try {
       await getDetallesReceta(this.onDetallesRecetas, this.state.id);
       await this.isUser();
@@ -155,8 +156,8 @@ class DetallesReceta extends React.Component {
         text="Cargando detalles de la receta..."
       >
         <Block style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-          <Block flex={0.15} />
-          <Block flex={0.5}>
+          <Block flex={0.18} />
+          <Block flex={0.55}>
             <ImageBackground
               source={this.state.detalles.imagen && { uri: this.state.detalles.imagen }}
               style={styles.profileContainer}
@@ -375,12 +376,12 @@ class DetallesReceta extends React.Component {
                     <Text
                       style={{
                         textAlign: 'center',
-                        width: 300,
-                        height: 10,
+                        width: 350,
+                        height: 12,
                         color: '#0f1e2e',
-                        fontSize: 11,
+                        fontSize: 12,
                         marginTop: 1,
-                        marginBottom: 15,
+                        marginBottom: 16,
                         marginLeft: 29,
                         zIndex: 2,
                         marginTop: 18,
