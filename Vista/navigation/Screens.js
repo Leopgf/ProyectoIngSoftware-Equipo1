@@ -150,7 +150,7 @@ function ReviewsStack(props) {
         component={() => <Reviews {...props} />}
         options={{
           header: ({ navigation, scene }) => (
-            <Header back title="Reviews de la Receta" navigation={navigation} scene={scene} />
+            <Header title="Reviews de la Receta" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: '#FFFFFF' },
           headerTransparent: true,

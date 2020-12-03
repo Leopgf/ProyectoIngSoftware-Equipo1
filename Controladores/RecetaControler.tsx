@@ -182,6 +182,8 @@ export async function editarReview(review: Review) {
     ) {
       reject('Error, por favor rellene todos los campos.');
     } else {
+      console.log(review);
+
       firebase
         .firestore()
         .collection('Reviews')
@@ -261,7 +263,7 @@ export async function getReview(reviewID: string, onReviewRecibida: Function) {
       review = { id: id, ...(doc.data() as Review) };
       // @ts-ignore
       review.fecha = new Date(doc.data().fecha.toDate().toString());
-      
+
       onReviewRecibida(review);
     });
 }

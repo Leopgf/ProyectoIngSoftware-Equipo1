@@ -77,12 +77,17 @@ class EditReview extends React.Component {
       fecha: this.state.review.fecha,
     };
 
-    console.log(review);
+    if (review.valoracion === 6) {
+      review.valoracion = 5;
+    }
 
     await editarReview(review)
       .then((resolve) => {
         Alert.alert(resolve);
         this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
+        this.setState({
+          review: {},
+        });
       })
       .catch((error) => {
         Alert.alert(error);

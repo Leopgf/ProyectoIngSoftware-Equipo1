@@ -44,7 +44,7 @@ class AddReview extends React.Component {
   }
 
   async componentDidMount() {
-    console.disableYellowBox=true;
+    console.disableYellowBox = true;
     console.log(this.props.route.params.recetaID);
   }
 
@@ -67,6 +67,12 @@ class AddReview extends React.Component {
     await agregarReview(review)
       .then((resolve) => {
         Alert.alert(resolve);
+        this.setState({
+          valoracion: 0,
+          titulo: '',
+          mensaje: '',
+          imagen: '',
+        });
         this.props.navigation.navigate('Reviews', { recetaID: this.state.recetaID });
       })
       .catch((error) => {
@@ -146,17 +152,25 @@ class AddReview extends React.Component {
                                   >
                                     Valoración que desea colocarle a la receta:
                                   </Text>
-                                  <Block style = {{ backgroundColor: '#ffffff', borderRadius: 50, alignSelf: 'center', padding: 10, margin: 5}}>
-                                  <Text
+                                  <Block
                                     style={{
-                                      fontWeight: '500',
+                                      backgroundColor: '#ffffff',
+                                      borderRadius: 50,
                                       alignSelf: 'center',
+                                      padding: 10,
+                                      margin: 5,
                                     }}
-                                    color="#e63746"
-                                    size={13}
                                   >
-                                    Con 1-Muy mala y 5-Excelente
-                                  </Text>
+                                    <Text
+                                      style={{
+                                        fontWeight: '500',
+                                        alignSelf: 'center',
+                                      }}
+                                      color="#e63746"
+                                      size={13}
+                                    >
+                                      Con 1-Muy mala y 5-Excelente
+                                    </Text>
                                   </Block>
                                   <ModalDropdown
                                     ref="dropdown"

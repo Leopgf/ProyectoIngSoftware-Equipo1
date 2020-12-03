@@ -13,10 +13,14 @@ import {
 } from 'react-native';
 import { Block, Text, Button as GaButton, theme } from 'galio-framework';
 
-import { Button, Icon, Input} from '../components';
+import { Button, Icon, Input } from '../components';
 import { Images, nowTheme } from '../constants';
 
-import { registerUsuario, loginUsuario, recuperarContrasena } from '../../Controladores/UsuarioControler';
+import {
+  registerUsuario,
+  loginUsuario,
+  recuperarContrasena,
+} from '../../Controladores/UsuarioControler';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -82,15 +86,24 @@ class Register extends React.Component {
       });
   }
   async componentDidMount() {
-    console.disableYellowBox=true;
+    console.disableYellowBox = true;
   }
-  
+
   async login() {
     // Login del usuario
     await loginUsuario(this.state.email, this.state.pass)
       .then((resolve) => {
         Alert.alert(resolve);
+        this.setState({
+          email: '',
+          pass: '',
+          pass2: '',
+          nombre: '',
+          apellido: '',
+          usuario: '',
+        });
         this.props.navigation.navigate('Inicio');
+        
       })
       .catch((error) => {
         Alert.alert(error);
@@ -123,7 +136,7 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block flex={0.4} middle >
+                    <Block flex={0.4} middle>
                       <Block flex={0.5} middle>
                         <Text
                           style={{
@@ -173,7 +186,7 @@ class Register extends React.Component {
                                 borderRadius: nowTheme.SIZES.BASE * 1.5,
                                 width: 200,
                                 marginBottom: 30,
-                                marginTop: 30
+                                marginTop: 30,
                               }}
                               color="primary"
                               round
@@ -250,7 +263,7 @@ class Register extends React.Component {
               <Block flex middle>
                 <Block style={styles.registerContainer}>
                   <Block flex space="evenly">
-                    <Block >
+                    <Block>
                       <Text
                         style={{
                           fontFamily: 'montserrat-bold',
@@ -444,7 +457,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E3E3E3',
     borderRadius: 21.5,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   passwordCheck: {
     paddingLeft: 2,

@@ -1,5 +1,5 @@
 import Usuario from '../Modelos/Usuario';
-import Receta from "../Modelos/Receta";
+import Receta from '../Modelos/Receta';
 import { Alert } from 'react-native';
 import { getRecetasBiblioteca } from '../Controladores/RecetaControler';
 
@@ -146,7 +146,7 @@ export function recuperarContrasena(email: string) {
         .sendPasswordResetEmail(email)
         .then(() => {
           resolve(
-            'Estimado usuario, se le ha enviado un email para proceder con el cambio de clave.'
+            'Estimado usuario, se le ha enviado un email para proceder con el cambio de clave. Verifique su carpeta de spam.'
           );
         })
         .catch(() => {
@@ -290,7 +290,7 @@ export async function eliminarEnBiblioteca(recetaId: string, onFavoritoRecibido:
     .catch((error) => console.log(error));
 }
 
-//FUNCION PARA QUE EL USUARIO PUEDA AGREGAR UNA RECETA 
+//FUNCION PARA QUE EL USUARIO PUEDA AGREGAR UNA RECETA
 export async function agregarReceta(receta: Receta) {
   let userId = firebase.auth().currentUser?.uid;
 
@@ -304,25 +304,25 @@ export async function agregarReceta(receta: Receta) {
       receta.pasos !== [] &&
       receta.imagen !== '' &&
       receta.ingredientes !== []
-    ){
+    ) {
 
       receta.pasos.forEach((paso) => {
-        if(paso === ''){
+        if (paso === '') {
           reject('Por favor rellene todos los campos correctamente.');
         }
-      })
+      });
 
       receta.ingredientes.forEach((ingrediente) => {
         // @ts-ignore
-        if(ingrediente.ingrediente === ''){
+        if (ingrediente.ingrediente === '') {
           reject('Por favor rellene todos los campos correctamente.');
         }
         // @ts-ignore
-        if(ingrediente.alGusto === false && ingrediente.cantidad === 0){
+        if (ingrediente.alGusto === false && ingrediente.cantidad === 0) {
           reject('Por favor rellene todos los campos correctamente.');
         }
         // @ts-ignore
-        if(ingrediente.alGusto === false && ingrediente.cantidad === ''){
+        if (ingrediente.alGusto === false && ingrediente.cantidad === '') {
           reject('Por favor rellene todos los campos correctamente.');
         }
       });
@@ -335,40 +335,45 @@ export async function agregarReceta(receta: Receta) {
         .then(() => {
           console.log('Publicado');
           resolve('Receta creada con exito.');
-        }).catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
     } else {
       reject('Por favor rellene todos los campos correctamente.');
     }
-  })
+  });
 }
 
 // BORRAR RECETAS
-export async function eliminarReceta(recetaId: string){
-   await firebase
-  .firestore()
-  .collection('Recetas')
-  .doc(recetaId)
-  .delete()
-  .then( () =>{
-    Alert.alert('Receta eliminada.');
-  })
+export async function eliminarReceta(recetaId: string) {
+  await firebase
+    .firestore()
+    .collection('Recetas')
+    .doc(recetaId)
+    .delete()
+    .then(() => {
+      Alert.alert('Receta eliminada.');
+    });
 }
 
 //FUNCION PARA RECUPERAR LAS RECETAS DEL USUSARIO
 export async function getRecetasUsuarios(recetasRecibidas: Function) {
   let userId = firebase.auth().currentUser?.uid;
   let recetas: Receta[] = [];
-  let snapshot = await firebase.firestore().collection('Recetas').where('usuarioID', '==', userId).orderBy('fecha', 'desc').get();  
+  let snapshot = await firebase
+    .firestore()
+    .collection('Recetas')
+    .where('usuarioID', '==', userId)
+    .orderBy('fecha', 'desc')
+    .get();
 
   snapshot.forEach((doc) => {
-    
     const id = doc.id;
     let receta = { recetaID: id, ...(doc.data() as Receta) };
     receta.fecha = new Date(doc.data().fecha);
-    receta.descripcion = doc.data().descripcion.substring(0,200)+'. . .';
-    
+    receta.descripcion = doc.data().descripcion.substring(0, 200) + '. . .';
+
     recetas.push(receta);
   });
-  
+
   recetasRecibidas(recetas);
 }

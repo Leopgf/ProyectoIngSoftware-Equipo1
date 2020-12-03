@@ -1,6 +1,6 @@
 //IMPORT
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, ImageBackground, Platform } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, ImageBackground, Platform, Alert } from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { withNavigation } from '@react-navigation/compat';
 import { Button } from '../components';
@@ -11,7 +11,7 @@ import {
   esFavorito,
   agregarEnBiblioteca,
   eliminarEnBiblioteca,
-  eliminarReceta
+  eliminarReceta,
 } from '../../Controladores/UsuarioControler';
 import LoadingView from 'react-native-loading-view';
 import Moment from 'moment';
@@ -62,7 +62,7 @@ class DetallesReceta extends React.Component {
   };
 
   async componentDidMount() {
-    console.disableYellowBox=true;
+    console.disableYellowBox = true;
     try {
       await getDetallesReceta(this.onDetallesRecetas, this.state.id);
       await this.isUser();
@@ -77,28 +77,28 @@ class DetallesReceta extends React.Component {
       ingredientesCambiados: this.state.detalles.ingredientes,
     });
   }
-  
+
   async isUser() {
     let user = await firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user: true });
         esFavorito(this.state.id, this.onFavoritoRecibido);
+        if (user.uid === this.state.detalles.usuarioID) {
+          this.setState({
+            isSameUser: true,
+          });
+        } else {
+          this.setState({
+            isSameUser: false,
+          });
+        }
       } else {
         this.setState({ user: false });
-      }
-
-      if(user.uid === this.state.detalles.usuarioID){
         this.setState({
-          isSameUser: true
-        });
-      }else{
-        this.setState({
-          isSameUser: false
+          isSameUser: false,
         });
       }
     });
-
-    
   }
 
   //FUNCIONES PARA CONVERTIR LAS PORCIONES
@@ -144,8 +144,7 @@ class DetallesReceta extends React.Component {
         style: 'cancel',
       },
     ]);
-    
-  }
+  };
 
   renderDetallesReceta = () => {
     return (
@@ -261,25 +260,25 @@ class DetallesReceta extends React.Component {
                             marginBottom: 15,
                             zIndex: 2,
                             marginTop: 18,
-                            marginLeft:30
+                            marginLeft: 30,
                           }}
                         >
                           Eliminar receta
                         </Text>
-                          <GaButton
-                            round
-                            onlyIcon
-                            shadowless
-                            icon="delete"
-                            iconFamily="AntDesign"
-                            iconColor={'#E63746'}
-                            iconSize={nowTheme.SIZES.BASE * 1.4}
-                            color={'#ffffff'}
-                            style={[styles.social, styles.shadow]}
-                            onPress={() => {
-                              this.eliminarReceta();
-                            }}
-                          />
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="delete"
+                          iconFamily="AntDesign"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.4}
+                          color={'#ffffff'}
+                          style={[styles.social, styles.shadow]}
+                          onPress={() => {
+                            this.eliminarReceta();
+                          }}
+                        />
                       </Block>
                     ) : (
                       <Block flex style={{ marginTop: 20 }}></Block>

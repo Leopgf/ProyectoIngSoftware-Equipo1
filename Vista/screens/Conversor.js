@@ -32,7 +32,6 @@ class Conversor extends React.Component {
       'Temperatura',
       'Tiempo',
       'Frecuencia',
-      'Presión',
     ],
     tipoUnidad: 0,
     opciones: [
@@ -202,20 +201,6 @@ class Conversor extends React.Component {
               Para usar el conversor siga las instrucciones
             </Text>
           </Block>
-              <Block row >
-              <Text style={{
-                color: '#0f1e2e',marginTop:45, marginLeft:10
-              }}>Seleccione el tipo de unidad:</Text>
-              <ModalDropdown 
-                ref="dropdown"
-                defaultValue={'Tipo'}
-                textStyle={styles.dropdownText}
-                style={styles.dropdown2}
-                dropdownStyle={styles.dropdownOption}
-                options={this.state.tiposUnidades}
-                onSelect={(value) => this.setState({ tipoUnidad: [value] })}
-              />
-              </Block>
               <Block row>
                 <Text
                   style={{

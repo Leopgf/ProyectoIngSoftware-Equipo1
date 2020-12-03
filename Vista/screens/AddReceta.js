@@ -87,7 +87,7 @@ class AddReceta extends React.Component {
   }
 
   async componentDidMount() {
-    console.disableYellowBox=true;
+    console.disableYellowBox = true;
     try {
       await getCategoriasHome(this.onCategoriesFetch);
     } catch (error) {
@@ -201,9 +201,16 @@ class AddReceta extends React.Component {
                             <Block flex center width={width * 0.8}>
                               <Input
                                 placeholder="Porción por defecto de la receta"
-                                keyboardType="numeric"
+                                // keyboardType="numeric"
                                 style={styles.inputs}
-                                onChangeText={(porcionDefecto) => this.setState({ porcionDefecto })}
+                                onChangeText={(porcionDefecto) => {
+                                  let numreg = /^[0-9]+$/;
+                                  if (numreg.test(porcionDefecto)) {
+                                    this.setState({ porcionDefecto });
+                                  }else{
+                                    Alert.alert('Por favor introduzca solo números en la porción de la receta.')
+                                  }
+                                }}
                                 iconContent={<Icon size={18} name="text" family="Entypo" />}
                               />
                             </Block>
@@ -308,7 +315,7 @@ class AddReceta extends React.Component {
                                 ))}
                               </Block>
                               <Block flex center width={width * 0.8} style={{ marginTop: 20 }}>
-                              <Block
+                                <Block
                                   row
                                   flex
                                   center
@@ -345,38 +352,38 @@ class AddReceta extends React.Component {
                                     +
                                   </Button>
                                 </Block>
-                              
+
                                 {this.state.ingredientes.map((ingrediente, i) => (
                                   <Block flex syle={{ flexDirection: 'row' }} key={i}>
                                     <Block flex center row>
-                                    <ModalDropdown
-                                      ref="dropdown"
-                                      defaultValue={'Cantidad'}
-                                      textStyle={styles.dropdownText}
-                                      style={styles.dropdown}
-                                      dropdownStyle={styles.dropdownOption}
-                                      options={['Al gusto', 'Cantidad']}
-                                      onSelect={(value) => {
-                                        console.log(value);
-                                        if (value == 0) {
-                                          let ingredientes = this.state.ingredientes;
-                                          ingredientes[i].alGusto = true;
-                                          this.setState({ ingredientes });
-                                        } else {
-                                          let ingredientes = this.state.ingredientes;
-                                          ingredientes[i].alGusto = false;
-                                          this.setState({ ingredientes });
-                                        }
-                                      }}
-                                    />
-                                    <Button
+                                      <ModalDropdown
+                                        ref="dropdown"
+                                        defaultValue={'Cantidad'}
+                                        textStyle={styles.dropdownText}
+                                        style={styles.dropdown}
+                                        dropdownStyle={styles.dropdownOption}
+                                        options={['Al gusto', 'Cantidad']}
+                                        onSelect={(value) => {
+                                          console.log(value);
+                                          if (value == 0) {
+                                            let ingredientes = this.state.ingredientes;
+                                            ingredientes[i].alGusto = true;
+                                            this.setState({ ingredientes });
+                                          } else {
+                                            let ingredientes = this.state.ingredientes;
+                                            ingredientes[i].alGusto = false;
+                                            this.setState({ ingredientes });
+                                          }
+                                        }}
+                                      />
+                                      <Button
                                         style={{
                                           fontFamily: 'montserrat-bold',
                                           borderRadius: nowTheme.SIZES.BASE * 1.5,
                                           width: 30,
                                           height: 30,
                                           marginLeft: 2,
-                                          marginTop: 10
+                                          marginTop: 10,
                                         }}
                                         color="primary"
                                         round
@@ -395,9 +402,18 @@ class AddReceta extends React.Component {
                                         }
                                         value={ingrediente.cantidad || ''}
                                         onChangeText={(cantidad) => {
-                                          let ingredientes = this.state.ingredientes;
-                                          ingredientes[i].cantidad = parseInt(cantidad, 10);
-                                          this.setState({ ingredientes });
+                                          let numreg = /^[0-9]+$/;
+                                          if (numreg.test(cantidad)) {
+                                            //test ok
+                                            let ingredientes = this.state.ingredientes;
+                                            ingredientes[i].cantidad = parseInt(cantidad, 10);
+                                            this.setState({ ingredientes });
+                                          } else {
+                                            //test not ok
+                                            Alert.alert(
+                                              'Por favor introduzca solo números en la cantidad del ingrediente.'
+                                            );
+                                          }
                                         }}
                                       />
                                     ) : null}
@@ -412,7 +428,6 @@ class AddReceta extends React.Component {
                                         this.setState({ ingredientes });
                                       }}
                                     />
-                                      
                                   </Block>
                                 ))}
                               </Block>
