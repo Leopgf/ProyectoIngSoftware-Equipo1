@@ -81,7 +81,10 @@ class Register extends React.Component {
         Alert.alert(error);
       });
   }
-
+  async componentDidMount() {
+    console.disableYellowBox=true;
+  }
+  
   async login() {
     // Login del usuario
     await loginUsuario(this.state.email, this.state.pass)

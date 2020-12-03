@@ -87,6 +87,7 @@ class AddReceta extends React.Component {
   }
 
   async componentDidMount() {
+    console.disableYellowBox=true;
     try {
       await getCategoriasHome(this.onCategoriesFetch);
     } catch (error) {

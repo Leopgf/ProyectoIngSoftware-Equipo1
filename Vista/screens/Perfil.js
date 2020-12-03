@@ -113,6 +113,7 @@ class Perfil extends React.Component {
   };
 
   async cargar() {
+    console.disableYellowBox=true;
     //TEMPORIZADOR DE CARGAR
     try {
       await getPerfil(this.onPerfilRecibido);
@@ -124,6 +125,7 @@ class Perfil extends React.Component {
       loading: false,
     });
   }
+
 
   async cambiarUsuario() {
     await firebase.auth().onAuthStateChanged((user) => {
@@ -306,6 +308,7 @@ class Perfil extends React.Component {
                   {this.state.isPublicaciones ? (
                     <Block flex>
                       {this.state.publicaciones.map((receta, index) => (
+                        
                         <Block flex row key={index}>
                           <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
                         </Block>

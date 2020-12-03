@@ -51,6 +51,7 @@ class Reviews extends React.Component {
 
   async componentDidMount() {
     //TEMPORIZADOR DE CARGAR
+    console.disableYellowBox=true;
     try {
       await getReviews(this.state.recetaID, this.onReviewsRecibidas);
       if (firebase.auth().currentUser) {

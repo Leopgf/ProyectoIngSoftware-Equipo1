@@ -44,6 +44,7 @@ class AddReview extends React.Component {
   }
 
   async componentDidMount() {
+    console.disableYellowBox=true;
     console.log(this.props.route.params.recetaID);
   }
 

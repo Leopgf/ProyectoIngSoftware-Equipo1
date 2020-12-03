@@ -106,6 +106,7 @@ class Conversor extends React.Component {
 
   //TEMPORIZADOR DE INICIO CARGA DE CONVERSOR CON TIEMPO INDICADO
   componentDidMount = () => {
+    console.disableYellowBox=true;
     setTimeout(() => {
       this.setState({
         loading: false,
@@ -183,23 +184,37 @@ class Conversor extends React.Component {
           <Block />
           <Block flex={1}>
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Block style={{ backgroundColor: '#e3e4e5', borderRadius: 50 }}>
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    width: 300,
-                    height: 18,
-                    color: '#0f1e2e',
-                    fontSize: 15,
-                    marginTop: 1,
-                    marginBottom: 15,
-                    marginLeft: 29,
-                    zIndex: 2,
-                    marginTop: 18,
-                  }}
-                >
-                  Para usar el conversor siga las instrucciones
-                </Text>
+            <Block style={{ backgroundColor: '#e3e4e5', borderRadius: 50 }}>
+            <Text
+              style={{
+                textAlign: 'center',
+                width: 350,
+                height: 18,
+                color: '#0f1e2e',
+                fontSize: 15,
+                marginTop: 1,
+                marginBottom: 15,
+                marginLeft: 29,
+                zIndex: 2,
+                marginTop: 18,
+              }}
+            >
+              Para usar el conversor siga las instrucciones
+            </Text>
+          </Block>
+              <Block row >
+              <Text style={{
+                color: '#0f1e2e',marginTop:45, marginLeft:10
+              }}>Seleccione el tipo de unidad:</Text>
+              <ModalDropdown 
+                ref="dropdown"
+                defaultValue={'Tipo'}
+                textStyle={styles.dropdownText}
+                style={styles.dropdown2}
+                dropdownStyle={styles.dropdownOption}
+                options={this.state.tiposUnidades}
+                onSelect={(value) => this.setState({ tipoUnidad: [value] })}
+              />
               </Block>
               <Block row>
                 <Text
@@ -304,20 +319,18 @@ class Conversor extends React.Component {
               </Block>
               <Block>
                 {this.state.conversion !== 0 ? (
-                  <Block style={{ backgroundColor: '#e3e4e5', borderRadius: 50, wiht: 40 }}>
-                    <Text
-                      style={{
-                        fontFamily: 'montserrat-bold',
-                        alignSelf: 'center',
-                        marginBottom: theme.SIZES.BASE / 2,
-                        fontWeight: '900',
-                        fontSize: 20,
-                        marginTop: 5,
-                      }}
-                      color="#e63746"
-                    >
-                      Conversión: {this.state.cantidad} {this.state.unidad} ={' '}
-                      {this.state.conversion} {this.state.unidadDestino}
+               
+                  <Block style={{ backgroundColor: '#e3e4e5', borderRadius: 50, wiht:40 }}>
+                    <Text style={{
+                      fontFamily: 'montserrat-bold',
+                      alignSelf: 'center',
+                      marginBottom: theme.SIZES.BASE / 2,
+                      fontWeight: '900',
+                      fontSize: 15,
+                      marginTop:5
+                    }}
+                    color="#e63746">
+                      Conversión: {this.state.cantidad} {this.state.unidad} = {this.state.conversion} {this.state.unidadDestino}
                     </Text>
                   </Block>
                 ) : null}
