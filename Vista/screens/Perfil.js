@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, Alert } from 'react-native';
+import {
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  Image,
+  ImageBackground,
+  Platform,
+  Alert,
+} from 'react-native';
 import { Block, Text, theme, Button as GaButton } from 'galio-framework';
 import { Card } from '../components';
 import { Button } from '../components';
@@ -72,6 +80,11 @@ class Perfil extends React.Component {
   };
 
   onBibliotecaRecibida = (biblioteca) => {
+    console.log(biblioteca);
+    this.setState({
+      isPublicaciones: false,
+      isLoading: false,
+    });
     getRecetasBiblioteca(biblioteca, this.onRecetaRecibidas);
   };
 
@@ -79,6 +92,7 @@ class Perfil extends React.Component {
     console.log('Cargando biblioteca');
     this.setState({
       isLoading: true,
+      biblioteca: [],
     });
     await getBiblioteca(this.onBibliotecaRecibida);
   };
@@ -113,7 +127,7 @@ class Perfil extends React.Component {
   };
 
   async cargar() {
-    console.disableYellowBox=true;
+    console.disableYellowBox = true;
     //TEMPORIZADOR DE CARGAR
     try {
       await getPerfil(this.onPerfilRecibido);
@@ -125,7 +139,6 @@ class Perfil extends React.Component {
       loading: false,
     });
   }
-
 
   async cambiarUsuario() {
     await firebase.auth().onAuthStateChanged((user) => {
@@ -182,29 +195,35 @@ class Perfil extends React.Component {
                       <Text
                         size={16}
                         color="#0f1e2e"
-                        style={{ marginTop: 5, lineHeight: 20, fontSize: 18, opacity: 0.8, marginBottom: 5 }}
+                        style={{
+                          marginTop: 5,
+                          lineHeight: 20,
+                          fontSize: 18,
+                          opacity: 0.8,
+                          marginBottom: 5,
+                        }}
                       >
                         @{this.state.usuario.usuario}
                       </Text>
                       <Block row flex style={styles.contenidoDerecha}>
-                      <Text color="#0f1e2e" style={{marginTop:8}}>Cerrar sesión</Text>
-                      <GaButton
-                        round
-                        onlyIcon
-                        shadowless
-                        icon="logout"
-                        iconFamily="AntDesign"
-                        iconColor={'#E63746'}
-                        iconSize={nowTheme.SIZES.BASE * 1.2}
-                        color={'#ffffff'}
-                        style={[styles.social, styles.shadow]}
-                        onPress={async () => {
-                          await this.handleLogout();
-                          this.props.navigation.navigate('Inicio');
-                        }}
+                        <Text color="#0f1e2e" style={{ marginTop: 8 }}>
+                          Cerrar sesión
+                        </Text>
+                        <GaButton
+                          round
+                          onlyIcon
+                          shadowless
+                          icon="logout"
+                          iconFamily="AntDesign"
+                          iconColor={'#E63746'}
+                          iconSize={nowTheme.SIZES.BASE * 1.2}
+                          color={'#ffffff'}
+                          style={[styles.social, styles.shadow]}
+                          onPress={async () => {
+                            await this.handleLogout();
+                            this.props.navigation.navigate('Inicio');
+                          }}
                         />
-                      
-                      
                       </Block>
                     </Block>
                   </Block>
@@ -308,7 +327,6 @@ class Perfil extends React.Component {
                   {this.state.isPublicaciones ? (
                     <Block flex>
                       {this.state.publicaciones.map((receta, index) => (
-                        
                         <Block flex row key={index}>
                           <Card horizontal item={receta} params={{ recetaID: receta.recetaID }} />
                         </Block>
@@ -389,11 +407,9 @@ const styles = StyleSheet.create({
   },
   contenidoDerecha: {
     flex: 1,
-    marginTop:7,
-    marginLeft:190
+    marginTop: 7,
+    marginLeft: 190,
   },
-
-
 });
 
 export default Perfil;
